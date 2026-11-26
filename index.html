@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Beast Empire — Sovereign Syndicate</title>
+  <title>Beast Empire — Citrine Sovereign</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg-base: #07080a;
-      --bg-elevated: #0e1015;
-      --panel-grad: linear-gradient(165deg, rgba(28, 31, 39, 0.92), rgba(13, 15, 20, 0.96));
-      --border-subtle: rgba(212, 175, 55, 0.24);
-      --border-bright: rgba(232, 198, 96, 0.52);
-      --gold-primary: #d8af4a;
-      --gold-light: #f0d588;
-      --gold-dark: #8c6719;
-      --steel-accent: #9aa5b4;
-      --text-main: #f3f1eb;
-      --text-dim: #8c92a0;
+      --bg-charcoal: #080705;
+      --bg-amber-dark: #141007;
+      --card-surface: linear-gradient(160deg, rgba(38, 30, 12, 0.9), rgba(14, 12, 8, 0.96));
+      --citrine-border: rgba(255, 204, 51, 0.34);
+      --citrine-bright: rgba(255, 224, 102, 0.72);
+      --citrine-core: #ffcc29;
+      --citrine-glow: #ffe680;
+      --citrine-deep: #9e6b06;
+      --text-ivory: #fbf7eb;
+      --text-sand: #b8ac8e;
       --emerald: #34d399;
     }
 
@@ -31,245 +30,252 @@
       margin: 0;
       min-height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-main);
+      color: var(--text-ivory);
       background:
-        radial-gradient(circle at 50% 10%, rgba(216, 175, 74, 0.11), transparent 46%),
-        radial-gradient(circle at 85% 85%, rgba(154, 165, 180, 0.06), transparent 45%),
-        linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
+        radial-gradient(circle at 50% 16%, rgba(255, 204, 41, 0.2), transparent 46%),
+        radial-gradient(circle at 15% 78%, rgba(245, 158, 11, 0.11), transparent 45%),
+        radial-gradient(circle at 86% 74%, rgba(255, 230, 128, 0.09), transparent 45%),
+        linear-gradient(180deg, var(--bg-amber-dark) 0%, var(--bg-charcoal) 100%);
       display: flex;
       justify-content: center;
       overflow-x: hidden;
     }
 
-    .container {
+    .frame {
       width: 100%;
       max-width: 440px;
       min-height: 100vh;
-      padding: 16px 15px 94px;
+      padding: 15px 15px 94px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       position: relative;
     }
 
-    .card {
-      background: var(--panel-grad);
-      border: 1px solid var(--border-subtle);
+    .citrine-card {
+      background: var(--card-surface);
+      border: 1px solid var(--citrine-border);
       border-radius: 16px;
       box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.55),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 14px 34px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 236, 153, 0.16);
       position: relative;
     }
 
-    .header-bar {
+    .top-header {
       padding: 12px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .identity {
+    .member-group {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .crest-box {
+    .gem-crest {
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      background: linear-gradient(145deg, #242832, #12141a);
-      border: 1px solid var(--border-bright);
+      background: linear-gradient(145deg, rgba(255, 224, 102, 0.22), rgba(20, 16, 7, 0.95));
+      border: 1px solid var(--citrine-bright);
       display: grid;
       place-items: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 18px rgba(255, 204, 41, 0.18);
     }
 
-    .member-name {
+    .member-title {
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.25px;
     }
 
-    .member-tier {
+    .member-rank {
       font-size: 11px;
-      color: var(--gold-light);
+      color: var(--citrine-glow);
       font-weight: 600;
-      letter-spacing: 0.4px;
       margin-top: 2px;
     }
 
-    .ghost-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-main);
+    .subtle-btn {
+      background: rgba(255, 204, 41, 0.08);
+      border: 1px solid var(--citrine-border);
+      color: var(--text-ivory);
       border-radius: 11px;
       padding: 8px 12px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      transition: border-color 0.15s ease, transform 0.12s ease;
     }
 
-    .ghost-btn:active {
-      transform: scale(0.96);
-    }
-
-    .kpi-grid {
+    .stats-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 9px;
     }
 
-    .kpi-box {
+    .stat-panel {
       padding: 11px 8px;
       text-align: center;
       border-radius: 14px;
     }
 
-    .kpi-title {
+    .stat-caption {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--text-dim);
+      color: var(--text-sand);
       font-weight: 600;
     }
 
-    .kpi-num {
+    .stat-figure {
       margin-top: 4px;
       font-size: 13px;
       font-weight: 800;
-      color: var(--gold-light);
+      color: var(--citrine-glow);
       font-variant-numeric: tabular-nums;
     }
 
-    .treasury-card {
+    .balance-box {
       padding: 15px 16px;
       text-align: center;
     }
 
-    .treasury-label {
+    .balance-kicker {
       font-size: 10px;
       letter-spacing: 2.2px;
       text-transform: uppercase;
-      color: var(--steel-accent);
+      color: var(--citrine-core);
       font-weight: 700;
     }
 
-    .treasury-balance {
+    .balance-total {
       margin-top: 5px;
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: 0.6px;
+      font-size: 31px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
       font-variant-numeric: tabular-nums;
-      background: linear-gradient(180deg, #ffffff 0%, var(--gold-light) 48%, var(--gold-primary) 100%);
+      background: linear-gradient(180deg, #ffffff 0%, var(--citrine-glow) 42%, var(--citrine-core) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 16px rgba(255, 204, 41, 0.25));
     }
 
-    .stage {
+    .tap-zone {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 8px 0;
+      perspective: 620px;
     }
 
-    .monolith-ring {
-      width: 242px;
-      height: 242px;
+    /* Extreme Flexible Citrine Button that leans toward the clicked side */
+    .citrine-flex-btn {
+      width: 244px;
+      height: 244px;
       border-radius: 50%;
       padding: 12px;
       background:
-        radial-gradient(circle at 50% 35%, rgba(216, 175, 74, 0.14), rgba(10, 12, 16, 0.92) 72%);
-      border: 1.5px solid var(--border-bright);
+        radial-gradient(circle at 35% 25%, rgba(255, 246, 194, 0.34), transparent 52%),
+        radial-gradient(circle at 50% 55%, rgba(255, 204, 41, 0.16), rgba(14, 11, 5, 0.94) 76%);
+      border: 1.5px solid var(--citrine-bright);
       box-shadow:
-        0 20px 46px rgba(0, 0, 0, 0.7),
-        0 0 32px rgba(216, 175, 74, 0.12),
-        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        0 22px 50px rgba(0, 0, 0, 0.72),
+        0 0 42px rgba(255, 204, 41, 0.24),
+        inset 0 1.5px 10px rgba(255, 240, 170, 0.32);
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: transform 0.18s cubic-bezier(0.22, 1.25, 0.36, 1), border-color 0.15s ease;
+      transform-origin: center center;
+      transition:
+        transform 0.26s cubic-bezier(0.2, 1.45, 0.35, 1),
+        border-radius 0.24s cubic-bezier(0.2, 1.45, 0.35, 1),
+        box-shadow 0.18s ease;
       touch-action: manipulation;
+      will-change: transform, border-radius;
     }
 
-    .monolith-ring.active-press {
-      border-color: var(--gold-light);
+    .citrine-flex-btn.leaning {
+      box-shadow:
+        0 28px 58px rgba(0, 0, 0, 0.8),
+        0 0 58px rgba(255, 214, 70, 0.42),
+        inset 0 2px 16px rgba(255, 245, 190, 0.52);
     }
 
-    .delta-pop {
+    .gain-float {
       position: fixed;
       pointer-events: none;
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--gold-light);
-      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.85);
-      animation: riseFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--citrine-glow);
+      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.85);
+      animation: floatUpCitrine 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       z-index: 50;
     }
 
-    @keyframes riseFade {
+    @keyframes floatUpCitrine {
       0% {
         opacity: 1;
         transform: translate(-50%, 0) scale(0.95);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -74px) scale(1.1);
+        transform: translate(-50%, -76px) scale(1.12);
       }
     }
 
-    .capacity-card {
+    .stamina-box {
       width: 100%;
       padding: 13px 15px;
       margin-top: 10px;
     }
 
-    .capacity-top {
+    .stamina-row {
       display: flex;
       justify-content: space-between;
       font-size: 12px;
       font-weight: 700;
-      color: var(--steel-accent);
+      color: var(--text-sand);
       margin-bottom: 8px;
     }
 
-    .capacity-top strong {
-      color: var(--text-main);
+    .stamina-row strong {
+      color: var(--citrine-glow);
       font-variant-numeric: tabular-nums;
     }
 
-    .bar-track {
+    .meter-rail {
       width: 100%;
-      height: 10px;
+      height: 11px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      border: 1px solid rgba(255, 204, 41, 0.22);
       overflow: hidden;
     }
 
-    .bar-fill {
+    .meter-fill {
       height: 100%;
       width: 100%;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+      background: linear-gradient(90deg, var(--citrine-deep), var(--citrine-core), var(--citrine-glow));
       transition: width 0.18s ease;
     }
 
-    .action-pair {
+    .boost-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 9px;
       margin-top: 11px;
     }
 
-    .secondary-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
+    .amber-btn {
+      background: rgba(255, 204, 41, 0.09);
+      border: 1px solid var(--citrine-border);
+      color: var(--text-ivory);
       border-radius: 12px;
       padding: 10px;
       font-size: 12px;
@@ -278,27 +284,27 @@
       transition: transform 0.12s ease, background 0.15s ease;
     }
 
-    .secondary-btn:active:not(:disabled) {
+    .amber-btn:active:not(:disabled) {
       transform: scale(0.96);
-      background: rgba(216, 175, 74, 0.12);
+      background: rgba(255, 204, 41, 0.18);
     }
 
-    .secondary-btn:disabled {
+    .amber-btn:disabled {
       opacity: 0.38;
       cursor: not-allowed;
     }
 
-    .view {
+    .panel-view {
       display: none;
       flex-direction: column;
       gap: 11px;
     }
 
-    .view.active {
+    .panel-view.active {
       display: flex;
     }
 
-    .row-card {
+    .task-row {
       padding: 14px 15px;
       display: flex;
       align-items: center;
@@ -306,45 +312,45 @@
       gap: 12px;
     }
 
-    .row-left {
+    .task-left {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .emblem-slot {
+    .gem-icon-box {
       width: 44px;
       height: 44px;
       border-radius: 12px;
       flex-shrink: 0;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
+      background: rgba(255, 204, 41, 0.06);
+      border: 1px solid var(--citrine-border);
       display: grid;
       place-items: center;
     }
 
-    .row-title {
+    .task-title {
       font-size: 14px;
       font-weight: 700;
     }
 
-    .row-desc {
+    .task-sub {
       font-size: 12px;
-      color: var(--text-dim);
+      color: var(--text-sand);
       margin-top: 2px;
     }
 
-    .row-payout {
+    .task-reward {
       font-size: 12px;
-      font-weight: 700;
-      color: var(--gold-light);
+      font-weight: 800;
+      color: var(--citrine-glow);
       margin-top: 4px;
       font-variant-numeric: tabular-nums;
     }
 
-    .primary-btn {
-      background: linear-gradient(145deg, var(--gold-light), var(--gold-primary) 58%, var(--gold-dark));
-      color: #120e05;
+    .citrine-cta {
+      background: linear-gradient(145deg, var(--citrine-glow), var(--citrine-core) 58%, var(--citrine-deep));
+      color: #140e02;
       border: none;
       border-radius: 12px;
       padding: 9px 14px;
@@ -355,29 +361,31 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 6px 18px rgba(255, 204, 41, 0.24);
       transition: transform 0.12s ease;
       white-space: nowrap;
     }
 
-    .primary-btn:active:not(:disabled) {
+    .citrine-cta:active:not(:disabled) {
       transform: scale(0.96);
     }
 
-    .primary-btn:disabled,
-    .primary-btn.claimed {
-      background: rgba(52, 211, 153, 0.12);
+    .citrine-cta:disabled,
+    .citrine-cta.claimed {
+      background: rgba(52, 211, 153, 0.14);
       color: var(--emerald);
-      border: 1px solid rgba(52, 211, 153, 0.35);
+      border: 1px solid rgba(52, 211, 153, 0.36);
+      box-shadow: none;
       cursor: default;
     }
 
-    .intel-grid {
+    .combo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 9px;
     }
 
-    .intel-tile {
+    .combo-slot {
       padding: 12px 8px;
       text-align: center;
       border-radius: 14px;
@@ -389,38 +397,37 @@
       transition: transform 0.14s ease, border-color 0.15s ease;
     }
 
-    .intel-tile:active {
+    .combo-slot:active {
       transform: scale(0.96);
     }
 
-    .intel-tile.selected {
-      border-color: var(--gold-light);
-      background: linear-gradient(165deg, rgba(216, 175, 74, 0.22), rgba(20, 23, 30, 0.96));
+    .combo-slot.picked {
+      border-color: var(--citrine-bright);
+      background: linear-gradient(160deg, rgba(255, 204, 41, 0.24), rgba(22, 18, 8, 0.96));
     }
 
-    .bottom-nav {
+    .bottom-dock {
       position: fixed;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
       max-width: 440px;
-      background: rgba(9, 11, 15, 0.94);
+      background: rgba(10, 9, 6, 0.94);
       backdrop-filter: blur(18px);
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--citrine-border);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       padding: 8px 6px 13px;
       z-index: 40;
     }
 
-    .nav-tab {
+    .dock-btn {
       background: none;
       border: none;
-      color: var(--text-dim);
+      color: var(--text-sand);
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.3px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -430,51 +437,51 @@
       transition: color 0.15s ease;
     }
 
-    .nav-tab.active {
-      color: var(--gold-light);
+    .dock-btn.active {
+      color: var(--citrine-glow);
     }
 
-    .banner-toast {
+    .toast-note {
       position: fixed;
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(16, 19, 26, 0.96);
-      border: 1px solid var(--border-bright);
-      color: var(--text-main);
+      background: rgba(20, 16, 8, 0.96);
+      border: 1px solid var(--citrine-bright);
+      color: var(--text-ivory);
       padding: 10px 18px;
       border-radius: 12px;
       font-size: 12px;
       font-weight: 600;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
       z-index: 70;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease;
     }
 
-    .banner-toast.show {
+    .toast-note.show {
       opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div id="toast" class="banner-toast"></div>
+  <div id="toast" class="toast-note"></div>
 
-  <!-- Executive Gold & Platinum SVG Definitions -->
+  <!-- Citrine Gemstone Gradients -->
   <svg width="0" height="0" style="position:absolute;visibility:hidden;">
     <defs>
-      <linearGradient id="mGold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f5df9c" />
-        <stop offset="55%" stop-color="#d8af4a" />
-        <stop offset="100%" stop-color="#856014" />
+      <linearGradient id="citrineGem" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fff4b8" />
+        <stop offset="48%" stop-color="#ffcc29" />
+        <stop offset="100%" stop-color="#9e6b06" />
       </linearGradient>
-      <linearGradient id="mSilver" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#e5e9f0" />
-        <stop offset="60%" stop-color="#9aa5b4" />
-        <stop offset="100%" stop-color="#4b5563" />
+      <linearGradient id="citrineFacet" x1="0%" y1="100%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#d97706" />
+        <stop offset="55%" stop-color="#fde047" />
+        <stop offset="100%" stop-color="#ffffff" />
       </linearGradient>
-      <linearGradient id="mCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient id="ytRuby" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="0%" stop-color="#fca5a5" />
         <stop offset="55%" stop-color="#dc2626" />
         <stop offset="100%" stop-color="#7f1d1d" />
@@ -482,249 +489,253 @@
     </defs>
   </svg>
 
-  <div class="container">
-    <header class="card header-bar">
-      <div class="identity">
-        <div class="crest-box">
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <path d="M4 17 L6 8 L12 12 L18 8 L20 17 Z" fill="url(#mGold)" />
-            <rect x="4" y="18.5" width="16" height="1.8" rx="0.9" fill="url(#mGold)" />
+  <div class="frame">
+    <header class="citrine-card top-header">
+      <div class="member-group">
+        <div class="gem-crest">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <polygon points="12,3 21,9.5 12,21 3,9.5" fill="url(#citrineGem)" />
           </svg>
         </div>
         <div>
-          <div id="playerName" class="member-name">Sovereign Member</div>
-          <div id="rankLabel" class="member-tier">Associate • Syndicate</div>
+          <div id="playerName" class="member-title">Sovereign Member</div>
+          <div id="rankLabel" class="member-rank">Associate • Citrine Syndicate</div>
         </div>
       </div>
-      <button id="soundToggle" class="ghost-btn" type="button">Audio On</button>
+      <button id="soundToggle" class="subtle-btn" type="button">Audio On</button>
     </header>
 
-    <section class="kpi-grid">
-      <div class="card kpi-box">
-        <div class="kpi-title">Strike Yield</div>
-        <div id="tapPowerStat" class="kpi-num">+1</div>
+    <section class="stats-strip">
+      <div class="citrine-card stat-panel">
+        <div class="stat-caption">Strike Yield</div>
+        <div id="tapPowerStat" class="stat-figure">+1</div>
       </div>
-      <div class="card kpi-box">
-        <div class="kpi-title">Passive / Sec</div>
-        <div id="pphStat" class="kpi-num">+0/s</div>
+      <div class="citrine-card stat-panel">
+        <div class="stat-caption">Passive / Sec</div>
+        <div id="pphStat" class="stat-figure">+0/s</div>
       </div>
-      <div class="card kpi-box">
-        <div class="kpi-title">Airdrop Index</div>
-        <div id="airdropStat" class="kpi-num">0</div>
+      <div class="citrine-card stat-panel">
+        <div class="stat-caption">Airdrop Index</div>
+        <div id="airdropStat" class="stat-figure">0</div>
       </div>
     </section>
 
     <!-- EMPIRE TAP VIEW -->
-    <main id="tab-tap" class="view active">
-      <div class="card treasury-card">
-        <div class="treasury-label">Beast Coin Treasury</div>
-        <div id="balanceDisplay" class="treasury-balance">0</div>
+    <main id="tab-tap" class="panel-view active">
+      <div class="citrine-card balance-box">
+        <div class="balance-kicker">Beast Coin Treasury</div>
+        <div id="balanceDisplay" class="balance-total">0</div>
       </div>
 
-      <div class="stage">
-        <div id="lionTap" class="monolith-ring" role="button" tabindex="0" aria-label="Tap Sovereign Lion Emblem">
-          <!-- Classic Crowned Golden Lion Emblem (Closed Mouth) -->
+      <div class="tap-zone">
+        <div id="lionTap" class="citrine-flex-btn" role="button" tabindex="0" aria-label="Tap Flexible Citrine Emblem">
+          <!-- Citrine Crowned Golden Lion Emblem (Closed Mouth) -->
           <svg viewBox="0 0 220 220" width="194" height="194">
             <defs>
-              <radialGradient id="sMane" cx="50%" cy="38%" r="62%">
-                <stop offset="0%" stop-color="#f5df9c" />
-                <stop offset="55%" stop-color="#c99b32" />
-                <stop offset="100%" stop-color="#6b4b0e" />
+              <radialGradient id="cMane" cx="48%" cy="36%" r="64%">
+                <stop offset="0%" stop-color="#fff2a6" />
+                <stop offset="52%" stop-color="#eab308" />
+                <stop offset="100%" stop-color="#784904" />
               </radialGradient>
-              <linearGradient id="sFace" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#faecc0" />
-                <stop offset="100%" stop-color="#c89628" />
+              <linearGradient id="cFace" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fef9c3" />
+                <stop offset="100%" stop-color="#ca8a04" />
               </linearGradient>
             </defs>
 
-            <!-- Outer Precision Ring -->
-            <circle cx="110" cy="112" r="95" fill="none" stroke="url(#mGold)" stroke-width="1.4" opacity="0.55" />
-
-            <!-- Structured Mane -->
-            <path
-              fill="url(#sMane)"
-              stroke="#4a3307"
+            <!-- Citrine Facet Halo -->
+            <polygon
+              points="110,14 198,64 198,156 110,206 22,156 22,64"
+              fill="none"
+              stroke="url(#citrineFacet)"
               stroke-width="1.5"
+              opacity="0.55"
+            />
+
+            <!-- Mane -->
+            <path
+              fill="url(#cMane)"
+              stroke="#523204"
+              stroke-width="1.6"
               d="M110 24 L125 43 L151 34 L154 60 L180 62 L170 86 L191 102 L173 120 L186 144 L162 152 L164 178 L138 173 L126 196 L110 180 L94 196 L82 173 L56 178 L58 152 L34 144 L47 120 L29 102 L50 86 L40 62 L66 60 L69 34 L95 43 Z"
             />
 
             <!-- Ears -->
-            <circle cx="69" cy="77" r="15" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
-            <circle cx="151" cy="77" r="15" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
+            <circle cx="69" cy="77" r="15" fill="url(#cFace)" stroke="#5c3805" stroke-width="2" />
+            <circle cx="151" cy="77" r="15" fill="url(#cFace)" stroke="#5c3805" stroke-width="2" />
 
             <!-- Face -->
-            <ellipse cx="110" cy="116" rx="46" ry="42" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
+            <ellipse cx="110" cy="116" rx="46" ry="42" fill="url(#cFace)" stroke="#5c3805" stroke-width="2" />
 
-            <!-- Crown -->
+            <!-- Citrine Crown -->
             <path
               d="M84 62 L89 41 L103 52 L110 36 L117 52 L131 41 L136 62 Z"
-              fill="url(#mGold)"
-              stroke="#4a3307"
+              fill="url(#citrineGem)"
+              stroke="#523204"
               stroke-width="1.8"
               stroke-linejoin="round"
             />
 
-            <!-- Composed Eyes -->
-            <ellipse cx="91" cy="107" rx="7.5" ry="5.5" fill="#12141a" />
-            <circle cx="89" cy="105.5" r="2" fill="#f5df9c" />
+            <!-- Eyes -->
+            <ellipse cx="91" cy="107" rx="7.5" ry="5.5" fill="#141007" />
+            <circle cx="89" cy="105.5" r="2" fill="#fef08a" />
 
-            <ellipse cx="129" cy="107" rx="7.5" ry="5.5" fill="#12141a" />
-            <circle cx="127" cy="105.5" r="2" fill="#f5df9c" />
+            <ellipse cx="129" cy="107" rx="7.5" ry="5.5" fill="#141007" />
+            <circle cx="127" cy="105.5" r="2" fill="#fef08a" />
 
             <!-- Muzzle & Closed Mouth -->
-            <ellipse cx="110" cy="130" rx="20" ry="13" fill="#fff6d6" />
-            <path d="M102 122 L118 122 L110 130 Z" fill="#3d2806" />
-            <path d="M110 130 L110 135 M100 137 Q110 140 120 137" stroke="#3d2806" stroke-width="2.6" stroke-linecap="round" fill="none" />
+            <ellipse cx="110" cy="130" rx="20" ry="13" fill="#fefce8" />
+            <path d="M102 122 L118 122 L110 130 Z" fill="#422603" />
+            <path d="M110 130 L110 135 M100 137 Q110 140 120 137" stroke="#422603" stroke-width="2.6" stroke-linecap="round" fill="none" />
           </svg>
         </div>
       </div>
 
-      <div class="card capacity-card">
-        <div class="capacity-top">
-          <span>STAMINA RESERVE</span>
+      <div class="citrine-card stamina-box">
+        <div class="stamina-row">
+          <span>CITRINE STAMINA</span>
           <strong id="energyText">1000 / 1000</strong>
         </div>
-        <div class="bar-track">
-          <div id="energyBar" class="bar-fill"></div>
+        <div class="meter-rail">
+          <div id="energyBar" class="meter-fill"></div>
         </div>
-        <div class="action-pair">
-          <button id="fullEnergyBtn" class="secondary-btn" type="button">Refill Stamina (3/3)</button>
-          <button id="turboBtn" class="secondary-btn" type="button">2x Multiplier (3/3)</button>
+        <div class="boost-pair">
+          <button id="fullEnergyBtn" class="amber-btn" type="button">Refill Stamina (3/3)</button>
+          <button id="turboBtn" class="amber-btn" type="button">2x Multiplier (3/3)</button>
         </div>
       </div>
     </main>
 
     <!-- EARN VIEW -->
-    <section id="tab-earn" class="view">
-      <div class="card row-card">
-        <div class="row-left">
-          <div class="emblem-slot">
+    <section id="tab-earn" class="panel-view">
+      <div class="citrine-card task-row">
+        <div class="task-left">
+          <div class="gem-icon-box">
             <svg viewBox="0 0 24 24" width="22" height="22">
-              <rect x="4" y="6" width="16" height="14" rx="3" fill="none" stroke="url(#mGold)" stroke-width="1.8" />
-              <path d="M8 4 V8 M16 4 V8 M4 11 H20" stroke="url(#mGold)" stroke-width="1.8" />
+              <rect x="4" y="6" width="16" height="14" rx="3" fill="none" stroke="url(#citrineGem)" stroke-width="1.8" />
+              <path d="M8 4 V8 M16 4 V8 M4 11 H20" stroke="url(#citrineGem)" stroke-width="1.8" />
             </svg>
           </div>
           <div>
-            <div class="row-title">Daily Attendance</div>
-            <div id="checkinSub" class="row-desc">Consecutive daily syndicate bonus</div>
-            <div id="checkinReward" class="row-payout">+25,000 Beast Coin</div>
+            <div class="task-title">Daily Attendance</div>
+            <div id="checkinSub" class="task-sub">Consecutive daily syndicate bonus</div>
+            <div id="checkinReward" class="task-reward">+25,000 Beast Coin</div>
           </div>
         </div>
-        <button id="checkinBtn" class="primary-btn" type="button">Claim</button>
+        <button id="checkinBtn" class="citrine-cta" type="button">Claim</button>
       </div>
 
-      <!-- YouTube Channel Subscription (+5,000,000 Beast Coin) -->
-      <div class="card row-card">
-        <div class="row-left">
-          <div class="emblem-slot">
+      <!-- YouTube Subscription Reward (+5,000,000 Beast Coin) -->
+      <div class="citrine-card task-row">
+        <div class="task-left">
+          <div class="gem-icon-box">
             <svg viewBox="0 0 24 24" width="22" height="22">
-              <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="url(#mCrimson)" />
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="url(#ytRuby)" />
               <polygon points="10.5,9.2 15.5,12 10.5,14.8" fill="#ffffff" />
             </svg>
           </div>
           <div>
-            <div class="row-title">Subscribe Official YouTube</div>
-            <div class="row-desc">Visit @beastempire-x9w & subscribe to claim</div>
-            <div class="row-payout">+5,000,000 Beast Coin</div>
+            <div class="task-title">Subscribe Official YouTube</div>
+            <div class="task-sub">Visit @beastempire-x9w & subscribe to claim</div>
+            <div class="task-reward">+5,000,000 Beast Coin</div>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <a
-            class="primary-btn"
+            class="citrine-cta"
             href="https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs"
             target="_blank"
             rel="noopener noreferrer"
             onclick="markYoutubeOpened()"
           >Open Channel</a>
-          <button id="ytClaimBtn" class="primary-btn" type="button" onclick="claimYoutubeReward()">
+          <button id="ytClaimBtn" class="citrine-cta" type="button" onclick="claimYoutubeReward()">
             Claim 5M
           </button>
         </div>
       </div>
 
-      <!-- Daily Syndicate Combo -->
-      <div class="card" style="padding:14px 15px;">
-        <div class="row-title">Daily Syndicate Combo</div>
-        <div id="comboStatus" class="row-desc" style="margin-bottom:10px;">
+      <!-- Daily Citrine Combo -->
+      <div class="citrine-card" style="padding:14px 15px;">
+        <div class="task-title">Daily Citrine Combo</div>
+        <div id="comboStatus" class="task-sub" style="margin-bottom:10px;">
           Select 3 directives for +100,000 Beast Coin
         </div>
-        <div id="comboGrid" class="intel-grid"></div>
+        <div id="comboGrid" class="combo-grid"></div>
       </div>
     </section>
 
-    <!-- UPGRADES VIEW -->
-    <section id="tab-upgrades" class="view">
+    <!-- ASSETS & UPGRADES VIEW -->
+    <section id="tab-upgrades" class="panel-view">
       <div id="upgradesList" style="display:flex; flex-direction:column; gap:11px;"></div>
     </section>
 
     <!-- AIRDROP & NETWORK VIEW -->
-    <section id="tab-friends" class="view">
-      <div class="card row-card">
-        <div class="row-left">
-          <div class="emblem-slot">
+    <section id="tab-friends" class="panel-view">
+      <div class="citrine-card task-row">
+        <div class="task-left">
+          <div class="gem-icon-box">
             <svg viewBox="0 0 24 24" width="22" height="22">
-              <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="url(#mGold)" stroke-width="1.8" />
-              <circle cx="12" cy="11.5" r="2.5" fill="url(#mGold)" />
+              <polygon points="12,3 20,10 12,21 4,10" fill="url(#citrineGem)" />
             </svg>
           </div>
           <div>
-            <div class="row-title">Beast Token Allocation</div>
-            <div class="row-desc">Accumulate Beast Coin, complete directives & expand network</div>
-            <div id="airdropEstimate" class="row-payout">Allocation Index: 0 pts</div>
+            <div class="task-title">Beast Token Allocation</div>
+            <div class="task-sub">Accumulate Beast Coin, complete directives & expand network</div>
+            <div id="airdropEstimate" class="task-reward">Allocation Index: 0 pts</div>
           </div>
         </div>
       </div>
 
-      <div class="card row-card">
-        <div class="row-left">
-          <div class="emblem-slot">
+      <div class="citrine-card task-row">
+        <div class="task-left">
+          <div class="gem-icon-box">
             <svg viewBox="0 0 24 24" width="22" height="22">
-              <circle cx="10" cy="9" r="3.2" fill="url(#mSilver)" />
-              <circle cx="16.5" cy="10" r="2.5" fill="url(#mGold)" />
-              <path d="M4.5 19 C4.5 15.5, 15.5 15.5, 15.5 19 Z" fill="url(#mSilver)" />
+              <circle cx="10" cy="9" r="3.2" fill="url(#citrineGem)" />
+              <circle cx="16.5" cy="10" r="2.5" fill="url(#citrineFacet)" />
+              <path d="M4.5 19 C4.5 15.5, 15.5 15.5, 15.5 19 Z" fill="url(#citrineGem)" />
             </svg>
           </div>
           <div>
-            <div class="row-title">Recruit Partners</div>
-            <div class="row-desc">https://t.me/MyBeastEmpire_bot/game</div>
-            <div class="row-payout">+50,000 Beast Coin per referral</div>
+            <div class="task-title">Recruit Partners</div>
+            <div class="task-sub">https://t.me/MyBeastEmpire_bot/game</div>
+            <div class="task-reward">+50,000 Beast Coin per referral</div>
           </div>
         </div>
-        <button id="copyInviteBtn" class="primary-btn" type="button">Copy Link</button>
+        <button id="copyInviteBtn" class="citrine-cta" type="button">Copy Link</button>
       </div>
 
-      <div class="card" style="padding:14px 15px;">
-        <div class="row-title" style="margin-bottom:8px;">Syndicate Standings</div>
+      <div class="citrine-card" style="padding:14px 15px;">
+        <div class="task-title" style="margin-bottom:8px;">Syndicate Standings</div>
         <div id="leaderboardList" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
     </section>
   </div>
 
-  <!-- Executive Bottom Navigation -->
-  <nav class="bottom-nav">
-    <button class="nav-tab active" data-tab="tap" type="button">
+  <!-- Bottom Dock -->
+  <nav class="bottom-dock">
+    <button class="dock-btn active" data-tab="tap" type="button">
       <svg viewBox="0 0 24 24" width="19" height="19">
-        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" />
-        <circle cx="12" cy="12" r="3" fill="currentColor" />
+        <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="currentColor" stroke-width="1.8" />
       </svg>
-      <span>Empire</span>
+      <span>Citrine</span>
     </button>
-    <button class="nav-tab" data-tab="earn" type="button">
+    <button class="dock-btn" data-tab="earn" type="button">
       <svg viewBox="0 0 24 24" width="19" height="19">
         <rect x="4" y="5" width="16" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8" />
         <path d="M8 10 H16 M8 14 H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
       </svg>
       <span>Earn</span>
     </button>
-    <button class="nav-tab" data-tab="upgrades" type="button">
+    <button class="dock-btn" data-tab="upgrades" type="button">
       <svg viewBox="0 0 24 24" width="19" height="19">
         <path d="M4 18 L10 12 L14 15 L20 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
       <span>Assets</span>
     </button>
-    <button class="nav-tab" data-tab="friends" type="button">
+    <button class="dock-btn" data-tab="friends" type="button">
       <svg viewBox="0 0 24 24" width="19" height="19">
-        <polygon points="12,3 19,10 12,21 5,10" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="12" cy="12" r="3" fill="currentColor" />
       </svg>
       <span>Airdrop</span>
     </button>
@@ -733,7 +744,7 @@
   <script>
     const YOUTUBE_CHANNEL_URL = "https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs";
     const YOUTUBE_SUBSCRIBE_REWARD = 5000000;
-    const STORAGE_KEY = "beast_empire_sovereign_v3";
+    const STORAGE_KEY = "beast_empire_citrine_v4";
 
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
@@ -742,19 +753,19 @@
     }
 
     const UPGRADE_DEFS = [
-      { id: "claw", name: "Gilded Strike", desc: "+2 Strike Yield per tier", baseCost: 250, mult: 1.7, tapAdd: 2, ppsAdd: 0, grad: "url(#mGold)" },
-      { id: "den", name: "Territory Holdings", desc: "+15 Passive / Sec per tier", baseCost: 600, mult: 1.75, tapAdd: 0, ppsAdd: 15, grad: "url(#mSilver)" },
-      { id: "crown", name: "Sovereign Charter", desc: "+6 Strike Yield & +40/s", baseCost: 2500, mult: 1.85, tapAdd: 6, ppsAdd: 40, grad: "url(#mGold)" },
-      { id: "citadel", name: "Iron Vaults", desc: "+150 Passive / Sec per tier", baseCost: 12000, mult: 1.9, tapAdd: 0, ppsAdd: 150, grad: "url(#mSilver)" }
+      { id: "claw", name: "Citrine Strike", desc: "+2 Strike Yield per tier", baseCost: 250, mult: 1.7, tapAdd: 2, ppsAdd: 0, stroke: "url(#citrineGem)" },
+      { id: "den", name: "Golden Quarry", desc: "+15 Passive / Sec per tier", baseCost: 600, mult: 1.75, tapAdd: 0, ppsAdd: 15, stroke: "url(#citrineFacet)" },
+      { id: "crown", name: "Sovereign Charter", desc: "+6 Strike Yield & +40/s", baseCost: 2500, mult: 1.85, tapAdd: 6, ppsAdd: 40, stroke: "url(#citrineGem)" },
+      { id: "citadel", name: "Amber Treasury", desc: "+150 Passive / Sec per tier", baseCost: 12000, mult: 1.9, tapAdd: 0, ppsAdd: 150, stroke: "url(#citrineFacet)" }
     ];
 
     const COMBO_DIRECTIVES = [
-      { id: "capital_reserve", label: "Capital Reserve", grad: "url(#mGold)" },
-      { id: "trade_route", label: "Trade Route", grad: "url(#mSilver)" },
-      { id: "sovereign_pact", label: "Sovereign Pact", grad: "url(#mGold)" },
-      { id: "bullion_vault", label: "Bullion Vault", grad: "url(#mSilver)" },
-      { id: "crown_mandate", label: "Crown Mandate", grad: "url(#mGold)" },
-      { id: "equity_ledger", label: "Equity Ledger", grad: "url(#mSilver)" }
+      { id: "citrine_prism", label: "Citrine Prism", stroke: "url(#citrineGem)" },
+      { id: "amber_vault", label: "Amber Vault", stroke: "url(#citrineFacet)" },
+      { id: "gold_pact", label: "Gold Pact", stroke: "url(#citrineGem)" },
+      { id: "sun_ledger", label: "Sun Ledger", stroke: "url(#citrineFacet)" },
+      { id: "crown_mandate", label: "Crown Mandate", stroke: "url(#citrineGem)" },
+      { id: "reserve_core", label: "Reserve Core", stroke: "url(#citrineFacet)" }
     ];
 
     const defaultState = {
@@ -808,22 +819,22 @@
       showToast._t = setTimeout(() => el.classList.remove("show"), 2200);
     }
 
-    function playStrikeTone() {
+    function playGemChime() {
       if (!state.soundOn) return;
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         const ctx = new AudioCtx();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = "triangle";
-        osc.frequency.setValueAtTime(420, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(620, ctx.currentTime + 0.06);
-        gain.gain.setValueAtTime(0.06, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(560, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.07);
+        gain.gain.setValueAtTime(0.07, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start();
-        osc.stop(ctx.currentTime + 0.07);
+        osc.stop(ctx.currentTime + 0.08);
       } catch (_) {}
     }
 
@@ -866,15 +877,16 @@
       state.youtubeSubscribedClaimed = true;
       saveState();
       render();
-      playStrikeTone();
+      playGemChime();
       showToast("+5,000,000 Beast Coin credited.");
     }
 
+    // Extreme Flexible Citrine Lean on Click/Tap Direction
     const lionTap = document.getElementById("lionTap");
     lionTap.addEventListener("pointerdown", (e) => {
       const power = getEffectiveTap();
       if (state.energy < 1) {
-        showToast("Stamina reserve depleted. Refill to continue.");
+        showToast("Citrine stamina depleted. Refill to continue.");
         return;
       }
       const spent = Math.min(state.energy, Math.max(1, Math.floor(power / 2)));
@@ -882,27 +894,44 @@
       state.coins += power;
 
       const rect = lionTap.getBoundingClientRect();
-      const dx = ((e.clientX || rect.left + rect.width / 2) - (rect.left + rect.width / 2)) / (rect.width / 2);
-      const dy = ((e.clientY || rect.top + rect.height / 2) - (rect.top + rect.height / 2)) / (rect.height / 2);
-      const tiltX = (-dy * 8).toFixed(1);
-      const tiltY = (dx * 10).toFixed(1);
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const nx = Math.max(-1, Math.min(1, ((e.clientX || cx) - cx) / (rect.width / 2)));
+      const ny = Math.max(-1, Math.min(1, ((e.clientY || cy) - cy) / (rect.height / 2)));
 
-      lionTap.classList.add("active-press");
-      lionTap.style.transform = `perspective(760px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.96)`;
-      setTimeout(() => {
-        lionTap.classList.remove("active-press");
-        lionTap.style.transform = "perspective(760px) rotateX(0deg) rotateY(0deg) scale(1)";
-      }, 150);
+      const tiltX = (-ny * 18).toFixed(1);
+      const tiltY = (nx * 20).toFixed(1);
+      const shiftX = (nx * 10).toFixed(1);
+      const shiftY = (ny * 10).toFixed(1);
+      const scaleX = (1 + Math.abs(nx) * 0.05).toFixed(2);
+      const scaleY = (1 - Math.abs(ny) * 0.04).toFixed(2);
+
+      // Asymmetric organic morph toward the clicked edge
+      const rTopLeft = `${Math.round(50 - nx * 10 - ny * 10)}%`;
+      const rTopRight = `${Math.round(50 + nx * 10 - ny * 10)}%`;
+      const rBottomRight = `${Math.round(50 + nx * 10 + ny * 10)}%`;
+      const rBottomLeft = `${Math.round(50 - nx * 10 + ny * 10)}%`;
+
+      lionTap.classList.add("leaning");
+      lionTap.style.borderRadius = `${rTopLeft} ${rTopRight} ${rBottomRight} ${rBottomLeft}`;
+      lionTap.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${scaleX}, ${scaleY}, 0.94)`;
+
+      clearTimeout(lionTap._flexTimer);
+      lionTap._flexTimer = setTimeout(() => {
+        lionTap.classList.remove("leaning");
+        lionTap.style.borderRadius = "50%";
+        lionTap.style.transform = "translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+      }, 210);
 
       const pop = document.createElement("div");
-      pop.className = "delta-pop";
+      pop.className = "gain-float";
       pop.textContent = `+${power.toLocaleString()}`;
-      pop.style.left = `${e.clientX || window.innerWidth / 2}px`;
-      pop.style.top = `${(e.clientY || window.innerHeight / 2) - 12}px`;
+      pop.style.left = `${e.clientX || cx}px`;
+      pop.style.top = `${(e.clientY || cy) - 12}px`;
       document.body.appendChild(pop);
       setTimeout(() => pop.remove(), 800);
 
-      playStrikeTone();
+      playGemChime();
       saveState();
       render();
     });
@@ -913,7 +942,7 @@
       state.energy = state.maxEnergy;
       saveState();
       render();
-      showToast("Stamina reserve restored.");
+      showToast("Citrine stamina restored.");
     });
 
     document.getElementById("turboBtn").addEventListener("click", () => {
@@ -951,10 +980,10 @@
       grid.innerHTML = "";
       COMBO_DIRECTIVES.forEach((item) => {
         const tile = document.createElement("div");
-        tile.className = "card intel-tile" + (state.comboPicked.includes(item.id) ? " selected" : "");
+        tile.className = "citrine-card combo-slot" + (state.comboPicked.includes(item.id) ? " picked" : "");
         tile.innerHTML = `
           <svg viewBox="0 0 24 24" width="22" height="22">
-            <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${item.grad}" stroke-width="1.8" />
+            <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${item.stroke}" stroke-width="1.8" />
           </svg>
           <span style="font-size:11px;font-weight:700;">${item.label}</span>
         `;
@@ -988,21 +1017,21 @@
         const lvl = state.upgrades[u.id] || 0;
         const cost = Math.floor(u.baseCost * Math.pow(u.mult, lvl));
         const row = document.createElement("div");
-        row.className = "card row-card";
+        row.className = "citrine-card task-row";
         row.innerHTML = `
-          <div class="row-left">
-            <div class="emblem-slot">
+          <div class="task-left">
+            <div class="gem-icon-box">
               <svg viewBox="0 0 24 24" width="22" height="22">
-                <rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="${u.grad}" stroke-width="1.8" />
+                <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${u.stroke}" stroke-width="1.8" />
               </svg>
             </div>
             <div>
-              <div class="row-title">${u.name} <span style="color:var(--steel-accent);font-size:12px;">Tier ${lvl}</span></div>
-              <div class="row-desc">${u.desc}</div>
-              <div class="row-payout">Cost: ${cost.toLocaleString()} Beast Coin</div>
+              <div class="task-title">${u.name} <span style="color:var(--citrine-core);font-size:12px;">Tier ${lvl}</span></div>
+              <div class="task-sub">${u.desc}</div>
+              <div class="task-reward">Cost: ${cost.toLocaleString()} Beast Coin</div>
             </div>
           </div>
-          <button class="primary-btn" ${state.coins < cost ? "disabled" : ""}>Acquire</button>
+          <button class="citrine-cta" ${state.coins < cost ? "disabled" : ""}>Acquire</button>
         `;
         row.querySelector("button").onclick = () => {
           if (state.coins < cost) return;
@@ -1031,9 +1060,9 @@
       box.innerHTML = rows
         .map(
           (r, i) => `
-          <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,204,41,0.1);">
             <span>#${i + 1} ${r.name}</span>
-            <strong style="color:var(--gold-light);font-variant-numeric:tabular-nums;">${r.coins.toLocaleString()}</strong>
+            <strong style="color:var(--citrine-glow);font-variant-numeric:tabular-nums;">${r.coins.toLocaleString()}</strong>
           </div>`
         )
         .join("");
@@ -1042,7 +1071,7 @@
     function render() {
       const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Sovereign Member";
       document.getElementById("playerName").textContent = user;
-      document.getElementById("rankLabel").textContent = `${getRank(state.coins)} • Syndicate`;
+      document.getElementById("rankLabel").textContent = `${getRank(state.coins)} • Citrine Syndicate`;
       document.getElementById("balanceDisplay").textContent = Math.floor(state.coins).toLocaleString();
       document.getElementById("tapPowerStat").textContent = `+${getEffectiveTap().toLocaleString()}`;
       document.getElementById("pphStat").textContent = `+${state.pps.toLocaleString()}/s`;
@@ -1086,12 +1115,12 @@
       renderLeaderboard();
     }
 
-    document.querySelectorAll(".nav-tab").forEach((btn) => {
+    document.querySelectorAll(".dock-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const target = btn.dataset.tab;
-        document.querySelectorAll(".nav-tab").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".dock-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
+        document.querySelectorAll(".panel-view").forEach((v) => v.classList.remove("active"));
         document.getElementById(`tab-${target}`).classList.add("active");
       });
     });

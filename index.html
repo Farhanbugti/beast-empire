@@ -16,7 +16,7 @@
     }
 
     body {
-      background: #080912;
+      background: #070811;
       color: #fff;
       height: 100vh;
       display: flex;
@@ -26,57 +26,31 @@
       position: relative;
     }
 
-    /* Animated Ambient Aurora Background */
+    /* Luxury Ambient Aurora Background */
     .ambient-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
       overflow: hidden;
-      background: radial-gradient(circle at 50% 0%, #1d1836 0%, #0b0c18 60%, #05060c 100%);
+      background: radial-gradient(circle at 50% 0%, #24193d 0%, #0b0c18 62%, #05050a 100%);
     }
     .aurora-orb {
       position: absolute;
       border-radius: 50%;
-      filter: blur(75px);
-      opacity: 0.45;
-      animation: driftOrb 14s ease-in-out infinite alternate;
+      filter: blur(80px);
+      opacity: 0.42;
+      animation: driftOrb 15s ease-in-out infinite alternate;
     }
-    .orb-1 {
-      width: 280px;
-      height: 280px;
-      background: #f59e0b;
-      top: -60px;
-      left: -50px;
-    }
-    .orb-2 {
-      width: 300px;
-      height: 300px;
-      background: #6366f1;
-      bottom: 80px;
-      right: -70px;
-      animation-delay: -5s;
-    }
-    .orb-3 {
-      width: 240px;
-      height: 240px;
-      background: #ec4899;
-      top: 38%;
-      left: 20%;
-      opacity: 0.22;
-      animation-delay: -9s;
-    }
+    .orb-1 { width: 290px; height: 290px; background: #f59e0b; top: -70px; left: -60px; }
+    .orb-2 { width: 310px; height: 310px; background: #6366f1; bottom: 70px; right: -80px; animation-delay: -5s; }
+    .orb-3 { width: 240px; height: 240px; background: #d946ef; top: 38%; left: 20%; opacity: 0.2; animation-delay: -9s; }
     @keyframes driftOrb {
       0% { transform: translate(0, 0) scale(1); }
       100% { transform: translate(35px, 45px) scale(1.18); }
     }
 
     /* Floating Golden Dust Particles */
-    .dust-layer {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
+    .dust-layer { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
     .dust {
       position: absolute;
       border-radius: 50%;
@@ -91,7 +65,7 @@
       100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
-    /* Main Content Layer */
+    /* Main Shell */
     .app-shell {
       position: relative;
       z-index: 5;
@@ -106,19 +80,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 16px 4px;
+      padding: 13px 16px 4px;
     }
-    .brand-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .brand-box { display: flex; align-items: center; gap: 8px; }
     .brand-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #fbbf24;
-      box-shadow: 0 0 12px #fbbf24;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #fbbf24; box-shadow: 0 0 12px #fbbf24;
     }
     .brand {
       font-size: 18px;
@@ -128,63 +95,44 @@
       -webkit-text-fill-color: transparent;
       letter-spacing: 0.9px;
     }
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .header-right { display: flex; align-items: center; gap: 8px; }
     .glass-pill {
       background: rgba(255, 255, 255, 0.07);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 215, 100, 0.28);
+      border: 1px solid rgba(255, 215, 100, 0.3);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
     }
     .sound-btn {
       color: #fde68a;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 32px; height: 32px;
       font-size: 14px;
       cursor: pointer;
-      transition: transform 0.2s ease;
     }
-    .sound-btn:active { transform: scale(0.88); }
     .rank-pill {
-      padding: 5px 14px;
+      padding: 5px 13px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
       color: #fde68a;
+      cursor: pointer;
     }
+    .rank-pill:active { transform: scale(0.95); }
 
     /* Balance Section */
-    .balance-wrap {
-      text-align: center;
-      margin-top: 2px;
-    }
-    .coin-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+    .balance-wrap { text-align: center; margin-top: 2px; }
+    .coin-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
     .mini-coin {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+      width: 34px; height: 34px; border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #fffbeb, #fbbf24 55%, #b45309 100%);
       box-shadow: 0 4px 14px rgba(251, 191, 36, 0.55), inset 0 -3px 5px rgba(120, 53, 15, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #451a03;
-      font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; color: #451a03; font-size: 18px;
       border: 2px solid #fef3c7;
     }
     .coin-count {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 900;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 30%, #fde68a 100%);
@@ -192,49 +140,39 @@
       -webkit-text-fill-color: transparent;
       filter: drop-shadow(0 4px 16px rgba(251, 191, 36, 0.35));
     }
-    .stats-sub {
-      font-size: 12px;
-      color: #cbd5e1;
-      opacity: 0.85;
-      margin-top: 1px;
-    }
+    .stats-sub { font-size: 12px; color: #cbd5e1; opacity: 0.85; margin-top: 1px; }
 
     /* Turbo Banner */
     .turbo-badge {
       display: none;
-      margin: 5px auto 0;
+      margin: 4px auto 0;
       background: linear-gradient(90deg, #f43f5e, #f59e0b);
       color: #fff;
       font-size: 11px;
       font-weight: 800;
-      padding: 4px 14px;
+      padding: 3px 14px;
       border-radius: 14px;
       box-shadow: 0 0 18px rgba(244, 63, 94, 0.65);
       animation: softPulse 0.9s ease-in-out infinite alternate;
     }
-    @keyframes softPulse {
-      from { transform: scale(1); }
-      to { transform: scale(1.06); }
-    }
+    @keyframes softPulse { from { transform: scale(1); } to { transform: scale(1.06); } }
 
-    /* Smooth Tab Screens */
+    /* Screens */
     .screen {
       flex: 1;
       display: none;
       flex-direction: column;
       overflow-y: auto;
       padding: 8px 16px;
-      animation: fadeSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: fadeSlideIn 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .screen.active {
-      display: flex;
-    }
+    .screen.active { display: flex; }
     @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(7px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Ultra-Soft Cushion Tap Arena */
+    /* Soft Cushion Tap Arena */
     .arena {
       flex: 1;
       display: flex;
@@ -244,25 +182,16 @@
       position: relative;
     }
     .orb-halo {
-      width: 264px;
-      height: 264px;
-      border-radius: 50%;
+      width: 258px; height: 258px; border-radius: 50%;
       background: radial-gradient(circle, rgba(251, 191, 36, 0.26) 0%, rgba(245, 158, 11, 0.06) 58%, transparent 74%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       box-shadow: 0 0 70px rgba(251, 191, 36, 0.2);
       position: relative;
       animation: haloBreathe 4s ease-in-out infinite alternate;
     }
-    @keyframes haloBreathe {
-      0% { transform: scale(0.98); }
-      100% { transform: scale(1.03); }
-    }
+    @keyframes haloBreathe { 0% { transform: scale(0.98); } 100% { transform: scale(1.03); } }
     .beast-coin-btn {
-      width: 224px;
-      height: 224px;
-      border-radius: 50%;
+      width: 220px; height: 220px; border-radius: 50%;
       background: radial-gradient(circle at 30% 24%, #fef9c3 0%, #fbbf24 38%, #d97706 78%, #78350f 100%);
       border: 6px solid #fef08a;
       box-shadow:
@@ -270,10 +199,7 @@
         0 0 36px rgba(251, 191, 36, 0.45),
         inset 0 8px 18px rgba(255, 255, 255, 0.8),
         inset 0 -12px 22px rgba(92, 36, 6, 0.88);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
       cursor: pointer;
       touch-action: manipulation;
       will-change: transform;
@@ -282,10 +208,7 @@
       transform-style: preserve-3d;
     }
     .beast-coin-btn::before {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      border-radius: 50%;
+      content: ""; position: absolute; inset: 8px; border-radius: 50%;
       border: 1.5px solid rgba(255, 251, 235, 0.65);
       box-shadow: inset 0 0 14px rgba(120, 53, 15, 0.5);
       pointer-events: none;
@@ -298,13 +221,8 @@
         inset 0 5px 12px rgba(255, 255, 255, 0.85),
         inset 0 -8px 16px rgba(92, 36, 6, 0.9);
     }
-
-    /* Silky Ripple Wave */
     .tap-ripple {
-      position: absolute;
-      width: 224px;
-      height: 224px;
-      border-radius: 50%;
+      position: absolute; width: 220px; height: 220px; border-radius: 50%;
       border: 2.5px solid rgba(254, 240, 138, 0.7);
       box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
       pointer-events: none;
@@ -314,92 +232,59 @@
       0% { transform: scale(0.94); opacity: 0.85; }
       100% { transform: scale(1.32); opacity: 0; }
     }
-
     .lion-svg {
-      width: 146px;
-      height: 146px;
+      width: 142px; height: 142px;
       filter: drop-shadow(0 8px 12px rgba(69, 26, 3, 0.65));
-      pointer-events: none;
-      margin-top: -4px;
+      pointer-events: none; margin-top: -4px;
     }
     .tap-tag {
-      margin-top: -2px;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: 1.6px;
+      margin-top: -2px; font-size: 10px; font-weight: 900; letter-spacing: 1.6px;
       color: #451a03;
       background: linear-gradient(180deg, #fefce8, #fde047);
       border: 1px solid rgba(146, 64, 14, 0.3);
-      padding: 3px 13px;
-      border-radius: 12px;
+      padding: 3px 13px; border-radius: 12px;
       box-shadow: 0 3px 8px rgba(0,0,0,0.22);
       pointer-events: none;
     }
 
-    /* Frosted Boost Pills */
-    .boost-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
+    /* Boost Pills */
+    .boost-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 9px; }
     .boost-pill {
       background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(253, 224, 71, 0.25);
       border-radius: 14px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 9px 12px;
+      display: flex; align-items: center; justify-content: space-between;
       cursor: pointer;
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease;
     }
-    .boost-pill:active {
-      transform: scale(0.95);
-      background: rgba(255, 255, 255, 0.12);
-    }
+    .boost-pill:active { transform: scale(0.95); }
     .boost-left { display: flex; align-items: center; gap: 8px; }
     .boost-name { font-size: 12px; font-weight: 700; color: #f8fafc; }
     .boost-count { font-size: 11px; font-weight: 800; color: #fde047; }
 
     /* Energy Bar */
-    .energy-box { padding-bottom: 6px; }
-    .energy-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #f1f5f9;
-    }
+    .energy-box { padding-bottom: 4px; }
+    .energy-top { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 5px; color: #f1f5f9; }
     .bar-track {
-      width: 100%;
-      height: 12px;
+      width: 100%; height: 11px;
       background: rgba(15, 23, 42, 0.75);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 2px;
+      border-radius: 12px; padding: 2px;
     }
     .bar-fill {
-      height: 100%;
-      width: 100%;
-      border-radius: 10px;
+      height: 100%; width: 100%; border-radius: 10px;
       background: linear-gradient(90deg, #f59e0b, #fde047);
       box-shadow: 0 0 12px rgba(251, 191, 36, 0.65);
       transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Floating +1 & Soft Sparks */
+    /* Floating +1 & Sparks */
     .float-plus {
-      position: fixed;
-      font-size: 27px;
-      font-weight: 900;
-      color: #fef08a;
+      position: fixed; font-size: 27px; font-weight: 900; color: #fef08a;
       text-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);
-      pointer-events: none;
-      z-index: 120;
+      pointer-events: none; z-index: 120;
       animation: silkyFloatUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes silkyFloatUp {
@@ -407,14 +292,9 @@
       100% { opacity: 0; transform: translateY(-96px) scale(1.22); }
     }
     .spark {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #fef08a;
-      box-shadow: 0 0 10px #fbbf24;
-      pointer-events: none;
-      z-index: 115;
+      position: fixed; width: 6px; height: 6px; border-radius: 50%;
+      background: #fef08a; box-shadow: 0 0 10px #fbbf24;
+      pointer-events: none; z-index: 115;
       animation: softSpark 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes softSpark {
@@ -422,13 +302,8 @@
       100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.1); }
     }
 
-    /* Frosted Glass Cards */
-    .section-title {
-      font-size: 15px;
-      font-weight: 800;
-      color: #fde68a;
-      margin-bottom: 10px;
-    }
+    /* Glass Cards */
+    .section-title { font-size: 15px; font-weight: 800; color: #fde68a; margin-bottom: 10px; }
     .item-card {
       background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(16px);
@@ -436,52 +311,80 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
       border-radius: 16px;
-      padding: 13px 14px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform 0.2s ease;
+      padding: 12px 14px;
+      margin-bottom: 9px;
+      display: flex; justify-content: space-between; align-items: center;
     }
     .item-left { display: flex; align-items: center; gap: 12px; }
     .item-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
+      width: 42px; height: 42px; border-radius: 13px;
       background: rgba(251, 191, 36, 0.14);
       border: 1px solid rgba(251, 191, 36, 0.32);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px;
     }
     .item-name { font-size: 14px; font-weight: 700; color: #f8fafc; }
     .item-sub { font-size: 11px; color: #cbd5e1; margin-top: 2px; }
     .action-btn {
       background: linear-gradient(180deg, #fde047, #f59e0b);
-      color: #451a03;
-      border: none;
-      border-radius: 11px;
-      padding: 9px 14px;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+      color: #451a03; border: none; border-radius: 11px;
+      padding: 8px 13px; font-size: 12px; font-weight: 800;
+      cursor: pointer; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
       white-space: nowrap;
-      transition: transform 0.18s ease;
     }
-    .action-btn:active { transform: scale(0.94); }
-    .action-btn:disabled {
-      background: rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      box-shadow: none;
+    .action-btn:disabled { background: rgba(255, 255, 255, 0.1); color: #94a3b8; box-shadow: none; }
+
+    /* Status & Leaderboard Styles */
+    .status-hero {
+      background: linear-gradient(145deg, rgba(251, 191, 36, 0.14), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(253, 224, 71, 0.35);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
     }
+    .status-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .status-rank-title { font-size: 16px; font-weight: 900; color: #fde047; }
+    .status-pos { font-size: 12px; font-weight: 800; background: rgba(251, 191, 36, 0.2); color: #fef08a; padding: 3px 10px; border-radius: 12px; }
+    .status-next { font-size: 11px; color: #cbd5e1; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .mini-stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 10px; text-align: center;
+    }
+    .mini-stat-box {
+      background: rgba(0, 0, 0, 0.28); border-radius: 10px; padding: 6px 4px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .mini-stat-val { font-size: 13px; font-weight: 800; color: #fff; }
+    .mini-stat-lbl { font-size: 10px; color: #94a3b8; }
+
+    .lb-row {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 7px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .lb-row.me {
+      background: linear-gradient(90deg, rgba(251, 191, 36, 0.22), rgba(245, 158, 11, 0.08));
+      border-color: rgba(253, 224, 71, 0.55);
+      box-shadow: 0 4px 16px rgba(251, 191, 36, 0.2);
+    }
+    .lb-left { display: flex; align-items: center; gap: 10px; }
+    .lb-pos { width: 26px; font-size: 13px; font-weight: 900; color: #fde68a; text-align: center; }
+    .lb-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .lb-name { font-size: 13px; font-weight: 700; color: #fff; }
+    .lb-league { font-size: 10px; color: #94a3b8; }
+    .lb-score { font-size: 13px; font-weight: 800; color: #fde047; }
 
     /* Invite Box */
     .invite-hero {
       background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(253, 224, 71, 0.3);
       border-radius: 18px;
       padding: 18px;
@@ -491,25 +394,19 @@
     .invite-hero h3 { font-size: 16px; color: #fde68a; margin-bottom: 6px; }
     .invite-hero p { font-size: 12px; color: #cbd5e1; margin-bottom: 14px; }
     .copy-link-btn {
-      width: 100%;
-      padding: 12px;
-      border-radius: 13px;
-      border: none;
+      width: 100%; padding: 12px; border-radius: 13px; border: none;
       background: linear-gradient(90deg, #fde047, #f59e0b);
-      color: #451a03;
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+      color: #451a03; font-size: 13px; font-weight: 900;
+      cursor: pointer; box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
     }
 
-    /* Frosted Bottom Navigation */
+    /* 5-Tab Frosted Bottom Navigation */
     .nav-bar {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      padding: 10px 12px 15px;
-      background: rgba(11, 13, 26, 0.82);
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      padding: 9px 10px 14px;
+      background: rgba(11, 13, 26, 0.85);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-top: 1px solid rgba(255, 255, 255, 0.09);
@@ -517,65 +414,41 @@
     .nav-btn {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid transparent;
-      border-radius: 13px;
-      padding: 8px 2px;
+      border-radius: 12px;
+      padding: 7px 2px;
       color: #94a3b8;
       text-align: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: all 0.2s ease;
     }
     .nav-btn.active {
-      background: rgba(251, 191, 36, 0.14);
-      border-color: rgba(253, 224, 71, 0.45);
+      background: rgba(251, 191, 36, 0.15);
+      border-color: rgba(253, 224, 71, 0.48);
       color: #fde68a;
       transform: translateY(-2px);
     }
-    .nav-icon { display: block; font-size: 17px; margin-bottom: 2px; }
+    .nav-icon { display: block; font-size: 16px; margin-bottom: 2px; }
 
-    /* Offline Popup Modal */
+    /* Offline Modal & Toast */
     .modal-bg {
-      position: fixed;
-      inset: 0;
-      background: rgba(4, 6, 14, 0.82);
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 300;
-      padding: 20px;
+      position: fixed; inset: 0; background: rgba(4, 6, 14, 0.82); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center; z-index: 300; padding: 20px;
     }
     .modal-card {
-      background: rgba(24, 27, 48, 0.92);
-      border: 1px solid rgba(253, 224, 71, 0.5);
-      border-radius: 20px;
-      padding: 24px 18px;
-      text-align: center;
-      width: 100%;
-      max-width: 320px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
+      background: rgba(24, 27, 48, 0.94); border: 1px solid rgba(253, 224, 71, 0.5);
+      border-radius: 20px; padding: 24px 18px; text-align: center; width: 100%; max-width: 320px;
     }
     .modal-card h3 { color: #fde68a; font-size: 18px; margin-bottom: 6px; }
     .modal-card p { color: #cbd5e1; font-size: 13px; margin-bottom: 12px; }
     .modal-amount { font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 16px; }
 
-    /* Toast */
     .toast {
-      position: fixed;
-      top: 58px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(16, 185, 129, 0.92);
-      backdrop-filter: blur(8px);
-      color: #fff;
-      padding: 8px 18px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      display: none;
-      z-index: 250;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      position: fixed; top: 58px; left: 50%; transform: translateX(-50%);
+      background: rgba(16, 185, 129, 0.92); backdrop-filter: blur(8px);
+      color: #fff; padding: 8px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; display: none; z-index: 250;
     }
   </style>
 </head>
@@ -610,7 +483,7 @@
       </div>
       <div class="header-right">
         <button class="sound-btn glass-pill" id="soundToggle" onclick="toggleSound()">🔊</button>
-        <div class="rank-pill glass-pill" id="rankPill">Rank: Cub</div>
+        <div class="rank-pill glass-pill" id="rankPill" onclick="switchTab('ranks')">Rank: Cub 🏆</div>
       </div>
     </div>
 
@@ -629,7 +502,6 @@
       <div class="arena">
         <div class="orb-halo" id="orbHalo">
           <div class="beast-coin-btn" id="beastBtn">
-            <!-- Royal Fierce Golden Lion King Emblem SVG -->
             <svg class="lion-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="maneOuter" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -653,40 +525,22 @@
                   <stop offset="100%" stop-color="#92400e"/>
                 </linearGradient>
               </defs>
-
-              <!-- Royal Crown -->
               <path d="M72,48 L80,22 L96,38 L110,16 L124,38 L140,22 L148,48 Z" fill="url(#royalCrown)" stroke="#542300" stroke-width="3" stroke-linejoin="round"/>
               <rect x="74" y="47" width="72" height="7" rx="3" fill="#fde047" stroke="#542300" stroke-width="2.5"/>
-
-              <!-- Spiked 3D Outer Mane -->
               <polygon points="110,50 136,56 164,48 168,76 188,96 174,122 182,150 154,164 142,190 110,180 78,190 66,164 38,150 46,122 32,96 52,76 56,48 84,56"
                 fill="url(#maneOuter)" stroke="#471c00" stroke-width="4" stroke-linejoin="round"/>
-
-              <!-- Inner Sculpted Mane -->
               <polygon points="110,58 134,64 156,82 162,112 152,142 132,166 110,174 88,166 68,142 58,112 64,82 86,64"
                 fill="url(#maneMid)" stroke="#692c00" stroke-width="3" stroke-linejoin="round"/>
-
-              <!-- Lion Ears -->
               <path d="M68,74 Q58,56 80,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
               <path d="M152,74 Q162,56 140,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
-
-              <!-- Sculpted Brow & Face -->
               <path d="M76,78 L110,72 L144,78 L148,112 L132,138 L110,148 L88,138 L72,112 Z"
                 fill="url(#faceGold)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
-
-              <!-- Brow Ridges -->
               <path d="M80,93 L103,100 L96,105 L78,100 Z" fill="#542200"/>
               <path d="M140,93 L117,100 L124,105 L142,100 Z" fill="#542200"/>
-
-              <!-- Fierce Glowing Eyes -->
               <polygon points="82,99 101,103 88,108" fill="#ffffff"/>
               <polygon points="138,99 119,103 132,108" fill="#ffffff"/>
-
-              <!-- Nose Bridge & Nose -->
               <path d="M104,98 L116,98 L114,116 L106,116 Z" fill="#d97706" opacity="0.6"/>
               <polygon points="100,115 120,115 110,126" fill="#3d1700"/>
-
-              <!-- Cheeks & Jaw -->
               <path d="M88,128 Q100,136 110,126 Q120,136 132,128" fill="none" stroke="#471c00" stroke-width="3.5" stroke-linecap="round"/>
               <path d="M97,138 L123,138 L116,148 L104,148 Z" fill="#fef08a" stroke="#542200" stroke-width="2.5"/>
             </svg>
@@ -698,17 +552,11 @@
       <!-- Free Daily Boosts -->
       <div class="boost-row">
         <div class="boost-pill" onclick="useFullEnergy()">
-          <div class="boost-left">
-            <span>⚡</span>
-            <span class="boost-name">Full Energy</span>
-          </div>
+          <div class="boost-left"><span>⚡</span><span class="boost-name">Full Energy</span></div>
           <span class="boost-count" id="energyBoostCount">2/2</span>
         </div>
         <div class="boost-pill" onclick="useTurbo()">
-          <div class="boost-left">
-            <span>🚀</span>
-            <span class="boost-name">2x Turbo</span>
-          </div>
+          <div class="boost-left"><span>🚀</span><span class="boost-name">2x Turbo</span></div>
           <span class="boost-count" id="turboBoostCount">2/2</span>
         </div>
       </div>
@@ -728,7 +576,6 @@
     <!-- SCREEN 2: UPGRADES -->
     <div class="screen" id="screen-upgrade">
       <div class="section-title">🚀 Beast Coin Upgrades</div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">👊</div>
@@ -739,7 +586,6 @@
         </div>
         <button class="action-btn" id="btnTapUp" onclick="buyTap()">50 💰</button>
       </div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">🔋</div>
@@ -750,7 +596,6 @@
         </div>
         <button class="action-btn" id="btnEnergyUp" onclick="buyEnergy()">50 💰</button>
       </div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">🤖</div>
@@ -766,7 +611,6 @@
     <!-- SCREEN 3: QUESTS -->
     <div class="screen" id="screen-quests">
       <div class="section-title">🎯 Daily Tasks & Quests</div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">🎁</div>
@@ -777,7 +621,6 @@
         </div>
         <button class="action-btn" onclick="claimDaily()">Claim 250</button>
       </div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">🔥</div>
@@ -788,7 +631,6 @@
         </div>
         <button class="action-btn" id="btnQuestTap" onclick="claimTapQuest()">0/100</button>
       </div>
-
       <div class="item-card">
         <div class="item-left">
           <div class="item-icon">👑</div>
@@ -821,7 +663,42 @@
       </div>
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- SCREEN 5: STATUS & LEADERBOARD -->
+    <div class="screen" id="screen-ranks">
+      <div class="section-title">🏆 Empire Status & Leaderboard</div>
+
+      <div class="status-hero">
+        <div class="status-top">
+          <div class="status-rank-title" id="statusRankName">👑 Cub League</div>
+          <div class="status-pos" id="myGlobalPos">Rank #8</div>
+        </div>
+        <div class="status-next">
+          <span id="nextRankLabel">Next: Hunter (500)</span>
+          <span id="nextRankPct">0%</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="rankProgressBar" style="width: 0%"></div>
+        </div>
+        <div class="mini-stats-grid">
+          <div class="mini-stat-box">
+            <div class="mini-stat-val" id="statTotalTaps">0</div>
+            <div class="mini-stat-lbl">Total Taps</div>
+          </div>
+          <div class="mini-stat-box">
+            <div class="mini-stat-val" id="statTapPower">+1</div>
+            <div class="mini-stat-lbl">Tap Power</div>
+          </div>
+          <div class="mini-stat-box">
+            <div class="mini-stat-val" id="statAutoRate">+0/s</div>
+            <div class="mini-stat-lbl">Auto-Mine</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="leaderboardList"></div>
+    </div>
+
+    <!-- 5-Tab Bottom Navigation -->
     <div class="nav-bar">
       <div class="nav-btn active" id="nav-tap" onclick="switchTab('tap')">
         <span class="nav-icon">🦁</span>Arena
@@ -835,24 +712,30 @@
       <div class="nav-btn" id="nav-friends" onclick="switchTab('friends')">
         <span class="nav-icon">👥</span>Friends
       </div>
+      <div class="nav-btn" id="nav-ranks" onclick="switchTab('ranks')">
+        <span class="nav-icon">🏆</span>Ranks
+      </div>
     </div>
   </div>
 
   <script>
+    let playerName = "You (Beast King)";
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
+      const user = window.Telegram.WebApp.initDataUnsafe?.user;
+      if (user && user.first_name) {
+        playerName = user.first_name + " (You)";
+      }
     }
 
-    // Create subtle floating golden dust particles
     (function initDust() {
       const layer = document.getElementById('dustLayer');
       for (let i = 0; i < 18; i++) {
         const d = document.createElement('div');
         d.className = 'dust';
         const size = (2 + Math.random() * 3.5) + 'px';
-        d.style.width = size;
-        d.style.height = size;
+        d.style.width = size; d.style.height = size;
         d.style.left = (Math.random() * 100) + '%';
         d.style.animationDuration = (9 + Math.random() * 11) + 's';
         d.style.animationDelay = (-Math.random() * 15) + 's';
@@ -891,6 +774,24 @@
       { name: "Warlord", min: 10000 },
       { name: "Emperor", min: 50000 }
     ];
+
+    const rivals = [
+      { name: "ShadowLion_PK", coins: 68500, icon: "👑" },
+      { name: "ZeeshanAlpha", coins: 24200, icon: "🦁" },
+      { name: "GoldenTiger99", coins: 11800, icon: "🐯" },
+      { name: "SheruBhai_Pro", coins: 4600, icon: "🐺" },
+      { name: "CryptoHunter", coins: 1450, icon: "🔥" },
+      { name: "MightyCub07", coins: 420, icon: "⚡" },
+      { name: "RookieBeast", coins: 120, icon: "🐾" }
+    ];
+
+    function getRankName(c) {
+      let rName = ranks[0].name;
+      for (let r of ranks) {
+        if (c >= r.min) rName = r.name;
+      }
+      return rName;
+    }
 
     (function checkOfflineEarnings() {
       if (data.minerRate > 0 && data.lastActive) {
@@ -953,6 +854,70 @@
       document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('screen-' + tab).classList.add('active');
       document.getElementById('nav-' + tab).classList.add('active');
+      if (tab === 'ranks') renderLeaderboard();
+    }
+
+    function renderLeaderboard() {
+      const myCoins = Math.floor(data.coins);
+      const currentRank = getRankName(myCoins);
+
+      // Next Rank Progress
+      let nextRank = null;
+      let prevMin = 0;
+      for (let i = 0; i < ranks.length; i++) {
+        if (myCoins < ranks[i].min) {
+          nextRank = ranks[i];
+          prevMin = i > 0 ? ranks[i - 1].min : 0;
+          break;
+        }
+      }
+
+      document.getElementById('statusRankName').innerText = `👑 ${currentRank} League`;
+      if (nextRank) {
+        const pct = Math.min(100, Math.floor(((myCoins - prevMin) / (nextRank.min - prevMin)) * 100));
+        document.getElementById('nextRankLabel').innerText = `Next: ${nextRank.name} (${nextRank.min.toLocaleString()} 💰)`;
+        document.getElementById('nextRankPct').innerText = `${pct}%`;
+        document.getElementById('rankProgressBar').style.width = `${pct}%`;
+      } else {
+        document.getElementById('nextRankLabel').innerText = `Max Rank Reached!`;
+        document.getElementById('nextRankPct').innerText = `100%`;
+        document.getElementById('rankProgressBar').style.width = `100%`;
+      }
+
+      document.getElementById('statTotalTaps').innerText = data.totalTaps.toLocaleString();
+      document.getElementById('statTapPower').innerText = `+${data.tapPower}`;
+      document.getElementById('statAutoRate').innerText = `+${data.minerRate}/s`;
+
+      // Combine & Sort Leaderboard
+      const board = [
+        ...rivals.map(r => ({ ...r, isMe: false })),
+        { name: playerName, coins: myCoins, icon: "🦁", isMe: true }
+      ].sort((a, b) => b.coins - a.coins);
+
+      const container = document.getElementById('leaderboardList');
+      container.innerHTML = '';
+
+      board.forEach((p, idx) => {
+        const pos = idx + 1;
+        if (p.isMe) {
+          document.getElementById('myGlobalPos').innerText = `Rank #${pos}`;
+        }
+        const medal = pos === 1 ? '🥇' : pos === 2 ? '🥈' : pos === 3 ? '🥉' : `#${pos}`;
+        const row = document.createElement('div');
+        row.className = 'lb-row' + (p.isMe ? ' me' : '');
+        row.innerHTML = `
+          <div class="lb-left">
+            <div class="lb-pos">${medal}</div>
+            <div class="lb-avatar">${p.icon}</div>
+            <div>
+              <div class="lb-name">${p.name}</div>
+              <div class="lb-league">${getRankName(p.coins)} League</div>
+            </div>
+          </div>
+          <div class="lb-score">${p.coins.toLocaleString()} 💰</div>
+        `;
+        container.appendChild(row);
+      });
     }
 
     function render() {
@@ -963,11 +928,8 @@
       document.getElementById('energyBar').style.width = `${(data.energy / data.maxEnergy) * 100}%`;
       document.getElementById('soundToggle').innerText = data.soundOn ? '🔊' : '🔇';
 
-      let rName = ranks[0].name;
-      for (let r of ranks) {
-        if (data.coins >= r.min) rName = r.name;
-      }
-      document.getElementById('rankPill').innerText = `Rank: ${rName}`;
+      const rName = getRankName(data.coins);
+      document.getElementById('rankPill').innerText = `Rank: ${rName} 🏆`;
 
       document.getElementById('energyBoostCount').innerText = `${data.energyBoosts}/2`;
       document.getElementById('turboBoostCount').innerText = `${data.turboBoosts}/2`;
@@ -1003,9 +965,12 @@
       if (data.inviteClaimed) {
         document.getElementById('inviteStatus').innerText = "Bonus Claimed ✓";
       }
+
+      if (document.getElementById('screen-ranks').classList.contains('active')) {
+        renderLeaderboard();
+      }
     }
 
-    // Ultra-Smooth Cushion Tap Physics
     const beastBtn = document.getElementById('beastBtn');
     const orbHalo = document.getElementById('orbHalo');
 

@@ -3,23 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Beast Empire — Royal Crystal Tap</title>
+  <title>Beast Empire — Sovereign Syndicate</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     :root {
-      --bg-obsidian: #07060c;
-      --bg-velvet: #130f22;
-      --crystal-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03));
-      --crystal-border: rgba(255, 224, 145, 0.36);
-      --crystal-shine: rgba(255, 255, 255, 0.42);
-      --gold-soft: #ffe89e;
-      --gold-royal: #f6b93b;
-      --gold-amber: #c97b16;
-      --ice-glow: #7be7ff;
-      --violet-glow: #b983ff;
-      --text-primary: #fdf8ec;
-      --text-secondary: #b9b0cf;
-      --mint: #4ade80;
+      --bg-base: #07080a;
+      --bg-elevated: #0e1015;
+      --panel-grad: linear-gradient(165deg, rgba(28, 31, 39, 0.92), rgba(13, 15, 20, 0.96));
+      --border-subtle: rgba(212, 175, 55, 0.24);
+      --border-bright: rgba(232, 198, 96, 0.52);
+      --gold-primary: #d8af4a;
+      --gold-light: #f0d588;
+      --gold-dark: #8c6719;
+      --steel-accent: #9aa5b4;
+      --text-main: #f3f1eb;
+      --text-dim: #8c92a0;
+      --emerald: #34d399;
     }
 
     * {
@@ -31,343 +30,324 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
-      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
       background:
-        radial-gradient(circle at 50% 14%, rgba(255, 214, 110, 0.22), transparent 44%),
-        radial-gradient(circle at 14% 72%, rgba(123, 231, 255, 0.16), transparent 45%),
-        radial-gradient(circle at 88% 78%, rgba(185, 131, 255, 0.16), transparent 46%),
-        linear-gradient(180deg, var(--bg-velvet) 0%, var(--bg-obsidian) 100%);
+        radial-gradient(circle at 50% 10%, rgba(216, 175, 74, 0.11), transparent 46%),
+        radial-gradient(circle at 85% 85%, rgba(154, 165, 180, 0.06), transparent 45%),
+        linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
       display: flex;
       justify-content: center;
       overflow-x: hidden;
     }
 
-    .app {
+    .container {
       width: 100%;
       max-width: 440px;
       min-height: 100vh;
-      padding: 14px 14px 92px;
+      padding: 16px 15px 94px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       position: relative;
     }
 
-    .crystal {
-      background: var(--crystal-surface);
-      backdrop-filter: blur(20px) saturate(150%);
-      -webkit-backdrop-filter: blur(20px) saturate(150%);
-      border: 1px solid var(--crystal-border);
-      border-radius: 22px;
+    .card {
+      background: var(--panel-grad);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
       box-shadow:
-        0 14px 34px rgba(0, 0, 0, 0.5),
-        inset 0 1.5px 0 var(--crystal-shine),
-        inset 0 -1px 0 rgba(255, 214, 110, 0.12);
+        0 14px 32px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
       position: relative;
-      overflow: hidden;
     }
 
-    .crystal::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -30%;
-      width: 75%;
-      height: 100%;
-      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.09) 50%, transparent 80%);
-      pointer-events: none;
-    }
-
-    .top-bar {
+    .header-bar {
+      padding: 12px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 14px;
     }
 
-    .player-box {
+    .identity {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 12px;
     }
 
-    .crystal-badge {
+    .crest-box {
       width: 42px;
       height: 42px;
-      border-radius: 15px;
-      background:
-        radial-gradient(circle at 30% 25%, #fff7d1, #f6b93b 62%, #b86b0e 100%);
-      box-shadow:
-        0 6px 18px rgba(246, 185, 59, 0.35),
-        inset 0 1.5px 1px rgba(255, 255, 255, 0.75);
+      border-radius: 12px;
+      background: linear-gradient(145deg, #242832, #12141a);
+      border: 1px solid var(--border-bright);
       display: grid;
       place-items: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
     }
 
-    .player-title {
+    .member-name {
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.3px;
     }
 
-    .player-rank {
+    .member-tier {
       font-size: 11px;
-      color: var(--gold-soft);
+      color: var(--gold-light);
       font-weight: 600;
-      margin-top: 1px;
+      letter-spacing: 0.4px;
+      margin-top: 2px;
     }
 
-    .pill-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--text-primary);
-      border-radius: 14px;
+    .ghost-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      border-radius: 11px;
       padding: 8px 12px;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
-      transition: transform 0.14s ease, background 0.14s ease;
+      transition: border-color 0.15s ease, transform 0.12s ease;
     }
 
-    .pill-btn:active {
-      transform: scale(0.95);
+    .ghost-btn:active {
+      transform: scale(0.96);
     }
 
-    .metrics-row {
+    .kpi-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 9px;
     }
 
-    .metric-card {
-      padding: 10px 8px;
+    .kpi-box {
+      padding: 11px 8px;
       text-align: center;
-      border-radius: 18px;
+      border-radius: 14px;
     }
 
-    .metric-label {
+    .kpi-title {
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-secondary);
+      letter-spacing: 1px;
+      color: var(--text-dim);
       font-weight: 600;
     }
 
-    .metric-val {
+    .kpi-num {
       margin-top: 4px;
       font-size: 13px;
       font-weight: 800;
-      color: var(--gold-soft);
+      color: var(--gold-light);
+      font-variant-numeric: tabular-nums;
     }
 
-    .vault-card {
-      padding: 14px 16px;
+    .treasury-card {
+      padding: 15px 16px;
       text-align: center;
     }
 
-    .vault-tag {
-      font-size: 11px;
-      letter-spacing: 2px;
+    .treasury-label {
+      font-size: 10px;
+      letter-spacing: 2.2px;
       text-transform: uppercase;
-      color: var(--ice-glow);
+      color: var(--steel-accent);
       font-weight: 700;
     }
 
-    .vault-coins {
-      margin-top: 4px;
-      font-size: 31px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      background: linear-gradient(180deg, #ffffff 0%, #ffe89e 42%, #f3a724 100%);
+    .treasury-balance {
+      margin-top: 5px;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      font-variant-numeric: tabular-nums;
+      background: linear-gradient(180deg, #ffffff 0%, var(--gold-light) 48%, var(--gold-primary) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 14px rgba(246, 185, 59, 0.25));
     }
 
-    .arena {
+    .stage {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 6px 0;
+      padding: 8px 0;
     }
 
-    .crystal-halo {
-      width: 248px;
-      height: 248px;
+    .monolith-ring {
+      width: 242px;
+      height: 242px;
       border-radius: 50%;
       padding: 12px;
       background:
-        radial-gradient(circle at 28% 22%, rgba(255, 250, 224, 0.42), transparent 52%),
-        radial-gradient(circle at 78% 78%, rgba(123, 231, 255, 0.26), transparent 58%),
-        radial-gradient(circle at 50% 50%, rgba(246, 185, 59, 0.14), rgba(19, 15, 34, 0.65) 75%);
-      border: 1.5px solid rgba(255, 232, 158, 0.55);
+        radial-gradient(circle at 50% 35%, rgba(216, 175, 74, 0.14), rgba(10, 12, 16, 0.92) 72%);
+      border: 1.5px solid var(--border-bright);
       box-shadow:
-        0 0 54px rgba(246, 185, 59, 0.24),
-        0 0 28px rgba(123, 231, 255, 0.14),
-        inset 0 2px 12px rgba(255, 255, 255, 0.35);
+        0 20px 46px rgba(0, 0, 0, 0.7),
+        0 0 32px rgba(216, 175, 74, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
       display: grid;
       place-items: center;
       cursor: pointer;
-      transition: transform 0.22s cubic-bezier(0.22, 1.35, 0.36, 1), box-shadow 0.2s ease;
+      transition: transform 0.18s cubic-bezier(0.22, 1.25, 0.36, 1), border-color 0.15s ease;
       touch-action: manipulation;
     }
 
-    .crystal-halo.pulse {
-      box-shadow:
-        0 0 68px rgba(255, 232, 158, 0.48),
-        0 0 36px rgba(123, 231, 255, 0.28),
-        inset 0 2px 18px rgba(255, 255, 255, 0.55);
+    .monolith-ring.active-press {
+      border-color: var(--gold-light);
     }
 
-    .float-gain {
+    .delta-pop {
       position: fixed;
       pointer-events: none;
-      font-size: 21px;
-      font-weight: 900;
-      background: linear-gradient(180deg, #ffffff, #ffe89e);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
-      animation: smoothRise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      z-index: 45;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--gold-light);
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.85);
+      animation: riseFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      z-index: 50;
     }
 
-    @keyframes smoothRise {
+    @keyframes riseFade {
       0% {
         opacity: 1;
-        transform: translate(-50%, 0) scale(0.92);
+        transform: translate(-50%, 0) scale(0.95);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -78px) scale(1.14);
+        transform: translate(-50%, -74px) scale(1.1);
       }
     }
 
-    .power-panel {
+    .capacity-card {
       width: 100%;
       padding: 13px 15px;
       margin-top: 10px;
     }
 
-    .power-header {
+    .capacity-top {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 12px;
       font-weight: 700;
+      color: var(--steel-accent);
       margin-bottom: 8px;
     }
 
-    .power-track {
+    .capacity-top strong {
+      color: var(--text-main);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bar-track {
       width: 100%;
-      height: 12px;
+      height: 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.09);
       overflow: hidden;
     }
 
-    .power-bar {
+    .bar-fill {
       height: 100%;
       width: 100%;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--ice-glow), var(--gold-soft), var(--gold-royal));
-      box-shadow: 0 0 14px rgba(255, 232, 158, 0.45);
-      transition: width 0.2s ease;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+      transition: width 0.18s ease;
     }
 
-    .boost-grid {
+    .action-pair {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 9px;
       margin-top: 11px;
     }
 
-    .crystal-btn {
-      background: linear-gradient(145deg, rgba(255, 232, 158, 0.24), rgba(201, 123, 22, 0.14));
-      border: 1px solid rgba(255, 232, 158, 0.45);
-      color: var(--text-primary);
-      border-radius: 15px;
+    .secondary-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      border-radius: 12px;
       padding: 10px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
-      transition: transform 0.15s ease, opacity 0.15s ease;
+      transition: transform 0.12s ease, background 0.15s ease;
     }
 
-    .crystal-btn:active:not(:disabled) {
+    .secondary-btn:active:not(:disabled) {
       transform: scale(0.96);
+      background: rgba(216, 175, 74, 0.12);
     }
 
-    .crystal-btn:disabled {
-      opacity: 0.42;
+    .secondary-btn:disabled {
+      opacity: 0.38;
       cursor: not-allowed;
     }
 
-    .section {
+    .view {
       display: none;
       flex-direction: column;
       gap: 11px;
     }
 
-    .section.active {
+    .view.active {
       display: flex;
     }
 
-    .luxury-card {
-      padding: 13px 15px;
+    .row-card {
+      padding: 14px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
     }
 
-    .card-left {
+    .row-left {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .icon-orb {
+    .emblem-slot {
       width: 44px;
       height: 44px;
-      border-radius: 15px;
+      border-radius: 12px;
       flex-shrink: 0;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), rgba(255, 232, 158, 0.06));
-      border: 1px solid rgba(255, 232, 158, 0.35);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
       display: grid;
       place-items: center;
     }
 
-    .card-title {
+    .row-title {
       font-size: 14px;
       font-weight: 700;
     }
 
-    .card-sub {
+    .row-desc {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--text-dim);
       margin-top: 2px;
     }
 
-    .card-reward {
+    .row-payout {
       font-size: 12px;
-      font-weight: 800;
-      color: var(--gold-soft);
+      font-weight: 700;
+      color: var(--gold-light);
       margin-top: 4px;
+      font-variant-numeric: tabular-nums;
     }
 
-    .gold-cta {
-      background: linear-gradient(145deg, #fff0b8, var(--gold-royal) 55%, var(--gold-amber));
-      color: #191003;
+    .primary-btn {
+      background: linear-gradient(145deg, var(--gold-light), var(--gold-primary) 58%, var(--gold-dark));
+      color: #120e05;
       border: none;
-      border-radius: 14px;
-      padding: 9px 13px;
+      border-radius: 12px;
+      padding: 9px 14px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -375,420 +355,376 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 16px rgba(246, 185, 59, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.75);
-      transition: transform 0.15s ease;
+      transition: transform 0.12s ease;
       white-space: nowrap;
     }
 
-    .gold-cta:active:not(:disabled) {
-      transform: scale(0.95);
+    .primary-btn:active:not(:disabled) {
+      transform: scale(0.96);
     }
 
-    .gold-cta:disabled,
-    .gold-cta.done {
-      background: rgba(74, 222, 128, 0.16);
-      color: var(--mint);
-      border: 1px solid rgba(74, 222, 128, 0.38);
-      box-shadow: none;
+    .primary-btn:disabled,
+    .primary-btn.claimed {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.35);
       cursor: default;
     }
 
-    .relic-grid {
+    .intel-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 9px;
     }
 
-    .relic-tile {
+    .intel-tile {
       padding: 12px 8px;
       text-align: center;
-      border-radius: 18px;
+      border-radius: 14px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      transition: transform 0.16s ease, border-color 0.16s ease;
+      gap: 7px;
+      transition: transform 0.14s ease, border-color 0.15s ease;
     }
 
-    .relic-tile:active {
-      transform: scale(0.95);
+    .intel-tile:active {
+      transform: scale(0.96);
     }
 
-    .relic-tile.picked {
-      border-color: var(--gold-soft);
-      background: linear-gradient(145deg, rgba(255, 232, 158, 0.28), rgba(123, 231, 255, 0.12));
-      box-shadow: 0 0 20px rgba(255, 232, 158, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    .intel-tile.selected {
+      border-color: var(--gold-light);
+      background: linear-gradient(165deg, rgba(216, 175, 74, 0.22), rgba(20, 23, 30, 0.96));
     }
 
-    .dock {
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       width: 100%;
       max-width: 440px;
-      background: rgba(12, 9, 21, 0.88);
-      backdrop-filter: blur(22px) saturate(160%);
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
-      border-top: 1px solid rgba(255, 232, 158, 0.26);
+      background: rgba(9, 11, 15, 0.94);
+      backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border-subtle);
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      padding: 8px 8px 13px;
-      z-index: 35;
+      padding: 8px 6px 13px;
+      z-index: 40;
     }
 
-    .dock-item {
+    .nav-tab {
       background: none;
       border: none;
-      color: var(--text-secondary);
+      color: var(--text-dim);
       font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.3px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
       cursor: pointer;
       padding: 4px;
-      transition: color 0.16s ease, transform 0.16s ease;
+      transition: color 0.15s ease;
     }
 
-    .dock-item.active {
-      color: var(--gold-soft);
-      transform: translateY(-2px);
+    .nav-tab.active {
+      color: var(--gold-light);
     }
 
-    .toast {
+    .banner-toast {
       position: fixed;
       top: 16px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(18, 14, 30, 0.94);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 232, 158, 0.55);
-      color: var(--text-primary);
+      background: rgba(16, 19, 26, 0.96);
+      border: 1px solid var(--border-bright);
+      color: var(--text-main);
       padding: 10px 18px;
-      border-radius: 999px;
+      border-radius: 12px;
       font-size: 12px;
-      font-weight: 700;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
-      z-index: 60;
+      font-weight: 600;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+      z-index: 70;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.22s ease;
+      transition: opacity 0.2s ease;
     }
 
-    .toast.show {
+    .banner-toast.show {
       opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div id="toast" class="toast"></div>
+  <div id="toast" class="banner-toast"></div>
 
-  <!-- Shared Soft Crystal SVG Icons -->
+  <!-- Executive Gold & Platinum SVG Definitions -->
   <svg width="0" height="0" style="position:absolute;visibility:hidden;">
     <defs>
-      <linearGradient id="cGold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#fff8d6" />
-        <stop offset="50%" stop-color="#f7be3b" />
-        <stop offset="100%" stop-color="#b8690e" />
+      <linearGradient id="mGold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#f5df9c" />
+        <stop offset="55%" stop-color="#d8af4a" />
+        <stop offset="100%" stop-color="#856014" />
       </linearGradient>
-      <linearGradient id="cIce" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#e0fbff" />
-        <stop offset="55%" stop-color="#7be7ff" />
-        <stop offset="100%" stop-color="#3b82f6" />
+      <linearGradient id="mSilver" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#e5e9f0" />
+        <stop offset="60%" stop-color="#9aa5b4" />
+        <stop offset="100%" stop-color="#4b5563" />
       </linearGradient>
-      <linearGradient id="cViolet" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#f5e8ff" />
-        <stop offset="55%" stop-color="#c084fc" />
-        <stop offset="100%" stop-color="#7e22ce" />
-      </linearGradient>
-      <linearGradient id="cRose" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#ffe4e6" />
-        <stop offset="55%" stop-color="#fb7185" />
-        <stop offset="100%" stop-color="#be123c" />
+      <linearGradient id="mCrimson" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#fca5a5" />
+        <stop offset="55%" stop-color="#dc2626" />
+        <stop offset="100%" stop-color="#7f1d1d" />
       </linearGradient>
     </defs>
   </svg>
 
-  <div class="app">
-    <div class="crystal top-bar">
-      <div class="player-box">
-        <div class="crystal-badge">
-          <svg viewBox="0 0 28 28" width="24" height="24">
-            <path d="M5 19 L7 9 L14 14 L21 9 L23 19 Z" fill="#1e1304" />
-            <circle cx="14" cy="8" r="2.2" fill="#1e1304" />
+  <div class="container">
+    <header class="card header-bar">
+      <div class="identity">
+        <div class="crest-box">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M4 17 L6 8 L12 12 L18 8 L20 17 Z" fill="url(#mGold)" />
+            <rect x="4" y="18.5" width="16" height="1.8" rx="0.9" fill="url(#mGold)" />
           </svg>
         </div>
         <div>
-          <div id="playerName" class="player-title">Beast Ruler</div>
-          <div id="rankLabel" class="player-rank">Cub • Royal Crystal</div>
+          <div id="playerName" class="member-name">Sovereign Member</div>
+          <div id="rankLabel" class="member-tier">Associate • Syndicate</div>
         </div>
       </div>
-      <button id="soundToggle" class="pill-btn" type="button">🔊 Sound</button>
-    </div>
+      <button id="soundToggle" class="ghost-btn" type="button">Audio On</button>
+    </header>
 
-    <div class="metrics-row">
-      <div class="crystal metric-card">
-        <div class="metric-label">Tap Power</div>
-        <div id="tapPowerStat" class="metric-val">+1</div>
+    <section class="kpi-grid">
+      <div class="card kpi-box">
+        <div class="kpi-title">Strike Yield</div>
+        <div id="tapPowerStat" class="kpi-num">+1</div>
       </div>
-      <div class="crystal metric-card">
-        <div class="metric-label">Auto-Miner /s</div>
-        <div id="pphStat" class="metric-val">+0/s</div>
+      <div class="card kpi-box">
+        <div class="kpi-title">Passive / Sec</div>
+        <div id="pphStat" class="kpi-num">+0/s</div>
       </div>
-      <div class="crystal metric-card">
-        <div class="metric-label">Airdrop Pts</div>
-        <div id="airdropStat" class="metric-val">0</div>
+      <div class="card kpi-box">
+        <div class="kpi-title">Airdrop Index</div>
+        <div id="airdropStat" class="kpi-num">0</div>
       </div>
-    </div>
+    </section>
 
-    <!-- TAP TAB -->
-    <div id="tab-tap" class="section active">
-      <div class="crystal vault-card">
-        <div class="vault-tag">BEAST COIN VAULT</div>
-        <div id="balanceDisplay" class="vault-coins">0</div>
+    <!-- EMPIRE TAP VIEW -->
+    <main id="tab-tap" class="view active">
+      <div class="card treasury-card">
+        <div class="treasury-label">Beast Coin Treasury</div>
+        <div id="balanceDisplay" class="treasury-balance">0</div>
       </div>
 
-      <div class="arena">
-        <div id="lionTap" class="crystal-halo" role="button" tabindex="0" aria-label="Tap Crowned Golden Lion">
-          <!-- Softy Smoothy Crowned Golden Lion (Closed Mouth) -->
-          <svg viewBox="0 0 240 240" width="206" height="206">
+      <div class="stage">
+        <div id="lionTap" class="monolith-ring" role="button" tabindex="0" aria-label="Tap Sovereign Lion Emblem">
+          <!-- Classic Crowned Golden Lion Emblem (Closed Mouth) -->
+          <svg viewBox="0 0 220 220" width="194" height="194">
             <defs>
-              <radialGradient id="lionManeSoft" cx="45%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#fff4c2" />
-                <stop offset="52%" stop-color="#f6b93b" />
-                <stop offset="100%" stop-color="#9a4e0c" />
+              <radialGradient id="sMane" cx="50%" cy="38%" r="62%">
+                <stop offset="0%" stop-color="#f5df9c" />
+                <stop offset="55%" stop-color="#c99b32" />
+                <stop offset="100%" stop-color="#6b4b0e" />
               </radialGradient>
-              <linearGradient id="lionFaceSoft" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fff9db" />
-                <stop offset="100%" stop-color="#eab308" />
-              </linearGradient>
-              <linearGradient id="crownCrystal" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff" />
-                <stop offset="45%" stop-color="#ffe07d" />
-                <stop offset="100%" stop-color="#d97706" />
+              <linearGradient id="sFace" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#faecc0" />
+                <stop offset="100%" stop-color="#c89628" />
               </linearGradient>
             </defs>
 
-            <!-- Soft Crystal Aura Ring -->
-            <circle cx="120" cy="122" r="102" fill="none" stroke="url(#cIce)" stroke-width="2" opacity="0.45" />
+            <!-- Outer Precision Ring -->
+            <circle cx="110" cy="112" r="95" fill="none" stroke="url(#mGold)" stroke-width="1.4" opacity="0.55" />
 
-            <!-- Smooth Rounded Mane Petals -->
+            <!-- Structured Mane -->
             <path
-              fill="url(#lionManeSoft)"
-              stroke="rgba(255,255,255,0.45)"
+              fill="url(#sMane)"
+              stroke="#4a3307"
               stroke-width="1.5"
-              d="M120 26
-                 C132 26, 138 42, 148 44
-                 C159 46, 171 38, 178 48
-                 C185 58, 178 72, 185 82
-                 C192 92, 206 96, 206 108
-                 C206 120, 193 127, 193 139
-                 C193 151, 203 162, 196 172
-                 C189 182, 174 179, 166 188
-                 C158 197, 158 212, 146 215
-                 C134 218, 128 204, 120 204
-                 C112 204, 106 218, 94 215
-                 C82 212, 82 197, 74 188
-                 C66 179, 51 182, 44 172
-                 C37 162, 47 151, 47 139
-                 C47 127, 34 120, 34 108
-                 C34 96, 48 92, 55 82
-                 C62 72, 55 58, 62 48
-                 C69 38, 81 46, 92 44
-                 C102 42, 108 26, 120 26 Z"
+              d="M110 24 L125 43 L151 34 L154 60 L180 62 L170 86 L191 102 L173 120 L186 144 L162 152 L164 178 L138 173 L126 196 L110 180 L94 196 L82 173 L56 178 L58 152 L34 144 L47 120 L29 102 L50 86 L40 62 L66 60 L69 34 L95 43 Z"
             />
 
-            <!-- Soft Ears -->
-            <circle cx="75" cy="84" r="18" fill="url(#lionFaceSoft)" stroke="#a15810" stroke-width="2.5" />
-            <circle cx="75" cy="84" r="10" fill="#fde68a" opacity="0.7" />
-            <circle cx="165" cy="84" r="18" fill="url(#lionFaceSoft)" stroke="#a15810" stroke-width="2.5" />
-            <circle cx="165" cy="84" r="10" fill="#fde68a" opacity="0.7" />
+            <!-- Ears -->
+            <circle cx="69" cy="77" r="15" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
+            <circle cx="151" cy="77" r="15" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
 
-            <!-- Smooth Lion Face -->
-            <ellipse cx="120" cy="126" rx="52" ry="47" fill="url(#lionFaceSoft)" stroke="#a15810" stroke-width="2.5" />
+            <!-- Face -->
+            <ellipse cx="110" cy="116" rx="46" ry="42" fill="url(#sFace)" stroke="#5c3f09" stroke-width="2" />
 
-            <!-- Crystal Crown -->
+            <!-- Crown -->
             <path
-              d="M90 65 L96 40 L111 54 L120 34 L129 54 L144 40 L150 65 Z"
-              fill="url(#crownCrystal)"
-              stroke="#92400e"
-              stroke-width="2"
+              d="M84 62 L89 41 L103 52 L110 36 L117 52 L131 41 L136 62 Z"
+              fill="url(#mGold)"
+              stroke="#4a3307"
+              stroke-width="1.8"
               stroke-linejoin="round"
             />
-            <circle cx="120" cy="54" r="4" fill="#7be7ff" />
-            <circle cx="103" cy="57" r="3" fill="#ff7eb6" />
-            <circle cx="137" cy="57" r="3" fill="#ff7eb6" />
 
-            <!-- Glossy Eyes -->
-            <ellipse cx="99" cy="116" rx="8.5" ry="7" fill="#181226" />
-            <circle cx="96.5" cy="113.5" r="2.8" fill="#ffffff" />
-            <circle cx="101.5" cy="118.5" r="1.2" fill="#7be7ff" />
+            <!-- Composed Eyes -->
+            <ellipse cx="91" cy="107" rx="7.5" ry="5.5" fill="#12141a" />
+            <circle cx="89" cy="105.5" r="2" fill="#f5df9c" />
 
-            <ellipse cx="141" cy="116" rx="8.5" ry="7" fill="#181226" />
-            <circle cx="138.5" cy="113.5" r="2.8" fill="#ffffff" />
-            <circle cx="143.5" cy="118.5" r="1.2" fill="#7be7ff" />
+            <ellipse cx="129" cy="107" rx="7.5" ry="5.5" fill="#12141a" />
+            <circle cx="127" cy="105.5" r="2" fill="#f5df9c" />
 
-            <!-- Soft Muzzle & Calm Closed Mouth -->
-            <ellipse cx="120" cy="141" rx="23" ry="15" fill="#fffbeb" />
-            <path d="M111 132 L129 132 L120 141 Z" fill="#5c2d0c" stroke-linejoin="round" />
-            <path d="M120 141 L120 146 M108 148 Q120 152 132 148" stroke="#5c2d0c" stroke-width="3" stroke-linecap="round" fill="none" />
-
-            <!-- Crystal Gloss Highlight -->
-            <ellipse cx="92" cy="78" rx="18" ry="6" transform="rotate(-22 92 78)" fill="#ffffff" opacity="0.26" />
+            <!-- Muzzle & Closed Mouth -->
+            <ellipse cx="110" cy="130" rx="20" ry="13" fill="#fff6d6" />
+            <path d="M102 122 L118 122 L110 130 Z" fill="#3d2806" />
+            <path d="M110 130 L110 135 M100 137 Q110 140 120 137" stroke="#3d2806" stroke-width="2.6" stroke-linecap="round" fill="none" />
           </svg>
         </div>
       </div>
 
-      <div class="crystal power-panel">
-        <div class="power-header">
-          <span>⚡ Crystal Energy</span>
-          <span id="energyText">1000 / 1000</span>
+      <div class="card capacity-card">
+        <div class="capacity-top">
+          <span>STAMINA RESERVE</span>
+          <strong id="energyText">1000 / 1000</strong>
         </div>
-        <div class="power-track">
-          <div id="energyBar" class="power-bar"></div>
+        <div class="bar-track">
+          <div id="energyBar" class="bar-fill"></div>
         </div>
-        <div class="boost-grid">
-          <button id="fullEnergyBtn" class="crystal-btn" type="button">🔋 Full Energy (3/3)</button>
-          <button id="turboBtn" class="crystal-btn" type="button">🚀 2x Turbo (3/3)</button>
+        <div class="action-pair">
+          <button id="fullEnergyBtn" class="secondary-btn" type="button">Refill Stamina (3/3)</button>
+          <button id="turboBtn" class="secondary-btn" type="button">2x Multiplier (3/3)</button>
         </div>
       </div>
-    </div>
+    </main>
 
-    <!-- EARN TAB -->
-    <div id="tab-earn" class="section">
-      <!-- Daily Check-in -->
-      <div class="crystal luxury-card">
-        <div class="card-left">
-          <div class="icon-orb">
-            <svg viewBox="0 0 28 28" width="24" height="24">
-              <rect x="5" y="7" width="18" height="16" rx="4" fill="url(#cGold)" />
-              <path d="M9 5 V9 M19 5 V9 M5 12 H23" stroke="#fff8d6" stroke-width="2" stroke-linecap="round" />
+    <!-- EARN VIEW -->
+    <section id="tab-earn" class="view">
+      <div class="card row-card">
+        <div class="row-left">
+          <div class="emblem-slot">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <rect x="4" y="6" width="16" height="14" rx="3" fill="none" stroke="url(#mGold)" stroke-width="1.8" />
+              <path d="M8 4 V8 M16 4 V8 M4 11 H20" stroke="url(#mGold)" stroke-width="1.8" />
             </svg>
           </div>
           <div>
-            <div class="card-title">Daily Royal Check-In</div>
-            <div id="checkinSub" class="card-sub">Smooth daily streak crystal bonus</div>
-            <div id="checkinReward" class="card-reward">+25,000 Beast Coin</div>
+            <div class="row-title">Daily Attendance</div>
+            <div id="checkinSub" class="row-desc">Consecutive daily syndicate bonus</div>
+            <div id="checkinReward" class="row-payout">+25,000 Beast Coin</div>
           </div>
         </div>
-        <button id="checkinBtn" class="gold-cta" type="button">Claim</button>
+        <button id="checkinBtn" class="primary-btn" type="button">Claim</button>
       </div>
 
-      <!-- YouTube Subscribe Task (+5,000,000 Beast Coin) -->
-      <div class="crystal luxury-card">
-        <div class="card-left">
-          <div class="icon-orb">
-            <svg viewBox="0 0 28 28" width="24" height="24">
-              <rect x="3" y="6" width="22" height="16" rx="6" fill="url(#cRose)" />
-              <polygon points="12,10.5 18,14 12,17.5" fill="#ffffff" />
+      <!-- YouTube Channel Subscription (+5,000,000 Beast Coin) -->
+      <div class="card row-card">
+        <div class="row-left">
+          <div class="emblem-slot">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="url(#mCrimson)" />
+              <polygon points="10.5,9.2 15.5,12 10.5,14.8" fill="#ffffff" />
             </svg>
           </div>
           <div>
-            <div class="card-title">Subscribe Beast Empire YouTube</div>
-            <div class="card-sub">Open @beastempire-x9w & subscribe to claim</div>
-            <div class="card-reward">+5,000,000 Beast Coin</div>
+            <div class="row-title">Subscribe Official YouTube</div>
+            <div class="row-desc">Visit @beastempire-x9w & subscribe to claim</div>
+            <div class="row-payout">+5,000,000 Beast Coin</div>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <a
-            class="gold-cta"
+            class="primary-btn"
             href="https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs"
             target="_blank"
             rel="noopener noreferrer"
             onclick="markYoutubeOpened()"
-          >YouTube</a>
-          <button id="ytClaimBtn" class="gold-cta" type="button" onclick="claimYoutubeReward()">
+          >Open Channel</a>
+          <button id="ytClaimBtn" class="primary-btn" type="button" onclick="claimYoutubeReward()">
             Claim 5M
           </button>
         </div>
       </div>
 
-      <!-- Daily Combo (Non-Joker Crystal Relics) -->
-      <div class="crystal" style="padding:14px 15px;">
-        <div class="card-title">Daily Crystal Combo</div>
-        <div id="comboStatus" class="card-sub" style="margin-bottom:10px;">
-          Pick 3 crystal relics for +100,000 Beast Coin
+      <!-- Daily Syndicate Combo -->
+      <div class="card" style="padding:14px 15px;">
+        <div class="row-title">Daily Syndicate Combo</div>
+        <div id="comboStatus" class="row-desc" style="margin-bottom:10px;">
+          Select 3 directives for +100,000 Beast Coin
         </div>
-        <div id="comboGrid" class="relic-grid"></div>
+        <div id="comboGrid" class="intel-grid"></div>
       </div>
-    </div>
+    </section>
 
-    <!-- UPGRADES TAB -->
-    <div id="tab-upgrades" class="section">
+    <!-- UPGRADES VIEW -->
+    <section id="tab-upgrades" class="view">
       <div id="upgradesList" style="display:flex; flex-direction:column; gap:11px;"></div>
-    </div>
+    </section>
 
-    <!-- AIRDROP & FRIENDS TAB -->
-    <div id="tab-friends" class="section">
-      <div class="crystal luxury-card">
-        <div class="card-left">
-          <div class="icon-orb">
-            <svg viewBox="0 0 28 28" width="24" height="24">
-              <polygon points="14,3 24,11 14,25 4,11" fill="url(#cIce)" />
-              <polygon points="14,3 19,11 14,25 9,11" fill="#ffffff" opacity="0.35" />
+    <!-- AIRDROP & NETWORK VIEW -->
+    <section id="tab-friends" class="view">
+      <div class="card row-card">
+        <div class="row-left">
+          <div class="emblem-slot">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="url(#mGold)" stroke-width="1.8" />
+              <circle cx="12" cy="11.5" r="2.5" fill="url(#mGold)" />
             </svg>
           </div>
           <div>
-            <div class="card-title">Beast Empire Airdrop</div>
-            <div class="card-sub">Collect Beast Coins, complete tasks & invite warriors</div>
-            <div id="airdropEstimate" class="card-reward">Airdrop Score: 0 pts</div>
+            <div class="row-title">Beast Token Allocation</div>
+            <div class="row-desc">Accumulate Beast Coin, complete directives & expand network</div>
+            <div id="airdropEstimate" class="row-payout">Allocation Index: 0 pts</div>
           </div>
         </div>
       </div>
 
-      <div class="crystal luxury-card">
-        <div class="card-left">
-          <div class="icon-orb">
-            <svg viewBox="0 0 28 28" width="24" height="24">
-              <circle cx="11" cy="11" r="4" fill="url(#cViolet)" />
-              <circle cx="18" cy="12" r="3.2" fill="url(#cIce)" />
-              <path d="M5 21 C5 17.5, 16 17.5, 16 21 Z" fill="url(#cViolet)" />
+      <div class="card row-card">
+        <div class="row-left">
+          <div class="emblem-slot">
+            <svg viewBox="0 0 24 24" width="22" height="22">
+              <circle cx="10" cy="9" r="3.2" fill="url(#mSilver)" />
+              <circle cx="16.5" cy="10" r="2.5" fill="url(#mGold)" />
+              <path d="M4.5 19 C4.5 15.5, 15.5 15.5, 15.5 19 Z" fill="url(#mSilver)" />
             </svg>
           </div>
           <div>
-            <div class="card-title">Invite Warriors</div>
-            <div class="card-sub">https://t.me/MyBeastEmpire_bot/game</div>
-            <div class="card-reward">+50,000 Beast Coin per invite</div>
+            <div class="row-title">Recruit Partners</div>
+            <div class="row-desc">https://t.me/MyBeastEmpire_bot/game</div>
+            <div class="row-payout">+50,000 Beast Coin per referral</div>
           </div>
         </div>
-        <button id="copyInviteBtn" class="gold-cta" type="button">Invite</button>
+        <button id="copyInviteBtn" class="primary-btn" type="button">Copy Link</button>
       </div>
 
-      <div class="crystal" style="padding:14px 15px;">
-        <div class="card-title" style="margin-bottom:8px;">Royal Leaderboard</div>
+      <div class="card" style="padding:14px 15px;">
+        <div class="row-title" style="margin-bottom:8px;">Syndicate Standings</div>
         <div id="leaderboardList" style="display:flex; flex-direction:column; gap:8px;"></div>
       </div>
-    </div>
+    </section>
   </div>
 
-  <!-- Soft Crystal Bottom Dock -->
-  <nav class="dock">
-    <button class="dock-item active" data-tab="tap" type="button">
-      <svg viewBox="0 0 24 24" width="20" height="20">
-        <circle cx="12" cy="12" r="8" fill="url(#cGold)" />
-        <path d="M8 14 L9.5 9 L12 11.5 L14.5 9 L16 14 Z" fill="#191003" />
+  <!-- Executive Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-tab active" data-tab="tap" type="button">
+      <svg viewBox="0 0 24 24" width="19" height="19">
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <circle cx="12" cy="12" r="3" fill="currentColor" />
       </svg>
-      <span>Tap</span>
+      <span>Empire</span>
     </button>
-    <button class="dock-item" data-tab="earn" type="button">
-      <svg viewBox="0 0 24 24" width="20" height="20">
-        <rect x="4" y="9" width="16" height="11" rx="3" fill="url(#cRose)" />
-        <path d="M12 9 V20 M4 13 H20" stroke="#fff" stroke-width="1.8" />
+    <button class="nav-tab" data-tab="earn" type="button">
+      <svg viewBox="0 0 24 24" width="19" height="19">
+        <rect x="4" y="5" width="16" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <path d="M8 10 H16 M8 14 H13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
       </svg>
       <span>Earn</span>
     </button>
-    <button class="dock-item" data-tab="upgrades" type="button">
-      <svg viewBox="0 0 24 24" width="20" height="20">
-        <polygon points="13,2 5,14 11,14 10,22 19,10 13,10" fill="url(#cIce)" />
+    <button class="nav-tab" data-tab="upgrades" type="button">
+      <svg viewBox="0 0 24 24" width="19" height="19">
+        <path d="M4 18 L10 12 L14 15 L20 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-      <span>Upgrades</span>
+      <span>Assets</span>
     </button>
-    <button class="dock-item" data-tab="friends" type="button">
-      <svg viewBox="0 0 24 24" width="20" height="20">
-        <polygon points="12,3 20,10 12,21 4,10" fill="url(#cViolet)" />
+    <button class="nav-tab" data-tab="friends" type="button">
+      <svg viewBox="0 0 24 24" width="19" height="19">
+        <polygon points="12,3 19,10 12,21 5,10" fill="none" stroke="currentColor" stroke-width="1.8" />
       </svg>
       <span>Airdrop</span>
     </button>
@@ -797,7 +733,7 @@
   <script>
     const YOUTUBE_CHANNEL_URL = "https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs";
     const YOUTUBE_SUBSCRIBE_REWARD = 5000000;
-    const STORAGE_KEY = "beast_empire_crystal_v2";
+    const STORAGE_KEY = "beast_empire_sovereign_v3";
 
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
@@ -806,19 +742,19 @@
     }
 
     const UPGRADE_DEFS = [
-      { id: "claw", name: "Golden Claw", desc: "+2 Tap Power per level", baseCost: 250, mult: 1.7, tapAdd: 2, ppsAdd: 0, grad: "url(#cGold)" },
-      { id: "den", name: "Savanna Den", desc: "+15 Auto-Miner/s per level", baseCost: 600, mult: 1.75, tapAdd: 0, ppsAdd: 15, grad: "url(#cIce)" },
-      { id: "crown", name: "Solar Crown", desc: "+6 Tap Power & +40/s", baseCost: 2500, mult: 1.85, tapAdd: 6, ppsAdd: 40, grad: "url(#cViolet)" },
-      { id: "citadel", name: "Crystal Citadel", desc: "+150 Auto-Miner/s per level", baseCost: 12000, mult: 1.9, tapAdd: 0, ppsAdd: 150, grad: "url(#cRose)" }
+      { id: "claw", name: "Gilded Strike", desc: "+2 Strike Yield per tier", baseCost: 250, mult: 1.7, tapAdd: 2, ppsAdd: 0, grad: "url(#mGold)" },
+      { id: "den", name: "Territory Holdings", desc: "+15 Passive / Sec per tier", baseCost: 600, mult: 1.75, tapAdd: 0, ppsAdd: 15, grad: "url(#mSilver)" },
+      { id: "crown", name: "Sovereign Charter", desc: "+6 Strike Yield & +40/s", baseCost: 2500, mult: 1.85, tapAdd: 6, ppsAdd: 40, grad: "url(#mGold)" },
+      { id: "citadel", name: "Iron Vaults", desc: "+150 Passive / Sec per tier", baseCost: 12000, mult: 1.9, tapAdd: 0, ppsAdd: 150, grad: "url(#mSilver)" }
     ];
 
-    const COMBO_RELICS = [
-      { id: "sun_prism", label: "Sun Prism", grad: "url(#cGold)" },
-      { id: "frost_shard", label: "Frost Shard", grad: "url(#cIce)" },
-      { id: "royal_orb", label: "Royal Orb", grad: "url(#cViolet)" },
-      { id: "rose_gem", label: "Rose Gem", grad: "url(#cRose)" },
-      { id: "dawn_star", label: "Dawn Star", grad: "url(#cGold)" },
-      { id: "luna_core", label: "Luna Core", grad: "url(#cIce)" }
+    const COMBO_DIRECTIVES = [
+      { id: "capital_reserve", label: "Capital Reserve", grad: "url(#mGold)" },
+      { id: "trade_route", label: "Trade Route", grad: "url(#mSilver)" },
+      { id: "sovereign_pact", label: "Sovereign Pact", grad: "url(#mGold)" },
+      { id: "bullion_vault", label: "Bullion Vault", grad: "url(#mSilver)" },
+      { id: "crown_mandate", label: "Crown Mandate", grad: "url(#mGold)" },
+      { id: "equity_ledger", label: "Equity Ledger", grad: "url(#mSilver)" }
     ];
 
     const defaultState = {
@@ -864,38 +800,38 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
-    function showToast(msg) {
+    function showToast(message) {
       const el = document.getElementById("toast");
-      el.textContent = msg;
+      el.textContent = message;
       el.classList.add("show");
       clearTimeout(showToast._t);
       showToast._t = setTimeout(() => el.classList.remove("show"), 2200);
     }
 
-    function playCrystalTone() {
+    function playStrikeTone() {
       if (!state.soundOn) return;
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
         const ctx = new AudioCtx();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(640, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(980, ctx.currentTime + 0.08);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(420, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(620, ctx.currentTime + 0.06);
+        gain.gain.setValueAtTime(0.06, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start();
-        osc.stop(ctx.currentTime + 0.09);
+        osc.stop(ctx.currentTime + 0.07);
       } catch (_) {}
     }
 
     function getRank(coins) {
-      if (coins >= 10000000) return "Beast Emperor";
-      if (coins >= 2000000) return "Pride Warlord";
-      if (coins >= 250000) return "Savanna Alpha";
-      return "Cub";
+      if (coins >= 10000000) return "Grand Sovereign";
+      if (coins >= 2000000) return "High Commander";
+      if (coins >= 250000) return "Senior Director";
+      return "Associate";
     }
 
     function isTurboActive() {
@@ -910,12 +846,12 @@
       state.youtubeOpened = true;
       saveState();
       render();
-      showToast("Subscribe karne ke baad Claim 5M dabayein!");
+      showToast("Subscribe on YouTube, then tap Claim 5M.");
     }
 
     function claimYoutubeReward() {
       if (state.youtubeSubscribedClaimed) {
-        showToast("+5,000,000 Beast Coin pehle hi claim ho chuka hai!");
+        showToast("YouTube subscription reward already claimed.");
         return;
       }
       if (!state.youtubeOpened) {
@@ -923,23 +859,22 @@
         state.youtubeOpened = true;
         saveState();
         render();
-        showToast("YouTube khul raha hai — subscribe karke Claim 5M dabayein!");
+        showToast("Channel opened. Subscribe and tap Claim 5M.");
         return;
       }
       state.coins += YOUTUBE_SUBSCRIBE_REWARD;
       state.youtubeSubscribedClaimed = true;
       saveState();
       render();
-      playCrystalTone();
-      showToast("🎉 +5,000,000 Beast Coin mil gaye!");
+      playStrikeTone();
+      showToast("+5,000,000 Beast Coin credited.");
     }
 
-    // Smooth Directional Crystal Tap Tilt
     const lionTap = document.getElementById("lionTap");
     lionTap.addEventListener("pointerdown", (e) => {
       const power = getEffectiveTap();
       if (state.energy < 1) {
-        showToast("Energy khatam! Full Energy use karein.");
+        showToast("Stamina reserve depleted. Refill to continue.");
         return;
       }
       const spent = Math.min(state.energy, Math.max(1, Math.floor(power / 2)));
@@ -949,25 +884,25 @@
       const rect = lionTap.getBoundingClientRect();
       const dx = ((e.clientX || rect.left + rect.width / 2) - (rect.left + rect.width / 2)) / (rect.width / 2);
       const dy = ((e.clientY || rect.top + rect.height / 2) - (rect.top + rect.height / 2)) / (rect.height / 2);
-      const tiltX = (-dy * 10).toFixed(1);
-      const tiltY = (dx * 12).toFixed(1);
+      const tiltX = (-dy * 8).toFixed(1);
+      const tiltY = (dx * 10).toFixed(1);
 
-      lionTap.classList.add("pulse");
-      lionTap.style.transform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.95)`;
+      lionTap.classList.add("active-press");
+      lionTap.style.transform = `perspective(760px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.96)`;
       setTimeout(() => {
-        lionTap.classList.remove("pulse");
-        lionTap.style.transform = "perspective(700px) rotateX(0deg) rotateY(0deg) scale(1)";
-      }, 170);
+        lionTap.classList.remove("active-press");
+        lionTap.style.transform = "perspective(760px) rotateX(0deg) rotateY(0deg) scale(1)";
+      }, 150);
 
-      const badge = document.createElement("div");
-      badge.className = "float-gain";
-      badge.textContent = `+${power.toLocaleString()}`;
-      badge.style.left = `${e.clientX || window.innerWidth / 2}px`;
-      badge.style.top = `${(e.clientY || window.innerHeight / 2) - 14}px`;
-      document.body.appendChild(badge);
-      setTimeout(() => badge.remove(), 850);
+      const pop = document.createElement("div");
+      pop.className = "delta-pop";
+      pop.textContent = `+${power.toLocaleString()}`;
+      pop.style.left = `${e.clientX || window.innerWidth / 2}px`;
+      pop.style.top = `${(e.clientY || window.innerHeight / 2) - 12}px`;
+      document.body.appendChild(pop);
+      setTimeout(() => pop.remove(), 800);
 
-      playCrystalTone();
+      playStrikeTone();
       saveState();
       render();
     });
@@ -978,7 +913,7 @@
       state.energy = state.maxEnergy;
       saveState();
       render();
-      showToast("🔋 Energy 100% full ho gayi!");
+      showToast("Stamina reserve restored.");
     });
 
     document.getElementById("turboBtn").addEventListener("click", () => {
@@ -987,13 +922,13 @@
       state.turboUntil = Date.now() + 15000;
       saveState();
       render();
-      showToast("🚀 15s ke liye 2x Tap Turbo on!");
+      showToast("2x Multiplier active for 15 seconds.");
     });
 
     document.getElementById("checkinBtn").addEventListener("click", () => {
       const today = new Date().toISOString().slice(0, 10);
       if (state.lastCheckinDay === today) {
-        showToast("Aaj ka check-in claim ho chuka hai!");
+        showToast("Daily attendance already claimed.");
         return;
       }
       state.streak += 1;
@@ -1002,7 +937,7 @@
       state.coins += reward;
       saveState();
       render();
-      showToast(`✨ +${reward.toLocaleString()} Beast Coin (Day ${state.streak})!`);
+      showToast(`+${reward.toLocaleString()} Beast Coin claimed (Day ${state.streak}).`);
     });
 
     function renderCombo() {
@@ -1014,36 +949,36 @@
       }
       const grid = document.getElementById("comboGrid");
       grid.innerHTML = "";
-      COMBO_RELICS.forEach((relic) => {
-        const div = document.createElement("div");
-        div.className = "crystal relic-tile" + (state.comboPicked.includes(relic.id) ? " picked" : "");
-        div.innerHTML = `
-          <svg viewBox="0 0 28 28" width="26" height="26">
-            <polygon points="14,3 24,11 14,25 4,11" fill="${relic.grad}" />
+      COMBO_DIRECTIVES.forEach((item) => {
+        const tile = document.createElement("div");
+        tile.className = "card intel-tile" + (state.comboPicked.includes(item.id) ? " selected" : "");
+        tile.innerHTML = `
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${item.grad}" stroke-width="1.8" />
           </svg>
-          <span style="font-size:11px;font-weight:700;">${relic.label}</span>
+          <span style="font-size:11px;font-weight:700;">${item.label}</span>
         `;
-        div.onclick = () => {
+        tile.onclick = () => {
           if (state.comboClaimed) {
-            showToast("Daily Combo aaj claim ho chuka hai!");
+            showToast("Daily combo already claimed.");
             return;
           }
-          if (state.comboPicked.includes(relic.id)) return;
-          state.comboPicked.push(relic.id);
+          if (state.comboPicked.includes(item.id)) return;
+          state.comboPicked.push(item.id);
           if (state.comboPicked.length === 3) {
             state.coins += 100000;
             state.comboClaimed = true;
-            showToast("💎 Daily Combo complete! +100,000 Beast Coin");
+            showToast("+100,000 Beast Coin combo reward credited.");
           }
           saveState();
           render();
         };
-        grid.appendChild(div);
+        grid.appendChild(tile);
       });
 
       document.getElementById("comboStatus").textContent = state.comboClaimed
-        ? "✓ Aaj ka +100,000 Beast Coin combo claim ho gaya"
-        : `Selected ${state.comboPicked.length}/3 crystal relics (+100,000 Beast Coin)`;
+        ? "Daily combo completed (+100,000 Beast Coin)."
+        : `Selected ${state.comboPicked.length}/3 directives (+100,000 Beast Coin)`;
     }
 
     function renderUpgrades() {
@@ -1053,21 +988,21 @@
         const lvl = state.upgrades[u.id] || 0;
         const cost = Math.floor(u.baseCost * Math.pow(u.mult, lvl));
         const row = document.createElement("div");
-        row.className = "crystal luxury-card";
+        row.className = "card row-card";
         row.innerHTML = `
-          <div class="card-left">
-            <div class="icon-orb">
-              <svg viewBox="0 0 28 28" width="24" height="24">
-                <circle cx="14" cy="14" r="9" fill="${u.grad}" />
+          <div class="row-left">
+            <div class="emblem-slot">
+              <svg viewBox="0 0 24 24" width="22" height="22">
+                <rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="${u.grad}" stroke-width="1.8" />
               </svg>
             </div>
             <div>
-              <div class="card-title">${u.name} <span style="color:var(--ice-glow);font-size:12px;">Lv.${lvl}</span></div>
-              <div class="card-sub">${u.desc}</div>
-              <div class="card-reward">Cost: ${cost.toLocaleString()} Beast Coin</div>
+              <div class="row-title">${u.name} <span style="color:var(--steel-accent);font-size:12px;">Tier ${lvl}</span></div>
+              <div class="row-desc">${u.desc}</div>
+              <div class="row-payout">Cost: ${cost.toLocaleString()} Beast Coin</div>
             </div>
           </div>
-          <button class="gold-cta" ${state.coins < cost ? "disabled" : ""}>Upgrade</button>
+          <button class="primary-btn" ${state.coins < cost ? "disabled" : ""}>Acquire</button>
         `;
         row.querySelector("button").onclick = () => {
           if (state.coins < cost) return;
@@ -1077,86 +1012,86 @@
           state.pps += u.ppsAdd;
           saveState();
           render();
-          showToast(`⚡ ${u.name} Lv.${lvl + 1} unlock!`);
+          showToast(`${u.name} upgraded to Tier ${lvl + 1}.`);
         };
         list.appendChild(row);
       });
     }
 
     function renderLeaderboard() {
-      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "You";
+      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Sovereign";
       const rows = [
-        { name: "Pride Sovereign", coins: 12500000 },
-        { name: "Savanna Titan", coins: 6400000 },
+        { name: "Lord Vance", coins: 12500000 },
+        { name: "Marcus Sterling", coins: 6400000 },
         { name: `${user} (You)`, coins: state.coins },
-        { name: "Golden Fang", coins: 850000 }
+        { name: "A. Thorne", coins: 850000 }
       ].sort((a, b) => b.coins - a.coins);
 
       const box = document.getElementById("leaderboardList");
       box.innerHTML = rows
         .map(
           (r, i) => `
-          <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
             <span>#${i + 1} ${r.name}</span>
-            <strong style="color:var(--gold-soft);">${r.coins.toLocaleString()}</strong>
+            <strong style="color:var(--gold-light);font-variant-numeric:tabular-nums;">${r.coins.toLocaleString()}</strong>
           </div>`
         )
         .join("");
     }
 
     function render() {
-      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Beast Ruler";
+      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Sovereign Member";
       document.getElementById("playerName").textContent = user;
-      document.getElementById("rankLabel").textContent = `${getRank(state.coins)} • Royal Crystal`;
+      document.getElementById("rankLabel").textContent = `${getRank(state.coins)} • Syndicate`;
       document.getElementById("balanceDisplay").textContent = Math.floor(state.coins).toLocaleString();
       document.getElementById("tapPowerStat").textContent = `+${getEffectiveTap().toLocaleString()}`;
       document.getElementById("pphStat").textContent = `+${state.pps.toLocaleString()}/s`;
 
       const airdropPts = Math.floor(state.coins / 100);
       document.getElementById("airdropStat").textContent = airdropPts.toLocaleString();
-      document.getElementById("airdropEstimate").textContent = `Airdrop Score: ${airdropPts.toLocaleString()} pts`;
+      document.getElementById("airdropEstimate").textContent = `Allocation Index: ${airdropPts.toLocaleString()} pts`;
 
       document.getElementById("energyText").textContent = `${Math.floor(state.energy)} / ${state.maxEnergy}`;
       document.getElementById("energyBar").style.width = `${Math.max(0, Math.min(100, (state.energy / state.maxEnergy) * 100))}%`;
 
-      document.getElementById("fullEnergyBtn").textContent = `🔋 Full Energy (${state.fullEnergyLeft}/3)`;
+      document.getElementById("fullEnergyBtn").textContent = `Refill Stamina (${state.fullEnergyLeft}/3)`;
       document.getElementById("fullEnergyBtn").disabled = state.fullEnergyLeft <= 0;
-      document.getElementById("turboBtn").textContent = `🚀 2x Turbo (${state.turboLeft}/3)`;
+      document.getElementById("turboBtn").textContent = `2x Multiplier (${state.turboLeft}/3)`;
       document.getElementById("turboBtn").disabled = state.turboLeft <= 0;
 
       const today = new Date().toISOString().slice(0, 10);
       const checkinBtn = document.getElementById("checkinBtn");
       if (state.lastCheckinDay === today) {
         checkinBtn.textContent = "Claimed";
-        checkinBtn.classList.add("done");
+        checkinBtn.classList.add("claimed");
       } else {
         checkinBtn.textContent = "Claim";
-        checkinBtn.classList.remove("done");
+        checkinBtn.classList.remove("claimed");
       }
       document.getElementById("checkinReward").textContent = `+${(25000 * (state.streak + 1)).toLocaleString()} Beast Coin`;
 
       const ytBtn = document.getElementById("ytClaimBtn");
       if (state.youtubeSubscribedClaimed) {
-        ytBtn.textContent = "✓ Claimed 5M";
-        ytBtn.classList.add("done");
+        ytBtn.textContent = "Claimed 5M";
+        ytBtn.classList.add("claimed");
       } else {
         ytBtn.textContent = "Claim 5M";
-        ytBtn.classList.remove("done");
+        ytBtn.classList.remove("claimed");
       }
 
-      document.getElementById("soundToggle").textContent = state.soundOn ? "🔊 Sound" : "🔇 Mute";
+      document.getElementById("soundToggle").textContent = state.soundOn ? "Audio On" : "Muted";
 
       renderCombo();
       renderUpgrades();
       renderLeaderboard();
     }
 
-    document.querySelectorAll(".dock-item").forEach((btn) => {
+    document.querySelectorAll(".nav-tab").forEach((btn) => {
       btn.addEventListener("click", () => {
         const target = btn.dataset.tab;
-        document.querySelectorAll(".dock-item").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".nav-tab").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        document.querySelectorAll(".section").forEach((s) => s.classList.remove("active"));
+        document.querySelectorAll(".view").forEach((v) => v.classList.remove("active"));
         document.getElementById(`tab-${target}`).classList.add("active");
       });
     });
@@ -1175,7 +1110,7 @@
       state.coins += 50000;
       saveState();
       render();
-      showToast("✨ Invite link copy ho gaya & +50,000 Beast Coin!");
+      showToast("Referral link copied. +50,000 Beast Coin credited.");
     });
 
     setInterval(() => {
@@ -1189,7 +1124,7 @@
     if (elapsedSec > 2 && state.pps > 0) {
       const offlineBonus = elapsedSec * state.pps;
       state.coins += offlineBonus;
-      showToast(`✨ Welcome back! +${offlineBonus.toLocaleString()} Auto-Miner coins`);
+      showToast(`Welcome back. +${offlineBonus.toLocaleString()} passive coins earned.`);
     }
 
     render();

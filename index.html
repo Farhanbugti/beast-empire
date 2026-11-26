@@ -75,7 +75,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      padding: 12px 14px 6px;
+      padding: 10px 14px 5px;
     }
     .top-pill {
       border-radius: 18px;
@@ -106,7 +106,7 @@
       display: none;
       flex-direction: column;
       overflow-y: auto;
-      padding: 4px 14px 8px;
+      padding: 4px 14px 6px;
       animation: silkyFade 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .screen.active { display: flex; }
@@ -115,16 +115,16 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3 Quick Action Cards */
+    /* 3 Stylish Quick Action Cards */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .quick-card {
       border-radius: 18px;
-      padding: 9px 6px;
+      padding: 8px 6px;
       text-align: center;
       position: relative;
       cursor: pointer;
@@ -135,7 +135,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(254, 240, 138, 0.08) 0%, transparent 60%);
+      background: linear-gradient(180deg, rgba(254, 240, 138, 0.09) 0%, transparent 60%);
       pointer-events: none;
     }
     .quick-card:active { transform: scale(0.93); }
@@ -148,13 +148,25 @@
       box-shadow: 0 0 8px #10b981;
     }
     .q-icon-wrap {
-      width: 34px; height: 34px;
+      width: 36px; height: 36px;
       margin: 0 auto 4px;
-      border-radius: 11px;
-      background: rgba(251, 191, 36, 0.14);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(253, 224, 71, 0.28);
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+    }
+    .q-icon-wrap.yt-box {
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.22), rgba(153, 27, 27, 0.14));
+      border-color: rgba(248, 113, 113, 0.45);
+    }
+    .q-icon-wrap.combo-box {
+      background: linear-gradient(145deg, rgba(251, 191, 36, 0.22), rgba(180, 83, 9, 0.14));
+      border-color: rgba(253, 224, 71, 0.45);
+    }
+    .q-icon-wrap.checkin-box {
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.2), rgba(251, 191, 36, 0.15));
+      border-color: rgba(253, 224, 71, 0.45);
     }
     .q-title { font-size: 11px; font-weight: 800; color: #f8fafc; letter-spacing: 0.2px; }
     .q-badge {
@@ -175,10 +187,10 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin: 2px 0;
+      margin: 0;
     }
     .mini-gold-coin {
-      width: 36px; height: 36px; border-radius: 50%;
+      width: 34px; height: 34px; border-radius: 50%;
       background: radial-gradient(circle at 30% 25%, #fffbeb 0%, #fcd34d 45%, #d97706 85%, #78350f 100%);
       border: 2px solid #fef3c7;
       box-shadow: 0 4px 14px rgba(251, 191, 36, 0.5), inset 0 2px 4px rgba(255,255,255,0.85);
@@ -189,7 +201,7 @@
       border: 1px solid rgba(146, 64, 14, 0.45);
     }
     .main-balance {
-      font-size: 40px;
+      font-size: 38px;
       font-weight: 900;
       letter-spacing: -0.5px;
       color: #ffffff;
@@ -197,7 +209,7 @@
     }
     .turbo-pill {
       display: none;
-      margin: 0 auto 4px;
+      margin: 2px auto 0;
       background: linear-gradient(90deg, #f59e0b, #ef4444);
       padding: 2px 12px;
       border-radius: 12px;
@@ -214,9 +226,10 @@
       justify-content: center;
       perspective: 750px;
       position: relative;
+      min-height: 225px;
     }
     .golden-aura {
-      width: 280px; height: 280px;
+      width: 256px; height: 256px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(251, 191, 36, 0.36) 0%, rgba(245, 158, 11, 0.08) 56%, transparent 74%);
       display: flex;
@@ -225,13 +238,13 @@
       position: relative;
     }
     .crystal-beast-coin {
-      width: 242px; height: 242px;
+      width: 224px; height: 224px;
       border-radius: 50%;
       background: radial-gradient(circle at 32% 24%, #fef9c3 0%, #fbbf24 38%, #b45309 78%, #451a03 100%);
       border: 4px solid #fef08a;
       box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.88),
-        0 0 45px rgba(251, 191, 36, 0.58),
+        0 20px 42px rgba(0, 0, 0, 0.88),
+        0 0 42px rgba(251, 191, 36, 0.58),
         inset 0 6px 14px rgba(255, 255, 255, 0.85);
       display: flex;
       align-items: center;
@@ -247,8 +260,8 @@
     .crystal-beast-coin.tapped {
       transition: transform 0.05s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.08s ease;
       box-shadow:
-        0 12px 26px rgba(0, 0, 0, 0.92),
-        0 0 68px rgba(254, 240, 138, 0.95);
+        0 10px 22px rgba(0, 0, 0, 0.92),
+        0 0 65px rgba(254, 240, 138, 0.95);
     }
 
     .royal-lion-svg {
@@ -260,7 +273,7 @@
 
     .tap-ripple {
       position: absolute;
-      width: 242px; height: 242px;
+      width: 224px; height: 224px;
       border-radius: 50%;
       border: 2.5px solid rgba(254, 240, 138, 0.8);
       box-shadow: 0 0 22px rgba(251, 191, 36, 0.55);
@@ -272,24 +285,24 @@
       100% { transform: scale(1.34); opacity: 0; }
     }
 
-    /* Bottom Energy Row */
+    /* Bottom Energy Row (Clear & Visible Above Nav) */
     .energy-footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 4px 6px;
+      padding: 4px 6px 4px;
     }
-    .energy-readout { display: flex; align-items: center; gap: 6px; }
-    .bolt-icon { font-size: 22px; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8)); }
-    .energy-nums { line-height: 1.1; }
-    .energy-cur { font-size: 16px; font-weight: 900; color: #fff; }
-    .energy-max { font-size: 11px; font-weight: 600; color: #94a3b8; }
+    .energy-readout { display: flex; align-items: center; gap: 7px; }
+    .bolt-icon { font-size: 20px; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.85)); }
+    .energy-nums { display: flex; align-items: baseline; gap: 4px; }
+    .energy-cur { font-size: 15px; font-weight: 900; color: #fff; }
+    .energy-max { font-size: 11px; font-weight: 700; color: #94a3b8; }
     .energy-bar-mini {
-      width: 140px; height: 9px;
+      width: 135px; height: 9px;
       background: rgba(255,255,255,0.08);
       border-radius: 10px;
       padding: 1.5px;
-      border: 1px solid rgba(253, 224, 71, 0.22);
+      border: 1px solid rgba(253, 224, 71, 0.25);
     }
     .energy-bar-inner {
       height: 100%; width: 100%;
@@ -428,7 +441,7 @@
     .free-boost-card:active { transform: scale(0.96); }
 
     /* Golden Pill Bottom Bar */
-    .nav-wrap { padding: 6px 14px 14px; }
+    .nav-wrap { padding: 5px 14px 12px; }
     .golden-nav-pill {
       background: linear-gradient(180deg, #fef08a 0%, #fbbf24 55%, #d97706 100%);
       border-radius: 22px;
@@ -546,8 +559,8 @@
       border-radius: 16px;
       padding: 12px;
       margin: 12px 0;
-      background: linear-gradient(145deg, rgba(239, 68, 68, 0.16), rgba(251, 191, 36, 0.08));
-      border: 1px solid rgba(253, 224, 71, 0.25);
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.18), rgba(251, 191, 36, 0.08));
+      border: 1px solid rgba(248, 113, 113, 0.35);
       display: flex; align-items: center; justify-content: space-between;
     }
     .code-input {
@@ -591,29 +604,32 @@
     <div class="modal-bg" id="dailyModal">
       <div class="modal-card">
         <button class="modal-close" onclick="closeModal('dailyModal')">✕</button>
-        <div style="font-size:38px; margin-bottom:4px;">📅</div>
-        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Daily Check-In</h3>
-        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Login daily without skipping to unlock Mega Rewards</p>
+        <div style="font-size:38px; margin-bottom:4px;">🗓️</div>
+        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Royal Daily Check-In</h3>
+        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Claim daily streak rewards up to +100,000 🪙</p>
         <div class="checkin-grid" id="checkinGrid"></div>
         <button class="cta-gold-btn" id="claimDailyBtn" onclick="claimDailyReward()">Claim Day 1 Reward</button>
       </div>
     </div>
 
-    <!-- 2. VIDEO CODE MODAL -->
+    <!-- 2. YOUTUBE VIDEO CODE MODAL -->
     <div class="modal-bg" id="videoModal">
       <div class="modal-card">
         <button class="modal-close" onclick="closeModal('videoModal')">✕</button>
-        <div style="font-size:38px; margin-bottom:4px;">🎬</div>
-        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Beast Cinema Code</h3>
-        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Watch our official reel & enter secret code for +25,000 🪙</p>
+        <!-- Red YouTube Icon -->
+        <div style="width:52px; height:38px; margin:0 auto 8px; border-radius:11px; background:linear-gradient(180deg, #ff2a2a, #cc0000); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(239,68,68,0.45);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><polygon points="8,5 19,12 8,19"/></svg>
+        </div>
+        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">YouTube Video Code</h3>
+        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Watch our YouTube video & enter secret code for +25,000 🪙</p>
         <div class="video-preview-box">
           <div style="text-align:left;">
-            <div style="font-size:13px; font-weight:800; color:#fff;">🔥 Episode #1 Secret</div>
+            <div style="font-size:13px; font-weight:800; color:#fff;">▶️ Beast Empire Official</div>
             <div style="font-size:11px; color:#fde68a;">Hint: Type <b>BEAST2026</b></div>
           </div>
-          <span class="gold-chip" onclick="toast('🎬 Opening Beast Official Video...')">Watch ▶</span>
+          <span class="gold-chip" onclick="toast('▶️ Opening YouTube Video...')">Watch</span>
         </div>
-        <input type="text" id="videoCodeInput" class="code-input" placeholder="ENTER SECRET CODE" maxlength="15" />
+        <input type="text" id="videoCodeInput" class="code-input" placeholder="ENTER YOUTUBE CODE" maxlength="15" />
         <button class="cta-gold-btn" id="verifyVideoBtn" onclick="verifyVideoCode()">✨ Verify & Claim +25,000 🪙</button>
       </div>
     </div>
@@ -651,21 +667,45 @@
     <!-- SCREEN 1: MAIN TAP ARENA -->
     <div class="screen active" id="screen-tap">
       <div class="quick-grid">
+        <!-- 1. Unique Stylish Golden Calendar Icon -->
         <div class="quick-card crystal-card" onclick="openDailyModal()">
           <div class="notify-dot" id="dailyDot"></div>
-          <div class="q-icon-wrap">📅</div>
+          <div class="q-icon-wrap checkin-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="17" rx="4" fill="#fde047" fill-opacity="0.2" stroke="#fde047" stroke-width="1.8"/>
+              <path d="M3 9H21" stroke="#fde047" stroke-width="1.8"/>
+              <path d="M8 2V5M16 2V5" stroke="#fef08a" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 12L13.1 14.2L15.5 14.5L13.7 16.2L14.2 18.6L12 17.4L9.8 18.6L10.3 16.2L8.5 14.5L10.9 14.2L12 12Z" fill="#fde047"/>
+            </svg>
+          </div>
           <div class="q-title">Daily check-in</div>
           <div class="q-badge" id="dailyBadge">Day 1</div>
         </div>
+
+        <!-- 2. 3-Card Mystery Combo Deck Icon (No Joker) -->
         <div class="quick-card crystal-card" onclick="switchTab('miner')">
           <div class="notify-dot" id="comboDot"></div>
-          <div class="q-icon-wrap">🃏</div>
+          <div class="q-icon-wrap combo-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="2.5" y="5" width="7" height="14" rx="2" transform="rotate(-12 2.5 5)" fill="#d97706" stroke="#fde047" stroke-width="1.4"/>
+              <rect x="14.5" y="3.5" width="7" height="14" rx="2" transform="rotate(12 14.5 3.5)" fill="#d97706" stroke="#fde047" stroke-width="1.4"/>
+              <rect x="8" y="3" width="8" height="16" rx="2.2" fill="#fbbf24" stroke="#fffbeb" stroke-width="1.6"/>
+              <circle cx="12" cy="11" r="2.2" fill="#451a03"/>
+            </svg>
+          </div>
           <div class="q-title">Daily combo</div>
           <div class="q-badge" id="comboBadge">0/3</div>
         </div>
+
+        <!-- 3. Stylish Red YouTube Icon -->
         <div class="quick-card crystal-card" onclick="openVideoModal()">
           <div class="notify-dot" id="videoDot"></div>
-          <div class="q-icon-wrap">🎬</div>
+          <div class="q-icon-wrap yt-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="5" width="20" height="14" rx="4.5" fill="#ef4444" stroke="#fca5a5" stroke-width="1.2"/>
+              <polygon points="10,8.5 16,12 10,15.5" fill="#ffffff"/>
+            </svg>
+          </div>
           <div class="q-title">Video code</div>
           <div class="q-badge" id="videoBadge">+25,000</div>
         </div>
@@ -678,7 +718,7 @@
       </div>
       <div class="turbo-pill" id="turboBadge">🔥 2X CRYSTAL TURBO ACTIVE!</div>
 
-      <!-- AUTHENTIC 3D ROARING GOLDEN LION COIN -->
+      <!-- PROUD ROYAL GOLDEN LION COIN (CLOSED MOUTH, NATURAL MANE) -->
       <div class="arena">
         <div class="golden-aura" id="goldenAura">
           <div class="crystal-beast-coin" id="beastBtn">
@@ -743,68 +783,60 @@
               <circle cx="200" cy="200" r="163" fill="url(#coinInnerDish)" stroke="#fde047" stroke-width="3"/>
               <circle cx="200" cy="200" r="154" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="8 6" opacity="0.78"/>
 
-              <!-- AUTHENTIC 3D ROARING LION KING -->
+              <!-- PROUD ROYAL LION KING (CLOSED MOUTH) -->
               <g filter="url(#deepRelief)">
                 <!-- Imperial Crown -->
-                <path d="M142,106 L148,68 L170,88 L187,56 L200,82 L213,56 L230,88 L252,68 L258,106 Z"
+                <path d="M142,108 L148,70 L170,90 L187,58 L200,84 L213,58 L230,90 L252,70 L258,108 Z"
                   fill="url(#crownGold)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
-                <circle cx="187" cy="54" r="4" fill="#fffbeb"/>
-                <circle cx="213" cy="54" r="4" fill="#fffbeb"/>
-                <circle cx="148" cy="66" r="3.5" fill="#fffbeb"/>
-                <circle cx="252" cy="66" r="3.5" fill="#fffbeb"/>
-                <rect x="143" y="104" width="114" height="10" rx="5" fill="url(#rimBevel)" stroke="#4a1d00" stroke-width="2.5"/>
+                <circle cx="187" cy="56" r="4" fill="#fffbeb"/>
+                <circle cx="213" cy="56" r="4" fill="#fffbeb"/>
+                <circle cx="148" cy="68" r="3.5" fill="#fffbeb"/>
+                <circle cx="252" cy="68" r="3.5" fill="#fffbeb"/>
+                <rect x="143" y="106" width="114" height="10" rx="5" fill="url(#rimBevel)" stroke="#4a1d00" stroke-width="2.5"/>
 
-                <!-- Natural Flowing Wild Lion Mane (Outer Spiked Fur) -->
-                <path d="M200,114 L234,118 L266,112 L276,142 L304,162 L292,194 L308,224 L282,250 L276,282 L242,292 L222,316 L200,304 L178,316 L158,292 L124,282 L118,250 L92,224 L108,194 L96,162 L124,142 L134,112 L166,118 Z"
+                <!-- Natural Flowing Wild Lion Mane (Outer Layer) -->
+                <path d="M200,116 L234,120 L266,114 L276,144 L304,164 L292,196 L308,226 L282,252 L276,282 L242,292 L222,314 L200,302 L178,314 L158,292 L124,282 L118,252 L92,226 L108,196 L96,164 L124,144 L134,114 L166,120 Z"
                   fill="url(#maneDark)" stroke="#3b1500" stroke-width="3.5" stroke-linejoin="round"/>
 
                 <!-- Inner Layered Golden Mane -->
-                <path d="M200,122 L230,126 L256,124 L264,150 L288,168 L278,196 L290,222 L268,244 L262,272 L234,280 L216,300 L200,290 L184,300 L166,280 L138,272 L132,244 L110,222 L122,196 L112,168 L136,150 L144,124 L170,126 Z"
+                <path d="M200,124 L230,128 L256,126 L264,152 L288,170 L278,198 L290,224 L268,246 L262,272 L234,280 L216,298 L200,288 L184,298 L166,280 L138,272 L132,246 L110,224 L122,198 L112,170 L136,152 L144,126 L170,128 Z"
                   fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
 
-                <!-- Mane Fur Texture Strokes -->
-                <path d="M132,166 Q118,190 132,212 M124,218 Q120,244 142,262 M268,166 Q282,190 268,212 M276,218 Q280,244 258,262"
+                <!-- Mane Fur Waves -->
+                <path d="M132,168 Q118,192 132,214 M124,220 Q120,246 142,262 M268,168 Q282,192 268,214 M276,220 Q280,246 258,262"
                   fill="none" stroke="#5c2600" stroke-width="3" stroke-linecap="round"/>
 
                 <!-- Lion Ears -->
-                <path d="M136,140 C122,120 138,108 158,124 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
-                <path d="M264,140 C278,120 262,108 242,124 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <path d="M136,142 C122,122 138,110 158,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <path d="M264,142 C278,122 262,110 242,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
 
-                <!-- Fierce Lion Head & Cheekbones -->
-                <path d="M150,142 Q200,130 250,142 L258,188 Q254,218 232,236 L220,264 Q200,276 180,264 L168,236 Q146,218 142,188 Z"
+                <!-- Noble Lion Head & Cheekbones -->
+                <path d="M150,144 Q200,132 250,144 L258,190 Q254,222 232,242 L216,264 Q200,274 184,264 L168,242 Q146,222 142,190 Z"
                   fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
 
-                <!-- Heavy Snarling Brow -->
-                <path d="M154,174 L190,186 L184,193 L154,183 Z" fill="#4a1d00"/>
-                <path d="M246,174 L210,186 L216,193 L246,183 Z" fill="#4a1d00"/>
+                <!-- Regal Brow -->
+                <path d="M154,176 L190,188 L184,194 L154,185 Z" fill="#4a1d00"/>
+                <path d="M246,176 L210,188 L216,194 L246,185 Z" fill="#4a1d00"/>
 
-                <!-- Piercing Lion Eyes -->
-                <path d="M158,185 Q173,181 185,189 Q173,196 158,185 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
-                <circle cx="173" cy="187" r="3" fill="#78350f"/>
-                <path d="M242,185 Q227,181 215,189 Q227,196 242,185 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
-                <circle cx="227" cy="187" r="3" fill="#78350f"/>
+                <!-- Piercing Golden Eyes -->
+                <path d="M158,187 Q173,183 185,191 Q173,198 158,187 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="173" cy="189" r="3" fill="#78350f"/>
+                <path d="M242,187 Q227,183 215,191 Q227,198 242,187 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="227" cy="189" r="3" fill="#78350f"/>
 
-                <!-- Nose Bridge & Snarl Wrinkles -->
-                <path d="M191,184 L209,184 L212,212 L188,212 Z" fill="url(#maneLight)" opacity="0.8"/>
-                <path d="M186,212 Q200,207 214,212 L205,224 Q200,227 195,224 Z"
+                <!-- Sculpted Nose Bridge & Nose -->
+                <path d="M191,186 L209,186 L212,216 L188,216 Z" fill="url(#maneLight)" opacity="0.8"/>
+                <path d="M186,216 Q200,211 214,216 L205,228 Q200,231 195,228 Z"
                   fill="#451a03" stroke="#fef08a" stroke-width="1.5"/>
 
-                <!-- Upper Snarl Lip -->
-                <path d="M174,232 Q187,223 200,229 Q213,223 226,232"
+                <!-- Calm, Proud Closed Lion Mouth & Strong Jaw -->
+                <path d="M174,235 Q187,228 200,234 Q213,228 226,235"
                   fill="none" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
-
-                <!-- Open Roaring Mouth & Sharp Fangs -->
-                <path d="M180,234 Q200,226 220,234 L214,254 Q200,262 186,254 Z"
-                  fill="#3b1200" stroke="#4a1d00" stroke-width="2.5" stroke-linejoin="round"/>
-                <!-- Upper Fangs -->
-                <polygon points="184,233 190,233 187,244" fill="#ffffff"/>
-                <polygon points="210,233 216,233 213,244" fill="#ffffff"/>
-                <!-- Lower Fangs -->
-                <polygon points="187,253 192,253 189.5,245" fill="#fef08a"/>
-                <polygon points="208,253 213,253 210.5,245" fill="#fef08a"/>
-                <!-- Lower Jaw Rim -->
-                <path d="M184,256 Q200,266 216,256"
-                  fill="none" stroke="#fde047" stroke-width="3" stroke-linecap="round"/>
+                <path d="M200,229 L200,235" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
+                <path d="M182,243 Q200,252 218,243"
+                  fill="none" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M188,255 Q200,262 212,255"
+                  fill="none" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
               </g>
 
               <!-- Crystal Glass Reflection & Star Sparkles -->
@@ -821,8 +853,8 @@
         <div class="energy-readout">
           <span class="bolt-icon">⚡</span>
           <div class="energy-nums">
-            <div class="energy-cur" id="energyCur">1,000</div>
-            <div class="energy-max" id="energyMax">/ 1,000</div>
+            <span class="energy-cur" id="energyCur">1,000</span>
+            <span class="energy-max" id="energyMax">/ 1,000</span>
           </div>
         </div>
         <div class="energy-bar-mini">
@@ -918,7 +950,7 @@
       <div class="sec-lbl">Daily Specials</div>
       <div class="list-card crystal-card" onclick="openDailyModal()">
         <div class="list-left">
-          <div class="list-ico">📅</div>
+          <div class="list-ico">🗓️</div>
           <div>
             <div class="list-title">7-Day Daily Check-In</div>
             <div class="list-sub">Up to +100,000 🪙 streak bonus</div>
@@ -929,9 +961,9 @@
 
       <div class="list-card crystal-card" onclick="openVideoModal()">
         <div class="list-left">
-          <div class="list-ico">🎬</div>
+          <div class="list-ico" style="background:rgba(239,68,68,0.18); border-color:rgba(248,113,113,0.4);">▶️</div>
           <div>
-            <div class="list-title">Watch & Enter Video Code</div>
+            <div class="list-title">YouTube Video Code</div>
             <div class="list-sub">+25,000 🪙 instant reward</div>
           </div>
         </div>
@@ -1283,7 +1315,7 @@
         state.videoClaimed = true;
         save(); render();
         closeModal('videoModal');
-        toast("🎬 Code Verified! +25,000 🪙 Added!");
+        toast("▶️ Code Verified! +25,000 🪙 Added!");
       } else {
         toast("❌ Invalid code! Try BEAST2026");
       }

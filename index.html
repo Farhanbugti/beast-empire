@@ -31,7 +31,7 @@
       inset: 0;
       z-index: 0;
       background:
-        radial-gradient(circle at 50% 48%, rgba(245, 180, 40, 0.24) 0%, rgba(180, 115, 10, 0.06) 42%, transparent 70%),
+        radial-gradient(circle at 50% 48%, rgba(245, 180, 40, 0.25) 0%, rgba(180, 115, 10, 0.06) 42%, transparent 70%),
         radial-gradient(circle at 20% 0%, rgba(255, 200, 70, 0.12) 0%, transparent 45%),
         radial-gradient(circle at 80% 0%, rgba(255, 185, 50, 0.1) 0%, transparent 45%),
         #070709;
@@ -62,7 +62,6 @@
       justify-content: space-between;
     }
 
-    /* Crystal Glass Base */
     .crystal-card {
       background: linear-gradient(155deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.025) 100%);
       backdrop-filter: blur(18px);
@@ -116,7 +115,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3 Stylish Quick Action Cards (Daily Check-in, Daily Combo, Video Code) */
+    /* 3 Quick Action Cards */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -207,7 +206,7 @@
       box-shadow: 0 0 14px rgba(245, 158, 11, 0.7);
     }
 
-    /* Crystal-Gloss 3D Beast Coin Arena */
+    /* Royal 3D Golden Lion Coin Arena */
     .arena {
       flex: 1;
       display: flex;
@@ -217,9 +216,9 @@
       position: relative;
     }
     .golden-aura {
-      width: 274px; height: 274px;
+      width: 278px; height: 278px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(251, 191, 36, 0.35) 0%, rgba(245, 158, 11, 0.08) 55%, transparent 74%);
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.36) 0%, rgba(245, 158, 11, 0.08) 56%, transparent 74%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -231,13 +230,13 @@
       100% { transform: scale(1.03); }
     }
     .crystal-beast-coin {
-      width: 236px; height: 236px;
+      width: 242px; height: 242px;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 28%, #fef08a 0%, #fbbf24 38%, #d97706 76%, #78350f 100%);
-      border: 5px solid #fde68a;
+      background: radial-gradient(circle at 32% 24%, #fef9c3 0%, #fbbf24 38%, #b45309 78%, #451a03 100%);
+      border: 4px solid #fef08a;
       box-shadow:
-        0 24px 48px rgba(0, 0, 0, 0.85),
-        0 0 45px rgba(251, 191, 36, 0.6),
+        0 24px 48px rgba(0, 0, 0, 0.88),
+        0 0 45px rgba(251, 191, 36, 0.58),
         inset 0 6px 14px rgba(255, 255, 255, 0.85);
       display: flex;
       align-items: center;
@@ -250,36 +249,23 @@
       overflow: hidden;
       transform-style: preserve-3d;
     }
-    .crystal-beast-coin::after {
-      content: "";
-      position: absolute;
-      top: -42%; left: -60%;
-      width: 220%; height: 62%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.03) 100%);
-      transform: rotate(-28deg);
-      pointer-events: none;
-      z-index: 3;
-    }
     .crystal-beast-coin.tapped {
       transition: transform 0.06s ease-out, box-shadow 0.08s ease;
       box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.9),
-        0 0 65px rgba(254, 240, 138, 0.95);
+        0 10px 24px rgba(0, 0, 0, 0.92),
+        0 0 68px rgba(254, 240, 138, 0.95);
     }
 
-    .coin-photo {
+    .royal-lion-svg {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      transform: scale(1.24);
       pointer-events: none;
       z-index: 2;
     }
 
     .tap-ripple {
       position: absolute;
-      width: 236px; height: 236px;
+      width: 242px; height: 242px;
       border-radius: 50%;
       border: 2.5px solid rgba(254, 240, 138, 0.8);
       box-shadow: 0 0 22px rgba(251, 191, 36, 0.55);
@@ -383,7 +369,7 @@
       box-shadow: none;
     }
 
-    /* Stylish Daily Combo Section (Miner Tab) */
+    /* Daily Combo & Miner Grid */
     .combo-hero {
       border-radius: 20px;
       padding: 12px;
@@ -501,7 +487,7 @@
       box-shadow: none;
     }
 
-    /* Stylish Bottom-Sheet & Center Modals */
+    /* Stylish Modals */
     .modal-bg {
       position: fixed; inset: 0;
       background: rgba(4, 5, 10, 0.84);
@@ -534,7 +520,6 @@
       cursor: pointer;
     }
 
-    /* 7-Day Check-in Grid */
     .checkin-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -557,15 +542,11 @@
       background: linear-gradient(160deg, rgba(251, 191, 36, 0.32), rgba(217, 119, 6, 0.14));
       box-shadow: 0 0 16px rgba(251, 191, 36, 0.35);
     }
-    .day-box.claimed-day {
-      opacity: 0.55;
-      border-color: #10b981;
-    }
+    .day-box.claimed-day { opacity: 0.55; border-color: #10b981; }
     .d-num { font-size: 10px; font-weight: 700; color: #cbd5e1; }
     .d-ico { font-size: 18px; margin: 3px 0; }
     .d-val { font-size: 11px; font-weight: 900; color: #fde68a; }
 
-    /* Stylish Video Code Input */
     .video-preview-box {
       border-radius: 16px;
       padding: 12px;
@@ -590,13 +571,8 @@
       margin-bottom: 12px;
       user-select: text;
     }
-    .code-input::placeholder {
-      color: #64748b;
-      letter-spacing: 1px;
-      font-size: 12px;
-    }
+    .code-input::placeholder { color: #64748b; letter-spacing: 1px; font-size: 12px; }
 
-    /* Toast */
     .toast {
       position: fixed; top: 64px; left: 50%; transform: translateX(-50%);
       background: rgba(18, 18, 24, 0.94); backdrop-filter: blur(12px);
@@ -616,28 +592,25 @@
   <div class="app-shell">
     <div class="toast" id="toast">Reward Claimed!</div>
 
-    <!-- 1. STYLISH 7-DAY DAILY CHECK-IN MODAL -->
+    <!-- 1. 7-DAY DAILY CHECK-IN MODAL -->
     <div class="modal-bg" id="dailyModal">
       <div class="modal-card">
         <button class="modal-close" onclick="closeModal('dailyModal')">✕</button>
         <div style="font-size:38px; margin-bottom:4px;">📅</div>
         <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Daily Check-In</h3>
         <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Login daily without skipping to unlock Mega Rewards</p>
-
         <div class="checkin-grid" id="checkinGrid"></div>
-
         <button class="cta-gold-btn" id="claimDailyBtn" onclick="claimDailyReward()">Claim Day 1 Reward</button>
       </div>
     </div>
 
-    <!-- 2. STYLISH VIDEO CODE MODAL -->
+    <!-- 2. VIDEO CODE MODAL -->
     <div class="modal-bg" id="videoModal">
       <div class="modal-card">
         <button class="modal-close" onclick="closeModal('videoModal')">✕</button>
         <div style="font-size:38px; margin-bottom:4px;">🎬</div>
         <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Beast Cinema Code</h3>
         <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Watch our official reel & enter secret code for +25,000 🪙</p>
-
         <div class="video-preview-box">
           <div style="text-align:left;">
             <div style="font-size:13px; font-weight:800; color:#fff;">🔥 Episode #1 Secret</div>
@@ -645,9 +618,7 @@
           </div>
           <span class="gold-chip" onclick="toast('🎬 Opening Beast Official Video...')">Watch ▶</span>
         </div>
-
         <input type="text" id="videoCodeInput" class="code-input" placeholder="ENTER SECRET CODE" maxlength="15" />
-
         <button class="cta-gold-btn" id="verifyVideoBtn" onclick="verifyVideoCode()">✨ Verify & Claim +25,000 🪙</button>
       </div>
     </div>
@@ -684,7 +655,6 @@
 
     <!-- SCREEN 1: MAIN TAP ARENA -->
     <div class="screen active" id="screen-tap">
-      <!-- 3 Stylish Quick Action Cards -->
       <div class="quick-grid">
         <div class="quick-card crystal-card" onclick="openDailyModal()">
           <div class="notify-dot" id="dailyDot"></div>
@@ -713,20 +683,150 @@
       </div>
       <div class="turbo-pill" id="turboBadge">🔥 2X CRYSTAL TURBO ACTIVE!</div>
 
-      <!-- Crystal-Gloss 3D Beast Coin -->
+      <!-- ULTRA-DETAILED 3D SCULPTED ROYAL GOLDEN LION COIN -->
       <div class="arena">
         <div class="golden-aura" id="goldenAura">
           <div class="crystal-beast-coin" id="beastBtn">
-            <img
-              src="coin.png"
-              alt="Beast Coin"
-              class="coin-photo"
-              onerror="this.style.display='none'; document.getElementById('fallbackSvg').style.display='block';"
-            />
-            <svg id="fallbackSvg" style="display:none; width:148px; height:148px; z-index:2;" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-              <path d="M74,52 L83,28 L98,42 L110,20 L122,42 L137,28 L146,52 Z" fill="#fffbeb" stroke="#612c00" stroke-width="3"/>
-              <polygon points="110,54 142,62 168,54 172,84 190,104 174,130 180,156 150,168 136,192 110,182 84,192 70,168 40,156 46,130 30,104 48,84 52,54 78,62" fill="#f59e0b" stroke="#5c2600" stroke-width="3.5"/>
-              <path d="M76,80 L110,73 L144,80 L149,114 L132,140 L110,150 L88,140 L71,114 Z" fill="#fef08a" stroke="#4d1f00" stroke-width="3.5"/>
+            <svg class="royal-lion-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Coin Metallic Gold Gradients -->
+                <radialGradient id="coinBase" cx="35%" cy="28%" r="72%">
+                  <stop offset="0%" stop-color="#fffbeb"/>
+                  <stop offset="22%" stop-color="#fde047"/>
+                  <stop offset="58%" stop-color="#d97706"/>
+                  <stop offset="88%" stop-color="#92400e"/>
+                  <stop offset="100%" stop-color="#451a03"/>
+                </radialGradient>
+                <radialGradient id="coinInnerDish" cx="42%" cy="32%" r="68%">
+                  <stop offset="0%" stop-color="#fef08a"/>
+                  <stop offset="45%" stop-color="#b45309"/>
+                  <stop offset="85%" stop-color="#78350f"/>
+                  <stop offset="100%" stop-color="#451a03"/>
+                </radialGradient>
+                <linearGradient id="rimBevel" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="30%" stop-color="#fde047"/>
+                  <stop offset="70%" stop-color="#b45309"/>
+                  <stop offset="100%" stop-color="#fef08a"/>
+                </linearGradient>
+                <!-- Sculpted Lion Gold Gradients -->
+                <linearGradient id="maneLight" x1="15%" y1="5%" x2="85%" y2="95%">
+                  <stop offset="0%" stop-color="#fffbeb"/>
+                  <stop offset="35%" stop-color="#fcd34d"/>
+                  <stop offset="75%" stop-color="#b45309"/>
+                  <stop offset="100%" stop-color="#451a03"/>
+                </linearGradient>
+                <linearGradient id="maneDark" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f59e0b"/>
+                  <stop offset="55%" stop-color="#78350f"/>
+                  <stop offset="100%" stop-color="#290f02"/>
+                </linearGradient>
+                <linearGradient id="faceSculpt" x1="25%" y1="10%" x2="75%" y2="95%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="28%" stop-color="#fde047"/>
+                  <stop offset="68%" stop-color="#d97706"/>
+                  <stop offset="100%" stop-color="#612804"/>
+                </linearGradient>
+                <linearGradient id="crownGold" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="35%" stop-color="#fef08a"/>
+                  <stop offset="75%" stop-color="#d97706"/>
+                  <stop offset="100%" stop-color="#5c2600"/>
+                </linearGradient>
+                <linearGradient id="glassSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.48"/>
+                  <stop offset="45%" stop-color="#ffffff" stop-opacity="0.06"/>
+                  <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                </linearGradient>
+                <filter id="deepRelief" x="-15%" y="-15%" width="130%" height="130%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#260c00" flood-opacity="0.75"/>
+                </filter>
+              </defs>
+
+              <!-- Outer Coin Disc & Concentric Luxury Rings -->
+              <circle cx="200" cy="200" r="196" fill="url(#coinBase)"/>
+              <circle cx="200" cy="200" r="184" fill="none" stroke="url(#rimBevel)" stroke-width="6"/>
+              <circle cx="200" cy="200" r="172" fill="none" stroke="#5c2600" stroke-width="2.5"/>
+              <circle cx="200" cy="200" r="163" fill="url(#coinInnerDish)" stroke="#fde047" stroke-width="3"/>
+              <!-- Dashed Luxury Coin Mint Ring -->
+              <circle cx="200" cy="200" r="154" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="8 6" opacity="0.8"/>
+
+              <!-- SCULPTED 3D LION EMBLEM GROUP -->
+              <g filter="url(#deepRelief)">
+                <!-- Royal 5-Point Imperial Crown -->
+                <path d="M136,108 L142,68 L166,90 L184,54 L200,84 L216,54 L234,90 L258,68 L264,108 Z"
+                  fill="url(#crownGold)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
+                <!-- Crown Jewels -->
+                <circle cx="184" cy="52" r="4.5" fill="#fffbeb"/>
+                <circle cx="216" cy="52" r="4.5" fill="#fffbeb"/>
+                <circle cx="142" cy="66" r="4" fill="#fffbeb"/>
+                <circle cx="258" cy="66" r="4" fill="#fffbeb"/>
+                <rect x="137" y="106" width="126" height="11" rx="5" fill="url(#rimBevel)" stroke="#4a1d00" stroke-width="2.5"/>
+                <circle cx="200" cy="111.5" r="3.5" fill="#ffffff"/>
+                <circle cx="170" cy="111.5" r="2.5" fill="#fef08a"/>
+                <circle cx="230" cy="111.5" r="2.5" fill="#fef08a"/>
+
+                <!-- Outer Flowing Lion Mane Locks (Back Layer) -->
+                <path d="M200,116 C242,116 286,126 304,162 C318,190 314,226 296,254 C304,274 286,304 260,314 C244,334 220,348 200,356 C180,348 156,334 140,314 C114,304 96,274 104,254 C86,226 82,190 96,162 C114,126 158,116 200,116 Z"
+                  fill="url(#maneDark)" stroke="#3b1500" stroke-width="3.5"/>
+
+                <!-- Sculpted Golden Mane Fur Waves (Left & Right) -->
+                <path d="M138,124 C106,138 92,174 108,206 C94,226 102,262 126,276 C122,298 148,322 174,324 C184,338 194,348 200,352 C206,348 216,338 226,324 C252,322 278,298 274,276 C298,262 306,226 292,206 C308,174 294,138 262,124 C242,118 220,116 200,116 C180,116 158,118 138,124 Z"
+                  fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3"/>
+
+                <!-- Detailed Mane Lock Ridges -->
+                <path d="M124,152 Q108,184 126,212 M116,216 Q106,248 132,270 M138,278 Q144,306 172,316"
+                  fill="none" stroke="#4a1d00" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M276,152 Q292,184 274,212 M284,216 Q294,248 268,270 M262,278 Q256,306 228,316"
+                  fill="none" stroke="#4a1d00" stroke-width="3.5" stroke-linecap="round"/>
+
+                <!-- Lion Ears -->
+                <path d="M132,146 C116,124 134,108 156,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <path d="M268,146 C284,124 266,108 244,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+
+                <!-- Majestic Lion Head & Cheekbones -->
+                <path d="M148,144 Q200,130 252,144 L264,192 Q266,226 242,248 L224,274 Q200,288 176,274 L158,248 Q134,226 136,192 Z"
+                  fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
+
+                <!-- Forehead & Heavy Noble Brow -->
+                <path d="M164,156 Q200,148 236,156" fill="none" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M150,178 Q174,172 192,186 L186,193 Q168,184 152,186 Z" fill="#4a1d00"/>
+                <path d="M250,178 Q226,172 208,186 L214,193 Q232,184 248,186 Z" fill="#4a1d00"/>
+
+                <!-- Piercing Glowing Lion Eyes -->
+                <path d="M156,188 Q172,183 186,192 Q172,199 156,188 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="172" cy="190" r="3.5" fill="#78350f"/>
+                <circle cx="171" cy="189" r="1.4" fill="#ffffff"/>
+
+                <path d="M244,188 Q228,183 214,192 Q228,199 244,188 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="228" cy="190" r="3.5" fill="#78350f"/>
+                <circle cx="227" cy="189" r="1.4" fill="#ffffff"/>
+
+                <!-- Sculpted Nose Bridge -->
+                <path d="M191,186 L209,186 L213,218 L187,218 Z" fill="url(#maneLight)" opacity="0.85"/>
+                <path d="M190,188 L187,216 M210,188 L213,216" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- Royal Lion Nose -->
+                <path d="M184,218 Q200,213 216,218 L206,232 Q200,236 194,232 Z"
+                  fill="#451a03" stroke="#fef08a" stroke-width="1.5"/>
+
+                <!-- Muzzle, Whisker Pads & Beard Chin -->
+                <path d="M164,234 Q182,226 200,234 Q218,226 236,234 Q238,256 216,260 Q200,252 184,260 Q162,256 164,234 Z"
+                  fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <path d="M200,234 L200,252 M176,254 Q200,265 224,254"
+                  fill="none" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
+
+                <!-- Royal Golden Chin Beard -->
+                <path d="M180,262 L220,262 L210,294 L200,306 L190,294 Z"
+                  fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
+              </g>
+
+              <!-- Crystal Glass Reflection & Specular Sparkles -->
+              <ellipse cx="155" cy="115" rx="125" ry="68" transform="rotate(-24 155 115)" fill="url(#glassSheen)"/>
+              <!-- Star Sparkles -->
+              <path d="M295,112 L298,122 L308,125 L298,128 L295,138 L292,128 L282,125 L292,122 Z" fill="#ffffff" opacity="0.95"/>
+              <path d="M102,282 L105,292 L115,295 L105,298 L102,308 L99,298 L89,295 L99,292 Z" fill="#fffbeb" opacity="0.9"/>
+              <path d="M286,294 L288,301 L295,303 L288,305 L286,312 L284,305 L277,303 L284,301 Z" fill="#fef08a" opacity="0.9"/>
             </svg>
           </div>
         </div>
@@ -793,7 +893,7 @@
       </div>
     </div>
 
-    <!-- SCREEN 3: MINER & STYLISH DAILY COMBO -->
+    <!-- SCREEN 3: MINER & DAILY COMBO -->
     <div class="screen" id="screen-miner">
       <div class="combo-hero">
         <div class="combo-top-row">
@@ -1125,7 +1225,6 @@
       return l;
     }
 
-    /* STYLISH 7-DAY CHECK-IN MODAL LOGIC */
     function openDailyModal() {
       const grid = document.getElementById('checkinGrid');
       grid.innerHTML = '';
@@ -1174,7 +1273,6 @@
       }
     }
 
-    /* STYLISH VIDEO CODE MODAL LOGIC */
     function openVideoModal() {
       const btn = document.getElementById('verifyVideoBtn');
       const inp = document.getElementById('videoCodeInput');
@@ -1207,7 +1305,6 @@
       }
     }
 
-    /* MINER & DAILY COMBO CARDS */
     function renderMiners() {
       const grid = document.getElementById('minerGrid');
       grid.innerHTML = '';

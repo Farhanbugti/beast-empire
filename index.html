@@ -14,14 +14,91 @@
       -webkit-tap-highlight-color: transparent;
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
+
     body {
-      background: radial-gradient(circle at 50% 14%, #351f4d 0%, #130d22 58%, #07050c 100%);
+      background: #080912;
       color: #fff;
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated Ambient Aurora Background */
+    .ambient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 0%, #1d1836 0%, #0b0c18 60%, #05060c 100%);
+    }
+    .aurora-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      opacity: 0.45;
+      animation: driftOrb 14s ease-in-out infinite alternate;
+    }
+    .orb-1 {
+      width: 280px;
+      height: 280px;
+      background: #f59e0b;
+      top: -60px;
+      left: -50px;
+    }
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: #6366f1;
+      bottom: 80px;
+      right: -70px;
+      animation-delay: -5s;
+    }
+    .orb-3 {
+      width: 240px;
+      height: 240px;
+      background: #ec4899;
+      top: 38%;
+      left: 20%;
+      opacity: 0.22;
+      animation-delay: -9s;
+    }
+    @keyframes driftOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(35px, 45px) scale(1.18); }
+    }
+
+    /* Floating Golden Dust Particles */
+    .dust-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .dust {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff3b0, #f59e0b);
+      opacity: 0.35;
+      animation: floatDust linear infinite;
+    }
+    @keyframes floatDust {
+      0% { transform: translateY(105vh) scale(0.6); opacity: 0; }
+      25% { opacity: 0.5; }
+      80% { opacity: 0.4; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Main Content Layer */
+    .app-shell {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     /* Top Header */
@@ -29,40 +106,56 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 16px 4px;
+      padding: 14px 16px 4px;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fbbf24;
+      box-shadow: 0 0 12px #fbbf24;
     }
     .brand {
       font-size: 18px;
       font-weight: 900;
-      background: linear-gradient(180deg, #fff3a6, #f39c12);
+      background: linear-gradient(180deg, #fff8cc 0%, #fbbf24 55%, #d97706 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.9px;
     }
     .header-right {
       display: flex;
       align-items: center;
       gap: 8px;
     }
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 215, 100, 0.28);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    }
     .sound-btn {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.16);
-      color: #ffd56b;
+      color: #fde68a;
       border-radius: 50%;
-      width: 31px;
-      height: 31px;
+      width: 32px;
+      height: 32px;
       font-size: 14px;
       cursor: pointer;
+      transition: transform 0.2s ease;
     }
+    .sound-btn:active { transform: scale(0.88); }
     .rank-pill {
-      background: linear-gradient(145deg, #2d2344, #181226);
-      border: 1px solid rgba(255, 200, 87, 0.5);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      padding: 5px 13px;
+      padding: 5px 14px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
-      color: #ffd56b;
+      color: #fde68a;
     }
 
     /* Balance Section */
@@ -80,135 +173,152 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #fff7b2, #f5af19 55%, #9e5b00 100%);
-      box-shadow: 0 4px 12px rgba(245, 175, 25, 0.6), inset 0 -3px 5px rgba(100, 45, 0, 0.8);
+      background: radial-gradient(circle at 30% 30%, #fffbeb, #fbbf24 55%, #b45309 100%);
+      box-shadow: 0 4px 14px rgba(251, 191, 36, 0.55), inset 0 -3px 5px rgba(120, 53, 15, 0.75);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      color: #4d2600;
+      color: #451a03;
       font-size: 18px;
-      border: 2px solid #ffea85;
+      border: 2px solid #fef3c7;
     }
     .coin-count {
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 900;
       letter-spacing: -0.5px;
-      text-shadow: 0 4px 20px rgba(255, 193, 7, 0.5);
+      background: linear-gradient(180deg, #ffffff 30%, #fde68a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 16px rgba(251, 191, 36, 0.35));
     }
     .stats-sub {
       font-size: 12px;
-      color: #b8add1;
-      margin-top: 2px;
+      color: #cbd5e1;
+      opacity: 0.85;
+      margin-top: 1px;
     }
 
     /* Turbo Banner */
     .turbo-badge {
       display: none;
-      margin: 4px auto 0;
-      background: linear-gradient(90deg, #ff416c, #ff4b2b);
+      margin: 5px auto 0;
+      background: linear-gradient(90deg, #f43f5e, #f59e0b);
       color: #fff;
       font-size: 11px;
       font-weight: 800;
-      padding: 3px 12px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(255, 65, 108, 0.7);
-      animation: pulse 0.8s infinite alternate;
+      padding: 4px 14px;
+      border-radius: 14px;
+      box-shadow: 0 0 18px rgba(244, 63, 94, 0.65);
+      animation: softPulse 0.9s ease-in-out infinite alternate;
     }
-    @keyframes pulse {
+    @keyframes softPulse {
       from { transform: scale(1); }
       to { transform: scale(1.06); }
     }
 
-    /* Screens */
+    /* Smooth Tab Screens */
     .screen {
       flex: 1;
       display: none;
       flex-direction: column;
       overflow-y: auto;
       padding: 8px 16px;
+      animation: fadeSlideIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .screen.active {
       display: flex;
     }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    /* Soft Touch Tap Arena */
+    /* Ultra-Soft Cushion Tap Arena */
     .arena {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      perspective: 1000px;
+      perspective: 1100px;
       position: relative;
     }
     .orb-halo {
-      width: 256px;
-      height: 256px;
+      width: 264px;
+      height: 264px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 200, 60, 0.28) 0%, rgba(255, 130, 0, 0.07) 62%, transparent 76%);
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.26) 0%, rgba(245, 158, 11, 0.06) 58%, transparent 74%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 65px rgba(243, 156, 18, 0.22);
+      box-shadow: 0 0 70px rgba(251, 191, 36, 0.2);
       position: relative;
+      animation: haloBreathe 4s ease-in-out infinite alternate;
+    }
+    @keyframes haloBreathe {
+      0% { transform: scale(0.98); }
+      100% { transform: scale(1.03); }
     }
     .beast-coin-btn {
-      width: 222px;
-      height: 222px;
+      width: 224px;
+      height: 224px;
       border-radius: 50%;
-      background: radial-gradient(circle at 32% 24%, #fff3a8 0%, #f7ad26 42%, #b85c04 84%, #5e2900 100%);
-      border: 6px solid #ffe782;
+      background: radial-gradient(circle at 30% 24%, #fef9c3 0%, #fbbf24 38%, #d97706 78%, #78350f 100%);
+      border: 6px solid #fef08a;
       box-shadow:
-        0 18px 36px rgba(0, 0, 0, 0.78),
-        0 0 30px rgba(245, 166, 35, 0.5),
-        inset 0 6px 14px rgba(255, 255, 255, 0.72),
-        inset 0 -10px 18px rgba(75, 28, 0, 0.9);
+        0 22px 42px rgba(0, 0, 0, 0.72),
+        0 0 36px rgba(251, 191, 36, 0.45),
+        inset 0 8px 18px rgba(255, 255, 255, 0.8),
+        inset 0 -12px 22px rgba(92, 36, 6, 0.88);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       touch-action: manipulation;
-      transition: transform 0.22s cubic-bezier(0.22, 1.35, 0.36, 1), box-shadow 0.18s ease;
+      will-change: transform;
+      transition: transform 0.34s cubic-bezier(0.18, 1.45, 0.32, 1), box-shadow 0.25s ease;
       position: relative;
       transform-style: preserve-3d;
     }
     .beast-coin-btn::before {
       content: "";
       position: absolute;
-      inset: 7px;
+      inset: 8px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255, 248, 200, 0.55);
-      box-shadow: inset 0 0 12px rgba(92, 38, 0, 0.55);
+      border: 1.5px solid rgba(255, 251, 235, 0.65);
+      box-shadow: inset 0 0 14px rgba(120, 53, 15, 0.5);
       pointer-events: none;
     }
     .beast-coin-btn.tapped {
+      transition: transform 0.06s ease-out, box-shadow 0.08s ease;
       box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.85),
-        0 0 42px rgba(255, 210, 77, 0.85),
-        inset 0 4px 10px rgba(255, 255, 255, 0.8),
-        inset 0 -6px 14px rgba(75, 28, 0, 0.9);
+        0 10px 22px rgba(0, 0, 0, 0.8),
+        0 0 50px rgba(253, 224, 71, 0.85),
+        inset 0 5px 12px rgba(255, 255, 255, 0.85),
+        inset 0 -8px 16px rgba(92, 36, 6, 0.9);
     }
 
-    /* Soft Touch Ripple Ring */
+    /* Silky Ripple Wave */
     .tap-ripple {
       position: absolute;
-      width: 222px;
-      height: 222px;
+      width: 224px;
+      height: 224px;
       border-radius: 50%;
-      border: 3px solid rgba(255, 232, 125, 0.75);
+      border: 2.5px solid rgba(254, 240, 138, 0.7);
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.45);
       pointer-events: none;
-      animation: rippleOut 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: silkyRipple 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes rippleOut {
-      0% { transform: scale(0.95); opacity: 0.9; }
-      100% { transform: scale(1.26); opacity: 0; }
+    @keyframes silkyRipple {
+      0% { transform: scale(0.94); opacity: 0.85; }
+      100% { transform: scale(1.32); opacity: 0; }
     }
 
     .lion-svg {
       width: 146px;
       height: 146px;
-      filter: drop-shadow(0 8px 10px rgba(54, 20, 0, 0.7));
+      filter: drop-shadow(0 8px 12px rgba(69, 26, 3, 0.65));
       pointer-events: none;
       margin-top: -4px;
     }
@@ -216,17 +326,17 @@
       margin-top: -2px;
       font-size: 10px;
       font-weight: 900;
-      letter-spacing: 1.5px;
-      color: #451e00;
-      background: linear-gradient(180deg, #fff8cc, #ffe173);
-      border: 1px solid rgba(130, 62, 0, 0.35);
-      padding: 2.5px 12px;
+      letter-spacing: 1.6px;
+      color: #451a03;
+      background: linear-gradient(180deg, #fefce8, #fde047);
+      border: 1px solid rgba(146, 64, 14, 0.3);
+      padding: 3px 13px;
       border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+      box-shadow: 0 3px 8px rgba(0,0,0,0.22);
       pointer-events: none;
     }
 
-    /* Quick Boosts Row */
+    /* Frosted Boost Pills */
     .boost-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -234,19 +344,25 @@
       margin-bottom: 10px;
     }
     .boost-pill {
-      background: linear-gradient(145deg, #281e3d, #191229);
-      border: 1px solid rgba(255, 204, 77, 0.35);
-      border-radius: 12px;
-      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(253, 224, 71, 0.25);
+      border-radius: 14px;
+      padding: 10px 12px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s ease;
     }
-    .boost-pill:active { transform: scale(0.97); }
-    .boost-left { display: flex; align-items: center; gap: 7px; }
-    .boost-name { font-size: 12px; font-weight: 700; color: #fff; }
-    .boost-count { font-size: 11px; font-weight: 800; color: #ffd56b; }
+    .boost-pill:active {
+      transform: scale(0.95);
+      background: rgba(255, 255, 255, 0.12);
+    }
+    .boost-left { display: flex; align-items: center; gap: 8px; }
+    .boost-name { font-size: 12px; font-weight: 700; color: #f8fafc; }
+    .boost-count { font-size: 11px; font-weight: 800; color: #fde047; }
 
     /* Energy Bar */
     .energy-box { padding-bottom: 6px; }
@@ -255,154 +371,166 @@
       justify-content: space-between;
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 5px;
-      color: #f3e9ff;
+      margin-bottom: 6px;
+      color: #f1f5f9;
     }
     .bar-track {
       width: 100%;
-      height: 11px;
-      background: #191329;
+      height: 12px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       padding: 2px;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.85);
     }
     .bar-fill {
       height: 100%;
       width: 100%;
       border-radius: 10px;
-      background: linear-gradient(90deg, #ff7b00, #ffd500);
-      box-shadow: 0 0 10px rgba(255, 190, 0, 0.75);
-      transition: width 0.2s ease;
+      background: linear-gradient(90deg, #f59e0b, #fde047);
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.65);
+      transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Floating +1 & Sparks */
+    /* Floating +1 & Soft Sparks */
     .float-plus {
       position: fixed;
       font-size: 27px;
       font-weight: 900;
-      color: #ffe875;
-      text-shadow: 0 3px 10px rgba(0,0,0,0.85);
+      color: #fef08a;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.75);
       pointer-events: none;
       z-index: 120;
-      animation: riseFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: silkyFloatUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes riseFade {
-      0% { opacity: 1; transform: translateY(0) scale(0.9); }
-      100% { opacity: 0; transform: translateY(-92px) scale(1.25); }
+    @keyframes silkyFloatUp {
+      0% { opacity: 1; transform: translateY(0) scale(0.85); }
+      100% { opacity: 0; transform: translateY(-96px) scale(1.22); }
     }
     .spark {
       position: fixed;
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #ffe680;
-      box-shadow: 0 0 8px #ffae00;
+      background: #fef08a;
+      box-shadow: 0 0 10px #fbbf24;
       pointer-events: none;
       z-index: 115;
-      animation: sparkFly 0.5s ease-out forwards;
+      animation: softSpark 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    @keyframes sparkFly {
+    @keyframes softSpark {
       0% { opacity: 1; transform: translate(0, 0) scale(1); }
-      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.2); }
+      100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.1); }
     }
 
-    /* Cards */
+    /* Frosted Glass Cards */
     .section-title {
       font-size: 15px;
       font-weight: 800;
-      color: #ffd56b;
+      color: #fde68a;
       margin-bottom: 10px;
     }
     .item-card {
-      background: linear-gradient(145deg, #241b38, #161024);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.45);
-      border-radius: 14px;
-      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      border-radius: 16px;
+      padding: 13px 14px;
       margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: transform 0.2s ease;
     }
     .item-left { display: flex; align-items: center; gap: 12px; }
     .item-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(245, 176, 65, 0.14);
-      border: 1px solid rgba(245, 176, 65, 0.35);
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(251, 191, 36, 0.32);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 20px;
     }
-    .item-name { font-size: 14px; font-weight: 700; color: #fff; }
-    .item-sub { font-size: 11px; color: #a89ec2; margin-top: 2px; }
+    .item-name { font-size: 14px; font-weight: 700; color: #f8fafc; }
+    .item-sub { font-size: 11px; color: #cbd5e1; margin-top: 2px; }
     .action-btn {
-      background: linear-gradient(180deg, #ffcf40, #df8b00);
-      color: #2b1600;
+      background: linear-gradient(180deg, #fde047, #f59e0b);
+      color: #451a03;
       border: none;
-      border-radius: 10px;
-      padding: 8px 13px;
+      border-radius: 11px;
+      padding: 9px 14px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(224, 142, 0, 0.4);
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
       white-space: nowrap;
+      transition: transform 0.18s ease;
     }
+    .action-btn:active { transform: scale(0.94); }
     .action-btn:disabled {
-      background: #332b47;
-      color: #7d7396;
+      background: rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
       box-shadow: none;
     }
 
     /* Invite Box */
     .invite-hero {
-      background: linear-gradient(145deg, #2d2047, #19112b);
-      border: 1px solid rgba(255, 204, 77, 0.35);
-      border-radius: 16px;
-      padding: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(253, 224, 71, 0.3);
+      border-radius: 18px;
+      padding: 18px;
       text-align: center;
       margin-bottom: 12px;
     }
-    .invite-hero h3 { font-size: 16px; color: #ffd56b; margin-bottom: 6px; }
-    .invite-hero p { font-size: 12px; color: #c4badb; margin-bottom: 12px; }
+    .invite-hero h3 { font-size: 16px; color: #fde68a; margin-bottom: 6px; }
+    .invite-hero p { font-size: 12px; color: #cbd5e1; margin-bottom: 14px; }
     .copy-link-btn {
       width: 100%;
-      padding: 11px;
-      border-radius: 12px;
+      padding: 12px;
+      border-radius: 13px;
       border: none;
-      background: linear-gradient(90deg, #ffca3a, #f39c12);
-      color: #2b1600;
+      background: linear-gradient(90deg, #fde047, #f59e0b);
+      color: #451a03;
       font-size: 13px;
       font-weight: 900;
       cursor: pointer;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
     }
 
-    /* Bottom Navigation */
+    /* Frosted Bottom Navigation */
     .nav-bar {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 6px;
-      padding: 9px 12px 15px;
-      background: #110c1e;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 10px 12px 15px;
+      background: rgba(11, 13, 26, 0.82);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
     }
     .nav-btn {
-      background: #1b142d;
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid transparent;
-      border-radius: 12px;
-      padding: 7px 2px;
-      color: #9e93b8;
+      border-radius: 13px;
+      padding: 8px 2px;
+      color: #94a3b8;
       text-align: center;
       font-size: 11px;
       font-weight: 700;
       cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .nav-btn.active {
-      background: linear-gradient(145deg, #30234d, #201736);
-      border-color: rgba(255, 202, 58, 0.55);
-      color: #ffd56b;
+      background: rgba(251, 191, 36, 0.14);
+      border-color: rgba(253, 224, 71, 0.45);
+      color: #fde68a;
+      transform: translateY(-2px);
     }
     .nav-icon { display: block; font-size: 17px; margin-bottom: 2px; }
 
@@ -410,7 +538,8 @@
     .modal-bg {
       position: fixed;
       inset: 0;
-      background: rgba(5, 3, 12, 0.82);
+      background: rgba(4, 6, 14, 0.82);
+      backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -418,280 +547,294 @@
       padding: 20px;
     }
     .modal-card {
-      background: linear-gradient(160deg, #2b2042, #161024);
-      border: 1px solid #ffd56b;
-      border-radius: 18px;
-      padding: 22px 18px;
+      background: rgba(24, 27, 48, 0.92);
+      border: 1px solid rgba(253, 224, 71, 0.5);
+      border-radius: 20px;
+      padding: 24px 18px;
       text-align: center;
       width: 100%;
       max-width: 320px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.8);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
     }
-    .modal-card h3 { color: #ffd56b; font-size: 18px; margin-bottom: 6px; }
-    .modal-card p { color: #ccc3e3; font-size: 13px; margin-bottom: 12px; }
+    .modal-card h3 { color: #fde68a; font-size: 18px; margin-bottom: 6px; }
+    .modal-card p { color: #cbd5e1; font-size: 13px; margin-bottom: 12px; }
     .modal-amount { font-size: 30px; font-weight: 900; color: #fff; margin-bottom: 16px; }
 
     /* Toast */
     .toast {
       position: fixed;
-      top: 56px;
+      top: 58px;
       left: 50%;
       transform: translateX(-50%);
-      background: #27ae60;
+      background: rgba(16, 185, 129, 0.92);
+      backdrop-filter: blur(8px);
       color: #fff;
-      padding: 7px 16px;
+      padding: 8px 18px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
       display: none;
       z-index: 250;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
     }
   </style>
 </head>
 <body>
 
-  <div class="toast" id="toast">Success!</div>
-
-  <!-- Offline Earnings Modal -->
-  <div class="modal-bg" id="offlineModal">
-    <div class="modal-card">
-      <h3>🤖 Auto-Miner Report</h3>
-      <p>While you were away, your Beast mined:</p>
-      <div class="modal-amount" id="offlineEarnedText">+0 💰</div>
-      <button class="copy-link-btn" onclick="closeOfflineModal()">Collect Coins</button>
-    </div>
+  <!-- Animated Background & Dust -->
+  <div class="ambient-bg">
+    <div class="aurora-orb orb-1"></div>
+    <div class="aurora-orb orb-2"></div>
+    <div class="aurora-orb orb-3"></div>
   </div>
+  <div class="dust-layer" id="dustLayer"></div>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="brand">🦁 BEAST COIN</div>
-    <div class="header-right">
-      <button class="sound-btn" id="soundToggle" onclick="toggleSound()">🔊</button>
-      <div class="rank-pill" id="rankPill">Rank: Cub</div>
+  <div class="app-shell">
+    <div class="toast" id="toast">Success!</div>
+
+    <!-- Offline Earnings Modal -->
+    <div class="modal-bg" id="offlineModal">
+      <div class="modal-card">
+        <h3>🤖 Auto-Miner Report</h3>
+        <p>While you were away, your Beast mined:</p>
+        <div class="modal-amount" id="offlineEarnedText">+0 💰</div>
+        <button class="copy-link-btn" onclick="closeOfflineModal()">Collect Coins</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Balance -->
-  <div class="balance-wrap">
-    <div class="coin-row">
-      <div class="mini-coin">$</div>
-      <div class="coin-count" id="coinCount">0</div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="brand-box">
+        <div class="brand-dot"></div>
+        <div class="brand">BEAST COIN</div>
+      </div>
+      <div class="header-right">
+        <button class="sound-btn glass-pill" id="soundToggle" onclick="toggleSound()">🔊</button>
+        <div class="rank-pill glass-pill" id="rankPill">Rank: Cub</div>
+      </div>
     </div>
-    <div class="stats-sub" id="subStats">+1 per Tap • +0/sec Auto</div>
-    <div class="turbo-badge" id="turboBadge">🔥 2X TURBO ACTIVE!</div>
-  </div>
 
-  <!-- SCREEN 1: ARENA -->
-  <div class="screen active" id="screen-tap">
-    <div class="arena">
-      <div class="orb-halo" id="orbHalo">
-        <div class="beast-coin-btn" id="beastBtn">
-          <!-- Royal Fierce Golden Lion King Emblem SVG -->
-          <svg class="lion-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="maneOuter" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#fff4b0"/>
-                <stop offset="40%" stop-color="#d97b00"/>
-                <stop offset="100%" stop-color="#4d1f00"/>
-              </linearGradient>
-              <linearGradient id="maneMid" x1="15%" y1="0%" x2="85%" y2="100%">
-                <stop offset="0%" stop-color="#ffe77a"/>
-                <stop offset="50%" stop-color="#c96a00"/>
-                <stop offset="100%" stop-color="#5c2600"/>
-              </linearGradient>
-              <linearGradient id="faceGold" x1="20%" y1="0%" x2="80%" y2="100%">
-                <stop offset="0%" stop-color="#fff7c2"/>
-                <stop offset="55%" stop-color="#f09c11"/>
-                <stop offset="100%" stop-color="#873e00"/>
-              </linearGradient>
-              <linearGradient id="royalCrown" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="45%" stop-color="#ffd500"/>
-                <stop offset="100%" stop-color="#9c5100"/>
-              </linearGradient>
-            </defs>
+    <!-- Balance -->
+    <div class="balance-wrap">
+      <div class="coin-row">
+        <div class="mini-coin">$</div>
+        <div class="coin-count" id="coinCount">0</div>
+      </div>
+      <div class="stats-sub" id="subStats">+1 per Tap • +0/sec Auto</div>
+      <div class="turbo-badge" id="turboBadge">🔥 2X TURBO ACTIVE!</div>
+    </div>
 
-            <!-- Royal Crown -->
-            <path d="M72,48 L80,22 L96,38 L110,16 L124,38 L140,22 L148,48 Z" fill="url(#royalCrown)" stroke="#542300" stroke-width="3" stroke-linejoin="round"/>
-            <rect x="74" y="47" width="72" height="7" rx="3" fill="#ffd93b" stroke="#542300" stroke-width="2.5"/>
+    <!-- SCREEN 1: ARENA -->
+    <div class="screen active" id="screen-tap">
+      <div class="arena">
+        <div class="orb-halo" id="orbHalo">
+          <div class="beast-coin-btn" id="beastBtn">
+            <!-- Royal Fierce Golden Lion King Emblem SVG -->
+            <svg class="lion-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="maneOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fef9c3"/>
+                  <stop offset="40%" stop-color="#d97706"/>
+                  <stop offset="100%" stop-color="#451a03"/>
+                </linearGradient>
+                <linearGradient id="maneMid" x1="15%" y1="0%" x2="85%" y2="100%">
+                  <stop offset="0%" stop-color="#fde047"/>
+                  <stop offset="50%" stop-color="#b45309"/>
+                  <stop offset="100%" stop-color="#5c2600"/>
+                </linearGradient>
+                <linearGradient id="faceGold" x1="20%" y1="0%" x2="80%" y2="100%">
+                  <stop offset="0%" stop-color="#fefce8"/>
+                  <stop offset="55%" stop-color="#f59e0b"/>
+                  <stop offset="100%" stop-color="#78350f"/>
+                </linearGradient>
+                <linearGradient id="royalCrown" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="45%" stop-color="#fde047"/>
+                  <stop offset="100%" stop-color="#92400e"/>
+                </linearGradient>
+              </defs>
 
-            <!-- Spiked 3D Outer Mane -->
-            <polygon points="110,50 136,56 164,48 168,76 188,96 174,122 182,150 154,164 142,190 110,180 78,190 66,164 38,150 46,122 32,96 52,76 56,48 84,56"
-              fill="url(#maneOuter)" stroke="#471c00" stroke-width="4" stroke-linejoin="round"/>
+              <!-- Royal Crown -->
+              <path d="M72,48 L80,22 L96,38 L110,16 L124,38 L140,22 L148,48 Z" fill="url(#royalCrown)" stroke="#542300" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="74" y="47" width="72" height="7" rx="3" fill="#fde047" stroke="#542300" stroke-width="2.5"/>
 
-            <!-- Inner Sculpted Mane -->
-            <polygon points="110,58 134,64 156,82 162,112 152,142 132,166 110,174 88,166 68,142 58,112 64,82 86,64"
-              fill="url(#maneMid)" stroke="#692c00" stroke-width="3" stroke-linejoin="round"/>
+              <!-- Spiked 3D Outer Mane -->
+              <polygon points="110,50 136,56 164,48 168,76 188,96 174,122 182,150 154,164 142,190 110,180 78,190 66,164 38,150 46,122 32,96 52,76 56,48 84,56"
+                fill="url(#maneOuter)" stroke="#471c00" stroke-width="4" stroke-linejoin="round"/>
 
-            <!-- Lion Ears -->
-            <path d="M68,74 Q58,56 80,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
-            <path d="M152,74 Q162,56 140,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
+              <!-- Inner Sculpted Mane -->
+              <polygon points="110,58 134,64 156,82 162,112 152,142 132,166 110,174 88,166 68,142 58,112 64,82 86,64"
+                fill="url(#maneMid)" stroke="#692c00" stroke-width="3" stroke-linejoin="round"/>
 
-            <!-- Sculpted Brow & Face -->
-            <path d="M76,78 L110,72 L144,78 L148,112 L132,138 L110,148 L88,138 L72,112 Z"
-              fill="url(#faceGold)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
+              <!-- Lion Ears -->
+              <path d="M68,74 Q58,56 80,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
+              <path d="M152,74 Q162,56 140,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
 
-            <!-- Brow Ridges -->
-            <path d="M80,93 L103,100 L96,105 L78,100 Z" fill="#542200"/>
-            <path d="M140,93 L117,100 L124,105 L142,100 Z" fill="#542200"/>
+              <!-- Sculpted Brow & Face -->
+              <path d="M76,78 L110,72 L144,78 L148,112 L132,138 L110,148 L88,138 L72,112 Z"
+                fill="url(#faceGold)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
 
-            <!-- Fierce Glowing Eyes -->
-            <polygon points="82,99 101,103 88,108" fill="#ffffff"/>
-            <polygon points="138,99 119,103 132,108" fill="#ffffff"/>
+              <!-- Brow Ridges -->
+              <path d="M80,93 L103,100 L96,105 L78,100 Z" fill="#542200"/>
+              <path d="M140,93 L117,100 L124,105 L142,100 Z" fill="#542200"/>
 
-            <!-- Nose Bridge & Nose -->
-            <path d="M104,98 L116,98 L114,116 L106,116 Z" fill="#d97b00" opacity="0.6"/>
-            <polygon points="100,115 120,115 110,126" fill="#3d1700"/>
+              <!-- Fierce Glowing Eyes -->
+              <polygon points="82,99 101,103 88,108" fill="#ffffff"/>
+              <polygon points="138,99 119,103 132,108" fill="#ffffff"/>
 
-            <!-- Cheeks & Jaw -->
-            <path d="M88,128 Q100,136 110,126 Q120,136 132,128" fill="none" stroke="#471c00" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M97,138 L123,138 L116,148 L104,148 Z" fill="#ffe985" stroke="#542200" stroke-width="2.5"/>
-          </svg>
-          <div class="tap-tag">BEAST COIN</div>
+              <!-- Nose Bridge & Nose -->
+              <path d="M104,98 L116,98 L114,116 L106,116 Z" fill="#d97706" opacity="0.6"/>
+              <polygon points="100,115 120,115 110,126" fill="#3d1700"/>
+
+              <!-- Cheeks & Jaw -->
+              <path d="M88,128 Q100,136 110,126 Q120,136 132,128" fill="none" stroke="#471c00" stroke-width="3.5" stroke-linecap="round"/>
+              <path d="M97,138 L123,138 L116,148 L104,148 Z" fill="#fef08a" stroke="#542200" stroke-width="2.5"/>
+            </svg>
+            <div class="tap-tag">BEAST COIN</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Daily Boosts -->
+      <div class="boost-row">
+        <div class="boost-pill" onclick="useFullEnergy()">
+          <div class="boost-left">
+            <span>⚡</span>
+            <span class="boost-name">Full Energy</span>
+          </div>
+          <span class="boost-count" id="energyBoostCount">2/2</span>
+        </div>
+        <div class="boost-pill" onclick="useTurbo()">
+          <div class="boost-left">
+            <span>🚀</span>
+            <span class="boost-name">2x Turbo</span>
+          </div>
+          <span class="boost-count" id="turboBoostCount">2/2</span>
+        </div>
+      </div>
+
+      <!-- Energy Bar -->
+      <div class="energy-box">
+        <div class="energy-top">
+          <span>⚡ Beast Energy</span>
+          <span id="energyLabel">500 / 500</span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" id="energyBar"></div>
         </div>
       </div>
     </div>
 
-    <!-- Free Daily Boosts -->
-    <div class="boost-row">
-      <div class="boost-pill" onclick="useFullEnergy()">
-        <div class="boost-left">
-          <span>⚡</span>
-          <span class="boost-name">Full Energy</span>
+    <!-- SCREEN 2: UPGRADES -->
+    <div class="screen" id="screen-upgrade">
+      <div class="section-title">🚀 Beast Coin Upgrades</div>
+
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">👊</div>
+          <div>
+            <div class="item-name">Multitap Power</div>
+            <div class="item-sub" id="tapLevelSub">Level 1 (+1 per tap)</div>
+          </div>
         </div>
-        <span class="boost-count" id="energyBoostCount">2/2</span>
+        <button class="action-btn" id="btnTapUp" onclick="buyTap()">50 💰</button>
       </div>
-      <div class="boost-pill" onclick="useTurbo()">
-        <div class="boost-left">
-          <span>🚀</span>
-          <span class="boost-name">2x Turbo</span>
+
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">🔋</div>
+          <div>
+            <div class="item-name">Energy Capacity</div>
+            <div class="item-sub" id="energyLevelSub">Max 500 Energy</div>
+          </div>
         </div>
-        <span class="boost-count" id="turboBoostCount">2/2</span>
+        <button class="action-btn" id="btnEnergyUp" onclick="buyEnergy()">50 💰</button>
       </div>
-    </div>
 
-    <!-- Energy Bar -->
-    <div class="energy-box">
-      <div class="energy-top">
-        <span>⚡ Beast Energy</span>
-        <span id="energyLabel">500 / 500</span>
-      </div>
-      <div class="bar-track">
-        <div class="bar-fill" id="energyBar"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCREEN 2: UPGRADES -->
-  <div class="screen" id="screen-upgrade">
-    <div class="section-title">🚀 Beast Coin Upgrades</div>
-
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">👊</div>
-        <div>
-          <div class="item-name">Multitap Power</div>
-          <div class="item-sub" id="tapLevelSub">Level 1 (+1 per tap)</div>
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">🤖</div>
+          <div>
+            <div class="item-name">Auto-Miner Beast</div>
+            <div class="item-sub" id="minerLevelSub">Earn +0 coins/sec</div>
+          </div>
         </div>
+        <button class="action-btn" id="btnMinerUp" onclick="buyMiner()">150 💰</button>
       </div>
-      <button class="action-btn" id="btnTapUp" onclick="buyTap()">50 💰</button>
     </div>
 
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">🔋</div>
-        <div>
-          <div class="item-name">Energy Capacity</div>
-          <div class="item-sub" id="energyLevelSub">Max 500 Energy</div>
+    <!-- SCREEN 3: QUESTS -->
+    <div class="screen" id="screen-quests">
+      <div class="section-title">🎯 Daily Tasks & Quests</div>
+
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">🎁</div>
+          <div>
+            <div class="item-name">Daily Check-In</div>
+            <div class="item-sub">Claim +250 free coins every 24h</div>
+          </div>
         </div>
+        <button class="action-btn" onclick="claimDaily()">Claim 250</button>
       </div>
-      <button class="action-btn" id="btnEnergyUp" onclick="buyEnergy()">50 💰</button>
-    </div>
 
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">🤖</div>
-        <div>
-          <div class="item-name">Auto-Miner Beast</div>
-          <div class="item-sub" id="minerLevelSub">Earn +0 coins/sec</div>
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">🔥</div>
+          <div>
+            <div class="item-name">Tap Master (100 Taps)</div>
+            <div class="item-sub" id="questTapSub">Progress: 0 / 100 (+300 💰)</div>
+          </div>
         </div>
+        <button class="action-btn" id="btnQuestTap" onclick="claimTapQuest()">0/100</button>
       </div>
-      <button class="action-btn" id="btnMinerUp" onclick="buyMiner()">150 💰</button>
-    </div>
-  </div>
 
-  <!-- SCREEN 3: QUESTS -->
-  <div class="screen" id="screen-quests">
-    <div class="section-title">🎯 Daily Tasks & Quests</div>
-
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">🎁</div>
-        <div>
-          <div class="item-name">Daily Check-In</div>
-          <div class="item-sub">Claim +250 free coins every 24h</div>
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">👑</div>
+          <div>
+            <div class="item-name">Hunter Rank Milestone</div>
+            <div class="item-sub">Reach 500 coins (+500 💰 Bonus)</div>
+          </div>
         </div>
+        <button class="action-btn" id="btnQuestRank" onclick="claimRankQuest()">Locked</button>
       </div>
-      <button class="action-btn" onclick="claimDaily()">Claim 250</button>
     </div>
 
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">🔥</div>
-        <div>
-          <div class="item-name">Tap Master (100 Taps)</div>
-          <div class="item-sub" id="questTapSub">Progress: 0 / 100 (+300 💰)</div>
+    <!-- SCREEN 4: FRIENDS -->
+    <div class="screen" id="screen-friends">
+      <div class="section-title">👥 Invite Friends & Earn</div>
+      <div class="invite-hero">
+        <h3>Invite Friends to Beast Empire!</h3>
+        <p>Share your bot link with friends and claim +1,000 bonus coins for growing the pack.</p>
+        <button class="copy-link-btn" onclick="copyInviteLink()">📋 Copy Invite Link (+1,000 💰)</button>
+      </div>
+      <div class="item-card">
+        <div class="item-left">
+          <div class="item-icon">🦁</div>
+          <div>
+            <div class="item-name">Your Bot Link</div>
+            <div class="item-sub">t.me/MyBeastEmpire_bot/game</div>
+          </div>
         </div>
+        <span style="font-size:12px; font-weight:800; color:#fde68a;" id="inviteStatus">Ready</span>
       </div>
-      <button class="action-btn" id="btnQuestTap" onclick="claimTapQuest()">0/100</button>
     </div>
 
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">👑</div>
-        <div>
-          <div class="item-name">Hunter Rank Milestone</div>
-          <div class="item-sub">Reach 500 coins (+500 💰 Bonus)</div>
-        </div>
+    <!-- Bottom Navigation -->
+    <div class="nav-bar">
+      <div class="nav-btn active" id="nav-tap" onclick="switchTab('tap')">
+        <span class="nav-icon">🦁</span>Arena
       </div>
-      <button class="action-btn" id="btnQuestRank" onclick="claimRankQuest()">Locked</button>
-    </div>
-  </div>
-
-  <!-- SCREEN 4: FRIENDS -->
-  <div class="screen" id="screen-friends">
-    <div class="section-title">👥 Invite Friends & Earn</div>
-    <div class="invite-hero">
-      <h3>Invite Friends to Beast Empire!</h3>
-      <p>Share your bot link with friends and claim +1,000 bonus coins for growing the pack.</p>
-      <button class="copy-link-btn" onclick="copyInviteLink()">📋 Copy Invite Link (+1,000 💰)</button>
-    </div>
-    <div class="item-card">
-      <div class="item-left">
-        <div class="item-icon">🦁</div>
-        <div>
-          <div class="item-name">Your Bot Link</div>
-          <div class="item-sub">t.me/MyBeastEmpire_bot/game</div>
-        </div>
+      <div class="nav-btn" id="nav-upgrade" onclick="switchTab('upgrade')">
+        <span class="nav-icon">⚡</span>Upgrades
       </div>
-      <span style="font-size:12px; font-weight:800; color:#ffd56b;" id="inviteStatus">Ready</span>
-    </div>
-  </div>
-
-  <!-- Bottom Navigation -->
-  <div class="nav-bar">
-    <div class="nav-btn active" id="nav-tap" onclick="switchTab('tap')">
-      <span class="nav-icon">🦁</span>Arena
-    </div>
-    <div class="nav-btn" id="nav-upgrade" onclick="switchTab('upgrade')">
-      <span class="nav-icon">⚡</span>Upgrades
-    </div>
-    <div class="nav-btn" id="nav-quests" onclick="switchTab('quests')">
-      <span class="nav-icon">🎯</span>Quests
-    </div>
-    <div class="nav-btn" id="nav-friends" onclick="switchTab('friends')">
-      <span class="nav-icon">👥</span>Friends
+      <div class="nav-btn" id="nav-quests" onclick="switchTab('quests')">
+        <span class="nav-icon">🎯</span>Quests
+      </div>
+      <div class="nav-btn" id="nav-friends" onclick="switchTab('friends')">
+        <span class="nav-icon">👥</span>Friends
+      </div>
     </div>
   </div>
 
@@ -700,6 +843,22 @@
       window.Telegram.WebApp.ready();
       window.Telegram.WebApp.expand();
     }
+
+    // Create subtle floating golden dust particles
+    (function initDust() {
+      const layer = document.getElementById('dustLayer');
+      for (let i = 0; i < 18; i++) {
+        const d = document.createElement('div');
+        d.className = 'dust';
+        const size = (2 + Math.random() * 3.5) + 'px';
+        d.style.width = size;
+        d.style.height = size;
+        d.style.left = (Math.random() * 100) + '%';
+        d.style.animationDuration = (9 + Math.random() * 11) + 's';
+        d.style.animationDelay = (-Math.random() * 15) + 's';
+        layer.appendChild(d);
+      }
+    })();
 
     let data = JSON.parse(localStorage.getItem('beastEmpireProSave')) || {
       coins: 0,
@@ -751,7 +910,7 @@
       save(); render();
     }
 
-    function playSoftPopSound() {
+    function playVelvetPop() {
       if (!data.soundOn) return;
       try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -759,14 +918,14 @@
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(520, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(980, audioCtx.currentTime + 0.065);
-        gain.gain.setValueAtTime(0.11, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.07);
+        osc.frequency.setValueAtTime(420, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(840, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.09, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start();
-        osc.stop(audioCtx.currentTime + 0.07);
+        osc.stop(audioCtx.currentTime + 0.09);
       } catch (e) {}
     }
 
@@ -781,7 +940,7 @@
       localStorage.setItem('beastEmpireProSave', JSON.stringify(data));
     }
 
-    function toast(text, bg = "#27ae60") {
+    function toast(text, bg = "rgba(16, 185, 129, 0.92)") {
       const t = document.getElementById('toast');
       t.innerText = text;
       t.style.background = bg;
@@ -846,7 +1005,7 @@
       }
     }
 
-    // Ultra-Soft Multi-Touch & Spring Bounce Handler
+    // Ultra-Smooth Cushion Tap Physics
     const beastBtn = document.getElementById('beastBtn');
     const orbHalo = document.getElementById('orbHalo');
 
@@ -854,17 +1013,17 @@
       const rect = beastBtn.getBoundingClientRect();
       const x = clientX - rect.left - rect.width / 2;
       const y = clientY - rect.top - rect.height / 2;
-      const rotateY = (x / (rect.width / 2)) * 18;
-      const rotateX = -(y / (rect.height / 2)) * 18;
+      const rotateY = (x / (rect.width / 2)) * 16;
+      const rotateX = -(y / (rect.height / 2)) * 16;
 
       beastBtn.classList.add('tapped');
-      beastBtn.style.transform = `scale(0.90) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      beastBtn.style.transform = `scale(0.91) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
       clearTimeout(resetTimer);
       resetTimer = setTimeout(() => {
         beastBtn.classList.remove('tapped');
         beastBtn.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-      }, 95);
+      }, 110);
 
       const gain = turboActive ? data.tapPower * 2 : data.tapPower;
       if (data.energy >= data.tapPower) {
@@ -872,7 +1031,7 @@
         data.energy -= data.tapPower;
         data.totalTaps += 1;
 
-        playSoftPopSound();
+        playVelvetPop();
         spawnEffects(clientX, clientY, `+${gain}`);
 
         if (window.Telegram?.WebApp?.HapticFeedback) {
@@ -881,7 +1040,7 @@
         save();
         render();
       } else {
-        toast("Energy low! Use Free Full Energy boost.", "#c0392b");
+        toast("Energy low! Use Free Full Energy boost.", "rgba(225, 29, 72, 0.92)");
       }
     }
 
@@ -897,33 +1056,30 @@
     });
 
     function spawnEffects(x, y, text) {
-      // Soft Ripple Wave
       const ripple = document.createElement('div');
       ripple.className = 'tap-ripple';
       orbHalo.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 450);
+      setTimeout(() => ripple.remove(), 550);
 
-      // Floating Number
       const el = document.createElement('div');
       el.className = 'float-plus';
       el.innerText = text;
       el.style.left = (x - 16) + 'px';
       el.style.top = (y - 30) + 'px';
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 750);
+      setTimeout(() => el.remove(), 850);
 
-      // Golden Sparks
       for (let i = 0; i < 4; i++) {
         const sp = document.createElement('div');
         sp.className = 'spark';
         sp.style.left = x + 'px';
         sp.style.top = y + 'px';
         const angle = Math.random() * Math.PI * 2;
-        const dist = 35 + Math.random() * 45;
+        const dist = 35 + Math.random() * 48;
         sp.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
         sp.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
         document.body.appendChild(sp);
-        setTimeout(() => sp.remove(), 500);
+        setTimeout(() => sp.remove(), 600);
       }
     }
 
@@ -933,11 +1089,11 @@
         data.energy = data.maxEnergy;
         save(); render();
         toast("⚡ Energy 100% Restored!");
-      } else toast("No Full Energy boosts left!", "#e67e22");
+      } else toast("No Full Energy boosts left!", "rgba(217, 119, 6, 0.92)");
     }
 
     function useTurbo() {
-      if (turboActive) return toast("Turbo already running!", "#e67e22");
+      if (turboActive) return toast("Turbo already running!", "rgba(217, 119, 6, 0.92)");
       if (data.turboBoosts > 0) {
         data.turboBoosts -= 1;
         turboActive = true;
@@ -949,7 +1105,7 @@
           document.getElementById('turboBadge').style.display = 'none';
           render();
         }, 15000);
-      } else toast("No Turbo boosts left!", "#e67e22");
+      } else toast("No Turbo boosts left!", "rgba(217, 119, 6, 0.92)");
     }
 
     function buyTap() {
@@ -959,7 +1115,7 @@
         data.tapCost = Math.floor(data.tapCost * 1.8);
         save(); render();
         toast("Multitap Upgraded!");
-      } else toast("Not enough coins!", "#c0392b");
+      } else toast("Not enough coins!", "rgba(225, 29, 72, 0.92)");
     }
 
     function buyEnergy() {
@@ -970,7 +1126,7 @@
         data.energyCost = Math.floor(data.energyCost * 1.8);
         save(); render();
         toast("Energy Capacity Upgraded!");
-      } else toast("Not enough coins!", "#c0392b");
+      } else toast("Not enough coins!", "rgba(225, 29, 72, 0.92)");
     }
 
     function buyMiner() {
@@ -980,7 +1136,7 @@
         data.minerCost = Math.floor(data.minerCost * 1.9);
         save(); render();
         toast("Auto-Miner Upgraded!");
-      } else toast("Not enough coins!", "#c0392b");
+      } else toast("Not enough coins!", "rgba(225, 29, 72, 0.92)");
     }
 
     function claimDaily() {
@@ -989,7 +1145,7 @@
         data.lastDaily = Date.now();
         save(); render();
         toast("+250 Daily Bonus Claimed!");
-      } else toast("Already claimed today!", "#e67e22");
+      } else toast("Already claimed today!", "rgba(217, 119, 6, 0.92)");
     }
 
     function claimTapQuest() {
@@ -998,7 +1154,7 @@
         data.tapQuestDone = true;
         save(); render();
         toast("+300 Tap Quest Reward!");
-      } else toast("Complete 100 taps first!", "#e67e22");
+      } else toast("Complete 100 taps first!", "rgba(217, 119, 6, 0.92)");
     }
 
     function claimRankQuest() {
@@ -1007,7 +1163,7 @@
         data.rankQuestDone = true;
         save(); render();
         toast("+500 Hunter Rank Bonus!");
-      } else toast("Reach 500 coins first!", "#e67e22");
+      } else toast("Reach 500 coins first!", "rgba(217, 119, 6, 0.92)");
     }
 
     function copyInviteLink() {

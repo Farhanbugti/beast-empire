@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Beast Empire</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at top, #2c1e12, #0d0d12 75%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      overflow-x: hidden;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 193, 7, 0.25);
+    }
+    .rank-badge { font-weight: 700; color: #ffd54f; font-size: 14px; }
+    .pph { font-size: 12px; color: #bbb; }
+    .score-box { text-align: center; margin: 14px 0 6px; }
+    .score {
+      font-size: 40px;
+      font-weight: 800;
+      color: #ffca28;
+      text-shadow: 0 0 18px rgba(255, 202, 40, 0.45);
+    }
+    .tap-area {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px auto;
+    }
+    .beast-btn {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #ffb300 0%, #e65100 70%, #3e2723 100%);
+      border: 6px solid #ffd54f;
+      box-shadow: 0 0 35px rgba(255, 160, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 88px;
+      cursor: pointer;
+      transition: transform 0.08s ease;
+    }
+    .beast-btn:active { transform: scale(0.93); }
+    .float-num {
+      position: absolute;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      pointer-events: none;
+      animation: floatUp 0.8s ease-out forwards;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-75px); }
+    }
+    .energy-wrap { margin: 10px 0; }
+    .energy-text { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; color: #ffd54f; }
+    .bar-bg { width: 100%; height: 12px; background: #222; border-radius: 10px; overflow: hidden; }
+    .bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #ff6f00, #ffd54f); transition: width 0.2s; }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .card:active { background: rgba(255, 193, 7, 0.2); }
+    .card h4 { font-size: 13px; margin-bottom: 4px; color: #ffd54f; }
+    .card p { font-size: 11px; color: #ddd; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <div class="rank-badge" id="rankName">🦁 Rank: Cub</div>
+      <div class="pph">Auto Profit: +<span id="pphVal">0</span>/sec</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:12px;color:#aaa;">Tap Power</div>
+      <div style="font-weight:700;color:#4caf50;">+<span id="tapVal">1</span></div>
+    </div>
+  </div>
+
+  <div class="score-box">
+    <div style="font-size:12px;color:#bbb;letter-spacing:1px;">BEAST COINS</div>
+    <div class="score" id="coinsDisplay">0</div>
+  </div>
+
+  <div class="tap-area" id="tapArea">
+    <div class="beast-btn" id="beastBtn">🦁</div>
+  </div>
+
+  <div>
+    <div class="energy-wrap">
+      <div class="energy-text">
+        <span>⚡ Energy</span>
+        <span><span id="energyVal">500</span> / <span id="maxEnergyVal">500</span></span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="energyBar"></div></div>
+    </div>
+
+    <div class="tabs">
+      <div class="card" onclick="buyTap()">
+        <h4>⚔️ Claw Power</h4>
+        <p>+1 Tap | <span id="tapCost">50</span></p>
+      </div>
+      <div class="card" onclick="buyAuto()">
+        <h4>🏰 Beast Den</h4>
+        <p>+2/sec | <span id="autoCost">100</span></p>
+      </div>
+      <div class="card" onclick="claimDaily()">
+        <h4>🎁 Daily Gift</h4>
+        <p id="dailyText">Claim +500</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.ready();
+      window.Telegram.WebApp.expand();
+    }
+
+    let state = JSON.parse(localStorage.getItem('beastEmpireSave')) || {
+      coins: 0,
+      tapPower: 1,
+      tapCost: 50,
+      autoPower: 0,
+      autoCost: 100,
+      energy: 500,
+      maxEnergy: 500,
+      lastDaily: ''
+    };
+
+    const ranks = [
+      { min: 0, name: "🦁 Rank: Cub", icon: "🦁" },
+      { min: 500, name: "🐺 Rank: Hunter", icon: "🐺" },
+      { min: 2500, name: "🐯 Rank: Alpha", icon: "🐯" },
+      { min: 10000, name: "🐉 Rank: Warlord", icon: "🐉" },
+      { min: 50000, name: "👑 Rank: Beast Emperor", icon: "👑" }
+    ];
+
+    function save() {
+      localStorage.setItem('beastEmpireSave', JSON.stringify(state));
+    }
+
+    function updateUI() {
+      document.getElementById('coinsDisplay').innerText = Math.floor(state.coins).toLocaleString();
+      document.getElementById('tapVal').innerText = state.tapPower;
+      document.getElementById('pphVal').innerText = state.autoPower;
+      document.getElementById('tapCost').innerText = state.tapCost;
+      document.getElementById('autoCost').innerText = state.autoCost;
+      document.getElementById('energyVal').innerText = Math.floor(state.energy);
+      document.getElementById('maxEnergyVal').innerText = state.maxEnergy;
+      document.getElementById('energyBar').style.width = (state.energy / state.maxEnergy * 100) + '%';
+
+      let currentRank = ranks[0];
+      for (let r of ranks) {
 

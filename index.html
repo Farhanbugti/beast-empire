@@ -8,10 +8,10 @@
   <style>
     :root {
       --bg-charcoal: #080705;
-      --bg-amber-dark: #141007;
-      --card-surface: linear-gradient(160deg, rgba(38, 30, 12, 0.9), rgba(14, 12, 8, 0.96));
-      --citrine-border: rgba(255, 204, 51, 0.34);
-      --citrine-bright: rgba(255, 224, 102, 0.72);
+      --bg-amber-dark: #130f06;
+      --card-surface: linear-gradient(160deg, rgba(36, 28, 11, 0.88), rgba(14, 11, 6, 0.94));
+      --citrine-border: rgba(255, 204, 41, 0.34);
+      --citrine-bright: rgba(255, 226, 102, 0.68);
       --citrine-core: #ffcc29;
       --citrine-glow: #ffe680;
       --citrine-deep: #9e6b06;
@@ -32,9 +32,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text-ivory);
       background:
-        radial-gradient(circle at 50% 16%, rgba(255, 204, 41, 0.2), transparent 46%),
-        radial-gradient(circle at 15% 78%, rgba(245, 158, 11, 0.11), transparent 45%),
-        radial-gradient(circle at 86% 74%, rgba(255, 230, 128, 0.09), transparent 45%),
+        radial-gradient(circle at 50% 16%, rgba(255, 204, 41, 0.19), transparent 46%),
+        radial-gradient(circle at 15% 78%, rgba(245, 158, 11, 0.1), transparent 45%),
+        radial-gradient(circle at 86% 74%, rgba(255, 230, 128, 0.08), transparent 45%),
         linear-gradient(180deg, var(--bg-amber-dark) 0%, var(--bg-charcoal) 100%);
       display: flex;
       justify-content: center;
@@ -79,11 +79,11 @@
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      background: linear-gradient(145deg, rgba(255, 224, 102, 0.22), rgba(20, 16, 7, 0.95));
+      background: rgba(255, 204, 41, 0.08);
       border: 1px solid var(--citrine-bright);
       display: grid;
       place-items: center;
-      box-shadow: 0 0 18px rgba(255, 204, 41, 0.18);
+      box-shadow: 0 0 18px rgba(255, 204, 41, 0.16);
     }
 
     .member-title {
@@ -100,7 +100,7 @@
     }
 
     .subtle-btn {
-      background: rgba(255, 204, 41, 0.08);
+      background: rgba(255, 204, 41, 0.07);
       border: 1px solid var(--citrine-border);
       color: var(--text-ivory);
       border-radius: 11px;
@@ -160,7 +160,7 @@
       background: linear-gradient(180deg, #ffffff 0%, var(--citrine-glow) 42%, var(--citrine-core) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 16px rgba(255, 204, 41, 0.25));
+      filter: drop-shadow(0 4px 16px rgba(255, 204, 41, 0.24));
     }
 
     .tap-zone {
@@ -170,40 +170,42 @@
       align-items: center;
       justify-content: center;
       padding: 8px 0;
-      perspective: 620px;
+      perspective: 680px;
     }
 
-    /* Extreme Flexible Citrine Button that leans toward the clicked side */
-    .citrine-flex-btn {
-      width: 244px;
-      height: 244px;
+    /* Solid Translucent Citrine Tap Disc with Clean Directional Lean */
+    .citrine-tap-disc {
+      width: 242px;
+      height: 242px;
       border-radius: 50%;
       padding: 12px;
       background:
-        radial-gradient(circle at 35% 25%, rgba(255, 246, 194, 0.34), transparent 52%),
-        radial-gradient(circle at 50% 55%, rgba(255, 204, 41, 0.16), rgba(14, 11, 5, 0.94) 76%);
+        radial-gradient(circle at 32% 24%, rgba(255, 245, 190, 0.28), rgba(255, 204, 41, 0.08) 54%, rgba(15, 11, 5, 0.72) 86%);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1.5px solid var(--citrine-bright);
       box-shadow:
-        0 22px 50px rgba(0, 0, 0, 0.72),
-        0 0 42px rgba(255, 204, 41, 0.24),
-        inset 0 1.5px 10px rgba(255, 240, 170, 0.32);
+        0 20px 44px rgba(0, 0, 0, 0.68),
+        0 0 36px rgba(255, 204, 41, 0.2),
+        inset 0 1.5px 8px rgba(255, 240, 170, 0.28);
       display: grid;
       place-items: center;
       cursor: pointer;
       transform-origin: center center;
       transition:
-        transform 0.26s cubic-bezier(0.2, 1.45, 0.35, 1),
-        border-radius 0.24s cubic-bezier(0.2, 1.45, 0.35, 1),
-        box-shadow 0.18s ease;
+        transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.16s ease,
+        border-color 0.16s ease;
       touch-action: manipulation;
-      will-change: transform, border-radius;
+      will-change: transform;
     }
 
-    .citrine-flex-btn.leaning {
+    .citrine-tap-disc.pressed {
+      border-color: var(--citrine-glow);
       box-shadow:
-        0 28px 58px rgba(0, 0, 0, 0.8),
-        0 0 58px rgba(255, 214, 70, 0.42),
-        inset 0 2px 16px rgba(255, 245, 190, 0.52);
+        0 24px 50px rgba(0, 0, 0, 0.76),
+        0 0 48px rgba(255, 214, 70, 0.34),
+        inset 0 2px 12px rgba(255, 245, 190, 0.42);
     }
 
     .gain-float {
@@ -273,7 +275,7 @@
     }
 
     .amber-btn {
-      background: rgba(255, 204, 41, 0.09);
+      background: rgba(255, 204, 41, 0.08);
       border: 1px solid var(--citrine-border);
       color: var(--text-ivory);
       border-radius: 12px;
@@ -286,7 +288,7 @@
 
     .amber-btn:active:not(:disabled) {
       transform: scale(0.96);
-      background: rgba(255, 204, 41, 0.18);
+      background: rgba(255, 204, 41, 0.16);
     }
 
     .amber-btn:disabled {
@@ -361,7 +363,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 18px rgba(255, 204, 41, 0.24);
+      box-shadow: 0 6px 18px rgba(255, 204, 41, 0.22);
       transition: transform 0.12s ease;
       white-space: nowrap;
     }
@@ -403,7 +405,7 @@
 
     .combo-slot.picked {
       border-color: var(--citrine-bright);
-      background: linear-gradient(160deg, rgba(255, 204, 41, 0.24), rgba(22, 18, 8, 0.96));
+      background: linear-gradient(160deg, rgba(255, 204, 41, 0.22), rgba(22, 18, 8, 0.96));
     }
 
     .bottom-dock {
@@ -468,7 +470,7 @@
 <body>
   <div id="toast" class="toast-note"></div>
 
-  <!-- Citrine Gemstone Gradients -->
+  <!-- Translucent Citrine Gemstone Gradients -->
   <svg width="0" height="0" style="position:absolute;visibility:hidden;">
     <defs>
       <linearGradient id="citrineGem" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -528,29 +530,23 @@
       </div>
 
       <div class="tap-zone">
-        <div id="lionTap" class="citrine-flex-btn" role="button" tabindex="0" aria-label="Tap Flexible Citrine Emblem">
-          <!-- Citrine Crowned Golden Lion Emblem (Closed Mouth) -->
+        <div id="lionTap" class="citrine-tap-disc" role="button" tabindex="0" aria-label="Tap Translucent Citrine Emblem">
+          <!-- Translucent Citrine Crowned Golden Lion Emblem (Closed Mouth) -->
           <svg viewBox="0 0 220 220" width="194" height="194">
             <defs>
               <radialGradient id="cMane" cx="48%" cy="36%" r="64%">
-                <stop offset="0%" stop-color="#fff2a6" />
-                <stop offset="52%" stop-color="#eab308" />
-                <stop offset="100%" stop-color="#784904" />
+                <stop offset="0%" stop-color="#fff2a6" stop-opacity="0.95" />
+                <stop offset="55%" stop-color="#eab308" stop-opacity="0.88" />
+                <stop offset="100%" stop-color="#784904" stop-opacity="0.92" />
               </radialGradient>
               <linearGradient id="cFace" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fef9c3" />
-                <stop offset="100%" stop-color="#ca8a04" />
+                <stop offset="0%" stop-color="#fef9c3" stop-opacity="0.96" />
+                <stop offset="100%" stop-color="#ca8a04" stop-opacity="0.92" />
               </linearGradient>
             </defs>
 
-            <!-- Citrine Facet Halo -->
-            <polygon
-              points="110,14 198,64 198,156 110,206 22,156 22,64"
-              fill="none"
-              stroke="url(#citrineFacet)"
-              stroke-width="1.5"
-              opacity="0.55"
-            />
+            <!-- Translucent Citrine Outer Ring -->
+            <circle cx="110" cy="112" r="95" fill="rgba(255,204,41,0.06)" stroke="url(#citrineFacet)" stroke-width="1.5" opacity="0.7" />
 
             <!-- Mane -->
             <path
@@ -584,7 +580,7 @@
             <circle cx="127" cy="105.5" r="2" fill="#fef08a" />
 
             <!-- Muzzle & Closed Mouth -->
-            <ellipse cx="110" cy="130" rx="20" ry="13" fill="#fefce8" />
+            <ellipse cx="110" cy="130" rx="20" ry="13" fill="#fefce8" fill-opacity="0.92" />
             <path d="M102 122 L118 122 L110 130 Z" fill="#422603" />
             <path d="M110 130 L110 135 M100 137 Q110 140 120 137" stroke="#422603" stroke-width="2.6" stroke-linecap="round" fill="none" />
           </svg>
@@ -744,7 +740,7 @@
   <script>
     const YOUTUBE_CHANNEL_URL = "https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs";
     const YOUTUBE_SUBSCRIBE_REWARD = 5000000;
-    const STORAGE_KEY = "beast_empire_citrine_v4";
+    const STORAGE_KEY = "beast_empire_citrine_translucent_v5";
 
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
@@ -827,8 +823,8 @@
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = "sine";
-        osc.frequency.setValueAtTime(560, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.07);
+        osc.frequency.setValueAtTime(540, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(840, ctx.currentTime + 0.07);
         gain.gain.setValueAtTime(0.07, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
         osc.connect(gain);
@@ -881,7 +877,7 @@
       showToast("+5,000,000 Beast Coin credited.");
     }
 
-    // Extreme Flexible Citrine Lean on Click/Tap Direction
+    // Normal Solid Disc with Clean Directional Lean Toward Click/Tap Side
     const lionTap = document.getElementById("lionTap");
     lionTap.addEventListener("pointerdown", (e) => {
       const power = getEffectiveTap();
@@ -899,29 +895,19 @@
       const nx = Math.max(-1, Math.min(1, ((e.clientX || cx) - cx) / (rect.width / 2)));
       const ny = Math.max(-1, Math.min(1, ((e.clientY || cy) - cy) / (rect.height / 2)));
 
-      const tiltX = (-ny * 18).toFixed(1);
-      const tiltY = (nx * 20).toFixed(1);
-      const shiftX = (nx * 10).toFixed(1);
-      const shiftY = (ny * 10).toFixed(1);
-      const scaleX = (1 + Math.abs(nx) * 0.05).toFixed(2);
-      const scaleY = (1 - Math.abs(ny) * 0.04).toFixed(2);
+      const tiltX = (-ny * 14).toFixed(1);
+      const tiltY = (nx * 16).toFixed(1);
+      const shiftX = (nx * 6).toFixed(1);
+      const shiftY = (ny * 6).toFixed(1);
 
-      // Asymmetric organic morph toward the clicked edge
-      const rTopLeft = `${Math.round(50 - nx * 10 - ny * 10)}%`;
-      const rTopRight = `${Math.round(50 + nx * 10 - ny * 10)}%`;
-      const rBottomRight = `${Math.round(50 + nx * 10 + ny * 10)}%`;
-      const rBottomLeft = `${Math.round(50 - nx * 10 + ny * 10)}%`;
+      lionTap.classList.add("pressed");
+      lionTap.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.965)`;
 
-      lionTap.classList.add("leaning");
-      lionTap.style.borderRadius = `${rTopLeft} ${rTopRight} ${rBottomRight} ${rBottomLeft}`;
-      lionTap.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(${scaleX}, ${scaleY}, 0.94)`;
-
-      clearTimeout(lionTap._flexTimer);
-      lionTap._flexTimer = setTimeout(() => {
-        lionTap.classList.remove("leaning");
-        lionTap.style.borderRadius = "50%";
-        lionTap.style.transform = "translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
-      }, 210);
+      clearTimeout(lionTap._leanTimer);
+      lionTap._leanTimer = setTimeout(() => {
+        lionTap.classList.remove("pressed");
+        lionTap.style.transform = "translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg) scale(1)";
+      }, 150);
 
       const pop = document.createElement("div");
       pop.className = "gain-float";

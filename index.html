@@ -206,28 +206,23 @@
       box-shadow: 0 0 14px rgba(245, 158, 11, 0.7);
     }
 
-    /* Royal 3D Golden Lion Coin Arena */
+    /* Ultra-Flexible 3D Lion Coin Arena */
     .arena {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      perspective: 1100px;
+      perspective: 750px;
       position: relative;
     }
     .golden-aura {
-      width: 278px; height: 278px;
+      width: 280px; height: 280px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(251, 191, 36, 0.36) 0%, rgba(245, 158, 11, 0.08) 56%, transparent 74%);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      animation: auraPulse 4s ease-in-out infinite alternate;
-    }
-    @keyframes auraPulse {
-      0% { transform: scale(0.97); }
-      100% { transform: scale(1.03); }
     }
     .crystal-beast-coin {
       width: 242px; height: 242px;
@@ -242,17 +237,17 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      touch-action: manipulation;
+      touch-action: none;
       will-change: transform;
-      transition: transform 0.36s cubic-bezier(0.16, 1.45, 0.3, 1), box-shadow 0.25s ease;
+      transition: transform 0.38s cubic-bezier(0.18, 1.55, 0.32, 1), box-shadow 0.25s ease;
       position: relative;
       overflow: hidden;
       transform-style: preserve-3d;
     }
     .crystal-beast-coin.tapped {
-      transition: transform 0.06s ease-out, box-shadow 0.08s ease;
+      transition: transform 0.05s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.08s ease;
       box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.92),
+        0 12px 26px rgba(0, 0, 0, 0.92),
         0 0 68px rgba(254, 240, 138, 0.95);
     }
 
@@ -683,13 +678,12 @@
       </div>
       <div class="turbo-pill" id="turboBadge">🔥 2X CRYSTAL TURBO ACTIVE!</div>
 
-      <!-- ULTRA-DETAILED 3D SCULPTED ROYAL GOLDEN LION COIN -->
+      <!-- SLEEK & ROYAL GOLDEN LION COIN (NO BEARD, CLEAN & MODERN) -->
       <div class="arena">
         <div class="golden-aura" id="goldenAura">
           <div class="crystal-beast-coin" id="beastBtn">
             <svg class="royal-lion-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <!-- Coin Metallic Gold Gradients -->
                 <radialGradient id="coinBase" cx="35%" cy="28%" r="72%">
                   <stop offset="0%" stop-color="#fffbeb"/>
                   <stop offset="22%" stop-color="#fde047"/>
@@ -699,8 +693,8 @@
                 </radialGradient>
                 <radialGradient id="coinInnerDish" cx="42%" cy="32%" r="68%">
                   <stop offset="0%" stop-color="#fef08a"/>
-                  <stop offset="45%" stop-color="#b45309"/>
-                  <stop offset="85%" stop-color="#78350f"/>
+                  <stop offset="48%" stop-color="#b45309"/>
+                  <stop offset="88%" stop-color="#78350f"/>
                   <stop offset="100%" stop-color="#451a03"/>
                 </radialGradient>
                 <linearGradient id="rimBevel" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -709,7 +703,6 @@
                   <stop offset="70%" stop-color="#b45309"/>
                   <stop offset="100%" stop-color="#fef08a"/>
                 </linearGradient>
-                <!-- Sculpted Lion Gold Gradients -->
                 <linearGradient id="maneLight" x1="15%" y1="5%" x2="85%" y2="95%">
                   <stop offset="0%" stop-color="#fffbeb"/>
                   <stop offset="35%" stop-color="#fcd34d"/>
@@ -723,8 +716,8 @@
                 </linearGradient>
                 <linearGradient id="faceSculpt" x1="25%" y1="10%" x2="75%" y2="95%">
                   <stop offset="0%" stop-color="#ffffff"/>
-                  <stop offset="28%" stop-color="#fde047"/>
-                  <stop offset="68%" stop-color="#d97706"/>
+                  <stop offset="30%" stop-color="#fde047"/>
+                  <stop offset="70%" stop-color="#d97706"/>
                   <stop offset="100%" stop-color="#612804"/>
                 </linearGradient>
                 <linearGradient id="crownGold" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -734,99 +727,80 @@
                   <stop offset="100%" stop-color="#5c2600"/>
                 </linearGradient>
                 <linearGradient id="glassSheen" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.48"/>
-                  <stop offset="45%" stop-color="#ffffff" stop-opacity="0.06"/>
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.46"/>
+                  <stop offset="45%" stop-color="#ffffff" stop-opacity="0.05"/>
                   <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
                 </linearGradient>
                 <filter id="deepRelief" x="-15%" y="-15%" width="130%" height="130%">
-                  <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#260c00" flood-opacity="0.75"/>
+                  <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#260c00" flood-opacity="0.72"/>
                 </filter>
               </defs>
 
-              <!-- Outer Coin Disc & Concentric Luxury Rings -->
+              <!-- Outer Coin Disc & Luxury Rings -->
               <circle cx="200" cy="200" r="196" fill="url(#coinBase)"/>
               <circle cx="200" cy="200" r="184" fill="none" stroke="url(#rimBevel)" stroke-width="6"/>
               <circle cx="200" cy="200" r="172" fill="none" stroke="#5c2600" stroke-width="2.5"/>
               <circle cx="200" cy="200" r="163" fill="url(#coinInnerDish)" stroke="#fde047" stroke-width="3"/>
-              <!-- Dashed Luxury Coin Mint Ring -->
-              <circle cx="200" cy="200" r="154" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="8 6" opacity="0.8"/>
+              <circle cx="200" cy="200" r="154" fill="none" stroke="#fef08a" stroke-width="2" stroke-dasharray="8 6" opacity="0.78"/>
 
-              <!-- SCULPTED 3D LION EMBLEM GROUP -->
+              <!-- CLEAN ROYAL LION KING CREST -->
               <g filter="url(#deepRelief)">
-                <!-- Royal 5-Point Imperial Crown -->
-                <path d="M136,108 L142,68 L166,90 L184,54 L200,84 L216,54 L234,90 L258,68 L264,108 Z"
+                <!-- Sleek Imperial Crown -->
+                <path d="M144,114 L150,76 L172,96 L188,64 L200,90 L212,64 L228,96 L250,76 L256,114 Z"
                   fill="url(#crownGold)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
-                <!-- Crown Jewels -->
-                <circle cx="184" cy="52" r="4.5" fill="#fffbeb"/>
-                <circle cx="216" cy="52" r="4.5" fill="#fffbeb"/>
-                <circle cx="142" cy="66" r="4" fill="#fffbeb"/>
-                <circle cx="258" cy="66" r="4" fill="#fffbeb"/>
-                <rect x="137" y="106" width="126" height="11" rx="5" fill="url(#rimBevel)" stroke="#4a1d00" stroke-width="2.5"/>
-                <circle cx="200" cy="111.5" r="3.5" fill="#ffffff"/>
-                <circle cx="170" cy="111.5" r="2.5" fill="#fef08a"/>
-                <circle cx="230" cy="111.5" r="2.5" fill="#fef08a"/>
+                <circle cx="188" cy="62" r="4" fill="#fffbeb"/>
+                <circle cx="212" cy="62" r="4" fill="#fffbeb"/>
+                <circle cx="150" cy="74" r="3.5" fill="#fffbeb"/>
+                <circle cx="250" cy="74" r="3.5" fill="#fffbeb"/>
+                <rect x="145" y="112" width="110" height="10" rx="5" fill="url(#rimBevel)" stroke="#4a1d00" stroke-width="2.5"/>
 
-                <!-- Outer Flowing Lion Mane Locks (Back Layer) -->
-                <path d="M200,116 C242,116 286,126 304,162 C318,190 314,226 296,254 C304,274 286,304 260,314 C244,334 220,348 200,356 C180,348 156,334 140,314 C114,304 96,274 104,254 C86,226 82,190 96,162 C114,126 158,116 200,116 Z"
-                  fill="url(#maneDark)" stroke="#3b1500" stroke-width="3.5"/>
+                <!-- Symmetrical Royal Shield Mane (Clean & Sharp, No Beard) -->
+                <polygon points="200,122 252,130 288,162 294,210 272,258 236,288 200,302 164,288 128,258 106,210 112,162 148,130"
+                  fill="url(#maneDark)" stroke="#3b1500" stroke-width="3.5" stroke-linejoin="round"/>
 
-                <!-- Sculpted Golden Mane Fur Waves (Left & Right) -->
-                <path d="M138,124 C106,138 92,174 108,206 C94,226 102,262 126,276 C122,298 148,322 174,324 C184,338 194,348 200,352 C206,348 216,338 226,324 C252,322 278,298 274,276 C298,262 306,226 292,206 C308,174 294,138 262,124 C242,118 220,116 200,116 C180,116 158,118 138,124 Z"
-                  fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3"/>
+                <polygon points="200,130 244,138 276,168 282,208 262,250 230,278 200,290 170,278 138,250 118,208 124,168 156,138"
+                  fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
 
-                <!-- Detailed Mane Lock Ridges -->
-                <path d="M124,152 Q108,184 126,212 M116,216 Q106,248 132,270 M138,278 Q144,306 172,316"
-                  fill="none" stroke="#4a1d00" stroke-width="3.5" stroke-linecap="round"/>
-                <path d="M276,152 Q292,184 274,212 M284,216 Q294,248 268,270 M262,278 Q256,306 228,316"
-                  fill="none" stroke="#4a1d00" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- Clean Mane Accent Lines -->
+                <path d="M134,174 L126,206 L142,238 M266,174 L274,206 L258,238"
+                  fill="none" stroke="#612804" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 
-                <!-- Lion Ears -->
-                <path d="M132,146 C116,124 134,108 156,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
-                <path d="M268,146 C284,124 266,108 244,126 Z" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <!-- Rounded Lion Ears -->
+                <circle cx="144" cy="144" r="16" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <circle cx="144" cy="144" r="8" fill="#78350f"/>
+                <circle cx="256" cy="144" r="16" fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
+                <circle cx="256" cy="144" r="8" fill="#78350f"/>
 
-                <!-- Majestic Lion Head & Cheekbones -->
-                <path d="M148,144 Q200,130 252,144 L264,192 Q266,226 242,248 L224,274 Q200,288 176,274 L158,248 Q134,226 136,192 Z"
+                <!-- Clean Sculpted Lion Face & Smooth Jawline -->
+                <path d="M154,146 Q200,134 246,146 L254,194 Q252,232 226,254 L200,268 L174,254 Q148,232 146,194 Z"
                   fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
 
-                <!-- Forehead & Heavy Noble Brow -->
-                <path d="M164,156 Q200,148 236,156" fill="none" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M150,178 Q174,172 192,186 L186,193 Q168,184 152,186 Z" fill="#4a1d00"/>
-                <path d="M250,178 Q226,172 208,186 L214,193 Q232,184 248,186 Z" fill="#4a1d00"/>
+                <!-- Fierce Brow & Glowing Eyes -->
+                <path d="M156,182 L190,192 L184,198 L156,190 Z" fill="#4a1d00"/>
+                <path d="M244,182 L210,192 L216,198 L244,190 Z" fill="#4a1d00"/>
 
-                <!-- Piercing Glowing Lion Eyes -->
-                <path d="M156,188 Q172,183 186,192 Q172,199 156,188 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
-                <circle cx="172" cy="190" r="3.5" fill="#78350f"/>
-                <circle cx="171" cy="189" r="1.4" fill="#ffffff"/>
+                <path d="M160,192 Q174,188 186,196 Q174,203 160,192 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="174" cy="194" r="3" fill="#78350f"/>
 
-                <path d="M244,188 Q228,183 214,192 Q228,199 244,188 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
-                <circle cx="228" cy="190" r="3.5" fill="#78350f"/>
-                <circle cx="227" cy="189" r="1.4" fill="#ffffff"/>
+                <path d="M240,192 Q226,188 214,196 Q226,203 240,192 Z" fill="#ffffff" stroke="#3b1500" stroke-width="2"/>
+                <circle cx="226" cy="194" r="3" fill="#78350f"/>
 
-                <!-- Sculpted Nose Bridge -->
-                <path d="M191,186 L209,186 L213,218 L187,218 Z" fill="url(#maneLight)" opacity="0.85"/>
-                <path d="M190,188 L187,216 M210,188 L213,216" stroke="#78350f" stroke-width="2.5" stroke-linecap="round"/>
-
-                <!-- Royal Lion Nose -->
-                <path d="M184,218 Q200,213 216,218 L206,232 Q200,236 194,232 Z"
+                <!-- Clean Nose Bridge & Nose -->
+                <path d="M192,190 L208,190 L211,220 L189,220 Z" fill="url(#maneLight)" opacity="0.75"/>
+                <path d="M187,220 Q200,215 213,220 L204,232 Q200,235 196,232 Z"
                   fill="#451a03" stroke="#fef08a" stroke-width="1.5"/>
 
-                <!-- Muzzle, Whisker Pads & Beard Chin -->
-                <path d="M164,234 Q182,226 200,234 Q218,226 236,234 Q238,256 216,260 Q200,252 184,260 Q162,256 164,234 Z"
-                  fill="url(#faceSculpt)" stroke="#4a1d00" stroke-width="3"/>
-                <path d="M200,234 L200,252 M176,254 Q200,265 224,254"
-                  fill="none" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
-
-                <!-- Royal Golden Chin Beard -->
-                <path d="M180,262 L220,262 L210,294 L200,306 L190,294 Z"
-                  fill="url(#maneLight)" stroke="#4a1d00" stroke-width="3" stroke-linejoin="round"/>
+                <!-- Clean Confident Lion Mouth & Chin (No Whiskers, No Beard) -->
+                <path d="M200,233 L200,244 M184,244 Q200,253 216,244"
+                  fill="none" stroke="#451a03" stroke-width="3.5" stroke-linecap="round"/>
+                <path d="M188,255 Q200,261 212,255"
+                  fill="none" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
               </g>
 
-              <!-- Crystal Glass Reflection & Specular Sparkles -->
+              <!-- Crystal Glass Reflection & Star Sparkles -->
               <ellipse cx="155" cy="115" rx="125" ry="68" transform="rotate(-24 155 115)" fill="url(#glassSheen)"/>
-              <!-- Star Sparkles -->
               <path d="M295,112 L298,122 L308,125 L298,128 L295,138 L292,128 L282,125 L292,122 Z" fill="#ffffff" opacity="0.95"/>
               <path d="M102,282 L105,292 L115,295 L105,298 L102,308 L99,298 L89,295 L99,292 Z" fill="#fffbeb" opacity="0.9"/>
-              <path d="M286,294 L288,301 L295,303 L288,305 L286,312 L284,305 L277,303 L284,301 Z" fill="#fef08a" opacity="0.9"/>
             </svg>
           </div>
         </div>
@@ -1446,24 +1420,32 @@
       }
     }
 
+    // ULTRA-FLEXIBLE 3D DIRECTIONAL TILT & SPRING BOUNCE
     const beastBtn = document.getElementById('beastBtn');
     const goldenAura = document.getElementById('goldenAura');
 
-    function handleTap(x, y) {
+    function applyFlexibleTilt(x, y, pressScale = 0.90) {
       const rect = beastBtn.getBoundingClientRect();
-      const dx = x - rect.left - rect.width / 2;
-      const dy = y - rect.top - rect.height / 2;
-      const rotY = (dx / (rect.width / 2)) * 16;
-      const rotX = -(dy / (rect.height / 2)) * 16;
+      const normX = Math.max(-1, Math.min(1, (x - rect.left - rect.width / 2) / (rect.width / 2)));
+      const normY = Math.max(-1, Math.min(1, (y - rect.top - rect.height / 2) / (rect.height / 2)));
+
+      const rotY = normX * 26;
+      const rotX = -normY * 26;
+      const shiftX = normX * 9;
+      const shiftY = normY * 9;
 
       beastBtn.classList.add('tapped');
-      beastBtn.style.transform = `scale(0.91) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      beastBtn.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) scale(${pressScale}) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
       clearTimeout(resetTimer);
       resetTimer = setTimeout(() => {
         beastBtn.classList.remove('tapped');
-        beastBtn.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-      }, 115);
+        beastBtn.style.transform = 'translate3d(0, 0, 0) scale(1) rotateX(0deg) rotateY(0deg)';
+      }, 130);
+    }
+
+    function handleTap(x, y) {
+      applyFlexibleTilt(x, y, 0.90);
 
       const gain = turboActive ? state.tapPower * 2 : state.tapPower;
       if (state.energy >= state.tapPower) {
@@ -1487,6 +1469,13 @@
       e.preventDefault();
       for (let i = 0; i < e.changedTouches.length; i++) {
         handleTap(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+      }
+    }, { passive: false });
+
+    beastBtn.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (e.touches.length > 0) {
+        applyFlexibleTilt(e.touches[0].clientX, e.touches[0].clientY, 0.92);
       }
     }, { passive: false });
 

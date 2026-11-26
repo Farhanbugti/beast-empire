@@ -26,7 +26,6 @@
       position: relative;
     }
 
-    /* Warm Obsidian & Champagne Gold Ambient Glow */
     .bg-glow {
       position: fixed;
       inset: 0;
@@ -39,7 +38,6 @@
       pointer-events: none;
     }
 
-    /* Floating Golden Sparkle Dust */
     .dust-layer { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
     .dust {
       position: absolute;
@@ -66,10 +64,10 @@
 
     /* Crystal Glass Base */
     .crystal-card {
-      background: linear-gradient(155deg, rgba(255, 255, 255, 0.085) 0%, rgba(255, 255, 255, 0.025) 100%);
+      background: linear-gradient(155deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.025) 100%);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 224, 130, 0.18);
+      border: 1px solid rgba(255, 224, 130, 0.2);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
     }
 
@@ -97,8 +95,8 @@
     .profit-pill {
       justify-content: center;
       text-align: center;
-      background: linear-gradient(155deg, rgba(251, 191, 36, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
-      border-color: rgba(253, 224, 71, 0.28);
+      background: linear-gradient(155deg, rgba(251, 191, 36, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border-color: rgba(253, 224, 71, 0.3);
     }
     .profit-lbl { font-size: 10px; font-weight: 700; color: #cbd5e1; }
     .profit-val { font-size: 13px; font-weight: 900; color: #fff; display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 2px; }
@@ -118,7 +116,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3 Quick Action Cards */
+    /* 3 Stylish Quick Action Cards (Daily Check-in, Daily Combo, Video Code) */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -126,14 +124,22 @@
       margin-bottom: 10px;
     }
     .quick-card {
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 9px 6px;
       text-align: center;
       position: relative;
       cursor: pointer;
+      overflow: hidden;
       transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .quick-card:active { transform: scale(0.94); }
+    .quick-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(254, 240, 138, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .quick-card:active { transform: scale(0.93); }
     .notify-dot {
       position: absolute;
       top: 7px; right: 7px;
@@ -142,16 +148,25 @@
       background: #10b981;
       box-shadow: 0 0 8px #10b981;
     }
-    .q-icon { font-size: 22px; margin-bottom: 3px; }
-    .q-title { font-size: 11px; font-weight: 700; color: #f8fafc; }
+    .q-icon-wrap {
+      width: 34px; height: 34px;
+      margin: 0 auto 4px;
+      border-radius: 11px;
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(253, 224, 71, 0.28);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .q-title { font-size: 11px; font-weight: 800; color: #f8fafc; letter-spacing: 0.2px; }
     .q-badge {
       display: inline-block;
       margin-top: 4px;
-      padding: 2px 8px;
+      padding: 2px 9px;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(251, 191, 36, 0.14);
+      border: 1px solid rgba(253, 224, 71, 0.22);
       font-size: 10px;
-      font-weight: 700;
+      font-weight: 800;
       color: #fde68a;
     }
 
@@ -235,7 +250,6 @@
       overflow: hidden;
       transform-style: preserve-3d;
     }
-    /* Crystal Glass Specular Sheen */
     .crystal-beast-coin::after {
       content: "";
       position: absolute;
@@ -284,11 +298,7 @@
       justify-content: space-between;
       padding: 4px 4px 6px;
     }
-    .energy-readout {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .energy-readout { display: flex; align-items: center; gap: 6px; }
     .bolt-icon { font-size: 22px; filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.8)); }
     .energy-nums { line-height: 1.1; }
     .energy-cur { font-size: 16px; font-weight: 900; color: #fff; }
@@ -373,30 +383,42 @@
       box-shadow: none;
     }
 
-    /* Miner Grid */
-    .combo-banner {
-      border-radius: 16px;
-      padding: 10px 14px;
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 8px;
+    /* Stylish Daily Combo Section (Miner Tab) */
+    .combo-hero {
+      border-radius: 20px;
+      padding: 12px;
+      margin-bottom: 12px;
+      background: linear-gradient(155deg, rgba(251, 191, 36, 0.14) 0%, rgba(255, 255, 255, 0.03) 100%);
+      border: 1px solid rgba(253, 224, 71, 0.35);
+    }
+    .combo-top-row {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
     }
     .combo-cards {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
     }
     .combo-slot {
-      border-radius: 14px; padding: 14px 6px; text-align: center;
-      font-size: 11px; font-weight: 700; color: #94a3b8;
+      border-radius: 16px;
+      padding: 14px 6px;
+      text-align: center;
+      background: rgba(12, 13, 20, 0.7);
+      border: 1.5px dashed rgba(253, 224, 71, 0.35);
+      transition: all 0.35s cubic-bezier(0.22, 1.35, 0.36, 1);
     }
+    .combo-slot .c-q { font-size: 24px; font-weight: 900; color: #fde68a; margin-bottom: 4px; }
+    .combo-slot .c-lbl { font-size: 10px; font-weight: 700; color: #94a3b8; }
     .combo-slot.found {
-      border-color: #fde047; color: #fde047;
-      background: rgba(251, 191, 36, 0.14);
+      border-style: solid;
+      border-color: #fde047;
+      background: linear-gradient(160deg, rgba(251, 191, 36, 0.28), rgba(217, 119, 6, 0.12));
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.35);
+      transform: scale(1.02);
     }
-    .miner-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
-    }
+    .combo-slot.found .c-lbl { color: #fef08a; }
+
+    .miner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
     .miner-tile {
-      border-radius: 18px;
-      padding: 11px;
+      border-radius: 18px; padding: 11px;
       display: flex; flex-direction: column; justify-content: space-between;
       cursor: pointer;
     }
@@ -470,24 +492,119 @@
       color: #451a03; font-size: 14px; font-weight: 900;
       box-shadow: 0 6px 20px rgba(245, 158, 11, 0.45), inset 0 2px 3px rgba(255,255,255,0.8);
       cursor: pointer;
+      transition: transform 0.18s ease;
     }
     .cta-gold-btn:active { transform: scale(0.97); }
-
-    /* Toast & Modal */
-    .toast {
-      position: fixed; top: 64px; left: 50%; transform: translateX(-50%);
-      background: rgba(20, 20, 26, 0.92); backdrop-filter: blur(12px);
-      border: 1px solid rgba(253, 224, 71, 0.5);
-      color: #fde68a; padding: 8px 18px; border-radius: 20px;
-      font-size: 12px; font-weight: 800; display: none; z-index: 250;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    .cta-gold-btn:disabled {
+      background: rgba(255,255,255,0.1);
+      color: #94a3b8;
+      box-shadow: none;
     }
+
+    /* Stylish Bottom-Sheet & Center Modals */
     .modal-bg {
-      position: fixed; inset: 0; background: rgba(0, 0, 0, 0.82); backdrop-filter: blur(10px);
-      display: none; align-items: center; justify-content: center; z-index: 300; padding: 20px;
+      position: fixed; inset: 0;
+      background: rgba(4, 5, 10, 0.84);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      padding: 18px;
+      animation: silkyFade 0.25s ease;
     }
     .modal-card {
-      border-radius: 24px; padding: 24px 18px; text-align: center; width: 100%; max-width: 320px;
+      border-radius: 26px;
+      padding: 22px 18px;
+      text-align: center;
+      width: 100%;
+      max-width: 350px;
+      position: relative;
+      background: linear-gradient(160deg, rgba(28, 26, 38, 0.96) 0%, rgba(12, 12, 18, 0.98) 100%);
+      border: 1px solid rgba(253, 224, 71, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 30px rgba(251, 191, 36, 0.18);
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #cbd5e1; font-size: 14px; font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* 7-Day Check-in Grid */
+    .checkin-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin: 14px 0 16px;
+    }
+    .day-box {
+      border-radius: 14px;
+      padding: 9px 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+    .day-box.day-7 {
+      grid-column: span 2;
+      background: linear-gradient(145deg, rgba(251, 191, 36, 0.16), rgba(255,255,255,0.04));
+    }
+    .day-box.active-day {
+      border: 1.5px solid #fde047;
+      background: linear-gradient(160deg, rgba(251, 191, 36, 0.32), rgba(217, 119, 6, 0.14));
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.35);
+    }
+    .day-box.claimed-day {
+      opacity: 0.55;
+      border-color: #10b981;
+    }
+    .d-num { font-size: 10px; font-weight: 700; color: #cbd5e1; }
+    .d-ico { font-size: 18px; margin: 3px 0; }
+    .d-val { font-size: 11px; font-weight: 900; color: #fde68a; }
+
+    /* Stylish Video Code Input */
+    .video-preview-box {
+      border-radius: 16px;
+      padding: 12px;
+      margin: 12px 0;
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.16), rgba(251, 191, 36, 0.08));
+      border: 1px solid rgba(253, 224, 71, 0.25);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .code-input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1.5px solid rgba(253, 224, 71, 0.45);
+      color: #fde68a;
+      font-size: 15px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      outline: none;
+      margin-bottom: 12px;
+      user-select: text;
+    }
+    .code-input::placeholder {
+      color: #64748b;
+      letter-spacing: 1px;
+      font-size: 12px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed; top: 64px; left: 50%; transform: translateX(-50%);
+      background: rgba(18, 18, 24, 0.94); backdrop-filter: blur(12px);
+      border: 1px solid rgba(253, 224, 71, 0.55);
+      color: #fde68a; padding: 9px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 800; display: none; z-index: 400;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.65);
+      white-space: nowrap;
     }
   </style>
 </head>
@@ -499,14 +616,50 @@
   <div class="app-shell">
     <div class="toast" id="toast">Reward Claimed!</div>
 
-    <!-- Offline Earnings Modal -->
+    <!-- 1. STYLISH 7-DAY DAILY CHECK-IN MODAL -->
+    <div class="modal-bg" id="dailyModal">
+      <div class="modal-card">
+        <button class="modal-close" onclick="closeModal('dailyModal')">✕</button>
+        <div style="font-size:38px; margin-bottom:4px;">📅</div>
+        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Daily Check-In</h3>
+        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Login daily without skipping to unlock Mega Rewards</p>
+
+        <div class="checkin-grid" id="checkinGrid"></div>
+
+        <button class="cta-gold-btn" id="claimDailyBtn" onclick="claimDailyReward()">Claim Day 1 Reward</button>
+      </div>
+    </div>
+
+    <!-- 2. STYLISH VIDEO CODE MODAL -->
+    <div class="modal-bg" id="videoModal">
+      <div class="modal-card">
+        <button class="modal-close" onclick="closeModal('videoModal')">✕</button>
+        <div style="font-size:38px; margin-bottom:4px;">🎬</div>
+        <h3 style="color:#fde68a; font-size:19px; font-weight:900;">Beast Cinema Code</h3>
+        <p style="color:#cbd5e1; font-size:12px; margin-top:3px;">Watch our official reel & enter secret code for +25,000 🪙</p>
+
+        <div class="video-preview-box">
+          <div style="text-align:left;">
+            <div style="font-size:13px; font-weight:800; color:#fff;">🔥 Episode #1 Secret</div>
+            <div style="font-size:11px; color:#fde68a;">Hint: Type <b>BEAST2026</b></div>
+          </div>
+          <span class="gold-chip" onclick="toast('🎬 Opening Beast Official Video...')">Watch ▶</span>
+        </div>
+
+        <input type="text" id="videoCodeInput" class="code-input" placeholder="ENTER SECRET CODE" maxlength="15" />
+
+        <button class="cta-gold-btn" id="verifyVideoBtn" onclick="verifyVideoCode()">✨ Verify & Claim +25,000 🪙</button>
+      </div>
+    </div>
+
+    <!-- 3. OFFLINE EARNINGS MODAL -->
     <div class="modal-bg" id="offlineModal">
-      <div class="modal-card crystal-card">
+      <div class="modal-card">
         <div style="font-size:36px; margin-bottom:6px;">🦁</div>
         <h3 style="color:#fde68a; font-size:18px; margin-bottom:4px;">Empire Profit Report</h3>
         <p style="color:#cbd5e1; font-size:12px; margin-bottom:12px;">Your Beast Miners earned while you were away:</p>
         <div style="font-size:30px; font-weight:900; color:#fff; margin-bottom:16px;" id="offlineEarnedText">+0 💰</div>
-        <button class="cta-gold-btn" onclick="closeOfflineModal()">Thank You, Beast!</button>
+        <button class="cta-gold-btn" onclick="closeModal('offlineModal')">Collect Profit</button>
       </div>
     </div>
 
@@ -531,24 +684,25 @@
 
     <!-- SCREEN 1: MAIN TAP ARENA -->
     <div class="screen active" id="screen-tap">
+      <!-- 3 Stylish Quick Action Cards -->
       <div class="quick-grid">
-        <div class="quick-card crystal-card" onclick="claimDaily()">
+        <div class="quick-card crystal-card" onclick="openDailyModal()">
           <div class="notify-dot" id="dailyDot"></div>
-          <div class="q-icon">📅</div>
-          <div class="q-title">Daily reward</div>
-          <div class="q-badge" id="dailyBadge">Claim</div>
+          <div class="q-icon-wrap">📅</div>
+          <div class="q-title">Daily check-in</div>
+          <div class="q-badge" id="dailyBadge">Day 1</div>
         </div>
         <div class="quick-card crystal-card" onclick="switchTab('miner')">
-          <div class="notify-dot"></div>
-          <div class="q-icon">🃏</div>
+          <div class="notify-dot" id="comboDot"></div>
+          <div class="q-icon-wrap">🃏</div>
           <div class="q-title">Daily combo</div>
           <div class="q-badge" id="comboBadge">0/3</div>
         </div>
-        <div class="quick-card crystal-card" onclick="switchTab('earn')">
-          <div class="notify-dot"></div>
-          <div class="q-icon">🎬</div>
-          <div class="q-title">Beast tasks</div>
-          <div class="q-badge">+50K</div>
+        <div class="quick-card crystal-card" onclick="openVideoModal()">
+          <div class="notify-dot" id="videoDot"></div>
+          <div class="q-icon-wrap">🎬</div>
+          <div class="q-title">Video code</div>
+          <div class="q-badge" id="videoBadge">+25,000</div>
         </div>
       </div>
 
@@ -559,7 +713,7 @@
       </div>
       <div class="turbo-pill" id="turboBadge">🔥 2X CRYSTAL TURBO ACTIVE!</div>
 
-      <!-- Crystal-Gloss 3D Beast Coin with coin.png -->
+      <!-- Crystal-Gloss 3D Beast Coin -->
       <div class="arena">
         <div class="golden-aura" id="goldenAura">
           <div class="crystal-beast-coin" id="beastBtn">
@@ -639,17 +793,31 @@
       </div>
     </div>
 
-    <!-- SCREEN 3: MINER -->
+    <!-- SCREEN 3: MINER & STYLISH DAILY COMBO -->
     <div class="screen" id="screen-miner">
-      <div class="combo-banner crystal-card">
-        <span style="font-size:12px; font-weight:800; color:#fde68a;">🃏 DAILY COMBO</span>
-        <span class="gold-chip" id="comboRewardChip">+50,000 🪙</span>
-      </div>
+      <div class="combo-hero">
+        <div class="combo-top-row">
+          <div>
+            <div style="font-size:13px; font-weight:900; color:#fde68a;">🃏 DAILY COMBO</div>
+            <div style="font-size:10px; color:#cbd5e1;">Upgrade 3 secret cards below to unlock</div>
+          </div>
+          <span class="gold-chip" id="comboRewardChip">+50,000 🪙</span>
+        </div>
 
-      <div class="combo-cards">
-        <div class="combo-slot crystal-card" id="slot0">? CARD 1</div>
-        <div class="combo-slot crystal-card" id="slot1">? CARD 2</div>
-        <div class="combo-slot crystal-card" id="slot2">? CARD 3</div>
+        <div class="combo-cards">
+          <div class="combo-slot" id="slot0">
+            <div class="c-q">?</div>
+            <div class="c-lbl">CARD 1</div>
+          </div>
+          <div class="combo-slot" id="slot1">
+            <div class="c-q">?</div>
+            <div class="c-lbl">CARD 2</div>
+          </div>
+          <div class="combo-slot" id="slot2">
+            <div class="c-q">?</div>
+            <div class="c-lbl">CARD 3</div>
+          </div>
+        </div>
       </div>
 
       <div class="miner-grid" id="minerGrid"></div>
@@ -663,7 +831,30 @@
         <p>Complete crystal tasks to boost your treasury</p>
       </div>
 
-      <div class="sec-lbl">Onboarding</div>
+      <div class="sec-lbl">Daily Specials</div>
+      <div class="list-card crystal-card" onclick="openDailyModal()">
+        <div class="list-left">
+          <div class="list-ico">📅</div>
+          <div>
+            <div class="list-title">7-Day Daily Check-In</div>
+            <div class="list-sub">Up to +100,000 🪙 streak bonus</div>
+          </div>
+        </div>
+        <span class="gold-chip">Open</span>
+      </div>
+
+      <div class="list-card crystal-card" onclick="openVideoModal()">
+        <div class="list-left">
+          <div class="list-ico">🎬</div>
+          <div>
+            <div class="list-title">Watch & Enter Video Code</div>
+            <div class="list-sub">+25,000 🪙 instant reward</div>
+          </div>
+        </div>
+        <span class="gold-chip" id="earnVideoChip">Enter Code</span>
+      </div>
+
+      <div class="sec-lbl">Community Tasks</div>
       <div class="list-card crystal-card" onclick="claimTask('tg', 25000)">
         <div class="list-left">
           <div class="list-ico">📢</div>
@@ -675,23 +866,12 @@
         <span class="gold-chip" id="task-tg">Claim</span>
       </div>
 
-      <div class="list-card crystal-card" onclick="claimTask('yt', 25000)">
-        <div class="list-left">
-          <div class="list-ico">▶️</div>
-          <div>
-            <div class="list-title">Watch Beast Empire Trailer</div>
-            <div class="list-sub">+25,000 🪙</div>
-          </div>
-        </div>
-        <span class="gold-chip" id="task-yt">Claim</span>
-      </div>
-
       <div class="list-card crystal-card" onclick="claimTapQuest()">
         <div class="list-left">
           <div class="list-ico">🔥</div>
           <div>
             <div class="list-title">Tap Master (100 Taps)</div>
-            <div class="list-sub" id="tapQuestSub">+15,000 🪙</div>
+            <div class="list-sub">+15,000 🪙</div>
           </div>
         </div>
         <span class="gold-chip" id="task-taps">0/100</span>
@@ -758,7 +938,7 @@
           <div class="list-ico">👑</div>
           <div>
             <div class="list-title">Emperor Golden Crown</div>
-            <div class="list-sub" id="crownSub">🪙 50,000 • +10 Tap Power</div>
+            <div class="list-sub">🪙 50,000 • +10 Tap Power</div>
           </div>
         </div>
         <span class="gold-chip" id="crownChip">Buy</span>
@@ -770,7 +950,7 @@
       <div class="page-head">
         <div style="font-size:38px; margin-bottom:2px;">🏆</div>
         <h2 id="lbHeaderLeague">Cub League</h2>
-        <p id="lbNextTxt">Top Beast Empire Players</p>
+        <p>Top Beast Empire Players</p>
       </div>
       <div id="leaderboardList"></div>
     </div>
@@ -831,7 +1011,9 @@
       rechargeCost: 1000,
       pph: 0,
       totalTaps: 0,
+      dailyStreak: 0,
       lastDaily: 0,
+      videoClaimed: false,
       freeEnergy: 3,
       freeTurbo: 3,
       crownOwned: false,
@@ -842,6 +1024,11 @@
       comboClaimed: false,
       lastActive: Date.now()
     };
+
+    if (typeof state.dailyStreak !== 'number') state.dailyStreak = 0;
+
+    const dailyRewards = [2500, 5000, 10000, 20000, 35000, 50000, 100000];
+    const validVideoCodes = ["BEAST2026", "LIONKING", "EMPIRE99", "BEASTCOIN", "SHERU"];
 
     const minerCatalog = [
       { id: 'm1', name: 'Beast Bot AI', icon: '🤖', baseCost: 350, basePph: 500, isCombo: true },
@@ -887,8 +1074,8 @@
       }
     })();
 
-    function closeOfflineModal() {
-      document.getElementById('offlineModal').style.display = 'none';
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
       save(); render();
     }
 
@@ -919,7 +1106,7 @@
       const t = document.getElementById('toast');
       t.innerText = msg;
       t.style.display = 'block';
-      setTimeout(() => t.style.display = 'none', 1700);
+      setTimeout(() => t.style.display = 'none', 1800);
     }
 
     function switchTab(tab) {
@@ -938,6 +1125,89 @@
       return l;
     }
 
+    /* STYLISH 7-DAY CHECK-IN MODAL LOGIC */
+    function openDailyModal() {
+      const grid = document.getElementById('checkinGrid');
+      grid.innerHTML = '';
+      const canClaim = (Date.now() - state.lastDaily) >= 86400000;
+      const currentDayIdx = state.dailyStreak % 7;
+
+      dailyRewards.forEach((amt, idx) => {
+        const box = document.createElement('div');
+        let cls = 'day-box' + (idx === 6 ? ' day-7' : '');
+        if (idx < currentDayIdx) cls += ' claimed-day';
+        else if (idx === currentDayIdx && canClaim) cls += ' active-day';
+        box.className = cls;
+
+        const labelAmt = amt >= 1000 ? (amt / 1000) + 'K' : amt;
+        const icon = idx < currentDayIdx ? '✅' : (idx === 6 ? '👑' : '🪙');
+        box.innerHTML = `
+          <div class="d-num">Day ${idx + 1}</div>
+          <div class="d-ico">${icon}</div>
+          <div class="d-val">+${labelAmt}</div>
+        `;
+        grid.appendChild(box);
+      });
+
+      const btn = document.getElementById('claimDailyBtn');
+      if (canClaim) {
+        btn.disabled = false;
+        btn.innerText = `✨ Claim Day ${currentDayIdx + 1} (+${dailyRewards[currentDayIdx].toLocaleString()} 🪙)`;
+      } else {
+        btn.disabled = true;
+        btn.innerText = `✓ Claimed! Come back tomorrow`;
+      }
+
+      document.getElementById('dailyModal').style.display = 'flex';
+    }
+
+    function claimDailyReward() {
+      if ((Date.now() - state.lastDaily) >= 86400000) {
+        const dayIdx = state.dailyStreak % 7;
+        const reward = dailyRewards[dayIdx];
+        state.coins += reward;
+        state.dailyStreak += 1;
+        state.lastDaily = Date.now();
+        save(); render();
+        openDailyModal();
+        toast(`📅 Day ${dayIdx + 1} Claimed! +${reward.toLocaleString()} 🪙`);
+      }
+    }
+
+    /* STYLISH VIDEO CODE MODAL LOGIC */
+    function openVideoModal() {
+      const btn = document.getElementById('verifyVideoBtn');
+      const inp = document.getElementById('videoCodeInput');
+      if (state.videoClaimed) {
+        inp.value = "CLAIMED ✓";
+        inp.disabled = true;
+        btn.disabled = true;
+        btn.innerText = "✓ Video Bonus Claimed";
+      } else {
+        inp.value = "";
+        inp.disabled = false;
+        btn.disabled = false;
+        btn.innerText = "✨ Verify & Claim +25,000 🪙";
+      }
+      document.getElementById('videoModal').style.display = 'flex';
+    }
+
+    function verifyVideoCode() {
+      if (state.videoClaimed) return;
+      const code = document.getElementById('videoCodeInput').value.trim().toUpperCase();
+      if (!code) return toast("Please enter the secret code!");
+      if (validVideoCodes.includes(code)) {
+        state.coins += 25000;
+        state.videoClaimed = true;
+        save(); render();
+        closeModal('videoModal');
+        toast("🎬 Code Verified! +25,000 🪙 Added!");
+      } else {
+        toast("❌ Invalid code! Try BEAST2026");
+      }
+    }
+
+    /* MINER & DAILY COMBO CARDS */
     function renderMiners() {
       const grid = document.getElementById('minerGrid');
       grid.innerHTML = '';
@@ -966,9 +1236,11 @@
 
       for (let i = 0; i < 3; i++) {
         const slot = document.getElementById('slot' + i);
-        if (state.comboFound[i]) {
+        const foundId = state.comboFound[i];
+        if (foundId) {
+          const item = minerCatalog.find(x => x.id === foundId);
           slot.classList.add('found');
-          slot.innerText = '✓ FOUND';
+          slot.innerHTML = `<div class="c-q">${item ? item.icon : '✓'}</div><div class="c-lbl">${item ? item.name : 'UNLOCKED'}</div>`;
         }
       }
     }
@@ -986,7 +1258,7 @@
             state.comboClaimed = true;
             toast("🎉 DAILY COMBO COMPLETE! +50,000 🪙");
           } else {
-            toast(`🃏 Secret Combo Card ${state.comboFound.length}/3 Found!`);
+            toast(`🃏 Secret Combo Card ${state.comboFound.length}/3 Unlocked!`);
           }
         } else {
           toast(`${m.name} Upgraded! +${pphGain}/hr`);
@@ -1040,7 +1312,20 @@
       document.getElementById('energyMax').innerText = `/ ${state.maxEnergy.toLocaleString()}`;
       document.getElementById('energyBar').style.width = `${(state.energy / state.maxEnergy) * 100}%`;
 
-      document.getElementById('comboBadge').innerText = `${state.comboFound.length}/3`;
+      const canDaily = (Date.now() - state.lastDaily) >= 86400000;
+      document.getElementById('dailyBadge').innerText = canDaily ? `Day ${(state.dailyStreak % 7) + 1}` : 'Done ✓';
+      document.getElementById('dailyDot').style.display = canDaily ? 'block' : 'none';
+
+      document.getElementById('comboBadge').innerText = state.comboClaimed ? 'Done ✓' : `${state.comboFound.length}/3`;
+      document.getElementById('comboDot').style.display = state.comboClaimed ? 'none' : 'block';
+
+      document.getElementById('videoBadge').innerText = state.videoClaimed ? 'Done ✓' : '+25,000';
+      document.getElementById('videoDot').style.display = state.videoClaimed ? 'none' : 'block';
+      if (state.videoClaimed) {
+        document.getElementById('earnVideoChip').innerText = 'Done ✓';
+        document.getElementById('earnVideoChip').classList.add('done');
+      }
+
       document.getElementById('freeEnergyTxt').innerText = `${state.freeEnergy}/3 available`;
       document.getElementById('freeTurboTxt').innerText = `${state.freeTurbo}/3 available`;
 
@@ -1055,10 +1340,6 @@
       if (state.tasks.tg) {
         document.getElementById('task-tg').innerText = 'Done ✓';
         document.getElementById('task-tg').classList.add('done');
-      }
-      if (state.tasks.yt) {
-        document.getElementById('task-yt').innerText = 'Done ✓';
-        document.getElementById('task-yt').classList.add('done');
       }
       if (state.tasks.taps) {
         document.getElementById('task-taps').innerText = 'Done ✓';
@@ -1138,18 +1419,6 @@
         sp.style.setProperty('--dy', Math.sin(ang) * dist + 'px');
         document.body.appendChild(sp);
         setTimeout(() => sp.remove(), 600);
-      }
-    }
-
-    function claimDaily() {
-      if (Date.now() - state.lastDaily >= 86400000) {
-        state.coins += 5000;
-        state.lastDaily = Date.now();
-        document.getElementById('dailyBadge').innerText = 'Done';
-        save(); render();
-        toast("📅 Daily Reward Claimed! +5,000 🪙");
-      } else {
-        toast("Already claimed today!");
       }
     }
 

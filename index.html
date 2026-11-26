@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Beast Empire 3D Pro</title>
+  <title>Beast Empire</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
   <style>
     * {
@@ -15,7 +15,7 @@
       font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
     body {
-      background: radial-gradient(circle at 50% 12%, #36214d 0%, #140e24 55%, #07050d 100%);
+      background: radial-gradient(circle at 50% 14%, #351f4d 0%, #130d22 58%, #07050c 100%);
       color: #fff;
       height: 100vh;
       display: flex;
@@ -32,12 +32,12 @@
       padding: 12px 16px 4px;
     }
     .brand {
-      font-size: 17px;
+      font-size: 18px;
       font-weight: 900;
-      background: linear-gradient(180deg, #fff099, #f39c12);
+      background: linear-gradient(180deg, #fff3a6, #f39c12);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.8px;
     }
     .header-right {
       display: flex;
@@ -46,11 +46,11 @@
     }
     .sound-btn {
       background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.16);
       color: #ffd56b;
       border-radius: 50%;
-      width: 30px;
-      height: 30px;
+      width: 31px;
+      height: 31px;
       font-size: 14px;
       cursor: pointer;
     }
@@ -58,7 +58,7 @@
       background: linear-gradient(145deg, #2d2344, #181226);
       border: 1px solid rgba(255, 200, 87, 0.5);
       box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      padding: 5px 12px;
+      padding: 5px 13px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 700;
@@ -76,7 +76,7 @@
       justify-content: center;
       gap: 10px;
     }
-    .mini-coin-3d {
+    .mini-coin {
       width: 34px;
       height: 34px;
       border-radius: 50%;
@@ -132,68 +132,97 @@
       display: flex;
     }
 
-    /* 3D Tap Arena */
+    /* Soft Touch Tap Arena */
     .arena {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      perspective: 900px;
+      perspective: 1000px;
       position: relative;
     }
     .orb-halo {
-      width: 245px;
-      height: 245px;
+      width: 256px;
+      height: 256px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 196, 54, 0.32) 0%, rgba(255, 123, 0, 0.08) 60%, transparent 75%);
+      background: radial-gradient(circle, rgba(255, 200, 60, 0.28) 0%, rgba(255, 130, 0, 0.07) 62%, transparent 76%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 60px rgba(243, 156, 18, 0.25);
+      box-shadow: 0 0 65px rgba(243, 156, 18, 0.22);
+      position: relative;
     }
-    .beast-3d-coin {
-      width: 212px;
-      height: 212px;
+    .beast-coin-btn {
+      width: 222px;
+      height: 222px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 25%, #fff099 0%, #f5a623 42%, #b55d05 84%, #612c00 100%);
-      border: 7px solid #ffe47a;
+      background: radial-gradient(circle at 32% 24%, #fff3a8 0%, #f7ad26 42%, #b85c04 84%, #5e2900 100%);
+      border: 6px solid #ffe782;
       box-shadow:
-        0 20px 38px rgba(0, 0, 0, 0.8),
-        0 0 32px rgba(245, 166, 35, 0.55),
-        inset 0 6px 14px rgba(255, 255, 255, 0.7),
-        inset 0 -10px 18px rgba(80, 32, 0, 0.9);
+        0 18px 36px rgba(0, 0, 0, 0.78),
+        0 0 30px rgba(245, 166, 35, 0.5),
+        inset 0 6px 14px rgba(255, 255, 255, 0.72),
+        inset 0 -10px 18px rgba(75, 28, 0, 0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: transform 0.08s ease-out;
+      touch-action: manipulation;
+      transition: transform 0.22s cubic-bezier(0.22, 1.35, 0.36, 1), box-shadow 0.18s ease;
       position: relative;
       transform-style: preserve-3d;
     }
-    .beast-3d-coin::before {
+    .beast-coin-btn::before {
       content: "";
       position: absolute;
-      inset: 8px;
+      inset: 7px;
       border-radius: 50%;
-      border: 2px dashed rgba(255, 248, 200, 0.6);
+      border: 1.5px solid rgba(255, 248, 200, 0.55);
+      box-shadow: inset 0 0 12px rgba(92, 38, 0, 0.55);
       pointer-events: none;
     }
-    .lion-svg {
-      width: 122px;
-      height: 122px;
-      filter: drop-shadow(0 8px 10px rgba(61, 25, 0, 0.65));
+    .beast-coin-btn.tapped {
+      box-shadow:
+        0 8px 18px rgba(0, 0, 0, 0.85),
+        0 0 42px rgba(255, 210, 77, 0.85),
+        inset 0 4px 10px rgba(255, 255, 255, 0.8),
+        inset 0 -6px 14px rgba(75, 28, 0, 0.9);
+    }
+
+    /* Soft Touch Ripple Ring */
+    .tap-ripple {
+      position: absolute;
+      width: 222px;
+      height: 222px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 232, 125, 0.75);
       pointer-events: none;
+      animation: rippleOut 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes rippleOut {
+      0% { transform: scale(0.95); opacity: 0.9; }
+      100% { transform: scale(1.26); opacity: 0; }
+    }
+
+    .lion-svg {
+      width: 146px;
+      height: 146px;
+      filter: drop-shadow(0 8px 10px rgba(54, 20, 0, 0.7));
+      pointer-events: none;
+      margin-top: -4px;
     }
     .tap-tag {
-      margin-top: 2px;
+      margin-top: -2px;
       font-size: 10px;
       font-weight: 900;
-      letter-spacing: 1.4px;
-      color: #472100;
-      background: rgba(255, 245, 185, 0.82);
-      padding: 2px 10px;
-      border-radius: 10px;
+      letter-spacing: 1.5px;
+      color: #451e00;
+      background: linear-gradient(180deg, #fff8cc, #ffe173);
+      border: 1px solid rgba(130, 62, 0, 0.35);
+      padding: 2.5px 12px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.25);
       pointer-events: none;
     }
 
@@ -249,28 +278,28 @@
     /* Floating +1 & Sparks */
     .float-plus {
       position: fixed;
-      font-size: 26px;
+      font-size: 27px;
       font-weight: 900;
-      color: #ffe678;
+      color: #ffe875;
       text-shadow: 0 3px 10px rgba(0,0,0,0.85);
       pointer-events: none;
       z-index: 120;
-      animation: riseFade 0.8s ease-out forwards;
+      animation: riseFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes riseFade {
-      0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-90px) scale(1.25); }
+      0% { opacity: 1; transform: translateY(0) scale(0.9); }
+      100% { opacity: 0; transform: translateY(-92px) scale(1.25); }
     }
     .spark {
       position: fixed;
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: #ffe066;
+      background: #ffe680;
       box-shadow: 0 0 8px #ffae00;
       pointer-events: none;
       z-index: 115;
-      animation: sparkFly 0.55s ease-out forwards;
+      animation: sparkFly 0.5s ease-out forwards;
     }
     @keyframes sparkFly {
       0% { opacity: 1; transform: translate(0, 0) scale(1); }
@@ -436,7 +465,7 @@
 
   <!-- Top Bar -->
   <div class="top-bar">
-    <div class="brand">🦁 BEAST EMPIRE 3D</div>
+    <div class="brand">🦁 BEAST COIN</div>
     <div class="header-right">
       <button class="sound-btn" id="soundToggle" onclick="toggleSound()">🔊</button>
       <div class="rank-pill" id="rankPill">Rank: Cub</div>
@@ -446,7 +475,7 @@
   <!-- Balance -->
   <div class="balance-wrap">
     <div class="coin-row">
-      <div class="mini-coin-3d">$</div>
+      <div class="mini-coin">$</div>
       <div class="coin-count" id="coinCount">0</div>
     </div>
     <div class="stats-sub" id="subStats">+1 per Tap • +0/sec Auto</div>
@@ -456,46 +485,70 @@
   <!-- SCREEN 1: ARENA -->
   <div class="screen active" id="screen-tap">
     <div class="arena">
-      <div class="orb-halo">
-        <div class="beast-3d-coin" id="beastBtn">
-          <!-- Custom 3D Metallic Golden Lion Emblem SVG -->
-          <svg class="lion-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <div class="orb-halo" id="orbHalo">
+        <div class="beast-coin-btn" id="beastBtn">
+          <!-- Royal Fierce Golden Lion King Emblem SVG -->
+          <svg class="lion-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="goldMane" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#fff3a8"/>
-                <stop offset="45%" stop-color="#d97b00"/>
-                <stop offset="100%" stop-color="#592600"/>
+              <linearGradient id="maneOuter" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff4b0"/>
+                <stop offset="40%" stop-color="#d97b00"/>
+                <stop offset="100%" stop-color="#4d1f00"/>
               </linearGradient>
-              <linearGradient id="goldFace" x1="20%" y1="0%" x2="80%" y2="100%">
-                <stop offset="0%" stop-color="#ffe985"/>
-                <stop offset="55%" stop-color="#e69100"/>
-                <stop offset="100%" stop-color="#7a3800"/>
+              <linearGradient id="maneMid" x1="15%" y1="0%" x2="85%" y2="100%">
+                <stop offset="0%" stop-color="#ffe77a"/>
+                <stop offset="50%" stop-color="#c96a00"/>
+                <stop offset="100%" stop-color="#5c2600"/>
               </linearGradient>
-              <linearGradient id="crownGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <linearGradient id="faceGold" x1="20%" y1="0%" x2="80%" y2="100%">
+                <stop offset="0%" stop-color="#fff7c2"/>
+                <stop offset="55%" stop-color="#f09c11"/>
+                <stop offset="100%" stop-color="#873e00"/>
+              </linearGradient>
+              <linearGradient id="royalCrown" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stop-color="#ffffff"/>
-                <stop offset="50%" stop-color="#ffd000"/>
-                <stop offset="100%" stop-color="#a85a00"/>
+                <stop offset="45%" stop-color="#ffd500"/>
+                <stop offset="100%" stop-color="#9c5100"/>
               </linearGradient>
             </defs>
-            <!-- Crown -->
-            <polygon points="62,42 74,20 100,36 126,20 138,42" fill="url(#crownGrad)" stroke="#612c00" stroke-width="3"/>
-            <!-- Outer 3D Mane -->
-            <polygon points="100,34 134,46 158,76 154,118 134,154 100,174 66,154 46,118 42,76 66,46" fill="url(#goldMane)" stroke="#4a1e00" stroke-width="4"/>
-            <!-- Inner Mane Ridges -->
-            <polygon points="100,46 126,56 144,82 140,114 124,142 100,158 76,142 60,114 56,82 74,56" fill="url(#goldFace)" stroke="#6b2f00" stroke-width="3"/>
-            <!-- Ears -->
-            <circle cx="66" cy="66" r="11" fill="url(#goldFace)" stroke="#5c2800" stroke-width="3"/>
-            <circle cx="134" cy="66" r="11" fill="url(#goldFace)" stroke="#5c2800" stroke-width="3"/>
-            <!-- Lion Face Shield -->
-            <path d="M72,74 L128,74 L134,108 L116,134 L84,134 L66,108 Z" fill="url(#goldMane)" stroke="#471d00" stroke-width="3"/>
-            <!-- Glowing Eyes -->
-            <polygon points="78,94 92,98 82,104" fill="#fff7b2"/>
-            <polygon points="122,94 108,98 118,104" fill="#fff7b2"/>
-            <!-- Nose & Muzzle -->
-            <polygon points="92,110 108,110 100,120" fill="#471d00"/>
-            <path d="M86,126 Q100,134 114,126" stroke="#fff099" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+            <!-- Royal Crown -->
+            <path d="M72,48 L80,22 L96,38 L110,16 L124,38 L140,22 L148,48 Z" fill="url(#royalCrown)" stroke="#542300" stroke-width="3" stroke-linejoin="round"/>
+            <rect x="74" y="47" width="72" height="7" rx="3" fill="#ffd93b" stroke="#542300" stroke-width="2.5"/>
+
+            <!-- Spiked 3D Outer Mane -->
+            <polygon points="110,50 136,56 164,48 168,76 188,96 174,122 182,150 154,164 142,190 110,180 78,190 66,164 38,150 46,122 32,96 52,76 56,48 84,56"
+              fill="url(#maneOuter)" stroke="#471c00" stroke-width="4" stroke-linejoin="round"/>
+
+            <!-- Inner Sculpted Mane -->
+            <polygon points="110,58 134,64 156,82 162,112 152,142 132,166 110,174 88,166 68,142 58,112 64,82 86,64"
+              fill="url(#maneMid)" stroke="#692c00" stroke-width="3" stroke-linejoin="round"/>
+
+            <!-- Lion Ears -->
+            <path d="M68,74 Q58,56 80,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
+            <path d="M152,74 Q162,56 140,64 Z" fill="url(#faceGold)" stroke="#4d1f00" stroke-width="3"/>
+
+            <!-- Sculpted Brow & Face -->
+            <path d="M76,78 L110,72 L144,78 L148,112 L132,138 L110,148 L88,138 L72,112 Z"
+              fill="url(#faceGold)" stroke="#4a1d00" stroke-width="3.5" stroke-linejoin="round"/>
+
+            <!-- Brow Ridges -->
+            <path d="M80,93 L103,100 L96,105 L78,100 Z" fill="#542200"/>
+            <path d="M140,93 L117,100 L124,105 L142,100 Z" fill="#542200"/>
+
+            <!-- Fierce Glowing Eyes -->
+            <polygon points="82,99 101,103 88,108" fill="#ffffff"/>
+            <polygon points="138,99 119,103 132,108" fill="#ffffff"/>
+
+            <!-- Nose Bridge & Nose -->
+            <path d="M104,98 L116,98 L114,116 L106,116 Z" fill="#d97b00" opacity="0.6"/>
+            <polygon points="100,115 120,115 110,126" fill="#3d1700"/>
+
+            <!-- Cheeks & Jaw -->
+            <path d="M88,128 Q100,136 110,126 Q120,136 132,128" fill="none" stroke="#471c00" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M97,138 L123,138 L116,148 L104,148 Z" fill="#ffe985" stroke="#542200" stroke-width="2.5"/>
           </svg>
-          <div class="tap-tag" id="beastRankTag">3D CUB</div>
+          <div class="tap-tag">BEAST COIN</div>
         </div>
       </div>
     </div>
@@ -532,7 +585,7 @@
 
   <!-- SCREEN 2: UPGRADES -->
   <div class="screen" id="screen-upgrade">
-    <div class="section-title">🚀 3D Beast Upgrades</div>
+    <div class="section-title">🚀 Beast Coin Upgrades</div>
 
     <div class="item-card">
       <div class="item-left">
@@ -670,6 +723,7 @@
 
     let turboActive = false;
     let audioCtx = null;
+    let resetTimer = null;
 
     const ranks = [
       { name: "Cub", min: 0 },
@@ -679,12 +733,11 @@
       { name: "Emperor", min: 50000 }
     ];
 
-    // Calculate Offline Auto-Miner Earnings
     (function checkOfflineEarnings() {
       if (data.minerRate > 0 && data.lastActive) {
         const diffSec = Math.floor((Date.now() - data.lastActive) / 1000);
         if (diffSec > 15) {
-          const cappedSec = Math.min(diffSec, 10800); // Max 3 hours offline
+          const cappedSec = Math.min(diffSec, 10800);
           const earned = cappedSec * data.minerRate;
           data.coins += earned;
           document.getElementById('offlineEarnedText').innerText = `+${earned.toLocaleString()} 💰`;
@@ -698,21 +751,22 @@
       save(); render();
     }
 
-    function playCoinSound() {
+    function playSoftPopSound() {
       if (!data.soundOn) return;
       try {
         if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(680, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(1150, audioCtx.currentTime + 0.08);
-        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(980, audioCtx.currentTime + 0.065);
+        gain.gain.setValueAtTime(0.11, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.07);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
         osc.start();
-        osc.stop(audioCtx.currentTime + 0.09);
+        osc.stop(audioCtx.currentTime + 0.07);
       } catch (e) {}
     }
 
@@ -755,7 +809,6 @@
         if (data.coins >= r.min) rName = r.name;
       }
       document.getElementById('rankPill').innerText = `Rank: ${rName}`;
-      document.getElementById('beastRankTag').innerText = `3D ${rName.toUpperCase()}`;
 
       document.getElementById('energyBoostCount').innerText = `${data.energyBoosts}/2`;
       document.getElementById('turboBoostCount').innerText = `${data.turboBoosts}/2`;
@@ -793,15 +846,25 @@
       }
     }
 
-    // 3D Tilt + Tap Logic
+    // Ultra-Soft Multi-Touch & Spring Bounce Handler
     const beastBtn = document.getElementById('beastBtn');
-    beastBtn.addEventListener('pointerdown', (e) => {
+    const orbHalo = document.getElementById('orbHalo');
+
+    function handleTap(clientX, clientY) {
       const rect = beastBtn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      const rotateY = (x / (rect.width / 2)) * 16;
-      const rotateX = -(y / (rect.height / 2)) * 16;
-      beastBtn.style.transform = `scale(0.93) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const x = clientX - rect.left - rect.width / 2;
+      const y = clientY - rect.top - rect.height / 2;
+      const rotateY = (x / (rect.width / 2)) * 18;
+      const rotateX = -(y / (rect.height / 2)) * 18;
+
+      beastBtn.classList.add('tapped');
+      beastBtn.style.transform = `scale(0.90) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        beastBtn.classList.remove('tapped');
+        beastBtn.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+      }, 95);
 
       const gain = turboActive ? data.tapPower * 2 : data.tapPower;
       if (data.energy >= data.tapPower) {
@@ -809,36 +872,48 @@
         data.energy -= data.tapPower;
         data.totalTaps += 1;
 
-        playCoinSound();
-        spawnEffects(e.clientX, e.clientY, `+${gain}`);
+        playSoftPopSound();
+        spawnEffects(clientX, clientY, `+${gain}`);
 
         if (window.Telegram?.WebApp?.HapticFeedback) {
-          window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('soft');
         }
         save();
         render();
       } else {
         toast("Energy low! Use Free Full Energy boost.", "#c0392b");
       }
-    });
+    }
 
-    beastBtn.addEventListener('pointerup', () => {
-      beastBtn.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-    });
-    beastBtn.addEventListener('pointerleave', () => {
-      beastBtn.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+    beastBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        handleTap(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+      }
+    }, { passive: false });
+
+    beastBtn.addEventListener('mousedown', (e) => {
+      handleTap(e.clientX, e.clientY);
     });
 
     function spawnEffects(x, y, text) {
+      // Soft Ripple Wave
+      const ripple = document.createElement('div');
+      ripple.className = 'tap-ripple';
+      orbHalo.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 450);
+
+      // Floating Number
       const el = document.createElement('div');
       el.className = 'float-plus';
       el.innerText = text;
       el.style.left = (x - 16) + 'px';
-      el.style.top = (y - 28) + 'px';
+      el.style.top = (y - 30) + 'px';
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 800);
+      setTimeout(() => el.remove(), 750);
 
-      for (let i = 0; i < 5; i++) {
+      // Golden Sparks
+      for (let i = 0; i < 4; i++) {
         const sp = document.createElement('div');
         sp.className = 'spark';
         sp.style.left = x + 'px';
@@ -848,7 +923,7 @@
         sp.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
         sp.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
         document.body.appendChild(sp);
-        setTimeout(() => sp.remove(), 550);
+        setTimeout(() => sp.remove(), 500);
       }
     }
 

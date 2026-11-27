@@ -540,12 +540,12 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.78);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 18px;
+      padding: 16px;
       z-index: 500;
     }
 
@@ -555,11 +555,11 @@
 
     .modal-card {
       width: 100%;
-      max-width: 380px;
+      max-width: 390px;
       background: linear-gradient(165deg, #2b1d07, #120c02);
       border: 1px solid rgba(255, 215, 64, 0.45);
       border-radius: 20px;
-      padding: 20px;
+      padding: 18px;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 193, 7, 0.2);
     }
@@ -568,14 +568,73 @@
       font-size: 18px;
       font-weight: 800;
       color: #ffe082;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .modal-desc {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #d8c79e;
-      margin-bottom: 16px;
-      line-height: 1.45;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    /* 7-Day Check-in Grid */
+    .checkin-days-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-bottom: 14px;
+    }
+
+    .day-box {
+      background: rgba(255, 215, 64, 0.08);
+      border: 1px solid rgba(255, 215, 64, 0.22);
+      border-radius: 12px;
+      padding: 8px 4px;
+      text-align: center;
+    }
+
+    .day-box.day-7 {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(255, 215, 64, 0.18), rgba(217, 130, 0, 0.22));
+      border-color: rgba(255, 215, 64, 0.45);
+    }
+
+    .day-box.today {
+      background: linear-gradient(145deg, rgba(255, 215, 64, 0.32), rgba(255, 143, 0, 0.28));
+      border: 1.5px solid #ffd54f;
+      box-shadow: 0 0 12px rgba(255, 213, 79, 0.35);
+    }
+
+    .day-box.claimed {
+      background: rgba(0, 200, 83, 0.16);
+      border-color: rgba(105, 240, 174, 0.45);
+    }
+
+    .day-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #cbb782;
+      margin-bottom: 3px;
+    }
+
+    .day-box.today .day-label {
+      color: #fff8e1;
+    }
+
+    .day-icon {
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .day-reward {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #ffd54f;
+    }
+
+    .day-box.claimed .day-reward {
+      color: #69f0ae;
     }
 
     .combo-grid {
@@ -636,7 +695,7 @@
             </svg>
           </div>
           <div class="card-title">Daily Check-in</div>
-          <div class="card-sub" id="checkinTimer">Ready</div>
+          <div class="card-sub" id="checkinTimer">Day 1</div>
         </div>
 
         <!-- Daily Combo -->
@@ -809,8 +868,8 @@
             </svg>
           </div>
           <div>
-            <div class="item-title">Daily Citrine Check-in</div>
-            <div class="item-reward">+250,000 Beast Coins</div>
+            <div class="item-title" id="questCheckinTitle">Daily Check-in (Day 1)</div>
+            <div class="item-reward" id="questCheckinReward">+10,000 Beast Coins</div>
           </div>
         </div>
         <button class="action-btn" onclick="openCheckinModal()">Open</button>
@@ -928,6 +987,7 @@
 
     const YT_URL = "https://youtube.com/@beastempire-x9w";
     const TG_URL = "https://t.me/beastempireofficial";
+    const CHECKIN_REWARDS = [10000, 20000, 40000, 80000, 160000, 320000, 640000];
 
     const defaultState = {
       coins: 0,
@@ -939,7 +999,8 @@
       pph: 1200,
       ytState: "open",
       tgState: "open",
-      lastCheckin: "",
+      checkinDay: 1,     // 1 to 7
+      lastCheckin: "",   // Date string of last claim
       lastCombo: "",
       miners: [
         { id: "m1", name: "Citrine Mine", lvl: 1, cost: 2000, profit: 600 },
@@ -950,6 +1011,9 @@
     };
 
     let state = Object.assign({}, defaultState, JSON.parse(localStorage.getItem("beast_citrine_v2") || "{}"));
+    if (!state.checkinDay || state.checkinDay < 1 || state.checkinDay > 7) {
+      state.checkinDay = 1;
+    }
 
     if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
       document.getElementById("playerName").textContent = tg.initDataUnsafe.user.first_name || "Emperor";
@@ -1025,17 +1089,57 @@
       }
     }
 
+    // 7-Day Doubling Daily Check-in System (10k -> 20k -> 40k -> 80k -> 160k -> 320k -> 640k -> Repeat)
     function openCheckinModal() {
       const today = new Date().toDateString();
-      const claimed = state.lastCheckin === today;
-      document.getElementById("modalTitle").textContent = "Daily Citrine Check-in";
-      document.getElementById("modalDesc").textContent = claimed
-        ? "You have already claimed today's royal bonus. Come back tomorrow!"
-        : "Claim your daily login bonus of 250,000 Beast Coins.";
+      const claimedToday = state.lastCheckin === today;
+      const currentDay = state.checkinDay; // 1..7
+      const currentReward = CHECKIN_REWARDS[currentDay - 1];
 
-      document.getElementById("modalBody").innerHTML = claimed
-        ? `<button class="action-btn done" style="width:100%;">Claimed Today</button>`
-        : `<button class="action-btn claim" style="width:100%;" onclick="claimDailyCheckin()">Claim +250,000 Coins</button>`;
+      document.getElementById("modalTitle").textContent = "7-Day Citrine Check-in";
+      document.getElementById("modalDesc").textContent = claimedToday
+        ? "Today's reward is claimed! Come back tomorrow to continue your 7-day cycle."
+        : `Day ${currentDay} Reward: +${formatNum(currentReward)} Beast Coins! (Repeats after Day 7)`;
+
+      const gridHtml = CHECKIN_REWARDS.map((amt, idx) => {
+        const dayNum = idx + 1;
+        let statusClass = "";
+        let icon = "💎";
+
+        if (!claimedToday) {
+          if (dayNum < currentDay) {
+            statusClass = "claimed";
+            icon = "✅";
+          } else if (dayNum === currentDay) {
+            statusClass = "today";
+            icon = "🔥";
+          }
+        } else {
+          // Already claimed today; state.checkinDay has already advanced to next day (or wrapped to 1 if Day 7 was just claimed)
+          const justCompletedDay = currentDay === 1 ? 7 : currentDay - 1;
+          if (dayNum <= justCompletedDay) {
+            statusClass = "claimed";
+            icon = "✅";
+          }
+        }
+
+        return `
+          <div class="day-box ${dayNum === 7 ? "day-7" : ""} ${statusClass}">
+            <div class="day-label">Day ${dayNum}</div>
+            <div class="day-icon">${icon}</div>
+            <div class="day-reward">+${formatNum(amt)}</div>
+          </div>
+        `;
+      }).join("");
+
+      const btnHtml = claimedToday
+        ? `<button class="action-btn done" style="width:100%;">Claimed Today (Next: Day ${currentDay})</button>`
+        : `<button class="action-btn claim" style="width:100%;" onclick="claimDailyCheckin()">Claim Day ${currentDay} (+${formatNum(currentReward)})</button>`;
+
+      document.getElementById("modalBody").innerHTML = `
+        <div class="checkin-days-grid">${gridHtml}</div>
+        ${btnHtml}
+      `;
 
       document.getElementById("modalBackdrop").classList.add("show");
     }
@@ -1043,11 +1147,18 @@
     function claimDailyCheckin() {
       const today = new Date().toDateString();
       if (state.lastCheckin !== today) {
+        const reward = CHECKIN_REWARDS[state.checkinDay - 1];
+        state.coins += reward;
         state.lastCheckin = today;
-        state.coins += 250000;
+        // Advance day 1 -> 2 -> ... -> 7 -> back to 1
+        state.checkinDay = state.checkinDay >= 7 ? 1 : state.checkinDay + 1;
+
+        if (tg && tg.HapticFeedback) {
+          tg.HapticFeedback.notificationOccurred("success");
+        }
         saveState();
         updateUI();
-        forceCloseModal();
+        openCheckinModal(); // Refresh modal to show green checkmark
       }
     }
 
@@ -1219,11 +1330,21 @@
         document.getElementById("tgDot").style.display = "none";
       }
 
+      // Daily Check-in Card & Quest Label Update
       const today = new Date().toDateString();
+      const currentReward = CHECKIN_REWARDS[state.checkinDay - 1];
       if (state.lastCheckin === today) {
         document.getElementById("checkinTimer").textContent = "Done";
         document.getElementById("checkinDot").style.display = "none";
+        document.getElementById("questCheckinTitle").textContent = `Daily Check-in (Next: Day ${state.checkinDay})`;
+        document.getElementById("questCheckinReward").textContent = "Claimed Today";
+      } else {
+        document.getElementById("checkinTimer").textContent = `Day ${state.checkinDay}`;
+        document.getElementById("checkinDot").style.display = "block";
+        document.getElementById("questCheckinTitle").textContent = `Daily Check-in (Day ${state.checkinDay})`;
+        document.getElementById("questCheckinReward").textContent = `+${formatNum(currentReward)} Beast Coins`;
       }
+
       if (state.lastCombo === today) {
         document.getElementById("comboDot").style.display = "none";
       }

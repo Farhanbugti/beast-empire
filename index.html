@@ -280,7 +280,7 @@
 
     .level-fill {
       height: 100%;
-      width: 20%;
+      width: 10%;
       background: linear-gradient(90deg, #b87308, #f5b727, #fff1a8);
       border-radius: 999px;
       box-shadow: 0 0 10px rgba(245, 183, 39, 0.6);
@@ -295,12 +295,12 @@
       justify-content: center;
       perspective: 900px;
       position: relative;
-      min-height: 215px;
+      min-height: 210px;
     }
 
     .citrine-coin-outer {
-      width: 220px;
-      height: 220px;
+      width: 216px;
+      height: 216px;
       border-radius: 50%;
       padding: 10px;
       background: linear-gradient(145deg, rgba(255, 236, 158, 0.35), rgba(145, 88, 6, 0.25));
@@ -358,14 +358,14 @@
     }
 
     .lion-emblem {
-      width: 142px;
-      height: 142px;
+      width: 138px;
+      height: 138px;
       filter: drop-shadow(0 6px 10px rgba(42, 20, 0, 0.65));
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Energy Bar */
+    /* Energy & Daily Tap Limit Bar */
     .energy-footer {
       display: flex;
       justify-content: space-between;
@@ -378,13 +378,25 @@
       backdrop-filter: blur(12px);
     }
 
+    .energy-col {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
     .energy-info {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-size: 13px;
       font-weight: 700;
       color: var(--citrine-light);
+    }
+
+    .daily-cap-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
     .boost-trigger {
@@ -395,13 +407,13 @@
       color: #1f1200;
       font-weight: 800;
       font-size: 12px;
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 10px;
       border: 1px solid #ffe484;
       cursor: pointer;
     }
 
-    /* Bottom Navigation Bar (5 Standard Tabs including Airdrop Medals) */
+    /* Standard Bottom Navigation Bar */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -449,7 +461,7 @@
       color: var(--citrine-light);
     }
 
-    /* Sub-pages & Cards */
+    /* Lists & Cards */
     .section-header {
       margin-bottom: 12px;
     }
@@ -464,6 +476,7 @@
     .section-header p {
       font-size: 12px;
       color: var(--text-muted);
+      line-height: 1.4;
     }
 
     .list-stack {
@@ -557,13 +570,14 @@
     }
 
     .tok-supply-label {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-muted);
+      letter-spacing: 0.4px;
     }
 
     .tok-supply-val {
       font-family: 'Cinzel', serif;
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 800;
       color: var(--citrine-light);
     }
@@ -582,6 +596,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 8px;
+      margin-bottom: 8px;
     }
 
     .tok-stat {
@@ -593,7 +608,7 @@
 
     .tok-stat strong {
       display: block;
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--citrine-gold);
     }
 
@@ -605,10 +620,19 @@
       margin-top: 2px;
     }
 
+    .tok-note {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      background: rgba(245, 183, 39, 0.08);
+      border-radius: 8px;
+      padding: 7px 9px;
+      line-height: 1.4;
+    }
+
     /* Floating Tap */
     .tap-float {
       position: fixed;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 800;
       color: #fff3b0;
       text-shadow: 0 2px 10px rgba(245, 183, 39, 0.8);
@@ -735,7 +759,7 @@
 
     <div class="profit-pill">
       <div>
-        <span class="profit-label">Profit per hour</span>
+        <span class="profit-label">Profit / hr (3h Max)</span>
         <span class="profit-value">+<span id="pphDisplay">0</span> / hr</span>
       </div>
     </div>
@@ -770,7 +794,7 @@
               <polyline points="2 12 12 17 22 12"></polyline>
             </svg>
           </div>
-          <span>Daily Combo</span>
+          <span>Treasury</span>
         </div>
 
         <div class="crystal-card" onclick="openVideoModal()">
@@ -794,7 +818,7 @@
       <div class="level-wrap">
         <div class="level-meta">
           <span id="levelName">Sovereign Cub</span>
-          <span>Level <span id="levelNum">1</span> / 8</span>
+          <span>Tier <span id="levelNum">1</span> / 8</span>
         </div>
         <div class="level-track">
           <div class="level-fill" id="levelFill"></div>
@@ -845,11 +869,14 @@
       </div>
 
       <div class="energy-footer">
-        <div class="energy-info">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd25a">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-          </svg>
-          <span><span id="energyVal">1000</span> / <span id="maxEnergyVal">1000</span></span>
+        <div class="energy-col">
+          <div class="energy-info">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#ffd25a">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <span><span id="energyVal">500</span> / <span id="maxEnergyVal">500</span></span>
+          </div>
+          <span class="daily-cap-label">Daily Tap Limit: <span id="dailyTapsLeft">5,000</span> left</span>
         </div>
         <button class="boost-trigger" onclick="switchTab('boosts')">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -864,16 +891,16 @@
     <section id="tab-miner" class="tab-view">
       <div class="section-header">
         <h2>Citrine Treasury</h2>
-        <p>Upgrade assets to earn passive Beast Coins every hour.</p>
+        <p>Invest Beast Coins to unlock passive hourly yield (up to 3h offline).</p>
       </div>
       <div class="list-stack" id="minerList"></div>
     </section>
 
-    <!-- TAB 3: EARN -->
+    <!-- TAB 3: EARN (QUESTS) -->
     <section id="tab-earn" class="tab-view">
       <div class="section-header">
         <h2>Imperial Quests</h2>
-        <p>Complete tasks and invite frens to unlock Airdrop Medals.</p>
+        <p>Complete official missions to fund upgrades and unlock Medals.</p>
       </div>
       <div class="list-stack" id="earnList"></div>
     </section>
@@ -881,8 +908,8 @@
     <!-- TAB 4: BOOSTS -->
     <section id="tab-boosts" class="tab-view">
       <div class="section-header">
-        <h2>Royal Boosters</h2>
-        <p>Recharge energy or amplify your tap yield.</p>
+        <h2>Energy & Tap Limits</h2>
+        <p>Upgrade your Energy Capacity and Tap Power to climb higher tiers.</p>
       </div>
       <div class="list-stack" id="boostList"></div>
     </section>
@@ -891,27 +918,29 @@
     <section id="tab-airdrop" class="tab-view">
       <div class="section-header">
         <h2>Airdrop & Medals 🏅</h2>
-        <p>Earn Imperial Medals through achievements to maximize your token allocation.</p>
+        <p>In-game Beast Coins & Medals determine your share of the $BEAST Airdrop.</p>
       </div>
 
-      <!-- Official Tokenomics Card -->
       <div class="tokenomics-card">
         <div class="tok-top">
           <div>
-            <span class="tok-supply-label">TOTAL TOKEN SUPPLY</span>
-            <div class="tok-supply-val">10,000,000,000 BEAST</div>
+            <span class="tok-supply-label">FIXED TOKEN SUPPLY</span>
+            <div class="tok-supply-val">10,000,000,000 $BEAST</div>
           </div>
           <div class="medal-counter-pill">🏅 <span id="medalCountLabel">0 / 6</span> Medals</div>
         </div>
         <div class="tok-grid">
           <div class="tok-stat">
             <strong>35% (3.5B)</strong>
-            <span>Total Community Airdrop Allocation</span>
+            <span>Total Community Airdrop Pool</span>
           </div>
           <div class="tok-stat">
             <strong>25% (2.5B)</strong>
             <span>Telegram Mini-App Medals & Achievements</span>
           </div>
+        </div>
+        <div class="tok-note">
+          💡 <strong>Managed Economy:</strong> Beast Coins are in-game progression points. Unlocking higher Tiers and Imperial Medals 🏅 secures your allocation from the 2.5B $BEAST Mini-App pool.
         </div>
       </div>
 
@@ -978,15 +1007,29 @@
   <div class="modal-backdrop" id="videoModal">
     <div class="modal-card">
       <div class="modal-top">
-        <h3>Official YouTube Reward</h3>
+        <h3>Official Video Code</h3>
         <button class="close-x" onclick="closeModals()">&times;</button>
       </div>
       <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5;">
-        Subscribe to the official Beast Empire YouTube channel and enter the secret video code to claim <strong>5,000,000 Beast Coins</strong>.
+        Watch our latest video on the official Beast Empire YouTube channel and enter the secret code to claim <strong>100,000 Beast Coins</strong>.
       </p>
-      <button class="lux-btn" style="width: 100%; margin-top: 12px;" onclick="openYouTubeChannel()">Open Beast Empire YouTube</button>
-      <input type="text" id="videoCodeInput" class="code-input" placeholder="Enter code (e.g. BEAST5M)" />
-      <button class="lux-btn" style="width: 100%; padding: 12px;" id="verifyVideoBtn" onclick="claimVideoReward()">Verify & Claim 5,000,000</button>
+      <button class="lux-btn" style="width: 100%; margin-top: 12px;" onclick="openYouTubeChannel()">Watch on YouTube</button>
+      <input type="text" id="videoCodeInput" class="code-input" placeholder="Enter secret video code" />
+      <button class="lux-btn" style="width: 100%; padding: 12px;" id="verifyVideoBtn" onclick="claimVideoReward()">Verify & Claim 100,000</button>
+    </div>
+  </div>
+
+  <!-- Offline Earnings Modal -->
+  <div class="modal-backdrop" id="offlineModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3>Treasury Offline Yield</h3>
+        <button class="close-x" onclick="closeModals()">&times;</button>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 14px;">
+        Your Citrine Treasury generated <strong style="color: var(--citrine-light);" id="offlineEarnedText">0</strong> Beast Coins while you were away (3-hour max cap).
+      </p>
+      <button class="lux-btn" style="width: 100%; padding: 12px;" onclick="closeModals()">Collect Yield</button>
     </div>
   </div>
 
@@ -999,96 +1042,160 @@
       tg.setBackgroundColor('#0b0804');
     }
 
+    const DAILY_TAP_LIMIT = 5000;
+    const MAX_ENERGY_CAP = 3500;
+    const MAX_TAP_LEVEL = 12;
+
     const RANKS = [
       { name: "Sovereign Cub", min: 0 },
-      { name: "Citrine Knight", min: 5000 },
-      { name: "Golden Baron", min: 25000 },
-      { name: "Amber Duke", min: 100000 },
-      { name: "Royal Viceroy", min: 500000 },
-      { name: "Crown Regent", min: 2500000 },
-      { name: "Grand Monarch", min: 10000000 },
-      { name: "Beast Emperor", min: 50000000 }
+      { name: "Citrine Knight", min: 10000 },
+      { name: "Golden Baron", min: 50000 },
+      { name: "Amber Duke", min: 250000 },
+      { name: "Royal Viceroy", min: 1000000 },
+      { name: "Crown Regent", min: 5000000 },
+      { name: "Grand Monarch", min: 25000000 },
+      { name: "Beast Emperor", min: 100000000 }
     ];
 
-    const CHECKIN_REWARDS = [5000, 15000, 35000, 75000, 150000, 350000, 1000000];
+    const CHECKIN_REWARDS = [2000, 5000, 12000, 25000, 50000, 100000, 250000];
 
-    let state = JSON.parse(localStorage.getItem('beast_empire_citrine_v4')) || {
-      coins: 1000,
-      energy: 1000,
-      maxEnergy: 1000,
+    let state = JSON.parse(localStorage.getItem('beast_empire_citrine_v5')) || {
+      coins: 500,
+      energy: 500,
+      maxEnergy: 500,
       tapPower: 1,
       pph: 0,
-      taps: 0,
+      totalTaps: 0,
+      dailyTapsUsed: 0,
+      lastActiveDate: new Date().toDateString(),
+      lastOnlineTs: Date.now(),
       checkinDay: 0,
       lastCheckinDate: "",
-      ytSubscribed: false,
+      questsDone: {},
+      frensCount: 0,
       videoClaimed: false,
       turboActiveUntil: 0,
       fullEnergyLeft: 3,
-      upgrades: { vault: 0, mine: 0, guild: 0, palace: 0 },
+      upgrades: { vault: 0, mine: 0, guild: 0, academy: 0, palace: 0 },
       claimedMedals: {}
     };
 
     const UPGRADE_ITEMS = [
-      { id: 'vault', title: 'Citrine Vault', baseCost: 500, basePph: 250 },
-      { id: 'mine', title: 'Amber Quarry', baseCost: 2000, basePph: 1100 },
-      { id: 'guild', title: 'Royal Trade Guild', baseCost: 10000, basePph: 5800 },
-      { id: 'palace', title: 'Imperial Citadel', baseCost: 50000, basePph: 32000 }
+      { id: 'vault', title: 'Citrine Vault', baseCost: 400, basePph: 180 },
+      { id: 'mine', title: 'Amber Quarry', baseCost: 1800, basePph: 750 },
+      { id: 'guild', title: 'Royal Trade Guild', baseCost: 8500, basePph: 3400 },
+      { id: 'academy', title: 'Sovereign Academy', baseCost: 35000, basePph: 14500 },
+      { id: 'palace', title: 'Imperial Citadel', baseCost: 150000, basePph: 62000 }
+    ];
+
+    const QUEST_ITEMS = [
+      {
+        id: 'yt_sub',
+        icon: '▶️',
+        title: 'Subscribe Beast Empire YouTube',
+        reward: 150000,
+        url: 'https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs'
+      },
+      {
+        id: 'yt_like',
+        icon: '🎬',
+        title: 'Watch & Like Official Trailer',
+        reward: 50000,
+        url: 'https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs'
+      },
+      {
+        id: 'tg_channel',
+        icon: '📢',
+        title: 'Join Official Announcements',
+        reward: 75000,
+        url: 'https://t.me/MyBeastEmpire_bot'
+      },
+      {
+        id: 'share_story',
+        icon: '👑',
+        title: 'Share Beast Empire Invite Link',
+        reward: 40000,
+        isInvite: true
+      }
     ];
 
     const MEDAL_ACHIEVEMENTS = [
       {
-        id: 'medal_tap',
+        id: 'medal_striker',
         icon: '🥉',
         title: 'Bronze Striker Medal',
-        desc: 'Complete 100 Taps in the Empire',
-        reward: 10000,
-        check: () => state.taps >= 100
+        desc: 'Complete 250 disciplined taps',
+        reward: 15000,
+        check: () => state.totalTaps >= 250
       },
       {
-        id: 'medal_yt',
+        id: 'medal_pioneer',
         icon: '🎬',
-        title: 'Pioneer Media Medal',
+        title: 'YouTube Pioneer Medal',
         desc: 'Subscribe to Beast Empire YouTube',
-        reward: 250000,
-        check: () => state.ytSubscribed
+        reward: 50000,
+        check: () => !!state.questsDone['yt_sub']
       },
       {
-        id: 'medal_checkin',
+        id: 'medal_streak',
         icon: '📅',
         title: 'Loyal Sovereign Medal',
-        desc: 'Complete your first Daily Check-in',
-        reward: 25000,
-        check: () => state.checkinDay >= 1
+        desc: 'Reach a 3-Day Check-in Streak',
+        reward: 40000,
+        check: () => state.checkinDay >= 3
       },
       {
-        id: 'medal_pph',
+        id: 'medal_tycoon',
         icon: '⛏️',
         title: 'Citrine Tycoon Medal',
-        desc: 'Reach 5,000+ Profit Per Hour',
+        desc: 'Reach 10,000+ Profit Per Hour',
         reward: 100000,
-        check: () => state.pph >= 5000
+        check: () => state.pph >= 10000
       },
       {
-        id: 'medal_wealth',
+        id: 'medal_baron',
         icon: '👑',
         title: 'Golden Baron Medal',
-        desc: 'Hold 1,000,000+ Beast Coins',
-        reward: 200000,
-        check: () => state.coins >= 1000000
+        desc: 'Reach Tier 3 (Golden Baron Rank)',
+        reward: 150000,
+        check: () => state.coins >= 50000
       },
       {
         id: 'medal_architect',
         icon: '🏛️',
         title: 'Imperial Architect Medal',
-        desc: 'Upgrade any Treasury asset to Level 3',
-        reward: 150000,
-        check: () => Object.values(state.upgrades).some(lvl => lvl >= 3)
+        desc: 'Upgrade any Treasury asset to Level 4',
+        reward: 250000,
+        check: () => Object.values(state.upgrades).some(lvl => lvl >= 4)
       }
     ];
 
+    function checkDailyResetAndOffline() {
+      const today = new Date().toDateString();
+      if (state.lastActiveDate !== today) {
+        state.dailyTapsUsed = 0;
+        state.fullEnergyLeft = 3;
+        state.lastActiveDate = today;
+      }
+
+      // Offline PPH calculation (Capped at 3 hours = 10800 seconds)
+      const now = Date.now();
+      const elapsedSec = Math.min(10800, Math.floor((now - (state.lastOnlineTs || now)) / 1000));
+      if (elapsedSec > 60 && state.pph > 0) {
+        const earned = Math.floor((state.pph / 3600) * elapsedSec);
+        if (earned > 0) {
+          state.coins += earned;
+          document.getElementById('offlineEarnedText').textContent = '+' + formatNum(earned);
+          document.getElementById('offlineModal').classList.add('open');
+        }
+      }
+      state.lastOnlineTs = now;
+      saveState();
+    }
+
     function saveState() {
-      localStorage.setItem('beast_empire_citrine_v4', JSON.stringify(state));
+      state.lastOnlineTs = Date.now();
+      localStorage.setItem('beast_empire_citrine_v5', JSON.stringify(state));
     }
 
     function formatNum(n) {
@@ -1100,6 +1207,7 @@
       document.getElementById('pphDisplay').textContent = formatNum(state.pph);
       document.getElementById('energyVal').textContent = Math.floor(state.energy);
       document.getElementById('maxEnergyVal').textContent = state.maxEnergy;
+      document.getElementById('dailyTapsLeft').textContent = formatNum(Math.max(0, DAILY_TAP_LIMIT - state.dailyTapsUsed));
 
       if (tg?.initDataUnsafe?.user?.first_name) {
         document.getElementById('playerName').textContent = tg.initDataUnsafe.user.first_name.toUpperCase();
@@ -1119,7 +1227,7 @@
       document.getElementById('levelNum').textContent = rankIdx + 1;
 
       if (nextRank) {
-        const pct = Math.min(100, Math.max(4, ((state.coins - currentRank.min) / (nextRank.min - currentRank.min)) * 100));
+        const pct = Math.min(100, Math.max(5, ((state.coins - currentRank.min) / (nextRank.min - currentRank.min)) * 100));
         document.getElementById('levelFill').style.width = pct + '%';
       } else {
         document.getElementById('levelFill').style.width = '100%';
@@ -1138,7 +1246,11 @@
     const tapCoin = document.getElementById('tapCoin');
 
     function handleTap(e) {
-      if (state.energy < 1) return;
+      if (state.dailyTapsUsed >= DAILY_TAP_LIMIT) {
+        spawnFloatingText(e.clientX || 180, e.clientY || 300, "Daily Cap Reached");
+        return;
+      }
+      if (state.energy < state.tapPower) return;
 
       const rect = tapCoin.getBoundingClientRect();
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
@@ -1160,8 +1272,9 @@
       const gain = state.tapPower * (isTurbo ? 2 : 1);
 
       state.coins += gain;
-      state.taps += 1;
-      state.energy = Math.max(0, state.energy - 1);
+      state.totalTaps += 1;
+      state.dailyTapsUsed += 1;
+      state.energy = Math.max(0, state.energy - state.tapPower);
 
       spawnFloatingText(clientX, clientY, `+${gain}`);
       if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
@@ -1176,7 +1289,7 @@
       const el = document.createElement('div');
       el.className = 'tap-float';
       el.textContent = text;
-      el.style.left = `${x - 14}px`;
+      el.style.left = `${x - 16}px`;
       el.style.top = `${y - 24}px`;
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 850);
@@ -1194,7 +1307,7 @@
       container.innerHTML = '';
       UPGRADE_ITEMS.forEach(item => {
         const lvl = state.upgrades[item.id] || 0;
-        const cost = Math.floor(item.baseCost * Math.pow(1.6, lvl));
+        const cost = Math.floor(item.baseCost * Math.pow(1.65, lvl));
         const pphAdd = Math.floor(item.basePph * Math.pow(1.35, lvl));
 
         const row = document.createElement('div');
@@ -1226,53 +1339,51 @@
 
     function renderEarn() {
       const container = document.getElementById('earnList');
-      container.innerHTML = `
-        <div class="lux-row">
+      container.innerHTML = '';
+      QUEST_ITEMS.forEach(q => {
+        const done = !!state.questsDone[q.id];
+        const row = document.createElement('div');
+        row.className = 'lux-row';
+        row.innerHTML = `
           <div class="lux-row-left">
-            <div class="lux-badge">▶️</div>
+            <div class="lux-badge">${q.icon}</div>
             <div>
-              <div class="lux-title">Subscribe Beast Empire YouTube</div>
-              <div class="lux-sub">+5,000,000 Beast Coins</div>
+              <div class="lux-title">${q.title}</div>
+              <div class="lux-sub">+${formatNum(q.reward)} Beast Coins</div>
             </div>
           </div>
-          <button class="lux-btn" ${state.ytSubscribed ? 'disabled' : ''} onclick="completeYouTubeTask()">
-            ${state.ytSubscribed ? 'Claimed' : 'Subscribe'}
+          <button class="lux-btn" ${done ? 'disabled' : ''} onclick="runQuest('${q.id}')">
+            ${done ? 'Completed' : 'Start'}
           </button>
-        </div>
-
-        <div class="lux-row">
-          <div class="lux-row-left">
-            <div class="lux-badge">🤝</div>
-            <div>
-              <div class="lux-title">Invite Frens to Empire</div>
-              <div class="lux-sub">+25,000 Coins per Fren</div>
-            </div>
-          </div>
-          <button class="lux-btn" onclick="copyInviteLink()">Copy Link</button>
-        </div>
-      `;
+        `;
+        container.appendChild(row);
+      });
     }
 
-    function openYouTubeChannel() {
-      window.open('https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs', '_blank');
-    }
+    function runQuest(id) {
+      const q = QUEST_ITEMS.find(item => item.id === id);
+      if (!q || state.questsDone[id]) return;
 
-    function completeYouTubeTask() {
-      openYouTubeChannel();
-      if (!state.ytSubscribed) {
-        setTimeout(() => {
-          state.ytSubscribed = true;
-          state.coins += 5000000;
-          saveState();
-          updateUI();
-        }, 2500);
+      if (q.isInvite) {
+        copyInviteLink();
+      } else if (q.url) {
+        window.open(q.url, '_blank');
       }
+
+      setTimeout(() => {
+        state.questsDone[id] = true;
+        state.coins += q.reward;
+        saveState();
+        updateUI();
+      }, 2000);
     }
 
     function renderBoosts() {
       const container = document.getElementById('boostList');
-      const tapUpgradeCost = state.tapPower * 2500;
-      const energyUpgradeCost = state.maxEnergy * 3;
+      const tapUpgradeCost = Math.floor(1500 * Math.pow(2.1, state.tapPower - 1));
+      const energyUpgradeCost = Math.floor(1200 * Math.pow(1.9, (state.maxEnergy - 500) / 250));
+      const isMaxTap = state.tapPower >= MAX_TAP_LEVEL;
+      const isMaxEnergy = state.maxEnergy >= MAX_ENERGY_CAP;
 
       container.innerHTML = `
         <div class="lux-row">
@@ -1280,18 +1391,18 @@
             <div class="lux-badge">⚡</div>
             <div>
               <div class="lux-title">Full Energy Recharge</div>
-              <div class="lux-sub">${state.fullEnergyLeft} / 3 Available Today</div>
+              <div class="lux-sub">${state.fullEnergyLeft} / 3 Daily Recharges</div>
             </div>
           </div>
-          <button class="lux-btn" ${state.fullEnergyLeft <= 0 ? 'disabled' : ''} onclick="useFullEnergy()">Free</button>
+          <button class="lux-btn" ${state.fullEnergyLeft <= 0 ? 'disabled' : ''} onclick="useFullEnergy()">Refill</button>
         </div>
 
         <div class="lux-row">
           <div class="lux-row-left">
             <div class="lux-badge">🔥</div>
             <div>
-              <div class="lux-title">2x Citrine Turbo (30s)</div>
-              <div class="lux-sub">Double coins per tap</div>
+              <div class="lux-title">2x Citrine Surge (20s)</div>
+              <div class="lux-sub">Double yield within energy limit</div>
             </div>
           </div>
           <button class="lux-btn" onclick="activateTurbo()">Activate</button>
@@ -1301,12 +1412,12 @@
           <div class="lux-row-left">
             <div class="lux-badge">👑</div>
             <div>
-              <div class="lux-title">Multitap (Level ${state.tapPower})</div>
-              <div class="lux-sub">+1 Coin per tap</div>
+              <div class="lux-title">Multitap (Lvl ${state.tapPower} / ${MAX_TAP_LEVEL})</div>
+              <div class="lux-sub">+1 Coin & Energy per tap</div>
             </div>
           </div>
-          <button class="lux-btn" ${state.coins < tapUpgradeCost ? 'disabled' : ''} onclick="upgradeTap(${tapUpgradeCost})">
-            ${formatNum(tapUpgradeCost)}
+          <button class="lux-btn" ${(isMaxTap || state.coins < tapUpgradeCost) ? 'disabled' : ''} onclick="upgradeTap(${tapUpgradeCost})">
+            ${isMaxTap ? 'MAX' : formatNum(tapUpgradeCost)}
           </button>
         </div>
 
@@ -1314,12 +1425,12 @@
           <div class="lux-row-left">
             <div class="lux-badge">🔋</div>
             <div>
-              <div class="lux-title">Energy Reserve (${state.maxEnergy})</div>
-              <div class="lux-sub">+500 Max Energy</div>
+              <div class="lux-title">Energy Limit (${state.maxEnergy} / ${MAX_ENERGY_CAP})</div>
+              <div class="lux-sub">+250 Max Energy Capacity</div>
             </div>
           </div>
-          <button class="lux-btn" ${state.coins < energyUpgradeCost ? 'disabled' : ''} onclick="upgradeEnergy(${energyUpgradeCost})">
-            ${formatNum(energyUpgradeCost)}
+          <button class="lux-btn" ${(isMaxEnergy || state.coins < energyUpgradeCost) ? 'disabled' : ''} onclick="upgradeEnergy(${energyUpgradeCost})">
+            ${isMaxEnergy ? 'MAX' : formatNum(energyUpgradeCost)}
           </button>
         </div>
       `;
@@ -1335,13 +1446,13 @@
     }
 
     function activateTurbo() {
-      state.turboActiveUntil = Date.now() + 30000;
+      state.turboActiveUntil = Date.now() + 20000;
       saveState();
       switchTab('empire');
     }
 
     function upgradeTap(cost) {
-      if (state.coins < cost) return;
+      if (state.tapPower >= MAX_TAP_LEVEL || state.coins < cost) return;
       state.coins -= cost;
       state.tapPower += 1;
       saveState();
@@ -1349,9 +1460,9 @@
     }
 
     function upgradeEnergy(cost) {
-      if (state.coins < cost) return;
+      if (state.maxEnergy >= MAX_ENERGY_CAP || state.coins < cost) return;
       state.coins -= cost;
-      state.maxEnergy += 500;
+      state.maxEnergy = Math.min(MAX_ENERGY_CAP, state.maxEnergy + 250);
       state.energy = state.maxEnergy;
       saveState();
       updateUI();
@@ -1432,11 +1543,15 @@
       document.getElementById('videoModal').classList.add('open');
     }
 
+    function openYouTubeChannel() {
+      window.open('https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs', '_blank');
+    }
+
     function claimVideoReward() {
       if (state.videoClaimed) return;
       const val = document.getElementById('videoCodeInput').value.trim().toUpperCase();
       if (val.length >= 4) {
-        state.coins += 5000000;
+        state.coins += 100000;
         state.videoClaimed = true;
         saveState();
         updateUI();
@@ -1454,9 +1569,10 @@
       alert("Invite link copied: " + link);
     }
 
+    /* Controlled Energy Regen (+1/sec) & Passive PPH Loop */
     setInterval(() => {
       if (state.energy < state.maxEnergy) {
-        state.energy = Math.min(state.maxEnergy, state.energy + 2);
+        state.energy = Math.min(state.maxEnergy, state.energy + 1);
       }
       if (state.pph > 0) {
         state.coins += state.pph / 3600;
@@ -1465,6 +1581,7 @@
       updateUI();
     }, 1000);
 
+    checkDailyResetAndOffline();
     updateUI();
   </script>
 </body>

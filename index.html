@@ -3,1196 +3,1358 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Beast Empire — Citrine Sovereign</title>
+  <title>Beast Empire</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-charcoal: #080705;
-      --bg-amber-dark: #141007;
-      --card-surface: linear-gradient(160deg, rgba(40, 31, 12, 0.9), rgba(14, 11, 6, 0.95));
-      --citrine-border: rgba(255, 204, 41, 0.34);
-      --citrine-bright: rgba(255, 226, 102, 0.72);
-      --citrine-core: #ffcc29;
-      --citrine-glow: #ffe680;
-      --citrine-deep: #9e6b06;
-      --text-ivory: #fbf7eb;
-      --text-sand: #bfb291;
-      --emerald: #34d399;
+      --bg-deep: #0b0804;
+      --bg-amber: #1c1306;
+      --citrine-light: #fff3b0;
+      --citrine-gold: #f5b727;
+      --citrine-deep: #b87308;
+      --citrine-glow: rgba(245, 183, 39, 0.35);
+      --glass-surface: rgba(34, 24, 10, 0.62);
+      --glass-highlight: rgba(255, 232, 150, 0.18);
+      --glass-border: rgba(245, 183, 39, 0.28);
+      --text-main: #fffdf7;
+      --text-muted: #cbb894;
+      --nav-height: 68px;
     }
 
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
       user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text-ivory);
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255, 204, 41, 0.2), transparent 46%),
-        radial-gradient(circle at 14% 78%, rgba(245, 158, 11, 0.11), transparent 45%),
-        radial-gradient(circle at 86% 74%, rgba(255, 230, 128, 0.09), transparent 45%),
-        linear-gradient(180deg, var(--bg-amber-dark) 0%, var(--bg-charcoal) 100%);
-      display: flex;
-      justify-content: center;
-      overflow-x: hidden;
-    }
-
-    .frame {
-      width: 100%;
-      max-width: 440px;
-      min-height: 100vh;
-      padding: 15px 15px 98px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      position: relative;
-    }
-
-    .citrine-card {
-      background: var(--card-surface);
-      border: 1px solid var(--citrine-border);
-      border-radius: 16px;
-      box-shadow:
-        0 14px 34px rgba(0, 0, 0, 0.65),
-        inset 0 1px 0 rgba(255, 236, 153, 0.18);
-      position: relative;
-    }
-
-    .top-header {
-      padding: 12px 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .member-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .gem-crest {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: rgba(255, 204, 41, 0.08);
-      border: 1px solid var(--citrine-bright);
-      display: grid;
-      place-items: center;
-      box-shadow: 0 0 18px rgba(255, 204, 41, 0.16);
-    }
-
-    .member-title {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.25px;
-    }
-
-    .member-rank {
-      font-size: 11px;
-      color: var(--citrine-glow);
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    .subtle-btn {
-      background: rgba(255, 204, 41, 0.08);
-      border: 1px solid var(--citrine-border);
-      color: var(--text-ivory);
-      border-radius: 11px;
-      padding: 8px 12px;
-      font-size: 12px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .stats-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 9px;
-    }
-
-    .stat-panel {
-      padding: 11px 8px;
-      text-align: center;
-      border-radius: 14px;
-    }
-
-    .stat-caption {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-sand);
-      font-weight: 600;
-    }
-
-    .stat-figure {
-      margin-top: 4px;
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--citrine-glow);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .balance-box {
-      padding: 15px 16px;
-      text-align: center;
-    }
-
-    .balance-kicker {
-      font-size: 10px;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: var(--citrine-core);
-      font-weight: 700;
-    }
-
-    .balance-total {
-      margin-top: 5px;
-      font-size: 31px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      font-variant-numeric: tabular-nums;
-      background: linear-gradient(180deg, #ffffff 0%, var(--citrine-glow) 42%, var(--citrine-core) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 16px rgba(255, 204, 41, 0.25));
-    }
-
-    .tap-zone {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 0;
-      perspective: 680px;
-    }
-
-    /* Translucent Citrine Tap Disc with Directional Lean */
-    .citrine-tap-disc {
-      width: 244px;
-      height: 244px;
-      border-radius: 50%;
-      padding: 12px;
-      background:
-        radial-gradient(circle at 32% 24%, rgba(255, 245, 190, 0.26), rgba(255, 204, 41, 0.08) 54%, rgba(15, 11, 5, 0.72) 86%);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1.5px solid var(--citrine-bright);
-      box-shadow:
-        0 20px 44px rgba(0, 0, 0, 0.7),
-        0 0 38px rgba(255, 204, 41, 0.22),
-        inset 0 1.5px 10px rgba(255, 240, 170, 0.3);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transform-origin: center center;
-      transition:
-        transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.16s ease,
-        border-color 0.16s ease;
-      touch-action: manipulation;
-      will-change: transform;
-    }
-
-    .citrine-tap-disc.pressed {
-      border-color: var(--citrine-glow);
-      box-shadow:
-        0 24px 50px rgba(0, 0, 0, 0.78),
-        0 0 50px rgba(255, 214, 70, 0.35),
-        inset 0 2px 12px rgba(255, 245, 190, 0.44);
-    }
-
-    .gain-float {
-      position: fixed;
-      pointer-events: none;
-      font-size: 21px;
-      font-weight: 900;
-      color: var(--citrine-glow);
-      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.85);
-      animation: floatUpCitrine 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      z-index: 50;
-    }
-
-    @keyframes floatUpCitrine {
-      0% {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(0.95);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -76px) scale(1.12);
-      }
-    }
-
-    .stamina-box {
-      width: 100%;
-      padding: 13px 15px;
-      margin-top: 10px;
-    }
-
-    .stamina-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-sand);
-      margin-bottom: 8px;
-    }
-
-    .stamina-row strong {
-      color: var(--citrine-glow);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .meter-rail {
-      width: 100%;
-      height: 11px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 204, 41, 0.22);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 50% 18%, #2e1e08 0%, #140d04 52%, #080502 100%);
+      color: var(--text-main);
+      height: 100dvh;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
     }
 
-    .meter-fill {
-      height: 100%;
-      width: 100%;
+    /* Ambient Luxury Citrine Shimmer */
+    body::before {
+      content: "";
+      position: absolute;
+      top: -15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(245, 183, 39, 0.16) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header Bar */
+    .top-bar {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px 8px;
+    }
+
+    .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 6px 12px 6px 8px;
       border-radius: 999px;
-      background: linear-gradient(90deg, var(--citrine-deep), var(--citrine-core), var(--citrine-glow));
-      transition: width 0.18s ease;
+      box-shadow: inset 0 1px 0 var(--glass-highlight), 0 4px 14px rgba(0,0,0,0.4);
     }
 
-    .boost-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 9px;
-      margin-top: 11px;
+    .brand-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffe27a, #c77d0a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      font-size: 13px;
+      color: #1f1302;
+      box-shadow: 0 0 10px rgba(245, 183, 39, 0.5);
     }
 
-    .amber-btn {
-      background: rgba(255, 204, 41, 0.08);
-      border: 1px solid var(--citrine-border);
-      color: var(--text-ivory);
-      border-radius: 12px;
-      padding: 10px;
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: 'Cinzel', serif;
       font-size: 12px;
       font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.12s ease, background 0.15s ease;
+      letter-spacing: 0.6px;
+      color: var(--citrine-light);
     }
 
-    .amber-btn:active:not(:disabled) {
-      transform: scale(0.96);
-      background: rgba(255, 204, 41, 0.16);
+    .brand-rank {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    .amber-btn:disabled {
-      opacity: 0.38;
-      cursor: not-allowed;
+    .profit-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(180deg, rgba(46, 32, 12, 0.78), rgba(24, 16, 6, 0.85));
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      padding: 6px 12px;
+      border-radius: 14px;
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
     }
 
-    .panel-view {
+    .profit-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: block;
+    }
+
+    .profit-value {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--citrine-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Main Content Container */
+    .main-stage {
+      position: relative;
+      z-index: 5;
+      flex: 1;
+      overflow-y: auto;
+      padding: 6px 16px calc(var(--nav-height) + 18px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-view {
       display: none;
       flex-direction: column;
-      gap: 11px;
+      height: 100%;
     }
 
-    .panel-view.active {
+    .tab-view.active {
       display: flex;
     }
 
-    .task-row {
-      padding: 14px 15px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .task-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .gem-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      flex-shrink: 0;
-      background: rgba(255, 204, 41, 0.06);
-      border: 1px solid var(--citrine-border);
+    /* Quick Action Cards (Daily Check-in, Combo, Video Code) */
+    .quick-grid {
       display: grid;
-      place-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
-    .task-title {
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .task-sub {
-      font-size: 12px;
-      color: var(--text-sand);
-      margin-top: 2px;
-    }
-
-    .task-reward {
-      font-size: 12px;
-      font-weight: 800;
-      color: var(--citrine-glow);
-      margin-top: 4px;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .citrine-cta {
-      background: linear-gradient(145deg, var(--citrine-glow), var(--citrine-core) 58%, var(--citrine-deep));
-      color: #140e02;
-      border: none;
-      border-radius: 12px;
-      padding: 9px 14px;
-      font-size: 12px;
-      font-weight: 800;
+    .crystal-card {
+      background: linear-gradient(160deg, rgba(54, 38, 14, 0.68) 0%, rgba(22, 15, 5, 0.82) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 9px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       cursor: pointer;
-      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      box-shadow: inset 0 1px 1px rgba(255, 243, 176, 0.2), 0 6px 16px rgba(0, 0, 0, 0.35);
+      transition: transform 0.16s ease, border-color 0.2s ease;
+    }
+
+    .crystal-card:active {
+      transform: scale(0.96);
+    }
+
+    .crystal-card .dot {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffd15c;
+      box-shadow: 0 0 8px #ffd15c;
+    }
+
+    .crystal-icon-box {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, rgba(255, 224, 115, 0.24), rgba(184, 115, 8, 0.18));
+      border: 1px solid rgba(255, 224, 115, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 5px;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    }
+
+    .crystal-card span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: 0.1px;
+    }
+
+    /* Balance Counter */
+    .balance-section {
+      text-align: center;
+      margin: 4px 0 10px;
+    }
+
+    .balance-row {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 6px 18px rgba(255, 204, 41, 0.22);
-      transition: transform 0.12s ease;
+      gap: 10px;
+    }
+
+    .mini-gem {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff6c2, #f5b727 55%, #9c5c00 100%);
+      border: 1.5px solid #ffe680;
+      box-shadow: 0 0 14px rgba(245, 183, 39, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      font-size: 14px;
+      color: #2b1900;
+    }
+
+    .balance-amount {
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(180deg, #ffffff 15%, #ffe082 65%, #e09616 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 10px rgba(245, 183, 39, 0.25));
+    }
+
+    /* Level Progress */
+    .level-wrap {
+      margin: 0 auto 12px;
+      width: 100%;
+      max-width: 310px;
+    }
+
+    .level-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .level-track {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 183, 39, 0.2);
+    }
+
+    .level-fill {
+      height: 100%;
+      width: 20%;
+      background: linear-gradient(90deg, #b87308, #f5b727, #fff1a8);
+      border-radius: 999px;
+      box-shadow: 0 0 10px rgba(245, 183, 39, 0.6);
+      transition: width 0.3s ease;
+    }
+
+    /* Center Citrine Lion Tap Coin */
+    .tap-arena {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 900px;
+      position: relative;
+      min-height: 225px;
+    }
+
+    .citrine-coin-outer {
+      width: 226px;
+      height: 226px;
+      border-radius: 50%;
+      padding: 10px;
+      background: linear-gradient(145deg, rgba(255, 236, 158, 0.35), rgba(145, 88, 6, 0.25));
+      border: 1.5px solid rgba(255, 224, 120, 0.45);
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.65),
+        0 0 38px rgba(245, 183, 39, 0.22),
+        inset 0 2px 6px rgba(255, 250, 210, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.14s ease;
+      position: relative;
+    }
+
+    .citrine-coin-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255, 250, 214, 0.55) 0%, rgba(255, 210, 90, 0.22) 28%, transparent 55%),
+        radial-gradient(circle at 50% 55%, #f3b229 0%, #c47a0a 58%, #6e3f02 100%);
+      border: 2px solid rgba(255, 232, 145, 0.65);
+      box-shadow:
+        inset 0 4px 14px rgba(255, 248, 200, 0.55),
+        inset 0 -10px 20px rgba(58, 30, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Faceted Crystal Ring inside Coin */
+    .citrine-coin-inner::before {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 242, 180, 0.42);
+      box-shadow: inset 0 0 12px rgba(255, 220, 110, 0.25);
+      pointer-events: none;
+    }
+
+    /* Subtle Glass Reflection Sweep */
+    .citrine-coin-inner::after {
+      content: "";
+      position: absolute;
+      top: -35%;
+      left: -25%;
+      width: 150%;
+      height: 75%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.02) 100%);
+      transform: rotate(-18deg);
+      pointer-events: none;
+    }
+
+    .lion-emblem {
+      width: 146px;
+      height: 146px;
+      filter: drop-shadow(0 6px 10px rgba(42, 20, 0, 0.65));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Bottom Energy & Boost Strip */
+    .energy-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+    }
+
+    .energy-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--citrine-light);
+    }
+
+    .boost-trigger {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #f5b727, #c27808);
+      color: #1f1200;
+      font-weight: 800;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px solid #ffe484;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(245, 183, 39, 0.35);
+    }
+
+    /* Standard Luxurious Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(28, 20, 8, 0.88) 0%, rgba(14, 10, 4, 0.96) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(245, 183, 39, 0.28);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 236, 160, 0.14);
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      align-items: center;
+      padding: 4px 8px env(safe-area-inset-bottom, 4px);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 54px;
+      border-radius: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .nav-item svg {
+      width: 21px;
+      height: 21px;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .nav-item span {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .nav-item.active {
+      background: linear-gradient(180deg, rgba(245, 183, 39, 0.22) 0%, rgba(184, 115, 8, 0.08) 100%);
+      border: 1px solid rgba(245, 183, 39, 0.35);
+      color: var(--citrine-light);
+      box-shadow: inset 0 1px 0 rgba(255, 243, 176, 0.25);
+    }
+
+    .nav-item.active svg {
+      transform: translateY(-1px);
+      filter: drop-shadow(0 0 6px rgba(245, 183, 39, 0.6));
+    }
+
+    /* Secondary Views (Miner, Earn, Frens, Boosts) */
+    .section-header {
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--citrine-light);
+      margin-bottom: 3px;
+    }
+
+    .section-header p {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-bottom: 16px;
+    }
+
+    .lux-row {
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: 15px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+      box-shadow: inset 0 1px 0 var(--glass-highlight);
+    }
+
+    .lux-row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .lux-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(245, 183, 39, 0.25), rgba(140, 82, 4, 0.25));
+      border: 1px solid rgba(255, 224, 120, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lux-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .lux-sub {
+      font-size: 11.5px;
+      color: var(--citrine-gold);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .lux-btn {
+      background: linear-gradient(135deg, #f7be38, #bd7406);
+      color: #1c1000;
+      border: 1px solid #ffe68a;
+      padding: 8px 13px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
       white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(245, 183, 39, 0.25);
     }
 
-    .citrine-cta:active:not(:disabled) {
-      transform: scale(0.96);
-    }
-
-    .citrine-cta:disabled,
-    .citrine-cta.claimed {
-      background: rgba(52, 211, 153, 0.14);
-      color: var(--emerald);
-      border: 1px solid rgba(52, 211, 153, 0.36);
+    .lux-btn:disabled {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: var(--text-muted);
       box-shadow: none;
       cursor: default;
     }
 
-    .combo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 9px;
-    }
-
-    .combo-slot {
-      padding: 12px 8px;
-      text-align: center;
-      border-radius: 14px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-      transition: transform 0.14s ease, border-color 0.15s ease;
-    }
-
-    .combo-slot:active {
-      transform: scale(0.96);
-    }
-
-    .combo-slot.picked {
-      border-color: var(--citrine-bright);
-      background: linear-gradient(160deg, rgba(255, 204, 41, 0.22), rgba(22, 18, 8, 0.96));
-    }
-
-    /* Standard Mobile Task Bar */
-    .bottom-dock {
+    /* Floating Tap Number */
+    .tap-float {
       position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff3b0;
+      text-shadow: 0 2px 10px rgba(245, 183, 39, 0.8);
+      pointer-events: none;
+      z-index: 100;
+      animation: floatUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(0.95); }
+      100% { opacity: 0; transform: translateY(-75px) scale(1.15); }
+    }
+
+    /* Modal Sheet */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 3, 1, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 90;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
       width: 100%;
-      max-width: 440px;
-      min-height: 66px;
-      background: rgba(11, 9, 6, 0.96);
-      backdrop-filter: blur(18px);
-      border-top: 1px solid var(--citrine-border);
+      max-width: 460px;
+      background: linear-gradient(180deg, #241908 0%, #110b03 100%);
+      border-top: 1px solid rgba(245, 183, 39, 0.45);
+      border-radius: 24px 24px 0 0;
+      padding: 20px 18px 28px;
+      box-shadow: 0 -10px 35px rgba(0,0,0,0.7);
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .modal-top h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 17px;
+      color: var(--citrine-light);
+    }
+
+    .close-x {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .checkin-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      padding: 10px 8px 14px;
-      z-index: 40;
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
-    .dock-btn {
-      background: none;
-      border: none;
-      color: var(--text-sand);
-      font-size: 12px;
-      font-weight: 700;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px 2px;
-      transition: color 0.15s ease;
-    }
-
-    .dock-btn.active {
-      color: var(--citrine-glow);
-    }
-
-    .toast-note {
-      position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(20, 16, 8, 0.96);
-      border: 1px solid var(--citrine-bright);
-      color: var(--text-ivory);
-      padding: 10px 18px;
+    .day-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 183, 39, 0.22);
       border-radius: 12px;
-      font-size: 12px;
-      font-weight: 600;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
-      z-index: 70;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
+      padding: 8px 4px;
+      text-align: center;
     }
 
-    .toast-note.show {
-      opacity: 1;
+    .day-box.today {
+      background: linear-gradient(160deg, rgba(245, 183, 39, 0.3), rgba(184, 115, 8, 0.2));
+      border-color: #ffd56b;
+    }
+
+    .day-box.claimed {
+      opacity: 0.5;
+    }
+
+    .day-box small {
+      display: block;
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .day-box strong {
+      display: block;
+      font-size: 11px;
+      color: var(--citrine-light);
+      margin-top: 3px;
+    }
+
+    .code-input {
+      width: 100%;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 12px;
+      color: #fff;
+      font-size: 14px;
+      margin: 10px 0 14px;
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <div id="toast" class="toast-note"></div>
 
-  <!-- Translucent Citrine Gemstone Gradients -->
-  <svg width="0" height="0" style="position:absolute;visibility:hidden;">
-    <defs>
-      <linearGradient id="citrineGem" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#fff4b8" />
-        <stop offset="48%" stop-color="#ffcc29" />
-        <stop offset="100%" stop-color="#9e6b06" />
-      </linearGradient>
-      <linearGradient id="citrineFacet" x1="0%" y1="100%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color="#d97706" />
-        <stop offset="55%" stop-color="#fde047" />
-        <stop offset="100%" stop-color="#ffffff" />
-      </linearGradient>
-      <linearGradient id="ytRuby" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#fca5a5" />
-        <stop offset="55%" stop-color="#dc2626" />
-        <stop offset="100%" stop-color="#7f1d1d" />
-      </linearGradient>
-    </defs>
-  </svg>
+  <!-- Top Header -->
+  <header class="top-bar">
+    <div class="brand-badge">
+      <div class="brand-avatar">BE</div>
+      <div class="brand-info">
+        <span class="brand-title" id="playerName">BEAST EMPIRE</span>
+        <span class="brand-rank" id="rankLabel">Tier I • Sovereign Cub</span>
+      </div>
+    </div>
 
-  <div class="frame">
-    <header class="citrine-card top-header">
-      <div class="member-group">
-        <div class="gem-crest">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <polygon points="12,3 21,9.5 12,21 3,9.5" fill="url(#citrineGem)" />
+    <div class="profit-pill">
+      <div>
+        <span class="profit-label">Profit per hour</span>
+        <span class="profit-value">+<span id="pphDisplay">0</span> / hr</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Stage -->
+  <main class="main-stage">
+
+    <!-- TAB 1: EMPIRE (TAP) -->
+    <section id="tab-empire" class="tab-view active">
+      <!-- 3 Luxurious Crystal Feature Cards -->
+      <div class="quick-grid">
+        <div class="crystal-card" onclick="openCheckinModal()">
+          <span class="dot" id="checkinDot"></span>
+          <div class="crystal-icon-box">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="3"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+              <path d="M9 16l2 2 4-4"></path>
+            </svg>
+          </div>
+          <span>Daily Check-in</span>
+        </div>
+
+        <div class="crystal-card" onclick="switchTab('miner')">
+          <span class="dot"></span>
+          <div class="crystal-icon-box">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <span>Daily Combo</span>
+        </div>
+
+        <div class="crystal-card" onclick="openVideoModal()">
+          <span class="dot" id="videoDot"></span>
+          <div class="crystal-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffe27a">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <span>Video Code</span>
+        </div>
+      </div>
+
+      <!-- Balance -->
+      <div class="balance-section">
+        <div class="balance-row">
+          <div class="mini-gem">B</div>
+          <div class="balance-amount" id="balanceDisplay">0</div>
+        </div>
+      </div>
+
+      <!-- Level Bar -->
+      <div class="level-wrap">
+        <div class="level-meta">
+          <span id="levelName">Sovereign Cub</span>
+          <span>Level <span id="levelNum">1</span> / 8</span>
+        </div>
+        <div class="level-track">
+          <div class="level-fill" id="levelFill"></div>
+        </div>
+      </div>
+
+      <!-- Standard Realistic Royal Lion Citrine Tap Button -->
+      <div class="tap-arena">
+        <div class="citrine-coin-outer" id="tapCoin">
+          <div class="citrine-coin-inner">
+            <!-- Sculpted Royal Crowned Lion Emblem (Closed Mouth, Regal Realism) -->
+            <svg class="lion-emblem" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="royalGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#FFF7CC"/>
+                  <stop offset="35%" stop-color="#F7C244"/>
+                  <stop offset="70%" stop-color="#B86E06"/>
+                  <stop offset="100%" stop-color="#5C3200"/>
+                </linearGradient>
+                <linearGradient id="maneShade" x1="15%" y1="10%" x2="85%" y2="90%">
+                  <stop offset="0%" stop-color="#FFE680"/>
+                  <stop offset="45%" stop-color="#D48812"/>
+                  <stop offset="100%" stop-color="#4A2600"/>
+                </linearGradient>
+                <linearGradient id="faceGold" x1="20%" y1="15%" x2="80%" y2="85%">
+                  <stop offset="0%" stop-color="#FFF4B8"/>
+                  <stop offset="55%" stop-color="#E59E1C"/>
+                  <stop offset="100%" stop-color="#7A4403"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Imperial Crown -->
+              <path d="M68 44 L62 24 L82 34 L100 17 L118 34 L138 24 L132 44 Z" fill="url(#royalGold)" stroke="#4A2500" stroke-width="2" stroke-linejoin="round"/>
+              <rect x="68" y="42" width="64" height="6" rx="2" fill="url(#royalGold)" stroke="#4A2500" stroke-width="1.5"/>
+              <circle cx="100" cy="28" r="2.5" fill="#FFFDF0"/>
+
+              <!-- Sculpted Regal Mane -->
+              <path d="M100 48 C134 48 158 72 156 106 C154 136 132 164 100 174 C68 164 46 136 44 106 C42 72 66 48 100 48 Z" fill="url(#maneShade)" stroke="#4A2500" stroke-width="2.5"/>
+              <!-- Inner Mane Folds -->
+              <path d="M62 72 C52 92 54 122 72 144 M138 72 C148 92 146 122 128 144 M76 58 C66 74 66 96 72 114 M124 58 C134 74 134 96 128 114" stroke="#5A3000" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.65"/>
+
+              <!-- Ears -->
+              <path d="M64 68 C56 60 64 50 74 58 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2"/>
+              <path d="M136 68 C144 60 136 50 126 58 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2"/>
+
+              <!-- Lion Head Structure -->
+              <path d="M72 72 C72 60 128 60 128 72 L132 104 C132 124 116 138 100 142 C84 138 68 124 68 104 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2.2"/>
+
+              <!-- Noble Brow & Forehead Ridge -->
+              <path d="M76 86 Q88 80 96 87 M124 86 Q112 80 104 87" stroke="#4A2500" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+              <path d="M100 72 L100 94" stroke="#7A4403" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+
+              <!-- Stoic Eyes -->
+              <ellipse cx="85" cy="92" rx="5.5" ry="3.2" fill="#2E1600"/>
+              <circle cx="83.5" cy="91.2" r="1.2" fill="#FFF7CC"/>
+              <ellipse cx="115" cy="92" rx="5.5" ry="3.2" fill="#2E1600"/>
+              <circle cx="113.5" cy="91.2" r="1.2" fill="#FFF7CC"/>
+
+              <!-- Nose Bridge & Royal Nose -->
+              <path d="M93 92 L91 110 L109 110 L107 92" fill="none" stroke="#6E3B00" stroke-width="1.6" opacity="0.65"/>
+              <path d="M91 111 L109 111 L100 120 Z" fill="#3D1E00"/>
+
+              <!-- Calm Closed Mouth & Chin -->
+              <path d="M100 120 L100 126 M87 128 Q94 125 100 126 Q106 125 113 128" stroke="#3D1E00" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+              <path d="M90 134 Q100 139 110 134" stroke="#5A3000" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Energy & Boost Bar -->
+      <div class="energy-footer">
+        <div class="energy-info">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd25a">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
           </svg>
+          <span><span id="energyVal">1000</span> / <span id="maxEnergyVal">1000</span></span>
         </div>
-        <div>
-          <div id="playerName" class="member-title">Sovereign Member</div>
-          <div id="rankLabel" class="member-rank">Associate • Citrine Syndicate</div>
-        </div>
-      </div>
-      <button id="soundToggle" class="subtle-btn" type="button">Audio On</button>
-    </header>
-
-    <section class="stats-strip">
-      <div class="citrine-card stat-panel">
-        <div class="stat-caption">Strike Yield</div>
-        <div id="tapPowerStat" class="stat-figure">+1</div>
-      </div>
-      <div class="citrine-card stat-panel">
-        <div class="stat-caption">Passive / Sec</div>
-        <div id="pphStat" class="stat-figure">+0/s</div>
-      </div>
-      <div class="citrine-card stat-panel">
-        <div class="stat-caption">Airdrop Index</div>
-        <div id="airdropStat" class="stat-figure">0</div>
-      </div>
-    </section>
-
-    <!-- EMPIRE TAP VIEW -->
-    <main id="tab-tap" class="panel-view active">
-      <div class="citrine-card balance-box">
-        <div class="balance-kicker">Beast Coin Treasury</div>
-        <div id="balanceDisplay" class="balance-total">0</div>
-      </div>
-
-      <div class="tap-zone">
-        <div id="lionTap" class="citrine-tap-disc" role="button" tabindex="0" aria-label="Tap Citrine Lion Emblem">
-          <!-- Proper Sculpted Golden Lion with Layered Mane (Not a Sunflower, Closed Mouth) -->
-          <svg viewBox="0 0 240 240" width="206" height="206">
-            <defs>
-              <radialGradient id="lionManeGrad" cx="50%" cy="35%" r="65%">
-                <stop offset="0%" stop-color="#fff3b0" />
-                <stop offset="48%" stop-color="#eab308" />
-                <stop offset="100%" stop-color="#6b3e04" />
-              </radialGradient>
-              <linearGradient id="lionFurGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fef6c7" />
-                <stop offset="55%" stop-color="#e2a817" />
-                <stop offset="100%" stop-color="#9a6209" />
-              </linearGradient>
-              <linearGradient id="muzzleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fffdf2" />
-                <stop offset="100%" stop-color="#f3d27a" />
-              </linearGradient>
-            </defs>
-
-            <!-- Back Mane Mass (Full Rounded Lion Silhouette) -->
-            <circle cx="120" cy="126" r="76" fill="url(#lionManeGrad)" stroke="#4d2c03" stroke-width="2.2" />
-
-            <!-- Layered Fur Locks around Mane -->
-            <path
-              fill="url(#lionFurGrad)"
-              stroke="#5c3605"
-              stroke-width="1.6"
-              stroke-linejoin="round"
-              d="M120 48
-                 C132 52, 140 62, 152 60
-                 C164 58, 174 66, 178 79
-                 C182 91, 194 98, 194 112
-                 C194 125, 186 135, 190 148
-                 C194 161, 184 174, 172 178
-                 C160 182, 154 195, 140 198
-                 C128 201, 124 192, 120 192
-                 C116 192, 112 201, 100 198
-                 C86 195, 80 182, 68 178
-                 C56 174, 46 161, 50 148
-                 C54 135, 46 125, 46 112
-                 C46 98, 58 91, 62 79
-                 C66 66, 76 58, 88 60
-                 C100 62, 108 52, 120 48 Z"
-            />
-
-            <!-- Lion Ears (Tucked Naturally into Mane) -->
-            <ellipse cx="76" cy="92" rx="14" ry="16" transform="rotate(-18 76 92)" fill="url(#lionFurGrad)" stroke="#5c3605" stroke-width="2.2" />
-            <ellipse cx="77" cy="93" rx="7" ry="9" transform="rotate(-18 77 93)" fill="#854d0e" opacity="0.55" />
-
-            <ellipse cx="164" cy="92" rx="14" ry="16" transform="rotate(18 164 92)" fill="url(#lionFurGrad)" stroke="#5c3605" stroke-width="2.2" />
-            <ellipse cx="163" cy="93" rx="7" ry="9" transform="rotate(18 163 93)" fill="#854d0e" opacity="0.55" />
-
-            <!-- Sculpted Lion Head & Cheeks -->
-            <path
-              fill="url(#lionFurGrad)"
-              stroke="#5c3605"
-              stroke-width="2.2"
-              d="M120 76
-                 C144 76, 160 92, 160 116
-                 C160 134, 152 148, 140 156
-                 C132 162, 126 164, 120 164
-                 C114 164, 108 162, 100 156
-                 C88 148, 80 134, 80 116
-                 C80 92, 96 76, 120 76 Z"
-            />
-
-            <!-- Forehead Fur Lines -->
-            <path d="M120 82 V94 M112 85 L115 93 M128 85 L125 93" stroke="#854d0e" stroke-width="1.8" stroke-linecap="round" opacity="0.65" />
-
-            <!-- Sovereign Crown -->
-            <path
-              d="M92 73 L97 52 L111 63 L120 46 L129 63 L143 52 L148 73 Z"
-              fill="url(#citrineGem)"
-              stroke="#4d2c03"
-              stroke-width="2"
-              stroke-linejoin="round"
-            />
-            <circle cx="120" cy="64" r="3" fill="#fffbeb" />
-
-            <!-- Fierce Calm Lion Eyes -->
-            <path d="M89 114 Q99 107 109 114 Q99 120 89 114 Z" fill="#171208" />
-            <circle cx="99" cy="113.5" r="3.2" fill="#ffcc29" />
-            <circle cx="98" cy="112.5" r="1.3" fill="#ffffff" />
-
-            <path d="M131 114 Q141 107 151 114 Q141 120 131 114 Z" fill="#171208" />
-            <circle cx="141" cy="113.5" r="3.2" fill="#ffcc29" />
-            <circle cx="140" cy="112.5" r="1.3" fill="#ffffff" />
-
-            <!-- Lion Muzzle, Nose & Closed Mouth -->
-            <ellipse cx="109" cy="138" rx="12" ry="10" fill="url(#muzzleGrad)" stroke="#784904" stroke-width="1.4" />
-            <ellipse cx="131" cy="138" rx="12" ry="10" fill="url(#muzzleGrad)" stroke="#784904" stroke-width="1.4" />
-            <path d="M111 125 H129 L123 134 H117 Z" fill="#3b2204" stroke-linejoin="round" />
-            <path d="M120 134 V141 M107 144 Q113.5 148 120 142 Q126.5 148 133 144" stroke="#3b2204" stroke-width="2.6" stroke-linecap="round" fill="none" />
-
-            <!-- Whisker Dots -->
-            <circle cx="98" cy="135" r="1.3" fill="#784904" />
-            <circle cx="96" cy="140" r="1.3" fill="#784904" />
-            <circle cx="142" cy="135" r="1.3" fill="#784904" />
-            <circle cx="144" cy="140" r="1.3" fill="#784904" />
+        <button class="boost-trigger" onclick="switchTab('boosts')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
-        </div>
-      </div>
-
-      <div class="citrine-card stamina-box">
-        <div class="stamina-row">
-          <span>CITRINE STAMINA</span>
-          <strong id="energyText">1000 / 1000</strong>
-        </div>
-        <div class="meter-rail">
-          <div id="energyBar" class="meter-fill"></div>
-        </div>
-        <div class="boost-pair">
-          <button id="fullEnergyBtn" class="amber-btn" type="button">Refill Stamina (3/3)</button>
-          <button id="turboBtn" class="amber-btn" type="button">2x Multiplier (3/3)</button>
-        </div>
-      </div>
-    </main>
-
-    <!-- EARN VIEW -->
-    <section id="tab-earn" class="panel-view">
-      <div class="citrine-card task-row">
-        <div class="task-left">
-          <div class="gem-icon-box">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <rect x="4" y="6" width="16" height="14" rx="3" fill="none" stroke="url(#citrineGem)" stroke-width="1.8" />
-              <path d="M8 4 V8 M16 4 V8 M4 11 H20" stroke="url(#citrineGem)" stroke-width="1.8" />
-            </svg>
-          </div>
-          <div>
-            <div class="task-title">Daily Attendance</div>
-            <div id="checkinSub" class="task-sub">Consecutive daily syndicate bonus</div>
-            <div id="checkinReward" class="task-reward">+25,000 Beast Coin</div>
-          </div>
-        </div>
-        <button id="checkinBtn" class="citrine-cta" type="button">Claim</button>
-      </div>
-
-      <!-- YouTube Subscription Reward (+5,000,000 Beast Coin) -->
-      <div class="citrine-card task-row">
-        <div class="task-left">
-          <div class="gem-icon-box">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="url(#ytRuby)" />
-              <polygon points="10.5,9.2 15.5,12 10.5,14.8" fill="#ffffff" />
-            </svg>
-          </div>
-          <div>
-            <div class="task-title">Subscribe Official YouTube</div>
-            <div class="task-sub">Visit @beastempire-x9w & subscribe to claim</div>
-            <div class="task-reward">+5,000,000 Beast Coin</div>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          <a
-            class="citrine-cta"
-            href="https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs"
-            target="_blank"
-            rel="noopener noreferrer"
-            onclick="markYoutubeOpened()"
-          >Open Channel</a>
-          <button id="ytClaimBtn" class="citrine-cta" type="button" onclick="claimYoutubeReward()">
-            Claim 5M
-          </button>
-        </div>
-      </div>
-
-      <!-- Daily Citrine Combo -->
-      <div class="citrine-card" style="padding:14px 15px;">
-        <div class="task-title">Daily Citrine Combo</div>
-        <div id="comboStatus" class="task-sub" style="margin-bottom:10px;">
-          Select 3 directives for +100,000 Beast Coin
-        </div>
-        <div id="comboGrid" class="combo-grid"></div>
+          Boosts
+        </button>
       </div>
     </section>
 
-    <!-- ASSETS & UPGRADES VIEW -->
-    <section id="tab-upgrades" class="panel-view">
-      <div id="upgradesList" style="display:flex; flex-direction:column; gap:11px;"></div>
+    <!-- TAB 2: MINER -->
+    <section id="tab-miner" class="tab-view">
+      <div class="section-header">
+        <h2>Citrine Treasury</h2>
+        <p>Upgrade assets to earn passive Beast Coins every hour.</p>
+      </div>
+      <div class="list-stack" id="minerList"></div>
     </section>
 
-    <!-- AIRDROP & NETWORK VIEW -->
-    <section id="tab-friends" class="panel-view">
-      <div class="citrine-card task-row">
-        <div class="task-left">
-          <div class="gem-icon-box">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <polygon points="12,3 20,10 12,21 4,10" fill="url(#citrineGem)" />
+    <!-- TAB 3: EARN (QUESTS) -->
+    <section id="tab-earn" class="tab-view">
+      <div class="section-header">
+        <h2>Imperial Quests</h2>
+        <p>Complete official tasks to claim instant Beast Coin rewards.</p>
+      </div>
+      <div class="list-stack" id="earnList"></div>
+    </section>
+
+    <!-- TAB 4: FRENS -->
+    <section id="tab-frens" class="tab-view">
+      <div class="section-header">
+        <h2>Invite Frens</h2>
+        <p>Earn +25,000 Beast Coins for every friend who joins your empire.</p>
+      </div>
+      <div class="lux-row" style="margin-bottom: 12px;">
+        <div class="lux-row-left">
+          <div class="lux-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
             </svg>
           </div>
           <div>
-            <div class="task-title">Beast Token Allocation</div>
-            <div class="task-sub">Accumulate Beast Coin, complete directives & expand network</div>
-            <div id="airdropEstimate" class="task-reward">Allocation Index: 0 pts</div>
+            <div class="lux-title">Your Referral Link</div>
+            <div class="lux-sub" id="refCountLabel">0 Frens Invited</div>
           </div>
         </div>
-      </div>
-
-      <div class="citrine-card task-row">
-        <div class="task-left">
-          <div class="gem-icon-box">
-            <svg viewBox="0 0 24 24" width="22" height="22">
-              <circle cx="10" cy="9" r="3.2" fill="url(#citrineGem)" />
-              <circle cx="16.5" cy="10" r="2.5" fill="url(#citrineFacet)" />
-              <path d="M4.5 19 C4.5 15.5, 15.5 15.5, 15.5 19 Z" fill="url(#citrineGem)" />
-            </svg>
-          </div>
-          <div>
-            <div class="task-title">Recruit Partners</div>
-            <div class="task-sub">https://t.me/MyBeastEmpire_bot/game</div>
-            <div class="task-reward">+50,000 Beast Coin per referral</div>
-          </div>
-        </div>
-        <button id="copyInviteBtn" class="citrine-cta" type="button">Copy Link</button>
-      </div>
-
-      <div class="citrine-card" style="padding:14px 15px;">
-        <div class="task-title" style="margin-bottom:8px;">Syndicate Standings</div>
-        <div id="leaderboardList" style="display:flex; flex-direction:column; gap:8px;"></div>
+        <button class="lux-btn" onclick="copyInviteLink()">Copy Link</button>
       </div>
     </section>
-  </div>
 
-  <!-- Standard Size Bottom Task Bar -->
-  <nav class="bottom-dock">
-    <button class="dock-btn active" data-tab="tap" type="button">
-      <svg viewBox="0 0 24 24" width="22" height="22">
-        <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="currentColor" stroke-width="1.9" />
+    <!-- TAB 5: BOOSTS -->
+    <section id="tab-boosts" class="tab-view">
+      <div class="section-header">
+        <h2>Royal Boosters</h2>
+        <p>Recharge energy or amplify your tap yield.</p>
+      </div>
+      <div class="list-stack" id="boostList"></div>
+    </section>
+
+  </main>
+
+  <!-- Standard Luxurious Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <div class="nav-item active" data-tab="empire" onclick="switchTab('empire')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
       </svg>
-      <span>Citrine</span>
-    </button>
-    <button class="dock-btn" data-tab="earn" type="button">
-      <svg viewBox="0 0 24 24" width="22" height="22">
-        <rect x="4" y="5" width="16" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9" />
-        <path d="M8 10 H16 M8 14 H13" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+      <span>Empire</span>
+    </div>
+
+    <div class="nav-item" data-tab="miner" onclick="switchTab('miner')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+        <polyline points="2 17 12 22 22 17"></polyline>
+        <polyline points="2 12 12 17 22 12"></polyline>
+      </svg>
+      <span>Miner</span>
+    </div>
+
+    <div class="nav-item" data-tab="earn" onclick="switchTab('earn')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 6v12M9 9.5a3 3 0 0 1 6 0c0 2-3 2.5-3 4.5M12 17.5h.01"/>
       </svg>
       <span>Earn</span>
-    </button>
-    <button class="dock-btn" data-tab="upgrades" type="button">
-      <svg viewBox="0 0 24 24" width="22" height="22">
-        <path d="M4 18 L10 12 L14 15 L20 7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </div>
+
+    <div class="nav-item" data-tab="frens" onclick="switchTab('frens')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
       </svg>
-      <span>Assets</span>
-    </button>
-    <button class="dock-btn" data-tab="friends" type="button">
-      <svg viewBox="0 0 24 24" width="22" height="22">
-        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.9" />
-        <circle cx="12" cy="12" r="3" fill="currentColor" />
+      <span>Frens</span>
+    </div>
+
+    <div class="nav-item" data-tab="boosts" onclick="switchTab('boosts')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
       </svg>
-      <span>Airdrop</span>
-    </button>
+      <span>Boosts</span>
+    </div>
   </nav>
 
-  <script>
-    const YOUTUBE_CHANNEL_URL = "https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs";
-    const YOUTUBE_SUBSCRIBE_REWARD = 5000000;
-    const STORAGE_KEY = "beast_empire_citrine_lion_v6";
+  <!-- Daily Check-in Modal -->
+  <div class="modal-backdrop" id="checkinModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3>Daily Citrine Check-in</h3>
+        <button class="close-x" onclick="closeModals()">&times;</button>
+      </div>
+      <div class="checkin-grid" id="checkinGrid"></div>
+      <button class="lux-btn" style="width: 100%; padding: 12px;" id="claimCheckinBtn" onclick="claimDailyCheckin()">Claim Daily Reward</button>
+    </div>
+  </div>
 
-    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+  <!-- Video Code Modal -->
+  <div class="modal-backdrop" id="videoModal">
+    <div class="modal-card">
+      <div class="modal-top">
+        <h3>Official YouTube Reward</h3>
+        <button class="close-x" onclick="closeModals()">&times;</button>
+      </div>
+      <p style="font-size: 12.5px; color: var(--text-muted); line-height: 1.5;">
+        Subscribe to the official Beast Empire YouTube channel and enter the secret video code to claim <strong>5,000,000 Beast Coins</strong>.
+      </p>
+      <button class="lux-btn" style="width: 100%; margin-top: 12px;" onclick="openYouTubeChannel()">Open Beast Empire YouTube</button>
+      <input type="text" id="videoCodeInput" class="code-input" placeholder="Enter code (e.g. BEAST5M)" />
+      <button class="lux-btn" style="width: 100%; padding: 12px;" id="verifyVideoBtn" onclick="claimVideoReward()">Verify & Claim 5,000,000</button>
+    </div>
+  </div>
+
+  <script>
+    const tg = window.Telegram?.WebApp;
     if (tg) {
       tg.ready();
       tg.expand();
+      tg.setHeaderColor('#140d04');
+      tg.setBackgroundColor('#0b0804');
     }
 
-    const UPGRADE_DEFS = [
-      { id: "claw", name: "Citrine Strike", desc: "+2 Strike Yield per tier", baseCost: 250, mult: 1.7, tapAdd: 2, ppsAdd: 0, stroke: "url(#citrineGem)" },
-      { id: "den", name: "Golden Quarry", desc: "+15 Passive / Sec per tier", baseCost: 600, mult: 1.75, tapAdd: 0, ppsAdd: 15, stroke: "url(#citrineFacet)" },
-      { id: "crown", name: "Sovereign Charter", desc: "+6 Strike Yield & +40/s", baseCost: 2500, mult: 1.85, tapAdd: 6, ppsAdd: 40, stroke: "url(#citrineGem)" },
-      { id: "citadel", name: "Amber Treasury", desc: "+150 Passive / Sec per tier", baseCost: 12000, mult: 1.9, tapAdd: 0, ppsAdd: 150, stroke: "url(#citrineFacet)" }
+    const RANKS = [
+      { name: "Sovereign Cub", min: 0 },
+      { name: "Citrine Knight", min: 5000 },
+      { name: "Golden Baron", min: 25000 },
+      { name: "Amber Duke", min: 100000 },
+      { name: "Royal Viceroy", min: 500000 },
+      { name: "Crown Regent", min: 2500000 },
+      { name: "Grand Monarch", min: 10000000 },
+      { name: "Beast Emperor", min: 50000000 }
     ];
 
-    const COMBO_DIRECTIVES = [
-      { id: "citrine_prism", label: "Citrine Prism", stroke: "url(#citrineGem)" },
-      { id: "amber_vault", label: "Amber Vault", stroke: "url(#citrineFacet)" },
-      { id: "gold_pact", label: "Gold Pact", stroke: "url(#citrineGem)" },
-      { id: "sun_ledger", label: "Sun Ledger", stroke: "url(#citrineFacet)" },
-      { id: "crown_mandate", label: "Crown Mandate", stroke: "url(#citrineGem)" },
-      { id: "reserve_core", label: "Reserve Core", stroke: "url(#citrineFacet)" }
-    ];
+    const CHECKIN_REWARDS = [5000, 15000, 35000, 75000, 150000, 350000, 1000000];
 
-    const defaultState = {
-      coins: 0,
-      tapPower: 1,
-      pps: 0,
+    let state = JSON.parse(localStorage.getItem('beast_empire_citrine_v3')) || {
+      coins: 1000,
       energy: 1000,
       maxEnergy: 1000,
-      lastTick: Date.now(),
-      soundOn: true,
+      tapPower: 1,
+      pph: 0,
+      checkinDay: 0,
+      lastCheckinDate: "",
+      ytSubscribed: false,
+      videoClaimed: false,
+      turboActiveUntil: 0,
       fullEnergyLeft: 3,
-      turboLeft: 3,
-      turboUntil: 0,
-      lastCheckinDay: "",
-      streak: 0,
-      youtubeOpened: false,
-      youtubeSubscribedClaimed: false,
-      comboDate: new Date().toISOString().slice(0, 10),
-      comboPicked: [],
-      comboClaimed: false,
-      upgrades: { claw: 0, den: 0, crown: 0, citadel: 0 }
+      upgrades: {
+        vault: 0,
+        mine: 0,
+        guild: 0,
+        palace: 0
+      }
     };
 
-    function loadState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return structuredClone(defaultState);
-        const parsed = JSON.parse(raw);
-        return {
-          ...structuredClone(defaultState),
-          ...parsed,
-          upgrades: { ...structuredClone(defaultState.upgrades), ...(parsed.upgrades || {}) }
-        };
-      } catch (_) {
-        return structuredClone(defaultState);
-      }
-    }
-
-    let state = loadState();
+    const UPGRADE_ITEMS = [
+      { id: 'vault', title: 'Citrine Vault', baseCost: 500, basePph: 250 },
+      { id: 'mine', title: 'Amber Quarry', baseCost: 2000, basePph: 1100 },
+      { id: 'guild', title: 'Royal Trade Guild', baseCost: 10000, basePph: 5800 },
+      { id: 'palace', title: 'Imperial Citadel', baseCost: 50000, basePph: 32000 }
+    ];
 
     function saveState() {
-      state.lastTick = Date.now();
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem('beast_empire_citrine_v3', JSON.stringify(state));
     }
 
-    function showToast(message) {
-      const el = document.getElementById("toast");
-      el.textContent = message;
-      el.classList.add("show");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => el.classList.remove("show"), 2200);
+    function formatNum(n) {
+      return Math.floor(n).toLocaleString('en-US');
     }
 
-    function playGemChime() {
-      if (!state.soundOn) return;
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(540, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(840, ctx.currentTime + 0.07);
-        gain.gain.setValueAtTime(0.07, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.08);
-      } catch (_) {}
-    }
+    function updateUI() {
+      document.getElementById('balanceDisplay').textContent = formatNum(state.coins);
+      document.getElementById('pphDisplay').textContent = formatNum(state.pph);
+      document.getElementById('energyVal').textContent = Math.floor(state.energy);
+      document.getElementById('maxEnergyVal').textContent = state.maxEnergy;
 
-    function getRank(coins) {
-      if (coins >= 10000000) return "Grand Sovereign";
-      if (coins >= 2000000) return "High Commander";
-      if (coins >= 250000) return "Senior Director";
-      return "Associate";
-    }
-
-    function isTurboActive() {
-      return Date.now() < state.turboUntil;
-    }
-
-    function getEffectiveTap() {
-      return state.tapPower * (isTurboActive() ? 2 : 1);
-    }
-
-    function markYoutubeOpened() {
-      state.youtubeOpened = true;
-      saveState();
-      render();
-      showToast("Subscribe on YouTube, then tap Claim 5M.");
-    }
-
-    function claimYoutubeReward() {
-      if (state.youtubeSubscribedClaimed) {
-        showToast("YouTube subscription reward already claimed.");
-        return;
+      if (tg?.initDataUnsafe?.user?.first_name) {
+        document.getElementById('playerName').textContent = tg.initDataUnsafe.user.first_name.toUpperCase();
       }
-      if (!state.youtubeOpened) {
-        window.open(YOUTUBE_CHANNEL_URL, "_blank", "noopener,noreferrer");
-        state.youtubeOpened = true;
-        saveState();
-        render();
-        showToast("Channel opened. Subscribe and tap Claim 5M.");
-        return;
+
+      let rankIdx = 0;
+      for (let i = RANKS.length - 1; i >= 0; i--) {
+        if (state.coins >= RANKS[i].min) {
+          rankIdx = i;
+          break;
+        }
       }
-      state.coins += YOUTUBE_SUBSCRIBE_REWARD;
-      state.youtubeSubscribedClaimed = true;
-      saveState();
-      render();
-      playGemChime();
-      showToast("+5,000,000 Beast Coin credited.");
+      const currentRank = RANKS[rankIdx];
+      const nextRank = RANKS[rankIdx + 1];
+      document.getElementById('rankLabel').textContent = `Tier ${rankIdx + 1} • ${currentRank.name}`;
+      document.getElementById('levelName').textContent = currentRank.name;
+      document.getElementById('levelNum').textContent = rankIdx + 1;
+
+      if (nextRank) {
+        const pct = Math.min(100, Math.max(4, ((state.coins - currentRank.min) / (nextRank.min - currentRank.min)) * 100));
+        document.getElementById('levelFill').style.width = pct + '%';
+      } else {
+        document.getElementById('levelFill').style.width = '100%';
+      }
+
+      const today = new Date().toDateString();
+      document.getElementById('checkinDot').style.display = state.lastCheckinDate === today ? 'none' : 'block';
+      document.getElementById('videoDot').style.display = state.videoClaimed ? 'none' : 'block';
+
+      renderMiners();
+      renderEarn();
+      renderBoosts();
     }
 
-    // Translucent Citrine Disc Directional Lean on Click/Tap
-    const lionTap = document.getElementById("lionTap");
-    lionTap.addEventListener("pointerdown", (e) => {
-      const power = getEffectiveTap();
-      if (state.energy < 1) {
-        showToast("Citrine stamina depleted. Refill to continue.");
-        return;
-      }
-      const spent = Math.min(state.energy, Math.max(1, Math.floor(power / 2)));
-      state.energy -= spent;
-      state.coins += power;
+    /* Controlled 3D Directional Tilt on Tap Coin */
+    const tapCoin = document.getElementById('tapCoin');
 
-      const rect = lionTap.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const nx = Math.max(-1, Math.min(1, ((e.clientX || cx) - cx) / (rect.width / 2)));
-      const ny = Math.max(-1, Math.min(1, ((e.clientY || cy) - cy) / (rect.height / 2)));
+    function handleTap(e) {
+      if (state.energy < 1) return;
 
-      const tiltX = (-ny * 14).toFixed(1);
-      const tiltY = (nx * 16).toFixed(1);
-      const shiftX = (nx * 6).toFixed(1);
-      const shiftY = (ny * 6).toFixed(1);
+      const rect = tapCoin.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-      lionTap.classList.add("pressed");
-      lionTap.style.transform = `translate3d(${shiftX}px, ${shiftY}px, 0) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(0.965)`;
+      const relX = (clientX - rect.left) / rect.width - 0.5;
+      const relY = (clientY - rect.top) / rect.height - 0.5;
 
-      clearTimeout(lionTap._leanTimer);
-      lionTap._leanTimer = setTimeout(() => {
-        lionTap.classList.remove("pressed");
-        lionTap.style.transform = "translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg) scale(1)";
-      }, 150);
+      // Balanced luxury tilt (max ~12deg)
+      const rotateY = (relX * 24).toFixed(2);
+      const rotateX = (-relY * 24).toFixed(2);
 
-      const pop = document.createElement("div");
-      pop.className = "gain-float";
-      pop.textContent = `+${power.toLocaleString()}`;
-      pop.style.left = `${e.clientX || cx}px`;
-      pop.style.top = `${(e.clientY || cy) - 12}px`;
-      document.body.appendChild(pop);
-      setTimeout(() => pop.remove(), 800);
+      tapCoin.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(0.97)`;
+      clearTimeout(tapCoin._resetTimer);
+      tapCoin._resetTimer = setTimeout(() => {
+        tapCoin.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+      }, 130);
 
-      playGemChime();
+      const isTurbo = Date.now() < state.turboActiveUntil;
+      const gain = state.tapPower * (isTurbo ? 2 : 1);
+
+      state.coins += gain;
+      state.energy = Math.max(0, state.energy - 1);
+
+      spawnFloatingText(clientX, clientY, `+${gain}`);
+      if (tg?.HapticFeedback) tg.HapticFeedback.impactOccurred('medium');
+
       saveState();
-      render();
-    });
+      updateUI();
+    }
 
-    document.getElementById("fullEnergyBtn").addEventListener("click", () => {
+    tapCoin.addEventListener('pointerdown', handleTap);
+
+    function spawnFloatingText(x, y, text) {
+      const el = document.createElement('div');
+      el.className = 'tap-float';
+      el.textContent = text;
+      el.style.left = `${x - 14}px`;
+      el.style.top = `${y - 24}px`;
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 850);
+    }
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+      document.querySelector(`.nav-item[data-tab="${tabId}"]`).classList.add('active');
+    }
+
+    function renderMiners() {
+      const container = document.getElementById('minerList');
+      container.innerHTML = '';
+      UPGRADE_ITEMS.forEach(item => {
+        const lvl = state.upgrades[item.id] || 0;
+        const cost = Math.floor(item.baseCost * Math.pow(1.6, lvl));
+        const pphAdd = Math.floor(item.basePph * Math.pow(1.35, lvl));
+
+        const row = document.createElement('div');
+        row.className = 'lux-row';
+        row.innerHTML = `
+          <div class="lux-row-left">
+            <div class="lux-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div class="lux-title">${item.title} <span style="color:var(--text-muted);font-weight:500;">(Lvl ${lvl})</span></div>
+              <div class="lux-sub">+${formatNum(pphAdd)} / hr</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${state.coins < cost ? 'disabled' : ''} onclick="buyUpgrade('${item.id}', ${cost}, ${pphAdd})">
+            ${formatNum(cost)}
+          </button>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function buyUpgrade(id, cost, pphAdd) {
+      if (state.coins < cost) return;
+      state.coins -= cost;
+      state.upgrades[id] = (state.upgrades[id] || 0) + 1;
+      state.pph += pphAdd;
+      saveState();
+      updateUI();
+    }
+
+    function renderEarn() {
+      const container = document.getElementById('earnList');
+      container.innerHTML = `
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffe27a">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lux-title">Subscribe Beast Empire YouTube</div>
+              <div class="lux-sub">+5,000,000 Beast Coins</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${state.ytSubscribed ? 'disabled' : ''} onclick="completeYouTubeTask()">
+            ${state.ytSubscribed ? 'Claimed' : 'Subscribe'}
+          </button>
+        </div>
+      `;
+    }
+
+    function openYouTubeChannel() {
+      window.open('https://youtube.com/@beastempire-x9w?si=apzjwxhmxa0uSRHs', '_blank');
+    }
+
+    function completeYouTubeTask() {
+      openYouTubeChannel();
+      if (!state.ytSubscribed) {
+        setTimeout(() => {
+          state.ytSubscribed = true;
+          state.coins += 5000000;
+          saveState();
+          updateUI();
+        }, 2500);
+      }
+    }
+
+    function renderBoosts() {
+      const container = document.getElementById('boostList');
+      const tapUpgradeCost = state.tapPower * 2500;
+      const energyUpgradeCost = state.maxEnergy * 3;
+
+      container.innerHTML = `
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">⚡</div>
+            <div>
+              <div class="lux-title">Full Energy Recharge</div>
+              <div class="lux-sub">${state.fullEnergyLeft} / 3 Available Today</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${state.fullEnergyLeft <= 0 ? 'disabled' : ''} onclick="useFullEnergy()">Free</button>
+        </div>
+
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">🔥</div>
+            <div>
+              <div class="lux-title">2x Citrine Turbo (30s)</div>
+              <div class="lux-sub">Double coins per tap</div>
+            </div>
+          </div>
+          <button class="lux-btn" onclick="activateTurbo()">Activate</button>
+        </div>
+
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">👑</div>
+            <div>
+              <div class="lux-title">Multitap (Level ${state.tapPower})</div>
+              <div class="lux-sub">+1 Coin per tap</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${state.coins < tapUpgradeCost ? 'disabled' : ''} onclick="upgradeTap(${tapUpgradeCost})">
+            ${formatNum(tapUpgradeCost)}
+          </button>
+        </div>
+
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">🔋</div>
+            <div>
+              <div class="lux-title">Energy Reserve (${state.maxEnergy})</div>
+              <div class="lux-sub">+500 Max Energy</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${state.coins < energyUpgradeCost ? 'disabled' : ''} onclick="upgradeEnergy(${energyUpgradeCost})">
+            ${formatNum(energyUpgradeCost)}
+          </button>
+        </div>
+      `;
+    }
+
+    function useFullEnergy() {
       if (state.fullEnergyLeft <= 0) return;
       state.fullEnergyLeft -= 1;
       state.energy = state.maxEnergy;
       saveState();
-      render();
-      showToast("Citrine stamina restored.");
-    });
+      updateUI();
+      switchTab('empire');
+    }
 
-    document.getElementById("turboBtn").addEventListener("click", () => {
-      if (state.turboLeft <= 0) return;
-      state.turboLeft -= 1;
-      state.turboUntil = Date.now() + 15000;
+    function activateTurbo() {
+      state.turboActiveUntil = Date.now() + 30000;
       saveState();
-      render();
-      showToast("2x Multiplier active for 15 seconds.");
-    });
+      switchTab('empire');
+    }
 
-    document.getElementById("checkinBtn").addEventListener("click", () => {
-      const today = new Date().toISOString().slice(0, 10);
-      if (state.lastCheckinDay === today) {
-        showToast("Daily attendance already claimed.");
-        return;
-      }
-      state.streak += 1;
-      state.lastCheckinDay = today;
-      const reward = 25000 * state.streak;
+    function upgradeTap(cost) {
+      if (state.coins < cost) return;
+      state.coins -= cost;
+      state.tapPower += 1;
+      saveState();
+      updateUI();
+    }
+
+    function upgradeEnergy(cost) {
+      if (state.coins < cost) return;
+      state.coins -= cost;
+      state.maxEnergy += 500;
+      state.energy = state.maxEnergy;
+      saveState();
+      updateUI();
+    }
+
+    /* Modals */
+    function openCheckinModal() {
+      const grid = document.getElementById('checkinGrid');
+      grid.innerHTML = '';
+      const today = new Date().toDateString();
+      const claimedToday = state.lastCheckinDate === today;
+
+      CHECKIN_REWARDS.forEach((amt, idx) => {
+        const div = document.createElement('div');
+        div.className = 'day-box' + (idx < state.checkinDay ? ' claimed' : '') + (idx === state.checkinDay && !claimedToday ? ' today' : '');
+        div.innerHTML = `<small>Day ${idx + 1}</small><strong>+${amt >= 1000 ? (amt/1000)+'K' : amt}</strong>`;
+        grid.appendChild(div);
+      });
+
+      const btn = document.getElementById('claimCheckinBtn');
+      btn.disabled = claimedToday;
+      btn.textContent = claimedToday ? 'Claimed Today' : 'Claim Daily Reward';
+      document.getElementById('checkinModal').classList.add('open');
+    }
+
+    function claimDailyCheckin() {
+      const today = new Date().toDateString();
+      if (state.lastCheckinDate === today) return;
+      const reward = CHECKIN_REWARDS[state.checkinDay % CHECKIN_REWARDS.length];
       state.coins += reward;
+      state.checkinDay = (state.checkinDay + 1) % CHECKIN_REWARDS.length;
+      state.lastCheckinDate = today;
       saveState();
-      render();
-      showToast(`+${reward.toLocaleString()} Beast Coin claimed (Day ${state.streak}).`);
-    });
-
-    function renderCombo() {
-      const today = new Date().toISOString().slice(0, 10);
-      if (state.comboDate !== today) {
-        state.comboDate = today;
-        state.comboPicked = [];
-        state.comboClaimed = false;
-      }
-      const grid = document.getElementById("comboGrid");
-      grid.innerHTML = "";
-      COMBO_DIRECTIVES.forEach((item) => {
-        const tile = document.createElement("div");
-        tile.className = "citrine-card combo-slot" + (state.comboPicked.includes(item.id) ? " picked" : "");
-        tile.innerHTML = `
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${item.stroke}" stroke-width="1.8" />
-          </svg>
-          <span style="font-size:11px;font-weight:700;">${item.label}</span>
-        `;
-        tile.onclick = () => {
-          if (state.comboClaimed) {
-            showToast("Daily combo already claimed.");
-            return;
-          }
-          if (state.comboPicked.includes(item.id)) return;
-          state.comboPicked.push(item.id);
-          if (state.comboPicked.length === 3) {
-            state.coins += 100000;
-            state.comboClaimed = true;
-            showToast("+100,000 Beast Coin combo reward credited.");
-          }
-          saveState();
-          render();
-        };
-        grid.appendChild(tile);
-      });
-
-      document.getElementById("comboStatus").textContent = state.comboClaimed
-        ? "Daily combo completed (+100,000 Beast Coin)."
-        : `Selected ${state.comboPicked.length}/3 directives (+100,000 Beast Coin)`;
+      updateUI();
+      openCheckinModal();
     }
 
-    function renderUpgrades() {
-      const list = document.getElementById("upgradesList");
-      list.innerHTML = "";
-      UPGRADE_DEFS.forEach((u) => {
-        const lvl = state.upgrades[u.id] || 0;
-        const cost = Math.floor(u.baseCost * Math.pow(u.mult, lvl));
-        const row = document.createElement("div");
-        row.className = "citrine-card task-row";
-        row.innerHTML = `
-          <div class="task-left">
-            <div class="gem-icon-box">
-              <svg viewBox="0 0 24 24" width="22" height="22">
-                <polygon points="12,3 20,10 12,21 4,10" fill="none" stroke="${u.stroke}" stroke-width="1.8" />
-              </svg>
-            </div>
-            <div>
-              <div class="task-title">${u.name} <span style="color:var(--citrine-core);font-size:12px;">Tier ${lvl}</span></div>
-              <div class="task-sub">${u.desc}</div>
-              <div class="task-reward">Cost: ${cost.toLocaleString()} Beast Coin</div>
-            </div>
-          </div>
-          <button class="citrine-cta" ${state.coins < cost ? "disabled" : ""}>Acquire</button>
-        `;
-        row.querySelector("button").onclick = () => {
-          if (state.coins < cost) return;
-          state.coins -= cost;
-          state.upgrades[u.id] = lvl + 1;
-          state.tapPower += u.tapAdd;
-          state.pps += u.ppsAdd;
-          saveState();
-          render();
-          showToast(`${u.name} upgraded to Tier ${lvl + 1}.`);
-        };
-        list.appendChild(row);
-      });
+    function openVideoModal() {
+      document.getElementById('videoModal').classList.add('open');
     }
 
-    function renderLeaderboard() {
-      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Sovereign";
-      const rows = [
-        { name: "Lord Vance", coins: 12500000 },
-        { name: "Marcus Sterling", coins: 6400000 },
-        { name: `${user} (You)`, coins: state.coins },
-        { name: "A. Thorne", coins: 850000 }
-      ].sort((a, b) => b.coins - a.coins);
-
-      const box = document.getElementById("leaderboardList");
-      box.innerHTML = rows
-        .map(
-          (r, i) => `
-          <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid rgba(255,204,41,0.1);">
-            <span>#${i + 1} ${r.name}</span>
-            <strong style="color:var(--citrine-glow);font-variant-numeric:tabular-nums;">${r.coins.toLocaleString()}</strong>
-          </div>`
-        )
-        .join("");
+    function claimVideoReward() {
+      if (state.videoClaimed) return;
+      const val = document.getElementById('videoCodeInput').value.trim().toUpperCase();
+      if (val.length >= 4) {
+        state.coins += 5000000;
+        state.videoClaimed = true;
+        saveState();
+        updateUI();
+        closeModals();
+      }
     }
 
-    function render() {
-      const user = tg && tg.initDataUnsafe && tg.initDataUnsafe.user ? tg.initDataUnsafe.user.first_name : "Sovereign Member";
-      document.getElementById("playerName").textContent = user;
-      document.getElementById("rankLabel").textContent = `${getRank(state.coins)} • Citrine Syndicate`;
-      document.getElementById("balanceDisplay").textContent = Math.floor(state.coins).toLocaleString();
-      document.getElementById("tapPowerStat").textContent = `+${getEffectiveTap().toLocaleString()}`;
-      document.getElementById("pphStat").textContent = `+${state.pps.toLocaleString()}/s`;
-
-      const airdropPts = Math.floor(state.coins / 100);
-      document.getElementById("airdropStat").textContent = airdropPts.toLocaleString();
-      document.getElementById("airdropEstimate").textContent = `Allocation Index: ${airdropPts.toLocaleString()} pts`;
-
-      document.getElementById("energyText").textContent = `${Math.floor(state.energy)} / ${state.maxEnergy}`;
-      document.getElementById("energyBar").style.width = `${Math.max(0, Math.min(100, (state.energy / state.maxEnergy) * 100))}%`;
-
-      document.getElementById("fullEnergyBtn").textContent = `Refill Stamina (${state.fullEnergyLeft}/3)`;
-      document.getElementById("fullEnergyBtn").disabled = state.fullEnergyLeft <= 0;
-      document.getElementById("turboBtn").textContent = `2x Multiplier (${state.turboLeft}/3)`;
-      document.getElementById("turboBtn").disabled = state.turboLeft <= 0;
-
-      const today = new Date().toISOString().slice(0, 10);
-      const checkinBtn = document.getElementById("checkinBtn");
-      if (state.lastCheckinDay === today) {
-        checkinBtn.textContent = "Claimed";
-        checkinBtn.classList.add("claimed");
-      } else {
-        checkinBtn.textContent = "Claim";
-        checkinBtn.classList.remove("claimed");
-      }
-      document.getElementById("checkinReward").textContent = `+${(25000 * (state.streak + 1)).toLocaleString()} Beast Coin`;
-
-      const ytBtn = document.getElementById("ytClaimBtn");
-      if (state.youtubeSubscribedClaimed) {
-        ytBtn.textContent = "Claimed 5M";
-        ytBtn.classList.add("claimed");
-      } else {
-        ytBtn.textContent = "Claim 5M";
-        ytBtn.classList.remove("claimed");
-      }
-
-      document.getElementById("soundToggle").textContent = state.soundOn ? "Audio On" : "Muted";
-
-      renderCombo();
-      renderUpgrades();
-      renderLeaderboard();
+    function closeModals() {
+      document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.remove('open'));
     }
 
-    document.querySelectorAll(".dock-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.tab;
-        document.querySelectorAll(".dock-btn").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        document.querySelectorAll(".panel-view").forEach((v) => v.classList.remove("active"));
-        document.getElementById(`tab-${target}`).classList.add("active");
-      });
-    });
+    function copyInviteLink() {
+      const link = "https://t.me/MyBeastEmpire_bot/game";
+      navigator.clipboard?.writeText(link);
+      alert("Invite link copied: " + link);
+    }
 
-    document.getElementById("soundToggle").addEventListener("click", () => {
-      state.soundOn = !state.soundOn;
-      saveState();
-      render();
-    });
-
-    document.getElementById("copyInviteBtn").addEventListener("click", () => {
-      const inviteUrl = "https://t.me/MyBeastEmpire_bot/game";
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(inviteUrl).catch(() => {});
-      }
-      state.coins += 50000;
-      saveState();
-      render();
-      showToast("Referral link copied. +50,000 Beast Coin credited.");
-    });
-
+    /* Passive Regen & Profit Loop */
     setInterval(() => {
-      state.coins += state.pps;
-      state.energy = Math.min(state.maxEnergy, state.energy + 4);
+      if (state.energy < state.maxEnergy) {
+        state.energy = Math.min(state.maxEnergy, state.energy + 2);
+      }
+      if (state.pph > 0) {
+        state.coins += state.pph / 3600;
+      }
       saveState();
-      render();
+      updateUI();
     }, 1000);
 
-    const elapsedSec = Math.min(3600, Math.max(0, Math.floor((Date.now() - state.lastTick) / 1000)));
-    if (elapsedSec > 2 && state.pps > 0) {
-      const offlineBonus = elapsedSec * state.pps;
-      state.coins += offlineBonus;
-      showToast(`Welcome back. +${offlineBonus.toLocaleString()} passive coins earned.`);
-    }
-
-    render();
+    updateUI();
   </script>
 </body>
 </html>

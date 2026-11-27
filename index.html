@@ -3,20 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Beast Empire — Citrine Edition</title>
+  <title>Beast Empire — Royal Citrine</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #0b0905;
-      --bg-amber: #1c1406;
-      --citrine-light: #fff3b0;
-      --citrine-gold: #ffd13b;
-      --citrine-deep: #d98200;
-      --citrine-amber: #9e5400;
-      --glass-bg: rgba(255, 209, 59, 0.08);
-      --glass-border: rgba(255, 224, 102, 0.28);
-      --text-main: #fff9e6;
-      --text-muted: #cbb782;
+      --bg-dark: #090602;
+      --bg-amber: #1f1404;
+      --citrine-100: #fffbe0;
+      --citrine-200: #fff0a6;
+      --citrine-300: #ffd644;
+      --citrine-400: #f5a600;
+      --citrine-500: #c46f00;
+      --citrine-600: #7a3e00;
+      --glass: rgba(255, 214, 68, 0.08);
+      --glass-border: rgba(255, 224, 115, 0.28);
+      --text-main: #fffaf0;
+      --text-muted: #cbb684;
     }
 
     * {
@@ -25,25 +30,28 @@
       padding: 0;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at 50% 15%, #332207 0%, #140e04 55%, #080602 100%);
+      background:
+        radial-gradient(circle at 50% 10%, rgba(245, 166, 0, 0.24) 0%, rgba(28, 17, 3, 0.94) 48%, #070501 100%);
+      background-color: var(--bg-dark);
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: 92px;
     }
 
-    .ambient-glow {
+    /* Subtle Citrine Ambient Light */
+    .citrine-aura {
       position: fixed;
-      top: -120px;
+      top: -110px;
       left: 50%;
       transform: translateX(-50%);
       width: 380px;
       height: 380px;
-      background: radial-gradient(circle, rgba(255, 196, 0, 0.22) 0%, rgba(217, 130, 0, 0) 70%);
+      background: radial-gradient(circle, rgba(255, 214, 68, 0.22) 0%, rgba(196, 111, 0, 0) 70%);
       pointer-events: none;
       z-index: 0;
     }
@@ -56,18 +64,18 @@
       padding: 10px 12px;
     }
 
-    /* Top Header */
+    /* Top Profile & Profit Bar */
     .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(135deg, rgba(255, 215, 64, 0.14), rgba(158, 84, 0, 0.12));
+      background: linear-gradient(135deg, rgba(255, 224, 115, 0.14), rgba(122, 62, 0, 0.16));
       border: 1px solid var(--glass-border);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
       border-radius: 14px;
       padding: 8px 12px;
       margin-bottom: 10px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 243, 176, 0.25);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 251, 224, 0.3);
     }
 
     .player-info {
@@ -77,55 +85,58 @@
     }
 
     .avatar-gem {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(145deg, #ffe066, #d98200);
+      width: 36px;
+      height: 36px;
+      border-radius: 11px;
+      background: linear-gradient(145deg, #fff0a6, #f5a600 55%, #9e5200);
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: 'Cinzel', serif;
       font-weight: 800;
       font-size: 13px;
-      color: #241500;
-      box-shadow: 0 0 12px rgba(255, 209, 59, 0.45);
-      border: 1px solid #fff3b0;
+      color: #241300;
+      box-shadow: 0 0 14px rgba(255, 214, 68, 0.45), inset 0 1px 2px #fff;
+      border: 1px solid #fffbe0;
     }
 
     .player-name {
       font-size: 13.5px;
-      font-weight: 700;
-      color: #fff6d6;
+      font-weight: 800;
+      color: #fff8e1;
+      letter-spacing: 0.2px;
     }
 
     .player-rank {
-      font-size: 11px;
-      color: var(--citrine-gold);
-      font-weight: 600;
+      font-size: 10.8px;
+      color: var(--citrine-300);
+      font-weight: 700;
     }
 
     .profit-pill {
       text-align: right;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 209, 59, 0.25);
-      padding: 5px 9px;
-      border-radius: 10px;
+      background: rgba(10, 6, 1, 0.48);
+      border: 1px solid rgba(255, 214, 68, 0.28);
+      padding: 5px 10px;
+      border-radius: 11px;
       cursor: pointer;
     }
 
     .profit-label {
-      font-size: 9.5px;
+      font-size: 9px;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.6px;
+      font-weight: 700;
     }
 
     .profit-val {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 800;
-      color: #ffd54f;
+      color: #ffd644;
     }
 
-    /* Quick Action Crystal Cards — Compact Standard Size */
+    /* Quick Action 4 Crystal Cards — Standard Compact Size */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -135,19 +146,19 @@
 
     .crystal-card {
       position: relative;
-      background: linear-gradient(160deg, rgba(255, 230, 128, 0.14) 0%, rgba(45, 30, 6, 0.78) 100%);
-      border: 1px solid rgba(255, 215, 64, 0.32);
+      background: linear-gradient(160deg, rgba(255, 235, 145, 0.15) 0%, rgba(36, 22, 4, 0.84) 100%);
+      border: 1px solid rgba(255, 214, 68, 0.32);
       border-radius: 13px;
       padding: 7px 4px 6px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.15s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 248, 214, 0.35);
+      transition: transform 0.14s ease, border-color 0.2s ease;
+      box-shadow: 0 5px 14px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 251, 224, 0.35);
       overflow: hidden;
     }
 
     .crystal-card:active {
-      transform: scale(0.95);
+      transform: scale(0.94);
     }
 
     .gem-icon-wrap {
@@ -159,31 +170,27 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.65);
+      box-shadow: 0 3px 9px rgba(0, 0, 0, 0.45), inset 0 1.5px 2px rgba(255, 255, 255, 0.7);
     }
 
     .gem-checkin {
-      background: linear-gradient(135deg, #fff176 0%, #ffb300 50%, #e65100 100%);
-      border: 1px solid #fff9c4;
-      box-shadow: 0 0 10px rgba(255, 193, 7, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      background: linear-gradient(135deg, #fff59d 0%, #ffb300 50%, #e65100 100%);
+      border: 1px solid #fffde7;
     }
 
     .gem-combo {
-      background: linear-gradient(135deg, #ff80ab 0%, #f50057 45%, #ffb300 100%);
-      border: 1px solid #ffd180;
-      box-shadow: 0 0 10px rgba(245, 0, 87, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+      background: linear-gradient(135deg, #ff80ab 0%, #e91e63 45%, #ffb300 100%);
+      border: 1px solid #ffe0b2;
     }
 
     .gem-youtube {
       background: linear-gradient(135deg, #ff5252 0%, #d50000 55%, #ffab00 100%);
       border: 1px solid #ffe57f;
-      box-shadow: 0 0 10px rgba(255, 23, 68, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.75);
     }
 
     .gem-telegram {
       background: linear-gradient(135deg, #40c4ff 0%, #0091ea 55%, #ffd740 100%);
       border: 1px solid #e1f5fe;
-      box-shadow: 0 0 10px rgba(0, 176, 255, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .card-title {
@@ -198,9 +205,9 @@
 
     .card-sub {
       font-size: 8.8px;
-      color: #ffd54f;
+      color: #ffd644;
       margin-top: 2px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .dot-badge {
@@ -211,48 +218,49 @@
       height: 6px;
       border-radius: 50%;
       background: #ffea00;
-      box-shadow: 0 0 6px #ffea00;
+      box-shadow: 0 0 7px #ffea00;
     }
 
     /* Balance Display */
     .balance-box {
       text-align: center;
-      margin: 4px 0 8px;
+      margin: 4px 0 7px;
     }
 
     .balance-row {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 9px;
     }
 
     .mini-coin {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #fff59d, #ffb300 60%, #b26a00 100%);
-      border: 2px solid #fff8e1;
+      background: radial-gradient(circle at 30% 30%, #fffbe0, #ffd644 55%, #b26200 100%);
+      border: 2px solid #fffbe0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 900;
-      color: #3e2200;
-      font-size: 14px;
-      box-shadow: 0 0 14px rgba(255, 209, 59, 0.55);
+      font-family: 'Cinzel', serif;
+      font-weight: 800;
+      color: #3a1d00;
+      font-size: 15px;
+      box-shadow: 0 0 16px rgba(255, 214, 68, 0.55);
     }
 
     .balance-amount {
-      font-size: 30px;
-      font-weight: 900;
+      font-size: 32px;
+      font-weight: 800;
       letter-spacing: 0.4px;
-      background: linear-gradient(180deg, #ffffff 10%, #ffe082 55%, #ffa000 100%);
+      background: linear-gradient(180deg, #ffffff 8%, #fff0a6 52%, #f5a600 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 6px rgba(255, 179, 0, 0.35));
+      filter: drop-shadow(0 2px 8px rgba(245, 166, 0, 0.35));
     }
 
-    /* Progress Bar to Next Tier */
+    /* Tier Progress Bar */
     .level-bar-wrap {
       margin: 0 auto 10px;
       max-width: 340px;
@@ -261,10 +269,10 @@
     .level-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 10.5px;
+      font-size: 10.8px;
       color: var(--text-muted);
       margin-bottom: 4px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .progress-track {
@@ -272,39 +280,55 @@
       background: rgba(255, 255, 255, 0.08);
       border-radius: 99px;
       overflow: hidden;
-      border: 1px solid rgba(255, 215, 64, 0.22);
+      border: 1px solid rgba(255, 214, 68, 0.25);
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #ff8f00, #ffd54f, #fff59d);
+      background: linear-gradient(90deg, #e67e00, #ffd644, #fffbe0);
       border-radius: 99px;
-      box-shadow: 0 0 10px rgba(255, 213, 79, 0.7);
+      box-shadow: 0 0 10px rgba(255, 214, 68, 0.75);
       transition: width 0.25s ease;
     }
 
-    /* Crowned Lion Citrine Tap Button — Standard Balanced Size */
+    /* Ultra-Luxurious Citrine Crystal Tap Disc */
     .tap-stage {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 6px 0 12px;
-      perspective: 900px;
+      perspective: 950px;
       touch-action: manipulation;
     }
 
-    .citrine-ring {
-      width: 236px;
-      height: 236px;
+    .citrine-outer-halo {
+      padding: 6px;
       border-radius: 50%;
-      padding: 10px;
-      background: conic-gradient(from 45deg, #ffe082, #d98200, #fff3b0, #9e5400, #ffd54f, #ffe082);
+      background: radial-gradient(circle, rgba(255, 214, 68, 0.28) 0%, rgba(255, 214, 68, 0) 72%);
+    }
+
+    .citrine-ring {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      padding: 11px;
+      background: conic-gradient(
+        from 20deg,
+        #fffbe0 0deg,
+        #f5a600 55deg,
+        #7a3e00 110deg,
+        #ffe082 165deg,
+        #d98200 225deg,
+        #fff59d 290deg,
+        #fffbe0 360deg
+      );
       box-shadow:
-        0 14px 36px rgba(0, 0, 0, 0.75),
-        0 0 32px rgba(255, 193, 7, 0.3),
-        inset 0 2px 5px rgba(255, 255, 255, 0.7);
+        0 18px 42px rgba(0, 0, 0, 0.8),
+        0 0 38px rgba(255, 196, 0, 0.35),
+        inset 0 2px 6px rgba(255, 255, 255, 0.85),
+        inset 0 -3px 8px rgba(74, 34, 0, 0.85);
       transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.15s ease;
       cursor: pointer;
       position: relative;
@@ -313,18 +337,27 @@
 
     .citrine-ring.tapped {
       box-shadow:
-        0 8px 22px rgba(0, 0, 0, 0.85),
-        0 0 46px rgba(255, 213, 79, 0.65),
-        inset 0 2px 8px rgba(255, 255, 255, 0.9);
+        0 10px 24px rgba(0, 0, 0, 0.85),
+        0 0 55px rgba(255, 214, 68, 0.72),
+        inset 0 2px 10px rgba(255, 255, 255, 0.95);
+    }
+
+    .citrine-ring.turbo-active {
+      box-shadow:
+        0 0 60px rgba(255, 234, 0, 0.85),
+        0 0 25px rgba(255, 111, 0, 0.75);
     }
 
     .citrine-inner {
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 28%, rgba(255, 236, 153, 0.45) 0%, rgba(217, 130, 0, 0.85) 52%, rgba(56, 30, 2, 0.96) 100%);
-      border: 2px solid rgba(255, 243, 176, 0.65);
-      box-shadow: inset 0 8px 20px rgba(255, 248, 220, 0.45), inset 0 -12px 24px rgba(20, 10, 0, 0.85);
+      background:
+        radial-gradient(circle at 32% 24%, rgba(255, 251, 224, 0.62) 0%, rgba(245, 166, 0, 0.82) 44%, rgba(92, 45, 0, 0.96) 88%, #291300 100%);
+      border: 2px solid rgba(255, 248, 200, 0.78);
+      box-shadow:
+        inset 0 10px 24px rgba(255, 251, 224, 0.55),
+        inset 0 -16px 32px rgba(18, 8, 0, 0.88);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,48 +365,61 @@
       overflow: hidden;
     }
 
-    .citrine-inner::after {
+    /* Crystal Facet Shine */
+    .citrine-inner::before {
       content: "";
       position: absolute;
-      inset: 0;
-      background: linear-gradient(125deg, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.04) 42%, transparent 60%);
+      inset: 6px;
       border-radius: 50%;
+      border: 1px solid rgba(255, 251, 224, 0.25);
       pointer-events: none;
     }
 
-    /* Ripple wave inside coin on tap */
+    .citrine-inner::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 55%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 50%;
+      transform: rotate(-18deg);
+      pointer-events: none;
+    }
+
     .tap-ripple {
       position: absolute;
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 249, 196, 0.85);
-      background: radial-gradient(circle, rgba(255, 243, 176, 0.45), transparent 70%);
+      border: 2px solid rgba(255, 251, 224, 0.9);
+      background: radial-gradient(circle, rgba(255, 243, 176, 0.5), transparent 70%);
       transform: translate(-50%, -50%) scale(0.4);
       pointer-events: none;
-      animation: rippleOut 0.5s ease-out forwards;
+      animation: rippleOut 0.48s ease-out forwards;
     }
 
     @keyframes rippleOut {
       0% { opacity: 0.95; transform: translate(-50%, -50%) scale(0.4); }
-      100% { opacity: 0; transform: translate(-50%, -50%) scale(3.4); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(3.5); }
     }
 
     .lion-emblem {
-      width: 164px;
-      height: 164px;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.65));
+      width: 168px;
+      height: 168px;
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.7));
       pointer-events: none;
     }
 
     .float-plus {
       position: fixed;
       font-size: 22px;
-      font-weight: 900;
-      color: #fff59d;
-      text-shadow: 0 2px 10px rgba(255, 160, 0, 0.95);
+      font-weight: 800;
+      color: #fffbe0;
+      text-shadow: 0 2px 12px rgba(245, 166, 0, 0.95);
       pointer-events: none;
-      animation: floatUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: floatUp 0.78s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       z-index: 999;
     }
 
@@ -387,7 +433,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--glass-bg);
+      background: var(--glass);
       border: 1px solid var(--glass-border);
       border-radius: 14px;
       padding: 8px 12px;
@@ -398,63 +444,68 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 13.5px;
-      color: #ffe082;
+      color: #fff0a6;
     }
 
     .tap-power-tag {
-      font-size: 11px;
+      font-size: 10.8px;
       font-weight: 700;
-      color: #cbb782;
-      background: rgba(0, 0, 0, 0.35);
+      color: #ffd644;
+      background: rgba(0, 0, 0, 0.4);
       padding: 3px 8px;
       border-radius: 8px;
-      border: 1px solid rgba(255, 215, 64, 0.2);
+      border: 1px solid rgba(255, 214, 68, 0.25);
     }
 
     .boost-btn {
-      background: linear-gradient(135deg, #ffd54f, #ff8f00);
-      color: #241400;
+      background: linear-gradient(135deg, #fff0a6, #f5a600);
+      color: #241300;
       border: none;
       border-radius: 10px;
-      padding: 6px 12px;
+      padding: 7px 13px;
       font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 3px 10px rgba(255, 160, 0, 0.4);
+      box-shadow: 0 3px 12px rgba(245, 166, 0, 0.45);
     }
 
-    /* Views / Pages */
-    .view-section {
-      display: none;
-    }
-    .view-section.active {
-      display: block;
-    }
+    /* Views */
+    .view-section { display: none; }
+    .view-section.active { display: block; }
 
     .section-header {
+      font-family: 'Cinzel', serif;
       font-size: 16px;
       font-weight: 800;
-      color: #ffe082;
+      color: #fff0a6;
       margin: 4px 0 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      letter-spacing: 0.4px;
     }
 
-    /* Task & Upgrade List Items */
+    .section-sub {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--citrine-300);
+    }
+
+    /* List Cards */
     .item-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      background: linear-gradient(145deg, rgba(255, 215, 64, 0.1), rgba(24, 16, 4, 0.85));
-      border: 1px solid rgba(255, 215, 64, 0.25);
+      background: linear-gradient(145deg, rgba(255, 214, 68, 0.11), rgba(24, 15, 3, 0.88));
+      border: 1px solid rgba(255, 214, 68, 0.26);
       border-radius: 14px;
       padding: 11px;
       margin-bottom: 9px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.38);
     }
 
     .item-left {
@@ -473,22 +524,22 @@
     .item-reward {
       font-size: 11.5px;
       font-weight: 700;
-      color: #ffd54f;
+      color: #ffd644;
       margin-top: 2px;
     }
 
     .action-btn {
-      background: linear-gradient(135deg, #ffe082, #ffa000);
-      color: #231400;
+      background: linear-gradient(135deg, #fff0a6, #f5a600);
+      color: #231300;
       border: none;
       border-radius: 11px;
       padding: 8px 13px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      min-width: 80px;
+      min-width: 82px;
       text-align: center;
-      box-shadow: 0 3px 10px rgba(255, 160, 0, 0.35);
+      box-shadow: 0 3px 10px rgba(245, 166, 0, 0.35);
     }
 
     .action-btn.claim {
@@ -498,7 +549,7 @@
     }
 
     .action-btn.done {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.11);
       color: #a89972;
       box-shadow: none;
       cursor: default;
@@ -517,19 +568,19 @@
     }
 
     .medal-box {
-      background: linear-gradient(160deg, rgba(255, 224, 102, 0.12), rgba(20, 14, 3, 0.85));
-      border: 1px solid rgba(255, 215, 64, 0.25);
+      background: linear-gradient(160deg, rgba(255, 224, 115, 0.13), rgba(20, 13, 3, 0.88));
+      border: 1px solid rgba(255, 214, 68, 0.28);
       border-radius: 14px;
       padding: 13px 10px;
       text-align: center;
     }
 
     .medal-box.locked {
-      opacity: 0.5;
-      filter: grayscale(0.7);
+      opacity: 0.48;
+      filter: grayscale(0.75);
     }
 
-    /* Bottom Navigation Bar — Comfortable Standard Size (76px) */
+    /* Bottom Navigation Bar — Standard 76px Luxury Dock */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -538,14 +589,14 @@
       width: 100%;
       max-width: 460px;
       height: 76px;
-      background: linear-gradient(180deg, rgba(26, 18, 5, 0.96), rgba(14, 9, 2, 0.99));
+      background: linear-gradient(180deg, rgba(28, 18, 4, 0.96), rgba(12, 8, 2, 0.99));
       backdrop-filter: blur(18px);
-      border-top: 1px solid rgba(255, 215, 64, 0.35);
+      border-top: 1px solid rgba(255, 214, 68, 0.36);
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       padding: 6px 4px 10px;
       z-index: 100;
-      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.75);
     }
 
     .nav-item {
@@ -554,8 +605,8 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
-      color: #a69262;
-      font-size: 12px;
+      color: #a89363;
+      font-size: 11.8px;
       font-weight: 700;
       cursor: pointer;
       border-radius: 12px;
@@ -564,21 +615,21 @@
     }
 
     .nav-item.active {
-      color: #ffd54f;
-      background: rgba(255, 213, 79, 0.12);
-      border: 1px solid rgba(255, 213, 79, 0.25);
+      color: #ffd644;
+      background: rgba(255, 214, 68, 0.13);
+      border: 1px solid rgba(255, 214, 68, 0.28);
     }
 
     .nav-item svg {
-      width: 25px;
-      height: 25px;
+      width: 24px;
+      height: 24px;
     }
 
     /* Modal Popup */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -587,25 +638,24 @@
       z-index: 500;
     }
 
-    .modal-backdrop.show {
-      display: flex;
-    }
+    .modal-backdrop.show { display: flex; }
 
     .modal-card {
       width: 100%;
       max-width: 390px;
-      background: linear-gradient(165deg, #2b1d07, #120c02);
-      border: 1px solid rgba(255, 215, 64, 0.45);
+      background: linear-gradient(165deg, #2b1c06, #110b02);
+      border: 1px solid rgba(255, 214, 68, 0.45);
       border-radius: 20px;
       padding: 18px;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 193, 7, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 32px rgba(255, 196, 0, 0.22);
     }
 
     .modal-title {
+      font-family: 'Cinzel', serif;
       font-size: 18px;
       font-weight: 800;
-      color: #ffe082;
+      color: #fff0a6;
       margin-bottom: 6px;
     }
 
@@ -625,8 +675,8 @@
     }
 
     .day-box {
-      background: rgba(255, 215, 64, 0.08);
-      border: 1px solid rgba(255, 215, 64, 0.22);
+      background: rgba(255, 214, 68, 0.08);
+      border: 1px solid rgba(255, 214, 68, 0.22);
       border-radius: 12px;
       padding: 8px 4px;
       text-align: center;
@@ -634,14 +684,14 @@
 
     .day-box.day-7 {
       grid-column: span 2;
-      background: linear-gradient(135deg, rgba(255, 215, 64, 0.18), rgba(217, 130, 0, 0.22));
-      border-color: rgba(255, 215, 64, 0.45);
+      background: linear-gradient(135deg, rgba(255, 214, 68, 0.18), rgba(196, 111, 0, 0.22));
+      border-color: rgba(255, 214, 68, 0.45);
     }
 
     .day-box.today {
-      background: linear-gradient(145deg, rgba(255, 215, 64, 0.32), rgba(255, 143, 0, 0.28));
-      border: 1.5px solid #ffd54f;
-      box-shadow: 0 0 12px rgba(255, 213, 79, 0.35);
+      background: linear-gradient(145deg, rgba(255, 214, 68, 0.32), rgba(245, 166, 0, 0.28));
+      border: 1.5px solid #ffd644;
+      box-shadow: 0 0 12px rgba(255, 214, 68, 0.35);
     }
 
     .day-box.claimed {
@@ -649,31 +699,11 @@
       border-color: rgba(105, 240, 174, 0.45);
     }
 
-    .day-label {
-      font-size: 10px;
-      font-weight: 700;
-      color: #cbb782;
-      margin-bottom: 3px;
-    }
-
-    .day-box.today .day-label {
-      color: #fff8e1;
-    }
-
-    .day-icon {
-      font-size: 15px;
-      margin-bottom: 2px;
-    }
-
-    .day-reward {
-      font-size: 10.5px;
-      font-weight: 800;
-      color: #ffd54f;
-    }
-
-    .day-box.claimed .day-reward {
-      color: #69f0ae;
-    }
+    .day-label { font-size: 10px; font-weight: 700; color: #cbb684; margin-bottom: 3px; }
+    .day-box.today .day-label { color: #fff8e1; }
+    .day-icon { font-size: 15px; margin-bottom: 2px; }
+    .day-reward { font-size: 10.5px; font-weight: 800; color: #ffd644; }
+    .day-box.claimed .day-reward { color: #69f0ae; }
 
     .combo-grid {
       display: grid;
@@ -683,24 +713,48 @@
     }
 
     .combo-slot {
-      background: rgba(255, 215, 64, 0.1);
-      border: 1px solid rgba(255, 215, 64, 0.35);
+      background: rgba(255, 214, 68, 0.1);
+      border: 1px solid rgba(255, 214, 68, 0.35);
       border-radius: 12px;
       padding: 12px 6px;
       font-size: 12px;
       font-weight: 700;
-      color: #ffe082;
+      color: #fff0a6;
       cursor: pointer;
     }
 
     .combo-slot.picked {
-      background: linear-gradient(135deg, #ffd54f, #ff8f00);
-      color: #241400;
+      background: linear-gradient(135deg, #fff0a6, #f5a600);
+      color: #241300;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-80px);
+      background: linear-gradient(135deg, #2e1f06, #140c02);
+      border: 1px solid #ffd644;
+      color: #fffbe0;
+      padding: 10px 18px;
+      border-radius: 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.75);
+      z-index: 1000;
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
-  <div class="ambient-glow"></div>
+  <div class="citrine-aura"></div>
+  <div class="toast" id="toastBox">Reward Claimed!</div>
 
   <div class="container">
     <!-- Top Profile & Profit Bar -->
@@ -708,8 +762,8 @@
       <div class="player-info">
         <div class="avatar-gem">BE</div>
         <div>
-          <div class="player-name" id="playerName">Emperor Player</div>
-          <div class="player-rank" id="playerRank">Rank: Golden Lion</div>
+          <div class="player-name" id="playerName">Emperor</div>
+          <div class="player-rank" id="playerRank">Rank: Bronze Lion</div>
         </div>
       </div>
       <div class="profit-pill" onclick="switchView('miner')">
@@ -720,14 +774,13 @@
 
     <!-- HOME / TAP VIEW -->
     <div id="view-empire" class="view-section active">
-      <!-- 4 Colorful Crystal Citrine Quick Cards (Standard Compact Size) -->
+      <!-- 4 Colorful Crystal Citrine Quick Cards -->
       <div class="quick-grid">
-        <!-- Daily Check-in -->
         <div class="crystal-card" onclick="openCheckinModal()">
           <span class="dot-badge" id="checkinDot"></span>
           <div class="gem-icon-wrap gem-checkin">
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="4" width="18" height="17" rx="4" fill="#FFFDE7" fill-opacity="0.9"/>
+              <rect x="3" y="4" width="18" height="17" rx="4" fill="#FFFDE7" fill-opacity="0.92"/>
               <path d="M3 8C3 5.79 4.79 4 7 4H17C19.21 4 21 5.79 21 8V10H3V8Z" fill="#E65100"/>
               <path d="M12 12L13.2 14.5L16 14.9L14 16.8L14.5 19.5L12 18.2L9.5 19.5L10 16.8L8 14.9L10.8 14.5L12 12Z" fill="#FF8F00"/>
             </svg>
@@ -736,7 +789,6 @@
           <div class="card-sub" id="checkinTimer">Day 1</div>
         </div>
 
-        <!-- Daily Combo -->
         <div class="crystal-card" onclick="openComboModal()">
           <span class="dot-badge" id="comboDot"></span>
           <div class="gem-icon-wrap gem-combo">
@@ -750,7 +802,6 @@
           <div class="card-sub" id="comboQuickStatus">1,000,000</div>
         </div>
 
-        <!-- YouTube Channel Task (500,000 Coins) -->
         <div class="crystal-card" onclick="handleSocialTask('yt')">
           <span class="dot-badge" id="ytDot"></span>
           <div class="gem-icon-wrap gem-youtube">
@@ -763,7 +814,6 @@
           <div class="card-sub" id="ytQuickStatus">+500,000</div>
         </div>
 
-        <!-- Official Telegram Channel Task (500,000 Coins) -->
         <div class="crystal-card" onclick="handleSocialTask('tg')">
           <span class="dot-badge" id="tgDot"></span>
           <div class="gem-icon-wrap gem-telegram">
@@ -795,56 +845,65 @@
         </div>
       </div>
 
-      <!-- Crowned Closed-Mouth Golden Lion Tap Disc -->
+      <!-- Ultra-Luxurious Crowned Lion Citrine Tap Button -->
       <div class="tap-stage">
-        <div class="citrine-ring" id="tapDisc">
-          <div class="citrine-inner" id="tapInner">
-            <svg class="lion-emblem" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="crownGrad" x1="65" y1="18" x2="155" y2="62" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFF9C4"/>
-                  <stop offset="50%" stop-color="#FFD54F"/>
-                  <stop offset="100%" stop-color="#E65100"/>
-                </linearGradient>
-                <linearGradient id="maneGrad" x1="40" y1="45" x2="180" y2="195" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFE082"/>
-                  <stop offset="45%" stop-color="#D98200"/>
-                  <stop offset="100%" stop-color="#5C2D00"/>
-                </linearGradient>
-                <linearGradient id="faceGrad" x1="75" y1="68" x2="145" y2="165" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="#FFF3B0"/>
-                  <stop offset="60%" stop-color="#FFB300"/>
-                  <stop offset="100%" stop-color="#9E5400"/>
-                </linearGradient>
-              </defs>
+        <div class="citrine-outer-halo">
+          <div class="citrine-ring" id="tapDisc">
+            <div class="citrine-inner" id="tapInner">
+              <svg class="lion-emblem" viewBox="0 0 220 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="crownGrad" x1="65" y1="18" x2="155" y2="62" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FFFBE0"/>
+                    <stop offset="50%" stop-color="#FFD644"/>
+                    <stop offset="100%" stop-color="#E65100"/>
+                  </linearGradient>
+                  <linearGradient id="maneGrad" x1="40" y1="45" x2="180" y2="195" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FFE082"/>
+                    <stop offset="45%" stop-color="#D98200"/>
+                    <stop offset="100%" stop-color="#522600"/>
+                  </linearGradient>
+                  <linearGradient id="faceGrad" x1="75" y1="68" x2="145" y2="165" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#FFF5B8"/>
+                    <stop offset="58%" stop-color="#FFB300"/>
+                    <stop offset="100%" stop-color="#9E5400"/>
+                  </linearGradient>
+                </defs>
 
-              <path d="M72 56L64 30L89 44L110 22L131 44L156 30L148 56H72Z" fill="url(#crownGrad)" stroke="#FFFDE7" stroke-width="2" stroke-linejoin="round"/>
-              <rect x="72" y="55" width="76" height="8" rx="3" fill="#FFF59D" stroke="#B26A00" stroke-width="1.5"/>
-              <circle cx="110" cy="42" r="3.5" fill="#D50000"/>
-              <circle cx="88" cy="48" r="2.5" fill="#00B0FF"/>
-              <circle cx="132" cy="48" r="2.5" fill="#00B0FF"/>
+                <!-- Imperial Crown -->
+                <path d="M72 56L64 30L89 44L110 21L131 44L156 30L148 56H72Z" fill="url(#crownGrad)" stroke="#FFFBE0" stroke-width="2.2" stroke-linejoin="round"/>
+                <rect x="72" y="55" width="76" height="8.5" rx="3.2" fill="#FFF59D" stroke="#A65E00" stroke-width="1.5"/>
+                <circle cx="110" cy="41" r="3.6" fill="#D50000"/>
+                <circle cx="88" cy="48" r="2.6" fill="#00B0FF"/>
+                <circle cx="132" cy="48" r="2.6" fill="#00B0FF"/>
 
-              <path d="M110 62C146 62 174 88 174 124C174 162 145 192 110 196C75 192 46 162 46 124C46 88 74 62 110 62Z" fill="url(#maneGrad)" stroke="#FFE082" stroke-width="2.5"/>
-              <path d="M110 70C139 70 162 93 162 122C162 153 138 178 110 182C82 178 58 153 58 122C58 93 81 70 110 70Z" fill="#7A3E00" fill-opacity="0.45"/>
+                <!-- Sculpted Royal Mane -->
+                <path d="M110 62C146 62 174 88 174 124C174 162 145 192 110 196C75 192 46 162 46 124C46 88 74 62 110 62Z" fill="url(#maneGrad)" stroke="#FFE082" stroke-width="2.6"/>
+                <path d="M110 70C139 70 162 93 162 122C162 153 138 178 110 182C82 178 58 153 58 122C58 93 81 70 110 70Z" fill="#7A3E00" fill-opacity="0.45"/>
 
-              <circle cx="76" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
-              <circle cx="144" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
+                <!-- Ears -->
+                <circle cx="76" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
+                <circle cx="144" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
 
-              <path d="M78 96C78 82 92 74 110 74C128 74 142 82 142 96L138 134C136 150 124 160 110 160C96 160 84 150 82 134L78 96Z" fill="url(#faceGrad)" stroke="#FFF8E1" stroke-width="2"/>
+                <!-- Regal Lion Face -->
+                <path d="M78 96C78 82 92 74 110 74C128 74 142 82 142 96L138 134C136 150 124 160 110 160C96 160 84 150 82 134L78 96Z" fill="url(#faceGrad)" stroke="#FFFBE0" stroke-width="2"/>
 
-              <path d="M86 103L102 108" stroke="#4A2500" stroke-width="3.5" stroke-linecap="round"/>
-              <path d="M134 103L118 108" stroke="#4A2500" stroke-width="3.5" stroke-linecap="round"/>
-              <ellipse cx="94" cy="111" rx="4.5" ry="3.2" fill="#2B1500"/>
-              <ellipse cx="126" cy="111" rx="4.5" ry="3.2" fill="#2B1500"/>
-              <circle cx="95.2" cy="110" r="1.2" fill="#FFFDE7"/>
-              <circle cx="127.2" cy="110" r="1.2" fill="#FFFDE7"/>
+                <!-- Determined Eyes & Brow -->
+                <path d="M86 103L102 108" stroke="#452000" stroke-width="3.6" stroke-linecap="round"/>
+                <path d="M134 103L118 108" stroke="#452000" stroke-width="3.6" stroke-linecap="round"/>
+                <ellipse cx="94" cy="111" rx="4.5" ry="3.2" fill="#261100"/>
+                <ellipse cx="126" cy="111" rx="4.5" ry="3.2" fill="#261100"/>
+                <circle cx="95.2" cy="110" r="1.2" fill="#FFFDE7"/>
+                <circle cx="127.2" cy="110" r="1.2" fill="#FFFDE7"/>
 
-              <path d="M103 128H117L110 137L103 128Z" fill="#4A2500"/>
+                <!-- Nose -->
+                <path d="M103 128H117L110 137L103 128Z" fill="#452000"/>
 
-              <path d="M110 137V144" stroke="#4A2500" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M97 146C102 143 107 143 110 144C113 143 118 143 123 146" stroke="#4A2500" stroke-width="2.6" stroke-linecap="round"/>
-              <path d="M102 152C107 154 113 154 118 152" stroke="#7A3E00" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+                <!-- Dignified Closed Mouth -->
+                <path d="M110 137V144" stroke="#452000" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M97 146C102 143 107 143 110 144C113 143 118 143 123 146" stroke="#452000" stroke-width="2.6" stroke-linecap="round"/>
+                <path d="M102 152C107 154 113 154 118 152" stroke="#7A3E00" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
@@ -864,9 +923,10 @@
     <div id="view-quests" class="view-section">
       <div class="section-header">
         <span>Empire Quests</span>
-        <span style="font-size:12px; color:#cbb782;">Earn Beast Coins</span>
+        <span class="section-sub">Earn Beast Coins</span>
       </div>
 
+      <!-- Official YouTube Task -->
       <div class="item-card">
         <div class="item-left">
           <div class="gem-icon-wrap gem-youtube" style="margin:0; width:38px; height:38px; flex-shrink:0;">
@@ -883,6 +943,7 @@
         <button class="action-btn" id="ytTaskBtn" onclick="handleSocialTask('yt')">Subscribe</button>
       </div>
 
+      <!-- Official Telegram Task -->
       <div class="item-card">
         <div class="item-left">
           <div class="gem-icon-wrap gem-telegram" style="margin:0; width:38px; height:38px; flex-shrink:0;">
@@ -898,6 +959,7 @@
         <button class="action-btn" id="tgTaskBtn" onclick="handleSocialTask('tg')">Join</button>
       </div>
 
+      <!-- Daily Check-in -->
       <div class="item-card">
         <div class="item-left">
           <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px; flex-shrink:0;">
@@ -913,13 +975,25 @@
         </div>
         <button class="action-btn" onclick="openCheckinModal()">Open</button>
       </div>
+
+      <!-- Invite Frens Referral Task -->
+      <div class="item-card">
+        <div class="item-left">
+          <div class="gem-icon-wrap gem-combo" style="margin:0; width:38px; height:38px; flex-shrink:0;">🤝</div>
+          <div>
+            <div class="item-title">Invite Frens to Beast Empire</div>
+            <div class="item-reward">+50,000 Coins per Invite</div>
+          </div>
+        </div>
+        <button class="action-btn" onclick="inviteFrens()">Invite</button>
+      </div>
     </div>
 
-    <!-- MINER / UPGRADES VIEW -->
+    <!-- MINER VIEW -->
     <div id="view-miner" class="view-section">
       <div class="section-header">
-        <span>Citrine Treasury Miner</span>
-        <span style="font-size:12px; color:#ffd54f;">Offline Earnings (Up to 3h)</span>
+        <span>Citrine Treasury</span>
+        <span class="section-sub">Offline Mining (Up to 3h)</span>
       </div>
       <div id="minerList"></div>
     </div>
@@ -928,7 +1002,18 @@
     <div id="view-boosts" class="view-section">
       <div class="section-header">
         <span>Royal Boosters</span>
-        <span style="font-size:12px; color:#cbb782;">Power Up</span>
+        <span class="section-sub">Power Up</span>
+      </div>
+
+      <div class="item-card">
+        <div class="item-left">
+          <div class="gem-icon-wrap gem-combo" style="margin:0; width:38px; height:38px;">🚀</div>
+          <div>
+            <div class="item-title">2x Turbo Tap (30s)</div>
+            <div class="item-reward" id="turboLeftText">3 / 3 Free Daily</div>
+          </div>
+        </div>
+        <button class="action-btn" id="turboBtn" onclick="activateTurbo()">Activate</button>
       </div>
 
       <div class="item-card">
@@ -936,15 +1021,15 @@
           <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px;">⚡</div>
           <div>
             <div class="item-title">Full Energy Refill</div>
-            <div class="item-reward">Instant 100% Energy (Free)</div>
+            <div class="item-reward" id="refillLeftText">3 / 3 Free Daily</div>
           </div>
         </div>
-        <button class="action-btn" onclick="refillEnergy()">Refill</button>
+        <button class="action-btn" id="refillBtn" onclick="refillEnergy()">Refill</button>
       </div>
 
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-combo" style="margin:0; width:38px; height:38px;">👑</div>
+          <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px;">👑</div>
           <div>
             <div class="item-title">Multitap Power (Lv. <span id="multitapLvl">1</span>)</div>
             <div class="item-reward" id="multitapCost">5,000 Coins</div>
@@ -969,11 +1054,11 @@
     <div id="view-airdrop" class="view-section">
       <div class="section-header">
         <span>Airdrop &amp; Medals</span>
-        <span style="font-size:12px; color:#ffd54f;">60% Community &amp; Medals</span>
+        <span class="section-sub">60% Community Pool</span>
       </div>
 
       <div class="item-card" style="flex-direction:column; align-items:flex-start;">
-        <div class="item-title" style="color:#ffd54f;">Beast Empire Token Allocation</div>
+        <div class="item-title" style="color:#ffd644;">Beast Empire Token Allocation</div>
         <div style="font-size:12px; color:#d8c79e; margin-top:4px; line-height:1.45;">
           Tap to earn Beast Coins, complete official tasks, and unlock Empire Medals to maximize your Airdrop eligibility.
         </div>
@@ -1007,7 +1092,7 @@
     </div>
   </nav>
 
-  <!-- Modal for Daily Check-in, Daily Combo & Offline Profit Claim -->
+  <!-- Modal -->
   <div class="modal-backdrop" id="modalBackdrop" onclick="closeModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <div class="modal-title" id="modalTitle">Daily Check-in</div>
@@ -1026,7 +1111,11 @@
 
     const YT_URL = "https://youtube.com/@beastempire-x9w";
     const TG_URL = "https://t.me/beastempireofficial";
+    const BOT_APP_URL = "https://t.me/MyBeastEmpire_bot/game";
+    const STORAGE_KEY = "beast_empire_citrine_v4"; // Fresh Day 1 Key (Zero old test data)
     const CHECKIN_REWARDS = [10000, 20000, 40000, 80000, 160000, 320000, 640000];
+
+    const todayStr = () => new Date().toDateString();
 
     const defaultState = {
       coins: 0,
@@ -1035,12 +1124,15 @@
       tapPower: 1,
       multitapLvl: 1,
       energyLvl: 1,
-      pph: 0, // Starts at 0; only increases when player buys Miner upgrades
+      pph: 0,
       ytState: "open",
       tgState: "open",
       checkinDay: 1,
       lastCheckin: "",
       lastCombo: "",
+      boostDate: todayStr(),
+      turboLeft: 3,
+      refillLeft: 3,
       lastActiveAt: Date.now(),
       miners: [
         { id: "m1", name: "Citrine Mine", lvl: 0, cost: 2000, profit: 600 },
@@ -1050,17 +1142,18 @@
       ]
     };
 
-    const savedRaw = JSON.parse(localStorage.getItem("beast_citrine_v3") || "null");
-    const legacyRaw = !savedRaw ? JSON.parse(localStorage.getItem("beast_citrine_v2") || "null") : null;
-    let state = Object.assign({}, defaultState, savedRaw || legacyRaw || {});
-
-    // Ensure whole integer coins & valid checkinDay
+    let state = Object.assign({}, defaultState, JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"));
     state.coins = Math.floor(state.coins || 0);
-    if (!state.checkinDay || state.checkinDay < 1 || state.checkinDay > 7) {
-      state.checkinDay = 1;
+    if (!state.checkinDay || state.checkinDay < 1 || state.checkinDay > 7) state.checkinDay = 1;
+
+    // Reset daily free boosts on a new day
+    if (state.boostDate !== todayStr()) {
+      state.boostDate = todayStr();
+      state.turboLeft = 3;
+      state.refillLeft = 3;
     }
 
-    // Recalculate PPH strictly from owned miner levels
+    // Recalculate PPH strictly from owned miners
     state.pph = state.miners.reduce((sum, m) => sum + (m.lvl * m.profit), 0);
 
     if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
@@ -1069,26 +1162,55 @@
 
     function saveState() {
       state.lastActiveAt = Date.now();
-      localStorage.setItem("beast_citrine_v3", JSON.stringify(state));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }
 
     function formatNum(n) {
       return Math.floor(n).toLocaleString("en-US");
     }
 
-    // Offline Profit Check (Only triggers when returning after being away >= 2 minutes with active miners)
+    let toastTimer = null;
+    function showToast(msg) {
+      const box = document.getElementById("toastBox");
+      box.textContent = msg;
+      box.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => box.classList.remove("show"), 2200);
+    }
+
+    // Soft Web Audio Coin Click
+    let audioCtx = null;
+    function playTapSound() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(660, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(980, audioCtx.currentTime + 0.05);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.06);
+      } catch (e) {}
+    }
+
+    // Offline Profit Claim Popup (Only when returning after >= 2 mins with active miners)
     let pendingOfflineCoins = 0;
     function checkOfflineEarnings() {
       const now = Date.now();
       const elapsedSec = Math.floor((now - (state.lastActiveAt || now)) / 1000);
       if (state.pph > 0 && elapsedSec >= 120) {
-        const cappedSec = Math.min(elapsedSec, 3 * 3600); // Max 3 hours offline mining
+        const cappedSec = Math.min(elapsedSec, 3 * 3600);
         pendingOfflineCoins = Math.floor((state.pph / 3600) * cappedSec);
         if (pendingOfflineCoins > 0) {
           document.getElementById("modalTitle").textContent = "Treasury Miner Profit";
           document.getElementById("modalDesc").textContent = "Your Citrine Treasury earned coins while you were away!";
           document.getElementById("modalBody").innerHTML = `
-            <div style="font-size:26px; font-weight:900; color:#ffd54f; margin:10px 0 16px;">
+            <div style="font-size:26px; font-weight:800; color:#ffd644; margin:10px 0 16px;">
               +${formatNum(pendingOfflineCoins)} Coins
             </div>
             <button class="action-btn claim" style="width:100%;" onclick="claimOfflineProfit()">Claim Coins</button>
@@ -1103,6 +1225,7 @@
     function claimOfflineProfit() {
       if (pendingOfflineCoins > 0) {
         state.coins += pendingOfflineCoins;
+        showToast(`+${formatNum(pendingOfflineCoins)} Offline Coins Claimed!`);
         pendingOfflineCoins = 0;
         if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
         saveState();
@@ -1112,12 +1235,39 @@
       forceCloseModal();
     }
 
-    // Professional Multi-Touch & Pointer Tap Engine
+    // Turbo Multiplier State
+    let turboActive = false;
+    let turboTimer = null;
+
+    function activateTurbo() {
+      if (turboActive) return showToast("Turbo is already active!");
+      if (state.turboLeft <= 0) return showToast("No free Turbo left today!");
+      state.turboLeft -= 1;
+      turboActive = true;
+      document.getElementById("tapDisc").classList.add("turbo-active");
+      showToast("2x Turbo Activated for 30s!");
+      saveState();
+      updateUI();
+      switchView("empire");
+      clearTimeout(turboTimer);
+      turboTimer = setTimeout(() => {
+        turboActive = false;
+        document.getElementById("tapDisc").classList.remove("turbo-active");
+        showToast("2x Turbo Ended!");
+        updateUI();
+      }, 30000);
+    }
+
+    // Tap Engine
     const tapDisc = document.getElementById("tapDisc");
     const tapInner = document.getElementById("tapInner");
 
     function triggerTap(clientX, clientY) {
-      if (state.energy < state.tapPower) return;
+      const effectivePower = turboActive ? state.tapPower * 2 : state.tapPower;
+      if (state.energy < state.tapPower) {
+        showToast("Energy Empty! Wait or use Refill.");
+        return;
+      }
 
       const rect = tapDisc.getBoundingClientRect();
       const x = clientX - rect.left - rect.width / 2;
@@ -1133,23 +1283,20 @@
         tapDisc.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
       }, 110);
 
-      // Ripple inside coin
       const ripple = document.createElement("div");
       ripple.className = "tap-ripple";
       ripple.style.left = `${clientX - rect.left}px`;
       ripple.style.top = `${clientY - rect.top}px`;
       tapInner.appendChild(ripple);
-      setTimeout(() => ripple.remove(), 500);
+      setTimeout(() => ripple.remove(), 480);
 
-      // Add tap reward strictly on user tap
-      state.coins += state.tapPower;
+      state.coins += effectivePower;
       state.energy = Math.max(0, state.energy - state.tapPower);
 
-      if (tg && tg.HapticFeedback) {
-        tg.HapticFeedback.impactOccurred("light");
-      }
+      playTapSound();
+      if (tg && tg.HapticFeedback) tg.HapticFeedback.impactOccurred("light");
 
-      spawnFloatingText(clientX, clientY, `+${formatNum(state.tapPower)}`);
+      spawnFloatingText(clientX, clientY, `+${formatNum(effectivePower)}`);
       updateUI();
       saveState();
     }
@@ -1167,10 +1314,10 @@
       el.style.left = `${x - 16 + jitter}px`;
       el.style.top = `${y - 28}px`;
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 800);
+      setTimeout(() => el.remove(), 780);
     }
 
-    // Social Tasks: YouTube & Official Telegram (500,000 Coins Each)
+    // Social Tasks (YouTube & Official Telegram — 500,000 Coins Each)
     function handleSocialTask(platform) {
       const key = platform === "yt" ? "ytState" : "tgState";
       const url = platform === "yt" ? YT_URL : TG_URL;
@@ -1192,14 +1339,26 @@
         if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
         saveState();
         updateUI();
-        alert(`Congratulations! +500,000 Beast Coins added to your balance.`);
+        showToast("+500,000 Beast Coins Claimed!");
+      }
+    }
+
+    // Invite Frens
+    function inviteFrens() {
+      const shareText = "Join Beast Empire & earn Royal Citrine Coins! 🦁👑";
+      const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(BOT_APP_URL)}&text=${encodeURIComponent(shareText)}`;
+      if (tg) {
+        tg.openTelegramLink(shareUrl);
+      } else {
+        navigator.clipboard?.writeText(BOT_APP_URL);
+        showToast("Invite Link Copied!");
       }
     }
 
     // 7-Day Doubling Daily Check-in System
     function openCheckinModal() {
       document.getElementById("modalCloseBtn").style.display = "block";
-      const today = new Date().toDateString();
+      const today = todayStr();
       const claimedToday = state.lastCheckin === today;
       const currentDay = state.checkinDay;
       const currentReward = CHECKIN_REWARDS[currentDay - 1];
@@ -1215,19 +1374,11 @@
         let icon = "💎";
 
         if (!claimedToday) {
-          if (dayNum < currentDay) {
-            statusClass = "claimed";
-            icon = "✅";
-          } else if (dayNum === currentDay) {
-            statusClass = "today";
-            icon = "🔥";
-          }
+          if (dayNum < currentDay) { statusClass = "claimed"; icon = "✅"; }
+          else if (dayNum === currentDay) { statusClass = "today"; icon = "🔥"; }
         } else {
           const justCompletedDay = currentDay === 1 ? 7 : currentDay - 1;
-          if (dayNum <= justCompletedDay) {
-            statusClass = "claimed";
-            icon = "✅";
-          }
+          if (dayNum <= justCompletedDay) { statusClass = "claimed"; icon = "✅"; }
         }
 
         return `
@@ -1247,32 +1398,30 @@
         <div class="checkin-days-grid">${gridHtml}</div>
         ${btnHtml}
       `;
-
       document.getElementById("modalBackdrop").classList.add("show");
     }
 
     function claimDailyCheckin() {
-      const today = new Date().toDateString();
+      const today = todayStr();
       if (state.lastCheckin !== today) {
         const reward = CHECKIN_REWARDS[state.checkinDay - 1];
         state.coins += reward;
         state.lastCheckin = today;
         state.checkinDay = state.checkinDay >= 7 ? 1 : state.checkinDay + 1;
 
-        if (tg && tg.HapticFeedback) {
-          tg.HapticFeedback.notificationOccurred("success");
-        }
+        if (tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred("success");
         saveState();
         updateUI();
+        showToast(`+${formatNum(reward)} Daily Check-in Claimed!`);
         openCheckinModal();
       }
     }
 
-    // Daily Combo Modal
+    // Daily Combo
     let pickedSlots = [];
     function openComboModal() {
       document.getElementById("modalCloseBtn").style.display = "block";
-      const today = new Date().toDateString();
+      const today = todayStr();
       const claimed = state.lastCombo === today;
       pickedSlots = [];
       document.getElementById("modalTitle").textContent = "Royal Daily Combo";
@@ -1299,13 +1448,13 @@
       pickedSlots.push(id);
       el.classList.add("picked");
       if (pickedSlots.length === 3) {
-        state.lastCombo = new Date().toDateString();
+        state.lastCombo = todayStr();
         state.coins += 1000000;
         saveState();
         updateUI();
         setTimeout(() => {
           forceCloseModal();
-          alert("Royal Combo Unlocked! +1,000,000 Beast Coins!");
+          showToast("+1,000,000 Royal Combo Unlocked!");
         }, 250);
       }
     }
@@ -1319,9 +1468,13 @@
 
     // Boosts
     function refillEnergy() {
+      if (state.refillLeft <= 0) return showToast("No free Refills left today!");
+      if (state.energy >= state.maxEnergy) return showToast("Energy is already full!");
+      state.refillLeft -= 1;
       state.energy = state.maxEnergy;
       saveState();
       updateUI();
+      showToast("Energy 100% Refilled!");
     }
 
     function upgradeMultitap() {
@@ -1332,6 +1485,9 @@
         state.tapPower += 1;
         saveState();
         updateUI();
+        showToast(`Multitap Upgraded to Lv. ${state.multitapLvl}!`);
+      } else {
+        showToast("Not enough Beast Coins!");
       }
     }
 
@@ -1344,6 +1500,9 @@
         state.energy = state.maxEnergy;
         saveState();
         updateUI();
+        showToast(`Energy Limit Upgraded to ${state.maxEnergy}!`);
+      } else {
+        showToast("Not enough Beast Coins!");
       }
     }
 
@@ -1358,6 +1517,9 @@
         saveState();
         renderMiners();
         updateUI();
+        showToast(`${m.name} Upgraded to Lv. ${m.lvl}!`);
+      } else {
+        showToast("Not enough Beast Coins!");
       }
     }
 
@@ -1388,7 +1550,7 @@
         <div class="medal-box ${m.unlocked ? "" : "locked"}">
           <div style="font-size:26px; margin-bottom:6px;">${m.unlocked ? "🏅" : "🔒"}</div>
           <div class="item-title">${m.title}</div>
-          <div style="font-size:11px; color:#cbb782; margin-top:3px;">${m.desc}</div>
+          <div style="font-size:11px; color:#cbb684; margin-top:3px;">${m.desc}</div>
         </div>
       `).join("");
     }
@@ -1414,7 +1576,10 @@
       document.getElementById("balanceDisplay").textContent = formatNum(state.coins);
       document.getElementById("pphDisplay").textContent = `+${formatNum(state.pph)}`;
       document.getElementById("energyDisplay").textContent = `${state.energy} / ${state.maxEnergy}`;
-      document.getElementById("tapPowerTag").textContent = `+${formatNum(state.tapPower)} / tap`;
+      const powerDisplay = turboActive ? state.tapPower * 2 : state.tapPower;
+      document.getElementById("tapPowerTag").textContent = turboActive
+        ? `+${formatNum(powerDisplay)} (2x)`
+        : `+${formatNum(powerDisplay)} / tap`;
 
       // Dynamic Rank & Progress
       const tier = getTierInfo(state.coins);
@@ -1430,9 +1595,11 @@
       if (state.ytState === "open") {
         ytBtn.textContent = "Subscribe"; ytBtn.className = "action-btn";
         ytQuick.textContent = "+500,000";
+        document.getElementById("ytDot").style.display = "block";
       } else if (state.ytState === "claim") {
         ytBtn.textContent = "Claim"; ytBtn.className = "action-btn claim";
         ytQuick.textContent = "Claim!";
+        document.getElementById("ytDot").style.display = "block";
       } else {
         ytBtn.textContent = "Done"; ytBtn.className = "action-btn done";
         ytQuick.textContent = "Claimed";
@@ -1444,9 +1611,11 @@
       if (state.tgState === "open") {
         tgBtn.textContent = "Join"; tgBtn.className = "action-btn";
         tgQuick.textContent = "+500,000";
+        document.getElementById("tgDot").style.display = "block";
       } else if (state.tgState === "claim") {
         tgBtn.textContent = "Claim"; tgBtn.className = "action-btn claim";
         tgQuick.textContent = "Claim!";
+        document.getElementById("tgDot").style.display = "block";
       } else {
         tgBtn.textContent = "Done"; tgBtn.className = "action-btn done";
         tgQuick.textContent = "Claimed";
@@ -1454,7 +1623,7 @@
       }
 
       // Daily Check-in
-      const today = new Date().toDateString();
+      const today = todayStr();
       const currentReward = CHECKIN_REWARDS[state.checkinDay - 1];
       if (state.lastCheckin === today) {
         document.getElementById("checkinTimer").textContent = "Done";
@@ -1472,16 +1641,21 @@
       if (state.lastCombo === today) {
         document.getElementById("comboDot").style.display = "none";
         document.getElementById("comboQuickStatus").textContent = "Done";
+      } else {
+        document.getElementById("comboDot").style.display = "block";
+        document.getElementById("comboQuickStatus").textContent = "1,000,000";
       }
 
-      // Boost costs
+      // Boosts
+      document.getElementById("turboLeftText").textContent = `${state.turboLeft} / 3 Free Daily`;
+      document.getElementById("refillLeftText").textContent = `${state.refillLeft} / 3 Free Daily`;
       document.getElementById("multitapLvl").textContent = state.multitapLvl;
       document.getElementById("multitapCost").textContent = `${formatNum(5000 * Math.pow(2, state.multitapLvl - 1))} Coins`;
       document.getElementById("energyLvl").textContent = state.energyLvl;
       document.getElementById("energyCost").textContent = `${formatNum(5000 * Math.pow(2, state.energyLvl - 1))} Coins`;
     }
 
-    // ONLY regenerate Energy every second — NEVER auto-increment coins!
+    // ONLY regenerate Energy every second — ZERO auto-incrementing coins!
     setInterval(() => {
       if (state.energy < state.maxEnergy) {
         state.energy = Math.min(state.maxEnergy, state.energy + 3);

@@ -15,8 +15,7 @@
       --citrine-light: #fff3b0;
       --citrine-gold: #f5b727;
       --citrine-deep: #b87308;
-      --citrine-glow: rgba(245, 183, 39, 0.35);
-      --glass-surface: rgba(34, 24, 10, 0.62);
+      --glass-surface: rgba(34, 24, 10, 0.65);
       --glass-highlight: rgba(255, 232, 150, 0.18);
       --glass-border: rgba(245, 183, 39, 0.28);
       --text-main: #fffdf7;
@@ -44,7 +43,6 @@
       position: relative;
     }
 
-    /* Ambient Luxury Citrine Shimmer */
     body::before {
       content: "";
       position: absolute;
@@ -58,7 +56,7 @@
       z-index: 0;
     }
 
-    /* Header Bar */
+    /* Header */
     .top-bar {
       position: relative;
       z-index: 10;
@@ -137,12 +135,9 @@
       font-size: 12px;
       font-weight: 700;
       color: var(--citrine-light);
-      display: flex;
-      align-items: center;
-      gap: 4px;
     }
 
-    /* Main Content Container */
+    /* Main Content */
     .main-stage {
       position: relative;
       z-index: 5;
@@ -163,12 +158,12 @@
       display: flex;
     }
 
-    /* Quick Action Cards (Daily Check-in, Combo, Video Code) */
+    /* Quick Cards */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .crystal-card {
@@ -183,10 +178,9 @@
       text-align: center;
       cursor: pointer;
       position: relative;
-      overflow: hidden;
       backdrop-filter: blur(12px);
       box-shadow: inset 0 1px 1px rgba(255, 243, 176, 0.2), 0 6px 16px rgba(0, 0, 0, 0.35);
-      transition: transform 0.16s ease, border-color 0.2s ease;
+      transition: transform 0.16s ease;
     }
 
     .crystal-card:active {
@@ -214,20 +208,18 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 5px;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
     }
 
     .crystal-card span {
       font-size: 11px;
       font-weight: 600;
       color: var(--text-main);
-      letter-spacing: 0.1px;
     }
 
-    /* Balance Counter */
+    /* Balance */
     .balance-section {
       text-align: center;
-      margin: 4px 0 10px;
+      margin: 2px 0 8px;
     }
 
     .balance-row {
@@ -254,18 +246,17 @@
     }
 
     .balance-amount {
-      font-size: 34px;
+      font-size: 33px;
       font-weight: 800;
       letter-spacing: -0.5px;
       background: linear-gradient(180deg, #ffffff 15%, #ffe082 65%, #e09616 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 10px rgba(245, 183, 39, 0.25));
     }
 
-    /* Level Progress */
+    /* Level Bar */
     .level-wrap {
-      margin: 0 auto 12px;
+      margin: 0 auto 10px;
       width: 100%;
       max-width: 310px;
     }
@@ -296,7 +287,7 @@
       transition: width 0.3s ease;
     }
 
-    /* Center Citrine Lion Tap Coin */
+    /* Tap Coin */
     .tap-arena {
       flex: 1;
       display: flex;
@@ -304,12 +295,12 @@
       justify-content: center;
       perspective: 900px;
       position: relative;
-      min-height: 225px;
+      min-height: 215px;
     }
 
     .citrine-coin-outer {
-      width: 226px;
-      height: 226px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       padding: 10px;
       background: linear-gradient(145deg, rgba(255, 236, 158, 0.35), rgba(145, 88, 6, 0.25));
@@ -323,7 +314,7 @@
       justify-content: center;
       cursor: pointer;
       transform-style: preserve-3d;
-      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.14s ease;
+      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
     }
 
@@ -345,18 +336,15 @@
       overflow: hidden;
     }
 
-    /* Faceted Crystal Ring inside Coin */
     .citrine-coin-inner::before {
       content: "";
       position: absolute;
       inset: 9px;
       border-radius: 50%;
       border: 1px solid rgba(255, 242, 180, 0.42);
-      box-shadow: inset 0 0 12px rgba(255, 220, 110, 0.25);
       pointer-events: none;
     }
 
-    /* Subtle Glass Reflection Sweep */
     .citrine-coin-inner::after {
       content: "";
       position: absolute;
@@ -370,14 +358,14 @@
     }
 
     .lion-emblem {
-      width: 146px;
-      height: 146px;
+      width: 142px;
+      height: 142px;
       filter: drop-shadow(0 6px 10px rgba(42, 20, 0, 0.65));
       pointer-events: none;
       z-index: 2;
     }
 
-    /* Bottom Energy & Boost Strip */
+    /* Energy Bar */
     .energy-footer {
       display: flex;
       justify-content: space-between;
@@ -411,10 +399,9 @@
       border-radius: 10px;
       border: 1px solid #ffe484;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(245, 183, 39, 0.35);
     }
 
-    /* Standard Luxurious Bottom Navigation Bar */
+    /* Bottom Navigation Bar (5 Standard Tabs including Airdrop Medals) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -422,7 +409,7 @@
       right: 0;
       height: var(--nav-height);
       z-index: 50;
-      background: linear-gradient(180deg, rgba(28, 20, 8, 0.88) 0%, rgba(14, 10, 4, 0.96) 100%);
+      background: linear-gradient(180deg, rgba(28, 20, 8, 0.92) 0%, rgba(12, 8, 3, 0.98) 100%);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-top: 1px solid rgba(245, 183, 39, 0.28);
@@ -430,7 +417,7 @@
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       align-items: center;
-      padding: 4px 8px env(safe-area-inset-bottom, 4px);
+      padding: 4px 6px env(safe-area-inset-bottom, 4px);
     }
 
     .nav-item {
@@ -444,34 +431,25 @@
       color: var(--text-muted);
       cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
     }
 
     .nav-item svg {
-      width: 21px;
-      height: 21px;
-      transition: transform 0.2s ease, filter 0.2s ease;
+      width: 20px;
+      height: 20px;
     }
 
     .nav-item span {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 0.2px;
     }
 
     .nav-item.active {
       background: linear-gradient(180deg, rgba(245, 183, 39, 0.22) 0%, rgba(184, 115, 8, 0.08) 100%);
       border: 1px solid rgba(245, 183, 39, 0.35);
       color: var(--citrine-light);
-      box-shadow: inset 0 1px 0 rgba(255, 243, 176, 0.25);
     }
 
-    .nav-item.active svg {
-      transform: translateY(-1px);
-      filter: drop-shadow(0 0 6px rgba(245, 183, 39, 0.6));
-    }
-
-    /* Secondary Views (Miner, Earn, Frens, Boosts) */
+    /* Sub-pages & Cards */
     .section-header {
       margin-bottom: 12px;
     }
@@ -492,7 +470,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      padding-bottom: 16px;
+      padding-bottom: 18px;
     }
 
     .lux-row {
@@ -503,7 +481,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       backdrop-filter: blur(12px);
       box-shadow: inset 0 1px 0 var(--glass-highlight);
     }
@@ -511,7 +489,7 @@
     .lux-row-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
     }
 
     .lux-badge {
@@ -523,17 +501,18 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 18px;
       flex-shrink: 0;
     }
 
     .lux-title {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--text-main);
     }
 
     .lux-sub {
-      font-size: 11.5px;
+      font-size: 11px;
       color: var(--citrine-gold);
       margin-top: 2px;
       font-weight: 600;
@@ -543,24 +522,90 @@
       background: linear-gradient(135deg, #f7be38, #bd7406);
       color: #1c1000;
       border: 1px solid #ffe68a;
-      padding: 8px 13px;
+      padding: 8px 12px;
       border-radius: 10px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
-      box-shadow: 0 3px 10px rgba(245, 183, 39, 0.25);
     }
 
     .lux-btn:disabled {
       background: rgba(255, 255, 255, 0.08);
       border-color: rgba(255, 255, 255, 0.12);
       color: var(--text-muted);
-      box-shadow: none;
       cursor: default;
     }
 
-    /* Floating Tap Number */
+    /* Tokenomics Hero Box */
+    .tokenomics-card {
+      background: linear-gradient(155deg, rgba(64, 44, 14, 0.78), rgba(20, 14, 5, 0.92));
+      border: 1px solid rgba(255, 224, 120, 0.42);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 245, 190, 0.25), 0 8px 22px rgba(0,0,0,0.45);
+    }
+
+    .tok-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(245, 183, 39, 0.2);
+    }
+
+    .tok-supply-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .tok-supply-val {
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--citrine-light);
+    }
+
+    .medal-counter-pill {
+      background: rgba(245, 183, 39, 0.2);
+      border: 1px solid rgba(245, 183, 39, 0.45);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--citrine-light);
+    }
+
+    .tok-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .tok-stat {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(245, 183, 39, 0.2);
+      border-radius: 12px;
+      padding: 9px 10px;
+    }
+
+    .tok-stat strong {
+      display: block;
+      font-size: 15px;
+      color: var(--citrine-gold);
+    }
+
+    .tok-stat span {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.3;
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* Floating Tap */
     .tap-float {
       position: fixed;
       font-size: 22px;
@@ -577,7 +622,7 @@
       100% { opacity: 0; transform: translateY(-75px) scale(1.15); }
     }
 
-    /* Modal Sheet */
+    /* Modals */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -600,7 +645,6 @@
       border-top: 1px solid rgba(245, 183, 39, 0.45);
       border-radius: 24px 24px 0 0;
       padding: 20px 18px 28px;
-      box-shadow: 0 -10px 35px rgba(0,0,0,0.7);
     }
 
     .modal-top {
@@ -679,13 +723,13 @@
 </head>
 <body>
 
-  <!-- Top Header -->
+  <!-- Header -->
   <header class="top-bar">
     <div class="brand-badge">
       <div class="brand-avatar">BE</div>
       <div class="brand-info">
         <span class="brand-title" id="playerName">BEAST EMPIRE</span>
-        <span class="brand-rank" id="rankLabel">Tier I • Sovereign Cub</span>
+        <span class="brand-rank" id="rankLabel">Tier 1 • Sovereign Cub</span>
       </div>
     </div>
 
@@ -700,14 +744,13 @@
   <!-- Main Stage -->
   <main class="main-stage">
 
-    <!-- TAB 1: EMPIRE (TAP) -->
+    <!-- TAB 1: EMPIRE -->
     <section id="tab-empire" class="tab-view active">
-      <!-- 3 Luxurious Crystal Feature Cards -->
       <div class="quick-grid">
         <div class="crystal-card" onclick="openCheckinModal()">
           <span class="dot" id="checkinDot"></span>
           <div class="crystal-icon-box">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
               <rect x="3" y="4" width="18" height="18" rx="3"></rect>
               <line x1="16" y1="2" x2="16" y2="6"></line>
               <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -721,7 +764,7 @@
         <div class="crystal-card" onclick="switchTab('miner')">
           <span class="dot"></span>
           <div class="crystal-icon-box">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
               <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
               <polyline points="2 17 12 22 22 17"></polyline>
               <polyline points="2 12 12 17 22 12"></polyline>
@@ -741,7 +784,6 @@
         </div>
       </div>
 
-      <!-- Balance -->
       <div class="balance-section">
         <div class="balance-row">
           <div class="mini-gem">B</div>
@@ -749,7 +791,6 @@
         </div>
       </div>
 
-      <!-- Level Bar -->
       <div class="level-wrap">
         <div class="level-meta">
           <span id="levelName">Sovereign Cub</span>
@@ -760,11 +801,9 @@
         </div>
       </div>
 
-      <!-- Standard Realistic Royal Lion Citrine Tap Button -->
       <div class="tap-arena">
         <div class="citrine-coin-outer" id="tapCoin">
           <div class="citrine-coin-inner">
-            <!-- Sculpted Royal Crowned Lion Emblem (Closed Mouth, Regal Realism) -->
             <svg class="lion-emblem" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
               <defs>
                 <linearGradient id="royalGold" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -784,39 +823,20 @@
                   <stop offset="100%" stop-color="#7A4403"/>
                 </linearGradient>
               </defs>
-
-              <!-- Imperial Crown -->
               <path d="M68 44 L62 24 L82 34 L100 17 L118 34 L138 24 L132 44 Z" fill="url(#royalGold)" stroke="#4A2500" stroke-width="2" stroke-linejoin="round"/>
               <rect x="68" y="42" width="64" height="6" rx="2" fill="url(#royalGold)" stroke="#4A2500" stroke-width="1.5"/>
               <circle cx="100" cy="28" r="2.5" fill="#FFFDF0"/>
-
-              <!-- Sculpted Regal Mane -->
               <path d="M100 48 C134 48 158 72 156 106 C154 136 132 164 100 174 C68 164 46 136 44 106 C42 72 66 48 100 48 Z" fill="url(#maneShade)" stroke="#4A2500" stroke-width="2.5"/>
-              <!-- Inner Mane Folds -->
               <path d="M62 72 C52 92 54 122 72 144 M138 72 C148 92 146 122 128 144 M76 58 C66 74 66 96 72 114 M124 58 C134 74 134 96 128 114" stroke="#5A3000" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.65"/>
-
-              <!-- Ears -->
               <path d="M64 68 C56 60 64 50 74 58 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2"/>
               <path d="M136 68 C144 60 136 50 126 58 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2"/>
-
-              <!-- Lion Head Structure -->
               <path d="M72 72 C72 60 128 60 128 72 L132 104 C132 124 116 138 100 142 C84 138 68 124 68 104 Z" fill="url(#faceGold)" stroke="#4A2500" stroke-width="2.2"/>
-
-              <!-- Noble Brow & Forehead Ridge -->
               <path d="M76 86 Q88 80 96 87 M124 86 Q112 80 104 87" stroke="#4A2500" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-              <path d="M100 72 L100 94" stroke="#7A4403" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
-
-              <!-- Stoic Eyes -->
               <ellipse cx="85" cy="92" rx="5.5" ry="3.2" fill="#2E1600"/>
               <circle cx="83.5" cy="91.2" r="1.2" fill="#FFF7CC"/>
               <ellipse cx="115" cy="92" rx="5.5" ry="3.2" fill="#2E1600"/>
               <circle cx="113.5" cy="91.2" r="1.2" fill="#FFF7CC"/>
-
-              <!-- Nose Bridge & Royal Nose -->
-              <path d="M93 92 L91 110 L109 110 L107 92" fill="none" stroke="#6E3B00" stroke-width="1.6" opacity="0.65"/>
               <path d="M91 111 L109 111 L100 120 Z" fill="#3D1E00"/>
-
-              <!-- Calm Closed Mouth & Chin -->
               <path d="M100 120 L100 126 M87 128 Q94 125 100 126 Q106 125 113 128" stroke="#3D1E00" stroke-width="2.4" fill="none" stroke-linecap="round"/>
               <path d="M90 134 Q100 139 110 134" stroke="#5A3000" stroke-width="2" fill="none" stroke-linecap="round"/>
             </svg>
@@ -824,7 +844,6 @@
         </div>
       </div>
 
-      <!-- Energy & Boost Bar -->
       <div class="energy-footer">
         <div class="energy-info">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffd25a">
@@ -850,41 +869,16 @@
       <div class="list-stack" id="minerList"></div>
     </section>
 
-    <!-- TAB 3: EARN (QUESTS) -->
+    <!-- TAB 3: EARN -->
     <section id="tab-earn" class="tab-view">
       <div class="section-header">
         <h2>Imperial Quests</h2>
-        <p>Complete official tasks to claim instant Beast Coin rewards.</p>
+        <p>Complete tasks and invite frens to unlock Airdrop Medals.</p>
       </div>
       <div class="list-stack" id="earnList"></div>
     </section>
 
-    <!-- TAB 4: FRENS -->
-    <section id="tab-frens" class="tab-view">
-      <div class="section-header">
-        <h2>Invite Frens</h2>
-        <p>Earn +25,000 Beast Coins for every friend who joins your empire.</p>
-      </div>
-      <div class="lux-row" style="margin-bottom: 12px;">
-        <div class="lux-row-left">
-          <div class="lux-badge">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <div>
-            <div class="lux-title">Your Referral Link</div>
-            <div class="lux-sub" id="refCountLabel">0 Frens Invited</div>
-          </div>
-        </div>
-        <button class="lux-btn" onclick="copyInviteLink()">Copy Link</button>
-      </div>
-    </section>
-
-    <!-- TAB 5: BOOSTS -->
+    <!-- TAB 4: BOOSTS -->
     <section id="tab-boosts" class="tab-view">
       <div class="section-header">
         <h2>Royal Boosters</h2>
@@ -893,19 +887,50 @@
       <div class="list-stack" id="boostList"></div>
     </section>
 
+    <!-- TAB 5: AIRDROP & MEDALS -->
+    <section id="tab-airdrop" class="tab-view">
+      <div class="section-header">
+        <h2>Airdrop & Medals 🏅</h2>
+        <p>Earn Imperial Medals through achievements to maximize your token allocation.</p>
+      </div>
+
+      <!-- Official Tokenomics Card -->
+      <div class="tokenomics-card">
+        <div class="tok-top">
+          <div>
+            <span class="tok-supply-label">TOTAL TOKEN SUPPLY</span>
+            <div class="tok-supply-val">10,000,000,000 BEAST</div>
+          </div>
+          <div class="medal-counter-pill">🏅 <span id="medalCountLabel">0 / 6</span> Medals</div>
+        </div>
+        <div class="tok-grid">
+          <div class="tok-stat">
+            <strong>35% (3.5B)</strong>
+            <span>Total Community Airdrop Allocation</span>
+          </div>
+          <div class="tok-stat">
+            <strong>25% (2.5B)</strong>
+            <span>Telegram Mini-App Medals & Achievements</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-stack" id="medalList"></div>
+    </section>
+
   </main>
 
-  <!-- Standard Luxurious Bottom Navigation Bar -->
+  <!-- Standard Luxurious 5-Tab Bottom Bar -->
   <nav class="bottom-nav">
     <div class="nav-item active" data-tab="empire" onclick="switchTab('empire')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/>
       </svg>
       <span>Empire</span>
     </div>
 
     <div class="nav-item" data-tab="miner" onclick="switchTab('miner')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
         <polyline points="2 17 12 22 22 17"></polyline>
         <polyline points="2 12 12 17 22 12"></polyline>
@@ -914,28 +939,26 @@
     </div>
 
     <div class="nav-item" data-tab="earn" onclick="switchTab('earn')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="10"></circle>
         <path d="M12 6v12M9 9.5a3 3 0 0 1 6 0c0 2-3 2.5-3 4.5M12 17.5h.01"/>
       </svg>
       <span>Earn</span>
     </div>
 
-    <div class="nav-item" data-tab="frens" onclick="switchTab('frens')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-        <circle cx="9" cy="7" r="4"></circle>
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-      </svg>
-      <span>Frens</span>
-    </div>
-
     <div class="nav-item" data-tab="boosts" onclick="switchTab('boosts')">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
       </svg>
       <span>Boosts</span>
+    </div>
+
+    <div class="nav-item" data-tab="airdrop" onclick="switchTab('airdrop')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="8" r="6"></circle>
+        <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+      </svg>
+      <span>Airdrop</span>
     </div>
   </nav>
 
@@ -989,24 +1012,21 @@
 
     const CHECKIN_REWARDS = [5000, 15000, 35000, 75000, 150000, 350000, 1000000];
 
-    let state = JSON.parse(localStorage.getItem('beast_empire_citrine_v3')) || {
+    let state = JSON.parse(localStorage.getItem('beast_empire_citrine_v4')) || {
       coins: 1000,
       energy: 1000,
       maxEnergy: 1000,
       tapPower: 1,
       pph: 0,
+      taps: 0,
       checkinDay: 0,
       lastCheckinDate: "",
       ytSubscribed: false,
       videoClaimed: false,
       turboActiveUntil: 0,
       fullEnergyLeft: 3,
-      upgrades: {
-        vault: 0,
-        mine: 0,
-        guild: 0,
-        palace: 0
-      }
+      upgrades: { vault: 0, mine: 0, guild: 0, palace: 0 },
+      claimedMedals: {}
     };
 
     const UPGRADE_ITEMS = [
@@ -1016,8 +1036,59 @@
       { id: 'palace', title: 'Imperial Citadel', baseCost: 50000, basePph: 32000 }
     ];
 
+    const MEDAL_ACHIEVEMENTS = [
+      {
+        id: 'medal_tap',
+        icon: '🥉',
+        title: 'Bronze Striker Medal',
+        desc: 'Complete 100 Taps in the Empire',
+        reward: 10000,
+        check: () => state.taps >= 100
+      },
+      {
+        id: 'medal_yt',
+        icon: '🎬',
+        title: 'Pioneer Media Medal',
+        desc: 'Subscribe to Beast Empire YouTube',
+        reward: 250000,
+        check: () => state.ytSubscribed
+      },
+      {
+        id: 'medal_checkin',
+        icon: '📅',
+        title: 'Loyal Sovereign Medal',
+        desc: 'Complete your first Daily Check-in',
+        reward: 25000,
+        check: () => state.checkinDay >= 1
+      },
+      {
+        id: 'medal_pph',
+        icon: '⛏️',
+        title: 'Citrine Tycoon Medal',
+        desc: 'Reach 5,000+ Profit Per Hour',
+        reward: 100000,
+        check: () => state.pph >= 5000
+      },
+      {
+        id: 'medal_wealth',
+        icon: '👑',
+        title: 'Golden Baron Medal',
+        desc: 'Hold 1,000,000+ Beast Coins',
+        reward: 200000,
+        check: () => state.coins >= 1000000
+      },
+      {
+        id: 'medal_architect',
+        icon: '🏛️',
+        title: 'Imperial Architect Medal',
+        desc: 'Upgrade any Treasury asset to Level 3',
+        reward: 150000,
+        check: () => Object.values(state.upgrades).some(lvl => lvl >= 3)
+      }
+    ];
+
     function saveState() {
-      localStorage.setItem('beast_empire_citrine_v3', JSON.stringify(state));
+      localStorage.setItem('beast_empire_citrine_v4', JSON.stringify(state));
     }
 
     function formatNum(n) {
@@ -1061,9 +1132,9 @@
       renderMiners();
       renderEarn();
       renderBoosts();
+      renderMedals();
     }
 
-    /* Controlled 3D Directional Tilt on Tap Coin */
     const tapCoin = document.getElementById('tapCoin');
 
     function handleTap(e) {
@@ -1076,7 +1147,6 @@
       const relX = (clientX - rect.left) / rect.width - 0.5;
       const relY = (clientY - rect.top) / rect.height - 0.5;
 
-      // Balanced luxury tilt (max ~12deg)
       const rotateY = (relX * 24).toFixed(2);
       const rotateX = (-relY * 24).toFixed(2);
 
@@ -1090,6 +1160,7 @@
       const gain = state.tapPower * (isTurbo ? 2 : 1);
 
       state.coins += gain;
+      state.taps += 1;
       state.energy = Math.max(0, state.energy - 1);
 
       spawnFloatingText(clientX, clientY, `+${gain}`);
@@ -1130,12 +1201,7 @@
         row.className = 'lux-row';
         row.innerHTML = `
           <div class="lux-row-left">
-            <div class="lux-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffe27a" stroke-width="2">
-                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                <polyline points="2 17 12 22 22 17"></polyline>
-              </svg>
-            </div>
+            <div class="lux-badge">⛏️</div>
             <div>
               <div class="lux-title">${item.title} <span style="color:var(--text-muted);font-weight:500;">(Lvl ${lvl})</span></div>
               <div class="lux-sub">+${formatNum(pphAdd)} / hr</div>
@@ -1163,11 +1229,7 @@
       container.innerHTML = `
         <div class="lux-row">
           <div class="lux-row-left">
-            <div class="lux-badge">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffe27a">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </div>
+            <div class="lux-badge">▶️</div>
             <div>
               <div class="lux-title">Subscribe Beast Empire YouTube</div>
               <div class="lux-sub">+5,000,000 Beast Coins</div>
@@ -1176,6 +1238,17 @@
           <button class="lux-btn" ${state.ytSubscribed ? 'disabled' : ''} onclick="completeYouTubeTask()">
             ${state.ytSubscribed ? 'Claimed' : 'Subscribe'}
           </button>
+        </div>
+
+        <div class="lux-row">
+          <div class="lux-row-left">
+            <div class="lux-badge">🤝</div>
+            <div>
+              <div class="lux-title">Invite Frens to Empire</div>
+              <div class="lux-sub">+25,000 Coins per Fren</div>
+            </div>
+          </div>
+          <button class="lux-btn" onclick="copyInviteLink()">Copy Link</button>
         </div>
       `;
     }
@@ -1284,6 +1357,45 @@
       updateUI();
     }
 
+    /* Render Airdrop Medals */
+    function renderMedals() {
+      const container = document.getElementById('medalList');
+      container.innerHTML = '';
+      let unlockedCount = 0;
+
+      MEDAL_ACHIEVEMENTS.forEach(m => {
+        const isClaimed = !!state.claimedMedals[m.id];
+        const isReady = m.check();
+        if (isClaimed) unlockedCount++;
+
+        const row = document.createElement('div');
+        row.className = 'lux-row';
+        row.innerHTML = `
+          <div class="lux-row-left">
+            <div class="lux-badge">${m.icon}</div>
+            <div>
+              <div class="lux-title">${m.title}</div>
+              <div class="lux-sub">${m.desc} • +${formatNum(m.reward)}</div>
+            </div>
+          </div>
+          <button class="lux-btn" ${(!isReady || isClaimed) ? 'disabled' : ''} onclick="claimMedal('${m.id}', ${m.reward})">
+            ${isClaimed ? '🏅 Earned' : (isReady ? 'Claim' : 'Locked')}
+          </button>
+        `;
+        container.appendChild(row);
+      });
+
+      document.getElementById('medalCountLabel').textContent = `${unlockedCount} / ${MEDAL_ACHIEVEMENTS.length}`;
+    }
+
+    function claimMedal(id, reward) {
+      if (state.claimedMedals[id]) return;
+      state.claimedMedals[id] = true;
+      state.coins += reward;
+      saveState();
+      updateUI();
+    }
+
     /* Modals */
     function openCheckinModal() {
       const grid = document.getElementById('checkinGrid');
@@ -1342,7 +1454,6 @@
       alert("Invite link copied: " + link);
     }
 
-    /* Passive Regen & Profit Loop */
     setInterval(() => {
       if (state.energy < state.maxEnergy) {
         state.energy = Math.min(state.maxEnergy, state.energy + 2);

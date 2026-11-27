@@ -33,10 +33,9 @@
       color: var(--text-main);
       min-height: 100vh;
       overflow-x: hidden;
-      padding-bottom: 84px;
+      padding-bottom: 92px;
     }
 
-    /* Ambient Citrine Glow */
     .ambient-glow {
       position: fixed;
       top: -120px;
@@ -54,7 +53,7 @@
       z-index: 1;
       max-width: 460px;
       margin: 0 auto;
-      padding: 12px 14px;
+      padding: 10px 12px;
     }
 
     /* Top Header */
@@ -65,34 +64,35 @@
       background: linear-gradient(135deg, rgba(255, 215, 64, 0.14), rgba(158, 84, 0, 0.12));
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(14px);
-      border-radius: 16px;
-      padding: 10px 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 243, 176, 0.25);
+      border-radius: 14px;
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 243, 176, 0.25);
     }
 
     .player-info {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
     }
 
     .avatar-gem {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
       background: linear-gradient(145deg, #ffe066, #d98200);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
+      font-size: 13px;
       color: #241500;
-      box-shadow: 0 0 14px rgba(255, 209, 59, 0.45);
+      box-shadow: 0 0 12px rgba(255, 209, 59, 0.45);
       border: 1px solid #fff3b0;
     }
 
     .player-name {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #fff6d6;
     }
@@ -101,60 +101,48 @@
       font-size: 11px;
       color: var(--citrine-gold);
       font-weight: 600;
-      letter-spacing: 0.3px;
     }
 
     .profit-pill {
       text-align: right;
       background: rgba(0, 0, 0, 0.35);
       border: 1px solid rgba(255, 209, 59, 0.25);
-      padding: 6px 10px;
-      border-radius: 12px;
+      padding: 5px 9px;
+      border-radius: 10px;
     }
 
     .profit-label {
-      font-size: 10px;
+      font-size: 9.5px;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
     .profit-val {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       color: #ffd54f;
     }
 
-    /* Quick Action Crystal Cards (Daily Check-in, Daily Combo, YouTube, Telegram) */
+    /* Quick Action Crystal Cards — Compact Standard Size */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 14px;
+      gap: 7px;
+      margin-bottom: 10px;
     }
 
     .crystal-card {
       position: relative;
       background: linear-gradient(160deg, rgba(255, 230, 128, 0.14) 0%, rgba(45, 30, 6, 0.78) 100%);
       border: 1px solid rgba(255, 215, 64, 0.32);
-      border-radius: 16px;
-      padding: 10px 6px 8px;
+      border-radius: 13px;
+      padding: 7px 4px 6px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 248, 214, 0.35);
+      transition: transform 0.15s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 248, 214, 0.35);
       overflow: hidden;
-    }
-
-    .crystal-card::before {
-      content: "";
-      position: absolute;
-      top: -30%;
-      left: -30%;
-      width: 90%;
-      height: 90%;
-      background: radial-gradient(circle, rgba(255, 243, 176, 0.28), transparent 70%);
-      pointer-events: none;
     }
 
     .crystal-card:active {
@@ -162,51 +150,53 @@
     }
 
     .gem-icon-wrap {
-      width: 42px;
-      height: 42px;
-      margin: 0 auto 6px;
-      border-radius: 13px;
+      width: 32px;
+      height: 32px;
+      margin: 0 auto 4px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.65);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.65);
     }
 
-    /* Colorful Citrine-Infused Crystal Gem Styles */
     .gem-checkin {
       background: linear-gradient(135deg, #fff176 0%, #ffb300 50%, #e65100 100%);
       border: 1px solid #fff9c4;
-      box-shadow: 0 0 14px rgba(255, 193, 7, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(255, 193, 7, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .gem-combo {
       background: linear-gradient(135deg, #ff80ab 0%, #f50057 45%, #ffb300 100%);
       border: 1px solid #ffd180;
-      box-shadow: 0 0 14px rgba(245, 0, 87, 0.45), inset 0 2px 3px rgba(255, 255, 255, 0.75);
+      box-shadow: 0 0 10px rgba(245, 0, 87, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.75);
     }
 
     .gem-youtube {
       background: linear-gradient(135deg, #ff5252 0%, #d50000 55%, #ffab00 100%);
       border: 1px solid #ffe57f;
-      box-shadow: 0 0 14px rgba(255, 23, 68, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.75);
+      box-shadow: 0 0 10px rgba(255, 23, 68, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.75);
     }
 
     .gem-telegram {
       background: linear-gradient(135deg, #40c4ff 0%, #0091ea 55%, #ffd740 100%);
       border: 1px solid #e1f5fe;
-      box-shadow: 0 0 14px rgba(0, 176, 255, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 10px rgba(0, 176, 255, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.8);
     }
 
     .card-title {
-      font-size: 10.5px;
+      font-size: 9.8px;
       font-weight: 700;
       color: #fff8e1;
-      line-height: 1.2;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .card-sub {
-      font-size: 9px;
+      font-size: 8.8px;
       color: #ffd54f;
       margin-top: 2px;
       font-weight: 600;
@@ -214,31 +204,31 @@
 
     .dot-badge {
       position: absolute;
-      top: 6px;
-      right: 6px;
-      width: 7px;
-      height: 7px;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #ffea00;
-      box-shadow: 0 0 8px #ffea00;
+      box-shadow: 0 0 6px #ffea00;
     }
 
     /* Balance Display */
     .balance-box {
       text-align: center;
-      margin: 8px 0 12px;
+      margin: 4px 0 8px;
     }
 
     .balance-row {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .mini-coin {
-      width: 34px;
-      height: 34px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       background: radial-gradient(circle at 30% 30%, #fff59d, #ffb300 60%, #b26a00 100%);
       border: 2px solid #fff8e1;
@@ -247,37 +237,37 @@
       justify-content: center;
       font-weight: 900;
       color: #3e2200;
-      font-size: 16px;
-      box-shadow: 0 0 16px rgba(255, 209, 59, 0.55);
+      font-size: 14px;
+      box-shadow: 0 0 14px rgba(255, 209, 59, 0.55);
     }
 
     .balance-amount {
-      font-size: 34px;
+      font-size: 30px;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       background: linear-gradient(180deg, #ffffff 10%, #ffe082 55%, #ffa000 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(255, 179, 0, 0.35));
+      filter: drop-shadow(0 2px 6px rgba(255, 179, 0, 0.35));
     }
 
     /* Progress Bar to Next Tier */
     .level-bar-wrap {
-      margin: 0 auto 14px;
+      margin: 0 auto 10px;
       max-width: 340px;
     }
 
     .level-meta {
       display: flex;
       justify-content: space-between;
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-muted);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       font-weight: 600;
     }
 
     .progress-track {
-      height: 8px;
+      height: 7px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 99px;
       overflow: hidden;
@@ -293,26 +283,26 @@
       transition: width 0.3s ease;
     }
 
-    /* Crowned Lion Citrine Tap Button */
+    /* Crowned Lion Citrine Tap Button — Standard Balanced Size */
     .tap-stage {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 10px 0 16px;
+      margin: 6px 0 12px;
       perspective: 900px;
     }
 
     .citrine-ring {
-      width: 266px;
-      height: 266px;
+      width: 236px;
+      height: 236px;
       border-radius: 50%;
-      padding: 12px;
+      padding: 10px;
       background: conic-gradient(from 45deg, #ffe082, #d98200, #fff3b0, #9e5400, #ffd54f, #ffe082);
       box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.75),
-        0 0 40px rgba(255, 193, 7, 0.32),
-        inset 0 2px 6px rgba(255, 255, 255, 0.7);
+        0 14px 36px rgba(0, 0, 0, 0.75),
+        0 0 32px rgba(255, 193, 7, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.7);
       transition: transform 0.12s ease-out;
       cursor: pointer;
       position: relative;
@@ -324,7 +314,7 @@
       border-radius: 50%;
       background: radial-gradient(circle at 35% 28%, rgba(255, 236, 153, 0.45) 0%, rgba(217, 130, 0, 0.85) 52%, rgba(56, 30, 2, 0.96) 100%);
       border: 2px solid rgba(255, 243, 176, 0.65);
-      box-shadow: inset 0 8px 24px rgba(255, 248, 220, 0.45), inset 0 -14px 28px rgba(20, 10, 0, 0.85);
+      box-shadow: inset 0 8px 20px rgba(255, 248, 220, 0.45), inset 0 -12px 24px rgba(20, 10, 0, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -332,7 +322,6 @@
       overflow: hidden;
     }
 
-    /* Translucent Crystal Facet Overlay */
     .citrine-inner::after {
       content: "";
       position: absolute;
@@ -343,16 +332,15 @@
     }
 
     .lion-emblem {
-      width: 185px;
-      height: 185px;
-      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.65));
+      width: 164px;
+      height: 164px;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.65));
       pointer-events: none;
     }
 
-    /* Floating Tap Number */
     .float-plus {
       position: fixed;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
       color: #fff59d;
       text-shadow: 0 2px 10px rgba(255, 160, 0, 0.9);
@@ -363,7 +351,7 @@
 
     @keyframes floatUp {
       0% { opacity: 1; transform: translateY(0) scale(1); }
-      100% { opacity: 0; transform: translateY(-75px) scale(1.2); }
+      100% { opacity: 0; transform: translateY(-70px) scale(1.2); }
     }
 
     /* Energy & Boost Row */
@@ -373,17 +361,17 @@
       justify-content: space-between;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      padding: 10px 14px;
-      margin-bottom: 10px;
+      border-radius: 14px;
+      padding: 8px 12px;
+      margin-bottom: 8px;
     }
 
     .energy-info {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13.5px;
       color: #ffe082;
     }
 
@@ -391,12 +379,12 @@
       background: linear-gradient(135deg, #ffd54f, #ff8f00);
       color: #241400;
       border: none;
-      border-radius: 11px;
-      padding: 7px 13px;
-      font-size: 12px;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 11.5px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 160, 0, 0.4);
+      box-shadow: 0 3px 10px rgba(255, 160, 0, 0.4);
     }
 
     /* Views / Pages */
@@ -408,10 +396,10 @@
     }
 
     .section-header {
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 800;
       color: #ffe082;
-      margin: 6px 0 12px;
+      margin: 4px 0 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -422,30 +410,30 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       background: linear-gradient(145deg, rgba(255, 215, 64, 0.1), rgba(24, 16, 4, 0.85));
       border: 1px solid rgba(255, 215, 64, 0.25);
-      border-radius: 16px;
-      padding: 12px;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      border-radius: 14px;
+      padding: 11px;
+      margin-bottom: 9px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
     .item-left {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
       flex: 1;
     }
 
     .item-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #fff8e1;
     }
 
     .item-reward {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: #ffd54f;
       margin-top: 2px;
@@ -455,14 +443,14 @@
       background: linear-gradient(135deg, #ffe082, #ffa000);
       color: #231400;
       border: none;
-      border-radius: 12px;
-      padding: 9px 14px;
+      border-radius: 11px;
+      padding: 8px 13px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
-      min-width: 82px;
+      min-width: 80px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(255, 160, 0, 0.35);
+      box-shadow: 0 3px 10px rgba(255, 160, 0, 0.35);
     }
 
     .action-btn.claim {
@@ -493,8 +481,8 @@
     .medal-box {
       background: linear-gradient(160deg, rgba(255, 224, 102, 0.12), rgba(20, 14, 3, 0.85));
       border: 1px solid rgba(255, 215, 64, 0.25);
-      border-radius: 16px;
-      padding: 14px 10px;
+      border-radius: 14px;
+      padding: 13px 10px;
       text-align: center;
     }
 
@@ -503,7 +491,7 @@
       filter: grayscale(0.7);
     }
 
-    /* Bottom Navigation Bar (Standard 68px Luxury Dock) */
+    /* Bottom Navigation Bar — Comfortable Standard Size (76px) */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -511,14 +499,15 @@
       transform: translateX(-50%);
       width: 100%;
       max-width: 460px;
-      height: 68px;
-      background: rgba(18, 12, 3, 0.94);
+      height: 76px;
+      background: linear-gradient(180deg, rgba(26, 18, 5, 0.96), rgba(14, 9, 2, 0.99));
       backdrop-filter: blur(18px);
-      border-top: 1px solid rgba(255, 215, 64, 0.3);
+      border-top: 1px solid rgba(255, 215, 64, 0.35);
       display: grid;
       grid-template-columns: repeat(5, 1fr);
+      padding: 6px 4px 10px;
       z-index: 100;
-      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.7);
     }
 
     .nav-item {
@@ -526,21 +515,25 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      color: #9e8b5c;
-      font-size: 11px;
+      gap: 5px;
+      color: #a69262;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      transition: color 0.2s ease;
+      border-radius: 12px;
+      margin: 0 3px;
+      transition: all 0.2s ease;
     }
 
     .nav-item.active {
       color: #ffd54f;
+      background: rgba(255, 213, 79, 0.12);
+      border: 1px solid rgba(255, 213, 79, 0.25);
     }
 
     .nav-item svg {
-      width: 22px;
-      height: 22px;
+      width: 25px;
+      height: 25px;
     }
 
     /* Modal Popup */
@@ -565,14 +558,14 @@
       max-width: 380px;
       background: linear-gradient(165deg, #2b1d07, #120c02);
       border: 1px solid rgba(255, 215, 64, 0.45);
-      border-radius: 22px;
+      border-radius: 20px;
       padding: 20px;
       text-align: center;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 193, 7, 0.2);
     }
 
     .modal-title {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       color: #ffe082;
       margin-bottom: 8px;
@@ -630,13 +623,13 @@
 
     <!-- HOME / TAP VIEW -->
     <div id="view-empire" class="view-section active">
-      <!-- 4 Colorful Crystal Citrine Quick Cards -->
+      <!-- 4 Colorful Crystal Citrine Quick Cards (Standard Compact Size) -->
       <div class="quick-grid">
         <!-- Daily Check-in -->
         <div class="crystal-card" onclick="openCheckinModal()">
           <span class="dot-badge" id="checkinDot"></span>
           <div class="gem-icon-wrap gem-checkin">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
               <rect x="3" y="4" width="18" height="17" rx="4" fill="#FFFDE7" fill-opacity="0.9"/>
               <path d="M3 8C3 5.79 4.79 4 7 4H17C19.21 4 21 5.79 21 8V10H3V8Z" fill="#E65100"/>
               <path d="M12 12L13.2 14.5L16 14.9L14 16.8L14.5 19.5L12 18.2L9.5 19.5L10 16.8L8 14.9L10.8 14.5L12 12Z" fill="#FF8F00"/>
@@ -650,7 +643,7 @@
         <div class="crystal-card" onclick="openComboModal()">
           <span class="dot-badge" id="comboDot"></span>
           <div class="gem-icon-wrap gem-combo">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
               <path d="M4 17L2.5 7.5L8 11.5L12 5L16 11.5L21.5 7.5L20 17H4Z" fill="#FFF8E1"/>
               <rect x="4" y="18.5" width="16" height="2.5" rx="1.2" fill="#FFE082"/>
               <circle cx="12" cy="13" r="2" fill="#D50000"/>
@@ -664,7 +657,7 @@
         <div class="crystal-card" onclick="handleSocialTask('yt')">
           <span class="dot-badge" id="ytDot"></span>
           <div class="gem-icon-wrap gem-youtube">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
               <rect x="2.5" y="5" width="19" height="14" rx="4.5" fill="#FFFDE7"/>
               <path d="M10 9L15.5 12L10 15V9Z" fill="#D50000"/>
             </svg>
@@ -677,7 +670,7 @@
         <div class="crystal-card" onclick="handleSocialTask('tg')">
           <span class="dot-badge" id="tgDot"></span>
           <div class="gem-icon-wrap gem-telegram">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
               <path d="M20.5 4.5L3.5 11.2C2.8 11.5 2.8 12.4 3.5 12.7L7.8 14.1L17.4 8.1C17.8 7.8 18.2 8.3 17.9 8.7L10.1 15.8L9.8 19.6C10.3 19.6 10.6 19.4 10.9 19.1L13.1 17L17.4 20.2C18.1 20.6 18.8 20.3 19 19.4L21.6 5.7C21.8 4.8 21.2 4.2 20.5 4.5Z" fill="#FFFFFF"/>
             </svg>
           </div>
@@ -728,25 +721,20 @@
                 </linearGradient>
               </defs>
 
-              <!-- Royal Imperial Crown -->
               <path d="M72 56L64 30L89 44L110 22L131 44L156 30L148 56H72Z" fill="url(#crownGrad)" stroke="#FFFDE7" stroke-width="2" stroke-linejoin="round"/>
               <rect x="72" y="55" width="76" height="8" rx="3" fill="#FFF59D" stroke="#B26A00" stroke-width="1.5"/>
               <circle cx="110" cy="42" r="3.5" fill="#D50000"/>
               <circle cx="88" cy="48" r="2.5" fill="#00B0FF"/>
               <circle cx="132" cy="48" r="2.5" fill="#00B0FF"/>
 
-              <!-- Sculpted Layered Lion Mane -->
               <path d="M110 62C146 62 174 88 174 124C174 162 145 192 110 196C75 192 46 162 46 124C46 88 74 62 110 62Z" fill="url(#maneGrad)" stroke="#FFE082" stroke-width="2.5"/>
               <path d="M110 70C139 70 162 93 162 122C162 153 138 178 110 182C82 178 58 153 58 122C58 93 81 70 110 70Z" fill="#7A3E00" fill-opacity="0.45"/>
 
-              <!-- Ears -->
               <circle cx="76" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
               <circle cx="144" cy="84" r="11" fill="#FFB300" stroke="#FFF3B0" stroke-width="2"/>
 
-              <!-- Regal Lion Face -->
               <path d="M78 96C78 82 92 74 110 74C128 74 142 82 142 96L138 134C136 150 124 160 110 160C96 160 84 150 82 134L78 96Z" fill="url(#faceGrad)" stroke="#FFF8E1" stroke-width="2"/>
 
-              <!-- Brow & Determined Eyes -->
               <path d="M86 103L102 108" stroke="#4A2500" stroke-width="3.5" stroke-linecap="round"/>
               <path d="M134 103L118 108" stroke="#4A2500" stroke-width="3.5" stroke-linecap="round"/>
               <ellipse cx="94" cy="111" rx="4.5" ry="3.2" fill="#2B1500"/>
@@ -754,10 +742,8 @@
               <circle cx="95.2" cy="110" r="1.2" fill="#FFFDE7"/>
               <circle cx="127.2" cy="110" r="1.2" fill="#FFFDE7"/>
 
-              <!-- Nose Bridge & Noble Nose -->
               <path d="M103 128H117L110 137L103 128Z" fill="#4A2500"/>
 
-              <!-- Closed Dignified Mouth & Chin -->
               <path d="M110 137V144" stroke="#4A2500" stroke-width="2.5" stroke-linecap="round"/>
               <path d="M97 146C102 143 107 143 110 144C113 143 118 143 123 146" stroke="#4A2500" stroke-width="2.6" stroke-linecap="round"/>
               <path d="M102 152C107 154 113 154 118 152" stroke="#7A3E00" stroke-width="2" stroke-linecap="round"/>
@@ -783,11 +769,10 @@
         <span style="font-size:12px; color:#cbb782;">Earn Beast Coins</span>
       </div>
 
-      <!-- Official YouTube Task -->
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-youtube" style="margin:0; flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <div class="gem-icon-wrap gem-youtube" style="margin:0; width:38px; height:38px; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <rect x="2.5" y="5" width="19" height="14" rx="4.5" fill="#FFFDE7"/>
               <path d="M10 9L15.5 12L10 15V9Z" fill="#D50000"/>
             </svg>
@@ -800,11 +785,10 @@
         <button class="action-btn" id="ytTaskBtn" onclick="handleSocialTask('yt')">Subscribe</button>
       </div>
 
-      <!-- Official Telegram Channel Task -->
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-telegram" style="margin:0; flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <div class="gem-icon-wrap gem-telegram" style="margin:0; width:38px; height:38px; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M20.5 4.5L3.5 11.2C2.8 11.5 2.8 12.4 3.5 12.7L7.8 14.1L17.4 8.1C17.8 7.8 18.2 8.3 17.9 8.7L10.1 15.8L9.8 19.6C10.3 19.6 10.6 19.4 10.9 19.1L13.1 17L17.4 20.2C18.1 20.6 18.8 20.3 19 19.4L21.6 5.7C21.8 4.8 21.2 4.2 20.5 4.5Z" fill="#FFFFFF"/>
             </svg>
           </div>
@@ -816,11 +800,10 @@
         <button class="action-btn" id="tgTaskBtn" onclick="handleSocialTask('tg')">Join</button>
       </div>
 
-      <!-- Daily Check-in Card in Quests -->
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-checkin" style="margin:0; flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px; flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <rect x="3" y="4" width="18" height="17" rx="4" fill="#FFFDE7"/>
               <path d="M12 9L13.5 12.2L17 12.7L14.5 15.1L15.1 18.5L12 16.9L8.9 18.5L9.5 15.1L7 12.7L10.5 12.2L12 9Z" fill="#E65100"/>
             </svg>
@@ -852,7 +835,7 @@
 
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-checkin" style="margin:0;">⚡</div>
+          <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px;">⚡</div>
           <div>
             <div class="item-title">Full Energy Refill</div>
             <div class="item-reward">Instant 100% Energy (Free)</div>
@@ -863,7 +846,7 @@
 
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-combo" style="margin:0;">👑</div>
+          <div class="gem-icon-wrap gem-combo" style="margin:0; width:38px; height:38px;">👑</div>
           <div>
             <div class="item-title">Multitap Power (Lv. <span id="multitapLvl">1</span>)</div>
             <div class="item-reward" id="multitapCost">5,000 Coins</div>
@@ -874,7 +857,7 @@
 
       <div class="item-card">
         <div class="item-left">
-          <div class="gem-icon-wrap gem-telegram" style="margin:0;">💎</div>
+          <div class="gem-icon-wrap gem-telegram" style="margin:0; width:38px; height:38px;">💎</div>
           <div>
             <div class="item-title">Energy Limit (Lv. <span id="energyLvl">1</span>)</div>
             <div class="item-reward" id="energyCost">5,000 Coins</div>
@@ -902,7 +885,7 @@
     </div>
   </div>
 
-  <!-- Bottom Navigation Bar -->
+  <!-- Bottom Navigation Bar (Standard 76px Luxury Dock) -->
   <nav class="bottom-nav">
     <div class="nav-item active" data-tab="empire" onclick="switchView('empire')">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L4 7v10l8 5 8-5V7l-8-5zm0 2.3L17.8 8 12 11.7 6.2 8 12 4.3z"/></svg>
@@ -937,7 +920,6 @@
   </div>
 
   <script>
-    // Telegram WebApp Init
     const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
     if (tg) {
       tg.ready();
@@ -947,7 +929,6 @@
     const YT_URL = "https://youtube.com/@beastempire-x9w";
     const TG_URL = "https://t.me/beastempireofficial";
 
-    // Persistent Game State
     const defaultState = {
       coins: 0,
       energy: 1000,
@@ -956,8 +937,8 @@
       multitapLvl: 1,
       energyLvl: 1,
       pph: 1200,
-      ytState: "open", // open -> claim -> done
-      tgState: "open", // open -> claim -> done
+      ytState: "open",
+      tgState: "open",
       lastCheckin: "",
       lastCombo: "",
       miners: [
@@ -982,7 +963,6 @@
       return Math.floor(n).toLocaleString("en-US");
     }
 
-    // Directional Tilt & Tap Logic
     const tapDisc = document.getElementById("tapDisc");
     tapDisc.addEventListener("pointerdown", (e) => {
       if (state.energy < state.tapPower) return;
@@ -1020,7 +1000,6 @@
       setTimeout(() => el.remove(), 850);
     }
 
-    // Social Tasks: YouTube & Official Telegram (500,000 Coins Each)
     function handleSocialTask(platform) {
       const key = platform === "yt" ? "ytState" : "tgState";
       const url = platform === "yt" ? YT_URL : TG_URL;
@@ -1046,7 +1025,6 @@
       }
     }
 
-    // Daily Check-in Modal
     function openCheckinModal() {
       const today = new Date().toDateString();
       const claimed = state.lastCheckin === today;
@@ -1073,7 +1051,6 @@
       }
     }
 
-    // Daily Combo Modal
     let pickedSlots = [];
     function openComboModal() {
       const today = new Date().toDateString();
@@ -1121,7 +1098,6 @@
       document.getElementById("modalBackdrop").classList.remove("show");
     }
 
-    // Boosts
     function refillEnergy() {
       state.energy = state.maxEnergy;
       saveState();
@@ -1151,7 +1127,6 @@
       }
     }
 
-    // Miners
     function buyMiner(idx) {
       const m = state.miners[idx];
       if (state.coins >= m.cost) {
@@ -1169,7 +1144,7 @@
       list.innerHTML = state.miners.map((m, idx) => `
         <div class="item-card">
           <div class="item-left">
-            <div class="gem-icon-wrap gem-checkin" style="margin:0;">💎</div>
+            <div class="gem-icon-wrap gem-checkin" style="margin:0; width:38px; height:38px;">💎</div>
             <div>
               <div class="item-title">${m.name} (Lv. ${m.lvl})</div>
               <div class="item-reward">+${formatNum(m.profit)}/hr • Cost: ${formatNum(m.cost)}</div>
@@ -1196,7 +1171,6 @@
       `).join("");
     }
 
-    // Navigation
     function switchView(tab) {
       document.querySelectorAll(".view-section").forEach(v => v.classList.remove("active"));
       document.getElementById(`view-${tab}`).classList.add("active");
@@ -1207,19 +1181,16 @@
       if (tab === "airdrop") renderMedals();
     }
 
-    // Update UI
     function updateUI() {
       document.getElementById("balanceDisplay").textContent = formatNum(state.coins);
       document.getElementById("pphDisplay").textContent = `+${formatNum(state.pph)}`;
       document.getElementById("energyDisplay").textContent = `${state.energy} / ${state.maxEnergy}`;
 
-      // Tier progress
       const target = 1000000;
       const pct = Math.min(100, (state.coins / target) * 100);
       document.getElementById("tierProgressFill").style.width = `${pct}%`;
       document.getElementById("tierProgressText").textContent = `${formatNum(state.coins)} / 1,000,000`;
 
-      // Social buttons state
       const ytBtn = document.getElementById("ytTaskBtn");
       const ytQuick = document.getElementById("ytQuickStatus");
       if (state.ytState === "open") {
@@ -1248,7 +1219,6 @@
         document.getElementById("tgDot").style.display = "none";
       }
 
-      // Check-in & Combo dots
       const today = new Date().toDateString();
       if (state.lastCheckin === today) {
         document.getElementById("checkinTimer").textContent = "Done";
@@ -1258,14 +1228,12 @@
         document.getElementById("comboDot").style.display = "none";
       }
 
-      // Boost costs
       document.getElementById("multitapLvl").textContent = state.multitapLvl;
       document.getElementById("multitapCost").textContent = `${formatNum(5000 * Math.pow(2, state.multitapLvl - 1))} Coins`;
       document.getElementById("energyLvl").textContent = state.energyLvl;
       document.getElementById("energyCost").textContent = `${formatNum(5000 * Math.pow(2, state.energyLvl - 1))} Coins`;
     }
 
-    // Passive Income & Energy Regen Loop
     setInterval(() => {
       if (state.energy < state.maxEnergy) {
         state.energy = Math.min(state.maxEnergy, state.energy + 2);
